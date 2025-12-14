@@ -24,10 +24,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let isFlipped = false;
     
+    // 更新詞彙列表函數
+    function updateVocabList() {
+        currentVocabList = window.vocabStorage.getAllVocab();
+        currentIndex = Math.min(currentIndex, currentVocabList.length - 1);
+        if (currentIndex < 0) currentIndex = 0;
+        updateCard();
+    }
+    
+    // 公開更新函數供管理面板使用
+    window.updateCard = updateCard;
+    
     // 初始化
     function init() {
-        updateProgress();
-        updateCard();
+        updateVocabList();
         
         // 設定事件監聽器
         vocabCard.addEventListener('click', flipCard);
@@ -43,6 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 更新進度顯示
     function updateProgress() {
+        if (currentVocabList.length === 0) {
+            progressFill.style.width = '0%';
+            progressText.textContent = '0/0';
+            return;
+        }
+        
         const progress = ((currentIndex + 1) / currentVocabList.length) * 100;
         progressFill.style.width = `${progress}%`;
         progressText.textContent = `${currentIndex + 1}/${currentVocabList.length}`;
@@ -50,6 +66,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 更新卡片內容
     function updateCard() {
+        if (currentVocabList.length === 0) {
+            frontText.textContent = "無詞彙數據";
+            backKanji.textContent = "請添加詞彙";
+            backReading.textContent = "";
+            backDefinition.textContent = "點擊「管理詞彙」按鈕添加你的第一個詞彙";
+            backExample.textContent = "";
+            backTranslation.textContent = "";
+            updateProgress();
+            return;
+        }
+        
         const currentVocab = currentVocabList[currentIndex];
         
         if (!currentVocab) return;
@@ -68,6 +95,11 @@ document.addEventListener('DOMContentLoaded', function() {
             backDefinition.innerHTML = currentVocab.definition;
             backExample.innerHTML = currentVocab.example;
             backTranslation.textContent = currentVocab.translation;
+            
+            // 標記自定義詞彙
+            if (currentVocab.id >= 1000) {
+                backReading.textContent += ' (自定義)';
+            }
         } else {
             // 模式2: 正面顯示漢字，背面顯示平假名+解釋+例句
             frontLabel.textContent = "漢字";
@@ -78,6 +110,11 @@ document.addEventListener('DOMContentLoaded', function() {
             backDefinition.innerHTML = currentVocab.definition;
             backExample.innerHTML = currentVocab.example;
             backTranslation.textContent = currentVocab.translation;
+            
+            // 標記自定義詞彙
+            if (currentVocab.id >= 1000) {
+                backReading.textContent += ' (自定義)';
+            }
         }
         
         updateProgress();
@@ -85,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 翻轉卡片
     function flipCard() {
+        if (currentVocabList.length === 0) return;
         isFlipped = !isFlipped;
         vocabCard.classList.toggle('flipped');
     }
@@ -110,6 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 顯示上一個單字
     function showPrevious() {
+        if (currentVocabList.length === 0) return;
+        
         if (currentIndex > 0) {
             currentIndex--;
         } else {
@@ -120,6 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 顯示下一個單字
     function showNext() {
+        if (currentVocabList.length === 0) return;
+        
         if (currentIndex < currentVocabList.length - 1) {
             currentIndex++;
         } else {
@@ -130,6 +172,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 隨機排序詞彙
     function shuffleVocab() {
+        if (currentVocabList.length === 0) return;
+        
         // 隨機排序陣列 (Fisher-Yates 洗牌算法)
         for (let i = currentVocabList.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -141,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCard();
         
         // 顯示提示
-        alert('單字已隨機排序！');
+        showNotification('單字已隨機排序！');
     }
     
     // 處理鍵盤按鍵
@@ -168,8 +212,47 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'R':
                 shuffleVocab();
                 break;
+            case 'Escape':
+                // 關閉管理面板
+                const managementPanel = document.getElementById('managementPanel');
+                if (managementPanel) {
+                    managementPanel.classList.remove('active');
+                }
+                break;
         }
     }
+    
+    // 顯示通知訊息（與管理面板共用）
+    function showNotification(message, type = 'success') {
+        const notification = document.getElementById('notification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        
+        if (notification && notificationMessage) {
+            notificationMessage.textContent = message;
+            notification.className = 'notification';
+            
+            if (type === 'error') {
+                notification.style.background = '#e74c3c';
+            } else if (type === 'warning') {
+                notification.style.background = '#f39c12';
+            } else {
+                notification.style.background = '#27ae60';
+            }
+            
+            notification.classList.add('active');
+            
+            // 3秒後自動隱藏
+            setTimeout(() => {
+                notification.classList.remove('active');
+            }, 3000);
+        } else {
+            // 如果通知元素不存在，使用alert
+            alert(message);
+        }
+    }
+    
+    // 公開函數供管理面板使用
+    window.showNotification = showNotification;
     
     // 開始應用
     init();
