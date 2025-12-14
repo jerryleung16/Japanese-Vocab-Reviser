@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const backTranslation = document.getElementById('backTranslation');
     const frontLabel = document.getElementById('frontLabel');
     const backLabel = document.getElementById('backLabel');
+    const masteryBadge = document.getElementById('masteryBadge');
+    const masteryButtons = document.querySelectorAll('.mastery-btn');
     
     const mode1Btn = document.getElementById('mode1');
     const mode2Btn = document.getElementById('mode2');
@@ -23,10 +25,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentMode = 1; // 1: 平假名→漢字, 2: 漢字→平假名
     let currentIndex = 0;
     let isFlipped = false;
+    let currentReviewFilter = window.getCurrentReviewFilter ? window.getCurrentReviewFilter() : 'all';
     
-    // 更新詞彙列表函數
+    // 更新詞彙列表函數（考慮掌握程度篩選）
     function updateVocabList() {
-        currentVocabList = window.vocabStorage.getAllVocab();
+        if (currentReviewFilter === 'all') {
+            currentVocabList = window.getAllVocabData();
+        } else {
+            currentVocabList = window.getVocabByMastery(currentReviewFilter);
+        }
+        
         currentIndex = Math.min(currentIndex, currentVocabList.length - 1);
         if (currentIndex < 0) currentIndex = 0;
         updateCard();
@@ -34,6 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 公開更新函數供管理面板使用
     window.updateCard = updateCard;
+    window.updateVocabList = updateVocabList;
+    window.showNext = showNext;
+    
+    // 獲取當前詞彙
+    window.getCurrentVocab = () => currentVocabList[currentIndex];
     
     // 初始化
     function init() {
@@ -49,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 鍵盤快捷鍵
         document.addEventListener('keydown', handleKeyPress);
+        
+        // 掌握程度按鈕快捷鍵
+        document.addEventListener('keydown', handleMasteryKeyPress);
     }
     
     // 更新進度顯示
@@ -73,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
             backDefinition.textContent = "點擊「管理詞彙」按鈕添加你的第一個詞彙";
             backExample.textContent = "";
             backTranslation.textContent = "";
+            masteryBadge.style.display = 'none';
             updateProgress();
             return;
         }
@@ -84,6 +101,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // 重置卡片為正面
         vocabCard.classList.remove('flipped');
         isFlipped = false;
+        
+        // 獲取掌握程度
+        const mastery = window.getMastery(currentVocab.id);
         
         if (currentMode === 1) {
             // 模式1: 正面顯示平假名，背面顯示漢字+解釋+例句
@@ -117,7 +137,48 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
+        // 更新掌握程度徽章和按鈕狀態
+        updateMasteryDisplay(mastery);
+        
         updateProgress();
+    }
+    
+    // 更新掌握程度顯示
+    function updateMasteryDisplay(mastery) {
+        // 更新徽章
+        if (mastery) {
+            let badgeText = '';
+            let badgeClass = '';
+            
+            switch(mastery) {
+                case 'know':
+                    badgeText = '已掌握';
+                    badgeClass = 'know';
+                    break;
+                case 'review':
+                    badgeText = '需複習';
+                    badgeClass = 'review';
+                    break;
+                case 'dont-know':
+                    badgeText = '未掌握';
+                    badgeClass = 'dont-know';
+                    break;
+            }
+            
+            masteryBadge.textContent = badgeText;
+            masteryBadge.className = 'mastery-badge ' + badgeClass;
+            masteryBadge.style.display = 'inline-block';
+        } else {
+            masteryBadge.style.display = 'none';
+        }
+        
+        // 更新按鈕狀態
+        masteryButtons.forEach(button => {
+            button.classList.remove('active');
+            if (button.getAttribute('data-mastery') === mastery) {
+                button.classList.add('active');
+            }
+        });
     }
     
     // 翻轉卡片
@@ -215,9 +276,37 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'Escape':
                 // 關閉管理面板
                 const managementPanel = document.getElementById('managementPanel');
+                const statsPanel = document.getElementById('statsPanel');
                 if (managementPanel) {
                     managementPanel.classList.remove('active');
                 }
+                if (statsPanel) {
+                    statsPanel.classList.remove('active');
+                }
+                break;
+        }
+    }
+    
+    // 處理掌握程度快捷鍵
+    function handleMasteryKeyPress(event) {
+        // 只有當卡片翻到背面時才處理掌握程度快捷鍵
+        if (!isFlipped) return;
+        
+        switch(event.key) {
+            case '1':
+            case '&': // 數字1
+                document.querySelector('.mastery-btn.know').click();
+                event.preventDefault();
+                break;
+            case '2':
+            case 'é': // 數字2
+                document.querySelector('.mastery-btn.review').click();
+                event.preventDefault();
+                break;
+            case '3':
+            case '"': // 數字3
+                document.querySelector('.mastery-btn.dont-know').click();
+                event.preventDefault();
                 break;
         }
     }
