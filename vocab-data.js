@@ -1,368 +1,259 @@
-// 日語詞彙資料庫 - 原始數據（已清空，等待用戶添加）
-const originalVocabData = [
-    // 這裡原本有你提供的範例詞彙，現在已清空
-    // 用戶可以通過管理界面添加自己的詞彙
-    // 格式：
-    // {
-    //     id: 1,
-    //     hiragana: "平假名",
-    //     kanji: "漢字",
-    //     definition: "解釋",
-    //     example: "例句",
-    //     translation: "例句翻譯"
-    // }
-];
-
-// 本地儲存相關功能
-class VocabStorage {
-    constructor() {
-        this.originalData = originalVocabData;
-        this.vocabStorageKey = 'japanese_custom_vocab';
-        this.masteryStorageKey = 'japanese_vocab_mastery';
-        this.nextId = this.getNextId();
+// 等待網頁完全載入
+document.addEventListener('DOMContentLoaded', function() {
+    // 取得DOM元素
+    const vocabCard = document.getElementById('vocabCard');
+    const frontText = document.getElementById('frontText');
+    const backKanji = document.getElementById('backKanji');
+    const backReading = document.getElementById('backReading');
+    const backDefinition = document.getElementById('backDefinition');
+    const backExample = document.getElementById('backExample');
+    const backTranslation = document.getElementById('backTranslation');
+    const frontLabel = document.getElementById('frontLabel');
+    const backLabel = document.getElementById('backLabel');
+    
+    const mode1Btn = document.getElementById('mode1');
+    const mode2Btn = document.getElementById('mode2');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    
+    // 當前狀態
+    let currentMode = 1; // 1: 平假名→漢字, 2: 漢字→平假名
+    let currentIndex = 0;
+    let isFlipped = false;
+    
+    // 更新詞彙列表函數
+    function updateVocabList() {
+        currentVocabList = window.vocabStorage.getAllVocab();
+        currentIndex = Math.min(currentIndex, currentVocabList.length - 1);
+        if (currentIndex < 0) currentIndex = 0;
+        updateCard();
     }
     
-    // 獲取下一個ID
-    getNextId() {
-        const customVocab = this.getCustomVocab();
-        if (customVocab.length === 0) return 1000; // 自定義詞彙從1000開始
-        const maxId = Math.max(...customVocab.map(item => item.id));
-        return maxId + 1;
-    }
+    // 公開更新函數供管理面板使用
+    window.updateCard = updateCard;
     
-    // 獲取自定義詞彙
-    getCustomVocab() {
-        try {
-            const stored = localStorage.getItem(this.vocabStorageKey);
-            return stored ? JSON.parse(stored) : [];
-        } catch (error) {
-            console.error('讀取自定義詞彙失敗:', error);
-            return [];
-        }
-    }
-    
-    // 獲取掌握程度數據
-    getMasteryData() {
-        try {
-            const stored = localStorage.getItem(this.masteryStorageKey);
-            return stored ? JSON.parse(stored) : {};
-        } catch (error) {
-            console.error('讀取掌握程度失敗:', error);
-            return {};
-        }
-    }
-    
-    // 保存自定義詞彙
-    saveCustomVocab(vocabList) {
-        try {
-            localStorage.setItem(this.vocabStorageKey, JSON.stringify(vocabList));
-            this.nextId = this.getNextId();
-            return true;
-        } catch (error) {
-            console.error('保存自定義詞彙失敗:', error);
-            return false;
-        }
-    }
-    
-    // 保存掌握程度數據
-    saveMasteryData(masteryData) {
-        try {
-            localStorage.setItem(this.masteryStorageKey, JSON.stringify(masteryData));
-            return true;
-        } catch (error) {
-            console.error('保存掌握程度失敗:', error);
-            return false;
-        }
-    }
-    
-    // 添加自定義詞彙
-    addVocab(vocab) {
-        const customVocab = this.getCustomVocab();
+    // 初始化
+    function init() {
+        updateVocabList();
         
-        // 檢查是否已存在
-        const exists = customVocab.some(item => 
-            item.hiragana === vocab.hiragana && 
-            item.kanji === vocab.kanji
-        );
+        // 設定事件監聽器
+        vocabCard.addEventListener('click', flipCard);
+        mode1Btn.addEventListener('click', () => switchMode(1));
+        mode2Btn.addEventListener('click', () => switchMode(2));
+        prevBtn.addEventListener('click', showPrevious);
+        nextBtn.addEventListener('click', showNext);
+        shuffleBtn.addEventListener('click', shuffleVocab);
         
-        if (exists) {
-            return {
-                success: false,
-                message: '詞彙已存在！'
-            };
+        // 鍵盤快捷鍵
+        document.addEventListener('keydown', handleKeyPress);
+    }
+    
+    // 更新進度顯示
+    function updateProgress() {
+        if (currentVocabList.length === 0) {
+            progressFill.style.width = '0%';
+            progressText.textContent = '0/0';
+            return;
         }
         
-        const newVocab = {
-            id: this.nextId++,
-            hiragana: vocab.hiragana,
-            kanji: vocab.kanji || vocab.hiragana,
-            definition: vocab.definition,
-            example: vocab.example || '',
-            translation: vocab.translation || ''
-        };
-        
-        customVocab.push(newVocab);
-        const saved = this.saveCustomVocab(customVocab);
-        
-        return {
-            success: saved,
-            message: saved ? '添加成功！' : '保存失敗，請檢查瀏覽器設定',
-            vocab: newVocab
-        };
+        const progress = ((currentIndex + 1) / currentVocabList.length) * 100;
+        progressFill.style.width = `${progress}%`;
+        progressText.textContent = `${currentIndex + 1}/${currentVocabList.length}`;
     }
     
-    // 更新自定義詞彙
-    updateVocab(id, vocab) {
-        const customVocab = this.getCustomVocab();
-        const index = customVocab.findIndex(item => item.id === id);
-        
-        if (index === -1) {
-            return {
-                success: false,
-                message: '找不到要更新的詞彙'
-            };
+    // 更新卡片內容
+    function updateCard() {
+        if (currentVocabList.length === 0) {
+            frontText.textContent = "無詞彙數據";
+            backKanji.textContent = "請添加詞彙";
+            backReading.textContent = "";
+            backDefinition.textContent = "點擊「管理詞彙」按鈕添加你的第一個詞彙";
+            backExample.textContent = "";
+            backTranslation.textContent = "";
+            updateProgress();
+            return;
         }
         
-        // 檢查是否與其他詞彙重複（排除自己）
-        const duplicate = customVocab.some((item, i) => 
-            i !== index &&
-            item.hiragana === vocab.hiragana && 
-            item.kanji === vocab.kanji
-        );
+        const currentVocab = currentVocabList[currentIndex];
         
-        if (duplicate) {
-            return {
-                success: false,
-                message: '詞彙已存在！'
-            };
-        }
+        if (!currentVocab) return;
         
-        // 更新詞彙
-        customVocab[index] = {
-            id: id,
-            hiragana: vocab.hiragana,
-            kanji: vocab.kanji || vocab.hiragana,
-            definition: vocab.definition,
-            example: vocab.example || '',
-            translation: vocab.translation || ''
-        };
+        // 重置卡片為正面
+        vocabCard.classList.remove('flipped');
+        isFlipped = false;
         
-        const saved = this.saveCustomVocab(customVocab);
-        
-        return {
-            success: saved,
-            message: saved ? '更新成功！' : '保存失敗，請檢查瀏覽器設定'
-        };
-    }
-    
-    // 刪除自定義詞彙
-    deleteVocab(id) {
-        const customVocab = this.getCustomVocab();
-        const index = customVocab.findIndex(item => item.id === id);
-        
-        if (index === -1) {
-            return {
-                success: false,
-                message: '找不到要刪除的詞彙'
-            };
-        }
-        
-        // 從陣列中移除
-        customVocab.splice(index, 1);
-        const saved = this.saveCustomVocab(customVocab);
-        
-        // 同時刪除掌握程度數據
-        if (saved) {
-            const masteryData = this.getMasteryData();
-            delete masteryData[id];
-            this.saveMasteryData(masteryData);
-        }
-        
-        return {
-            success: saved,
-            message: saved ? '刪除成功！' : '刪除失敗，請檢查瀏覽器設定'
-        };
-    }
-    
-    // 獲取所有詞彙（原始 + 自定義）
-    getAllVocab() {
-        const customVocab = this.getCustomVocab();
-        return [...this.originalData, ...customVocab];
-    }
-    
-    // 根據ID獲取詞彙
-    getVocabById(id) {
-        const allVocab = this.getAllVocab();
-        return allVocab.find(item => item.id === id);
-    }
-    
-    // 根據掌握程度篩選詞彙
-    getVocabByMastery(mastery) {
-        const allVocab = this.getAllVocab();
-        const masteryData = this.getMasteryData();
-        
-        return allVocab.filter(vocab => {
-            const vocabMastery = masteryData[vocab.id] || 'dont-know';
-            return mastery === 'all' || vocabMastery === mastery;
-        });
-    }
-    
-    // 獲取掌握程度
-    getMastery(id) {
-        const masteryData = this.getMasteryData();
-        return masteryData[id] || 'dont-know'; // 預設為未掌握
-    }
-    
-    // 更新掌握程度
-    updateMastery(id, mastery) {
-        const masteryData = this.getMasteryData();
-        masteryData[id] = mastery;
-        const saved = this.saveMasteryData(masteryData);
-        
-        return {
-            success: saved,
-            message: saved ? '掌握程度更新成功！' : '保存失敗，請檢查瀏覽器設定'
-        };
-    }
-    
-    // 獲取掌握程度統計
-    getMasteryStats() {
-        const allVocab = this.getAllVocab();
-        const masteryData = this.getMasteryData();
-        
-        const stats = {
-            'know': 0,
-            'review': 0,
-            'dont-know': 0,
-            'total': allVocab.length
-        };
-        
-        allVocab.forEach(vocab => {
-            const mastery = masteryData[vocab.id] || 'dont-know';
-            stats[mastery]++;
-        });
-        
-        return stats;
-    }
-    
-    // 重置所有掌握程度
-    resetAllMastery() {
-        const masteryData = {};
-        const saved = this.saveMasteryData(masteryData);
-        
-        return {
-            success: saved,
-            message: saved ? '掌握程度已重置！' : '重置失敗，請檢查瀏覽器設定'
-        };
-    }
-    
-    // 刪除所有自定義詞彙
-    clearCustomVocab() {
-        localStorage.removeItem(this.vocabStorageKey);
-        
-        // 同時刪除自定義詞彙的掌握程度數據
-        const masteryData = this.getMasteryData();
-        const newMasteryData = {};
-        
-        // 只保留原始詞彙的掌握程度數據
-        Object.keys(masteryData).forEach(id => {
-            if (parseInt(id) < 1000) { // 原始詞彙ID < 1000
-                newMasteryData[id] = masteryData[id];
+        if (currentMode === 1) {
+            // 模式1: 正面顯示平假名，背面顯示漢字+解釋+例句
+            frontLabel.textContent = "平假名";
+            backLabel.textContent = "漢字+解釋";
+            frontText.textContent = currentVocab.hiragana;
+            backKanji.textContent = currentVocab.kanji;
+            backReading.textContent = `読み方：${currentVocab.hiragana}`;
+            backDefinition.innerHTML = currentVocab.definition;
+            backExample.innerHTML = currentVocab.example;
+            backTranslation.textContent = currentVocab.translation;
+            
+            // 標記自定義詞彙
+            if (currentVocab.id >= 1000) {
+                backReading.textContent += ' (自定義)';
             }
-        });
+        } else {
+            // 模式2: 正面顯示漢字，背面顯示平假名+解釋+例句
+            frontLabel.textContent = "漢字";
+            backLabel.textContent = "平假名+解釋";
+            frontText.textContent = currentVocab.kanji;
+            backKanji.textContent = currentVocab.hiragana;
+            backReading.textContent = `漢字：${currentVocab.kanji}`;
+            backDefinition.innerHTML = currentVocab.definition;
+            backExample.innerHTML = currentVocab.example;
+            backTranslation.textContent = currentVocab.translation;
+            
+            // 標記自定義詞彙
+            if (currentVocab.id >= 1000) {
+                backReading.textContent += ' (自定義)';
+            }
+        }
         
-        this.saveMasteryData(newMasteryData);
-        this.nextId = 1000;
+        updateProgress();
+    }
+    
+    // 翻轉卡片
+    function flipCard() {
+        if (currentVocabList.length === 0) return;
+        isFlipped = !isFlipped;
+        vocabCard.classList.toggle('flipped');
+    }
+    
+    // 切換模式
+    function switchMode(mode) {
+        if (currentMode === mode) return;
         
-        return true;
-    }
-    
-    // 重置為原始數據（刪除自定義）
-    resetToOriginal() {
-        return this.clearCustomVocab();
-    }
-    
-    // 獲取原始詞彙數量
-    getOriginalCount() {
-        return this.originalData.length;
-    }
-    
-    // 獲取自定義詞彙數量
-    getCustomCount() {
-        return this.getCustomVocab().length;
-    }
-    
-    // 獲取總詞彙數量
-    getTotalCount() {
-        return this.originalData.length + this.getCustomVocab().length;
-    }
-    
-    // 批量添加詞彙
-    batchAddVocab(vocabList) {
-        const results = {
-            success: 0,
-            failed: 0,
-            messages: []
-        };
+        currentMode = mode;
         
-        vocabList.forEach(vocab => {
-            const result = this.addVocab(vocab);
-            if (result.success) {
-                results.success++;
+        // 更新按鈕狀態
+        if (mode === 1) {
+            mode1Btn.classList.add('active');
+            mode2Btn.classList.remove('active');
+        } else {
+            mode1Btn.classList.remove('active');
+            mode2Btn.classList.add('active');
+        }
+        
+        // 更新卡片
+        updateCard();
+    }
+    
+    // 顯示上一個單字
+    function showPrevious() {
+        if (currentVocabList.length === 0) return;
+        
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = currentVocabList.length - 1; // 循環到最後一個
+        }
+        updateCard();
+    }
+    
+    // 顯示下一個單字
+    function showNext() {
+        if (currentVocabList.length === 0) return;
+        
+        if (currentIndex < currentVocabList.length - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // 循環到第一個
+        }
+        updateCard();
+    }
+    
+    // 隨機排序詞彙
+    function shuffleVocab() {
+        if (currentVocabList.length === 0) return;
+        
+        // 隨機排序陣列 (Fisher-Yates 洗牌算法)
+        for (let i = currentVocabList.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [currentVocabList[i], currentVocabList[j]] = [currentVocabList[j], currentVocabList[i]];
+        }
+        
+        // 回到第一個
+        currentIndex = 0;
+        updateCard();
+        
+        // 顯示提示
+        showNotification('單字已隨機排序！');
+    }
+    
+    // 處理鍵盤按鍵
+    function handleKeyPress(event) {
+        switch(event.key) {
+            case 'ArrowLeft':
+                showPrevious();
+                break;
+            case 'ArrowRight':
+                showNext();
+                break;
+            case ' ':
+            case 'Enter':
+                flipCard();
+                event.preventDefault(); // 防止空格鍵滾動頁面
+                break;
+            case '1':
+                switchMode(1);
+                break;
+            case '2':
+                switchMode(2);
+                break;
+            case 'r':
+            case 'R':
+                shuffleVocab();
+                break;
+            case 'Escape':
+                // 關閉管理面板
+                const managementPanel = document.getElementById('managementPanel');
+                if (managementPanel) {
+                    managementPanel.classList.remove('active');
+                }
+                break;
+        }
+    }
+    
+    // 顯示通知訊息（與管理面板共用）
+    function showNotification(message, type = 'success') {
+        const notification = document.getElementById('notification');
+        const notificationMessage = document.getElementById('notificationMessage');
+        
+        if (notification && notificationMessage) {
+            notificationMessage.textContent = message;
+            notification.className = 'notification';
+            
+            if (type === 'error') {
+                notification.style.background = '#e74c3c';
+            } else if (type === 'warning') {
+                notification.style.background = '#f39c12';
             } else {
-                results.failed++;
-                results.messages.push(result.message);
+                notification.style.background = '#27ae60';
             }
-        });
-        
-        return results;
+            
+            notification.classList.add('active');
+            
+            // 3秒後自動隱藏
+            setTimeout(() => {
+                notification.classList.remove('active');
+            }, 3000);
+        } else {
+            // 如果通知元素不存在，使用alert
+            alert(message);
+        }
     }
-}
-
-// 創建儲存實例
-const vocabStorage = new VocabStorage();
-
-// 初始化當前詞彙列表
-let currentVocabList = vocabStorage.getAllVocab();
-
-// 公開函數供其他腳本使用
-window.vocabStorage = vocabStorage;
-window.getAllVocabData = () => vocabStorage.getAllVocab();
-window.getVocabByMastery = (mastery) => vocabStorage.getVocabByMastery(mastery);
-window.getOriginalVocabCount = () => vocabStorage.getOriginalCount();
-window.getCustomVocabCount = () => vocabStorage.getCustomCount();
-window.getVocabById = (id) => vocabStorage.getVocabById(id);
-
-// 添加詞彙
-window.addCustomVocab = (vocab) => vocabStorage.addVocab(vocab);
-
-// 更新詞彙
-window.updateCustomVocab = (id, vocab) => vocabStorage.updateVocab(id, vocab);
-
-// 刪除詞彙
-window.deleteCustomVocab = (id) => {
-    const result = vocabStorage.deleteVocab(id);
-    if (result.success) {
-        currentVocabList = vocabStorage.getAllVocab();
-    }
-    return result;
-};
-
-// 掌握程度相關函數
-window.getMastery = (id) => vocabStorage.getMastery(id);
-window.updateMastery = (id, mastery) => vocabStorage.updateMastery(id, mastery);
-window.getMasteryStats = () => vocabStorage.getMasteryStats();
-window.resetAllMastery = () => vocabStorage.resetAllMastery();
-
-// 重置功能
-window.resetCustomVocab = () => {
-    vocabStorage.clearCustomVocab();
-    currentVocabList = vocabStorage.getAllVocab();
-    return true;
-};
-
-window.resetAllVocab = () => {
-    vocabStorage.resetToOriginal();
-    currentVocabList = vocabStorage.getAllVocab();
-    return true;
-};
+    
+    // 公開函數供管理面板使用
+    window.showNotification = showNotification;
+    
+    // 開始應用
+    init();
+});
