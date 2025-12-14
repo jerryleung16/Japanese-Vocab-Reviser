@@ -469,166 +469,6 @@
             cursor: not-allowed;
         }
         
-        /* 掌握程度按鈕樣式 - 新增 */
-        .mastery-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .mastery-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .mastery-btn.know {
-            background: #27ae60;
-            color: white;
-        }
-        
-        .mastery-btn.know:hover {
-            background: #219653;
-        }
-        
-        .mastery-btn.review {
-            background: #f39c12;
-            color: white;
-        }
-        
-        .mastery-btn.review:hover {
-            background: #e67e22;
-        }
-        
-        .mastery-btn.dont-know {
-            background: #e74c3c;
-            color: white;
-        }
-        
-        .mastery-btn.dont-know:hover {
-            background: #c0392b;
-        }
-        
-        .mastery-btn.active {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* 掌握程度標記樣式 */
-        .mastery-badge {
-            display: inline-block;
-            padding: 3px 10px;
-            font-size: 0.7rem;
-            border-radius: 10px;
-            margin-left: 10px;
-            font-weight: 500;
-        }
-        
-        .mastery-badge.know {
-            background: #d5f4e6;
-            color: #27ae60;
-        }
-        
-        .mastery-badge.review {
-            background: #fdebd0;
-            color: #f39c12;
-        }
-        
-        .mastery-badge.dont-know {
-            background: #fadbd8;
-            color: #e74c3c;
-        }
-        
-        /* 複習篩選器樣式 */
-        .review-filter {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .review-filter-btn {
-            padding: 8px 15px;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-        
-        .review-filter-btn.active {
-            background: #3498db;
-            color: white;
-        }
-        
-        /* 進階統計樣式 */
-        .advanced-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .stat-card .stat-value {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-        
-        .stat-card.know .stat-value {
-            color: #27ae60;
-        }
-        
-        .stat-card.review .stat-value {
-            color: #f39c12;
-        }
-        
-        .stat-card.dont-know .stat-value {
-            color: #e74c3c;
-        }
-        
-        /* 複習進度條樣式 */
-        .review-progress {
-            margin-top: 15px;
-        }
-        
-        .progress-bars {
-            display: flex;
-            height: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-        
-        .progress-know {
-            background: #27ae60;
-        }
-        
-        .progress-review {
-            background: #f39c12;
-        }
-        
-        .progress-dont-know {
-            background: #e74c3c;
-        }
-        
         @media (max-width: 768px) {
             .tab-btn {
                 padding: 10px 15px;
@@ -648,17 +488,6 @@
             .vocab-info {
                 flex-wrap: wrap;
             }
-            
-            .mastery-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .mastery-btn {
-                width: 100%;
-                max-width: 200px;
-                justify-content: center;
-            }
         }
         
         @media (max-width: 480px) {
@@ -674,10 +503,6 @@
             .data-stats {
                 flex-direction: column;
                 gap: 10px;
-            }
-            
-            .advanced-stats {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -696,22 +521,6 @@
                 </button>
                 <button id="mode2" class="mode-btn">
                     <i class="fas fa-kanji"></i> 模式2：漢字 → 平假名+解釋
-                </button>
-            </div>
-            
-            <!-- 複習篩選器 -->
-            <div class="review-filter">
-                <button class="review-filter-btn active" data-review-filter="all">
-                    <i class="fas fa-list"></i> 全部單字
-                </button>
-                <button class="review-filter-btn" data-review-filter="dont-know">
-                    <i class="fas fa-times-circle"></i> 未掌握
-                </button>
-                <button class="review-filter-btn" data-review-filter="review">
-                    <i class="fas fa-history"></i> 需複習
-                </button>
-                <button class="review-filter-btn" data-review-filter="know">
-                    <i class="fas fa-check-circle"></i> 已掌握
                 </button>
             </div>
             
@@ -741,9 +550,6 @@
                 <button id="exportBtn" class="action-btn action-btn-small">
                     <i class="fas fa-download"></i> 匯出詞彙
                 </button>
-                <button id="statsBtn" class="action-btn action-btn-small">
-                    <i class="fas fa-chart-bar"></i> 學習統計
-                </button>
             </div>
         </div>
 
@@ -767,7 +573,6 @@
                     <div class="card-content">
                         <div class="card-header">
                             <span class="card-label" id="backLabel">答案</span>
-                            <span class="mastery-badge" id="masteryBadge"></span>
                         </div>
                         <div class="answer-content">
                             <div class="kanji-section">
@@ -784,81 +589,11 @@
                                 <p class="translation" id="backTranslation">例句翻譯</p>
                             </div>
                         </div>
-                        
-                        <!-- 掌握程度按鈕 -->
-                        <div class="mastery-buttons">
-                            <button class="mastery-btn know" data-mastery="know">
-                                <i class="fas fa-check-circle"></i> 已掌握
-                            </button>
-                            <button class="mastery-btn review" data-mastery="review">
-                                <i class="fas fa-history"></i> 需複習
-                            </button>
-                            <button class="mastery-btn dont-know" data-mastery="dont-know">
-                                <i class="fas fa-times-circle"></i> 未掌握
-                            </button>
-                        </div>
-                        
                         <div class="card-footer">
                             <i class="fas fa-redo"></i> 點擊卡片返回
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- 統計面板 -->
-        <div class="management-panel" id="statsPanel">
-            <h3><i class="fas fa-chart-bar"></i> 學習統計</h3>
-            
-            <div class="advanced-stats">
-                <div class="stat-card know">
-                    <div class="stat-value" id="statKnow">0</div>
-                    <div class="stat-label">已掌握</div>
-                </div>
-                <div class="stat-card review">
-                    <div class="stat-value" id="statReview">0</div>
-                    <div class="stat-label">需複習</div>
-                </div>
-                <div class="stat-card dont-know">
-                    <div class="stat-value" id="statDontKnow">0</div>
-                    <div class="stat-label">未掌握</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="statTotal">0</div>
-                    <div class="stat-label">總詞彙數</div>
-                </div>
-            </div>
-            
-            <div class="review-progress">
-                <h4>掌握程度分佈</h4>
-                <div class="progress-bars" id="masteryProgress">
-                    <div class="progress-know" style="width: 0%"></div>
-                    <div class="progress-review" style="width: 0%"></div>
-                    <div class="progress-dont-know" style="width: 0%"></div>
-                </div>
-                <div class="data-stats">
-                    <div class="stat-item">
-                        <div class="stat-value" id="knowPercent">0%</div>
-                        <div class="stat-label">已掌握</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="reviewPercent">0%</div>
-                        <div class="stat-label">需複習</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="dontKnowPercent">0%</div>
-                        <div class="stat-label">未掌握</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="btn-group">
-                <button id="closeStatsBtn" class="btn-secondary">
-                    <i class="fas fa-times"></i> 關閉統計
-                </button>
-                <button id="resetMasteryBtn" class="btn-warning">
-                    <i class="fas fa-redo"></i> 重置掌握狀態
-                </button>
             </div>
         </div>
 
@@ -908,7 +643,6 @@
                 <div class="format-guide">
                     <p><strong>格式：</strong> 平假名|漢字|解釋|例句|例句翻譯</p>
                     <p><strong>範例：</strong></p>
-                    <code>みちにまよう|道に迷う|迷路|（常用表達）|</code><br>
                     <code>せいかくがあかるい|性格が明るい|性格開朗|彼女は性格が明るくて、誰からも好かれる。|她性格開朗，受到大家的喜愛。</code><br>
                     <code>ポイント|ポイント|要點、重點|彼の話はポイントがはっきりしていて分かりやすい。|他的話重點明確，容易理解。</code>
                     <p class="small">注意：漢字、例句、例句翻譯可以留空，但平假名和解釋必須填寫</p>
@@ -944,9 +678,6 @@
                     <button class="filter-btn active" data-filter="all">全部詞彙</button>
                     <button class="filter-btn" data-filter="custom">自定義詞彙</button>
                     <button class="filter-btn" data-filter="original">原始詞彙</button>
-                    <button class="filter-btn" data-filter="dont-know">未掌握</button>
-                    <button class="filter-btn" data-filter="review">需複習</button>
-                    <button class="filter-btn" data-filter="know">已掌握</button>
                 </div>
                 
                 <div id="vocabList" class="vocab-list">
@@ -991,7 +722,6 @@
                         <li>自定義詞彙會保存在你的瀏覽器中，不會影響其他人</li>
                         <li>原始詞彙無法編輯或刪除</li>
                         <li>重置操作無法恢復，請謹慎操作</li>
-                        <li>掌握狀態會保存在瀏覽器中</li>
                     </ul>
                 </div>
             </div>
@@ -1036,10 +766,8 @@
                 <li><strong>模式1</strong>：正面顯示平假名，背面顯示漢字、解釋和例句</li>
                 <li><strong>模式2</strong>：正面顯示漢字，背面顯示平假名、解釋和例句</li>
                 <li><strong>操作</strong>：點擊卡片翻面，使用按鈕切換單字</li>
-                <li><strong>掌握程度</strong>：在卡片背面點擊按鈕標記單字狀態</li>
-                <li><strong>複習篩選</strong>：使用頂部篩選器只複習特定狀態的單字</li>
                 <li><strong>管理功能</strong>：點擊「管理詞彙」可以添加、編輯、刪除詞彙</li>
-                <li><strong>學習統計</strong>：點擊「學習統計」查看學習進度</li>
+                <li><strong>數據保存</strong>：所有自定義詞彙會自動保存在你的瀏覽器中</li>
             </ul>
         </div>
     </div>
@@ -1069,14 +797,9 @@
             // 管理面板元素
             const manageBtn = document.getElementById('manageBtn');
             const exportBtn = document.getElementById('exportBtn');
-            const statsBtn = document.getElementById('statsBtn');
             const managementPanel = document.getElementById('managementPanel');
-            const statsPanel = document.getElementById('statsPanel');
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
-            
-            // 複習篩選元素
-            const reviewFilterButtons = document.querySelectorAll('.review-filter-btn');
             
             // 單個添加元素
             const hiraganaInput = document.getElementById('hiraganaInput');
@@ -1116,21 +839,6 @@
             const resetCustomBtn = document.getElementById('resetCustomBtn');
             const resetAllBtn = document.getElementById('resetAllBtn');
             
-            // 統計元素
-            const statKnow = document.getElementById('statKnow');
-            const statReview = document.getElementById('statReview');
-            const statDontKnow = document.getElementById('statDontKnow');
-            const statTotal = document.getElementById('statTotal');
-            const knowPercent = document.getElementById('knowPercent');
-            const reviewPercent = document.getElementById('reviewPercent');
-            const dontKnowPercent = document.getElementById('dontKnowPercent');
-            const closeStatsBtn = document.getElementById('closeStatsBtn');
-            const resetMasteryBtn = document.getElementById('resetMasteryBtn');
-            
-            // 卡片掌握程度元素
-            const masteryButtons = document.querySelectorAll('.mastery-btn');
-            const masteryBadge = document.getElementById('masteryBadge');
-            
             // 對話框元素
             const confirmDialog = document.getElementById('confirmDialog');
             const dialogTitle = document.getElementById('dialogTitle');
@@ -1145,7 +853,6 @@
             // 當前狀態
             let currentAction = '';
             let currentFilter = 'all';
-            let currentReviewFilter = 'all';
             let currentSearch = '';
             let currentPage = 1;
             let itemsPerPage = 10;
@@ -1154,27 +861,12 @@
             // 切換管理面板顯示
             manageBtn.addEventListener('click', function() {
                 managementPanel.classList.toggle('active');
-                statsPanel.classList.remove('active');
                 if (managementPanel.classList.contains('active')) {
                     updateStats();
                     if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
                         loadVocabList();
                     }
                 }
-            });
-            
-            // 切換統計面板顯示
-            statsBtn.addEventListener('click', function() {
-                statsPanel.classList.toggle('active');
-                managementPanel.classList.remove('active');
-                if (statsPanel.classList.contains('active')) {
-                    updateMasteryStats();
-                }
-            });
-            
-            // 關閉統計面板
-            closeStatsBtn.addEventListener('click', function() {
-                statsPanel.classList.remove('active');
             });
             
             // 導出詞彙功能
@@ -1192,37 +884,6 @@
                 URL.revokeObjectURL(url);
                 
                 showNotification('詞彙已導出為JSON文件！');
-            });
-            
-            // 複習篩選功能
-            reviewFilterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const filter = this.getAttribute('data-review-filter');
-                    currentReviewFilter = filter;
-                    
-                    // 更新篩選器按鈕狀態
-                    reviewFilterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // 更新詞彙列表和卡片
-                    if (window.updateVocabList) {
-                        window.updateVocabList();
-                    }
-                    
-                    if (window.updateCard) {
-                        window.updateCard();
-                    }
-                    
-                    // 顯示篩選狀態
-                    let filterText = '';
-                    switch(filter) {
-                        case 'all': filterText = '全部單字'; break;
-                        case 'know': filterText = '已掌握'; break;
-                        case 'review': filterText = '需複習'; break;
-                        case 'dont-know': filterText = '未掌握'; break;
-                    }
-                    showNotification(`已篩選：${filterText}`);
-                });
             });
             
             // 標籤切換功能
@@ -1303,7 +964,6 @@
                     
                     // 更新統計數據
                     updateStats();
-                    updateMasteryStats();
                     
                     // 如果正在編輯標籤頁，重新載入列表
                     if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
@@ -1312,56 +972,6 @@
                 } else {
                     showNotification(result.message, 'error');
                 }
-            });
-            
-            // 掌握程度按鈕功能
-            masteryButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const mastery = this.getAttribute('data-mastery');
-                    const currentVocab = window.getCurrentVocab();
-                    
-                    if (!currentVocab) return;
-                    
-                    // 更新掌握程度
-                    const result = window.updateMastery(currentVocab.id, mastery);
-                    
-                    if (result.success) {
-                        // 更新按鈕狀態
-                        masteryButtons.forEach(btn => btn.classList.remove('active'));
-                        this.classList.add('active');
-                        
-                        // 更新徽章
-                        updateMasteryBadge(mastery);
-                        
-                        // 更新統計
-                        updateMasteryStats();
-                        
-                        // 顯示訊息
-                        let masteryText = '';
-                        switch(mastery) {
-                            case 'know': masteryText = '已掌握'; break;
-                            case 'review': masteryText = '需複習'; break;
-                            case 'dont-know': masteryText = '未掌握'; break;
-                        }
-                        showNotification(`已標記為「${masteryText}」`);
-                        
-                        // 如果正在編輯標籤頁，重新載入列表
-                        if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
-                            loadVocabList();
-                        }
-                        
-                        // 如果是篩選模式，可能需要切換到下一個詞彙
-                        if (currentReviewFilter !== 'all' && currentReviewFilter !== mastery) {
-                            setTimeout(() => {
-                                if (window.showNext) {
-                                    window.showNext();
-                                }
-                            }, 500);
-                        }
-                    } else {
-                        showNotification(result.message, 'error');
-                    }
-                });
             });
             
             // 批量輸入實時預覽
@@ -1439,7 +1049,6 @@
                 
                 // 更新統計數據
                 updateStats();
-                updateMasteryStats();
                 
                 // 如果正在編輯標籤頁，重新載入列表
                 if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
@@ -1463,14 +1072,6 @@
                 confirmDialog.classList.add('active');
             });
             
-            // 重置掌握狀態
-            resetMasteryBtn.addEventListener('click', function() {
-                currentAction = 'resetMastery';
-                dialogTitle.textContent = '重置掌握狀態';
-                dialogMessage.textContent = '你確定要重置所有詞彙的掌握狀態嗎？所有詞彙將恢復為「未掌握」狀態。';
-                confirmDialog.classList.add('active');
-            });
-            
             // 確認對話框操作
             dialogConfirmBtn.addEventListener('click', function() {
                 if (currentAction === 'resetCustom') {
@@ -1484,16 +1085,6 @@
                     if (window.resetAllVocab) {
                         window.resetAllVocab();
                         showNotification('已重置所有詞彙');
-                    }
-                } else if (currentAction === 'resetMastery') {
-                    // 重置掌握狀態
-                    if (window.resetAllMastery) {
-                        window.resetAllMastery();
-                        showNotification('已重置所有掌握狀態');
-                        updateMasteryStats();
-                        if (window.updateCard) {
-                            window.updateCard();
-                        }
                     }
                 }
                 
@@ -1592,7 +1183,6 @@
                     
                     // 更新統計數據
                     updateStats();
-                    updateMasteryStats();
                 } else {
                     showNotification(result.message, 'error');
                 }
@@ -1647,12 +1237,6 @@
                     filteredVocab = filteredVocab.filter(vocab => vocab.id >= 1000);
                 } else if (currentFilter === 'original') {
                     filteredVocab = filteredVocab.filter(vocab => vocab.id < 1000);
-                } else if (currentFilter === 'know') {
-                    filteredVocab = filteredVocab.filter(vocab => window.getMastery(vocab.id) === 'know');
-                } else if (currentFilter === 'review') {
-                    filteredVocab = filteredVocab.filter(vocab => window.getMastery(vocab.id) === 'review');
-                } else if (currentFilter === 'dont-know') {
-                    filteredVocab = filteredVocab.filter(vocab => window.getMastery(vocab.id) === 'dont-know' || !window.getMastery(vocab.id));
                 }
                 
                 // 分頁計算
@@ -1699,27 +1283,12 @@
                 const badgeType = isCustom ? 'badge-custom' : 'badge-original';
                 const badgeText = isCustom ? '自定義' : '原始';
                 
-                // 獲取掌握程度
-                const mastery = window.getMastery(vocab.id);
-                let masteryBadgeHTML = '';
-                if (mastery) {
-                    let masteryText = '';
-                    let masteryClass = '';
-                    switch(mastery) {
-                        case 'know': masteryText = '已掌握'; masteryClass = 'know'; break;
-                        case 'review': masteryText = '需複習'; masteryClass = 'review'; break;
-                        case 'dont-know': masteryText = '未掌握'; masteryClass = 'dont-know'; break;
-                    }
-                    masteryBadgeHTML = `<span class="mastery-badge ${masteryClass}">${masteryText}</span>`;
-                }
-                
                 item.innerHTML = `
                     <div class="vocab-content">
                         <div class="vocab-info">
                             <span class="vocab-hiragana">${vocab.hiragana}</span>
                             <span class="vocab-kanji">${vocab.kanji}</span>
                             <span class="vocab-badge ${badgeType}">${badgeText}</span>
-                            ${masteryBadgeHTML}
                         </div>
                         <div class="vocab-definition">${vocab.definition}</div>
                     </div>
@@ -1785,63 +1354,6 @@
                 dialogTitle.textContent = '刪除詞彙';
                 dialogMessage.textContent = `你確定要刪除詞彙「${vocab.kanji || vocab.hiragana}」嗎？這個操作無法撤銷。`;
                 confirmDialog.classList.add('active');
-            }
-            
-            // 更新掌握程度徽章
-            function updateMasteryBadge(mastery) {
-                let badgeText = '';
-                let badgeClass = '';
-                
-                switch(mastery) {
-                    case 'know':
-                        badgeText = '已掌握';
-                        badgeClass = 'know';
-                        break;
-                    case 'review':
-                        badgeText = '需複習';
-                        badgeClass = 'review';
-                        break;
-                    case 'dont-know':
-                        badgeText = '未掌握';
-                        badgeClass = 'dont-know';
-                        break;
-                    default:
-                        masteryBadge.style.display = 'none';
-                        return;
-                }
-                
-                masteryBadge.textContent = badgeText;
-                masteryBadge.className = 'mastery-badge ' + badgeClass;
-                masteryBadge.style.display = 'inline-block';
-            }
-            
-            // 更新掌握程度統計
-            function updateMasteryStats() {
-                const stats = window.getMasteryStats();
-                
-                statKnow.textContent = stats.know;
-                statReview.textContent = stats.review;
-                statDontKnow.textContent = stats['dont-know'];
-                statTotal.textContent = stats.total;
-                
-                const knowPercentValue = stats.total > 0 ? Math.round((stats.know / stats.total) * 100) : 0;
-                const reviewPercentValue = stats.total > 0 ? Math.round((stats.review / stats.total) * 100) : 0;
-                const dontKnowPercentValue = stats.total > 0 ? Math.round((stats['dont-know'] / stats.total) * 100) : 0;
-                
-                knowPercent.textContent = knowPercentValue + '%';
-                reviewPercent.textContent = reviewPercentValue + '%';
-                dontKnowPercent.textContent = dontKnowPercentValue + '%';
-                
-                // 更新進度條
-                const progressKnow = document.querySelector('.progress-know');
-                const progressReview = document.querySelector('.progress-review');
-                const progressDontKnow = document.querySelector('.progress-dont-know');
-                
-                if (progressKnow && progressReview && progressDontKnow) {
-                    progressKnow.style.width = knowPercentValue + '%';
-                    progressReview.style.width = reviewPercentValue + '%';
-                    progressDontKnow.style.width = dontKnowPercentValue + '%';
-                }
             }
             
             // 更新分頁
@@ -1954,11 +1466,6 @@
             
             // 初始更新統計數據
             updateStats();
-            updateMasteryStats();
-            
-            // 公開函數供主腳本使用
-            window.updateMasteryStats = updateMasteryStats;
-            window.getCurrentReviewFilter = () => currentReviewFilter;
             
             // 為刪除單個詞彙添加確認處理
             dialogConfirmBtn.addEventListener('click', function() {
@@ -1977,7 +1484,6 @@
                         
                         // 更新統計數據
                         updateStats();
-                        updateMasteryStats();
                     } else {
                         showNotification(result.message, 'error');
                     }
