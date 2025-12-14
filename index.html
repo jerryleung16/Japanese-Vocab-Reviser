@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日語單字複習系統</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book"></i> 日語單字複習系統</h1>
+            <p class="subtitle">點擊卡片翻面，按按鈕切換模式</p>
+        </header>
+
+        <div class="controls">
+            <div class="mode-selector">
+                <button id="mode1" class="mode-btn active">
+                    <i class="fas fa-language"></i> 模式1：平假名 → 漢字+解釋
+                </button>
+                <button id="mode2" class="mode-btn">
+                    <i class="fas fa-kanji"></i> 模式2：漢字 → 平假名
+                </button>
+            </div>
+            
+            <div class="progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span id="progressText">0/0</span>
+            </div>
+            
+            <div class="buttons">
+                <button id="prevBtn" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i> 上一個
+                </button>
+                <button id="shuffleBtn" class="action-btn">
+                    <i class="fas fa-random"></i> 隨機排序
+                </button>
+                <button id="nextBtn" class="nav-btn">
+                    下一個 <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="card" id="vocabCard">
+                <div class="card-front">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <span class="card-label" id="frontLabel">平假名</span>
+                            <span class="hint">點擊卡片查看答案</span>
+                        </div>
+                        <div class="word-display">
+                            <h2 id="frontText">載入中...</h2>
+                        </div>
+                        <div class="card-footer">
+                            <i class="fas fa-hand-point-up"></i> 點擊卡片翻面
+                        </div>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <span class="card-label" id="backLabel">答案</span>
+                        </div>
+                        <div class="answer-content">
+                            <div class="kanji-section">
+                                <h3 id="backKanji">漢字</h3>
+                                <div class="reading" id="backReading">読み方</div>
+                            </div>
+                            <div class="definition-section">
+                                <h4><i class="fas fa-book-open"></i> 解釋</h4>
+                                <p id="backDefinition">解釋內容</p>
+                            </div>
+                            <div class="example-section">
+                                <h4><i class="fas fa-comment"></i> 例句</h4>
+                                <p id="backExample">例句內容</p>
+                                <p class="translation" id="backTranslation">例句翻譯</p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <i class="fas fa-redo"></i> 點擊卡片返回
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3><i class="fas fa-info-circle"></i> 使用說明</h3>
+            <ul>
+                <li><strong>模式1</strong>：正面顯示平假名，背面顯示漢字、解釋和例句</li>
+                <li><strong>模式2</strong>：正面顯示漢字，背面顯示平假名</li>
+                <li><strong>操作</strong>：點擊卡片翻面，使用按鈕切換單字</li>
+                <li><strong>進度</strong>：上方進度條顯示當前學習進度</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="vocab-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
