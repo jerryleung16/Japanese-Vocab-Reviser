@@ -23,15 +23,10 @@ class VocabStorage {
     
     // 獲取下一個ID
     getNextId() {
-        try {
-            const customVocab = this.getCustomVocab();
-            if (customVocab.length === 0) return 1000; // 自定義詞彙從1000開始
-            const maxId = Math.max(...customVocab.map(item => item.id || 0));
-            return maxId + 1;
-        } catch (error) {
-            console.error('獲取下一ID時出錯:', error);
-            return 1000;
-        }
+        const customVocab = this.getCustomVocab();
+        if (customVocab.length === 0) return 1000; // 從1000開始，避免與原始數據衝突
+        const maxId = Math.max(...customVocab.map(item => item.id));
+        return maxId + 1;
     }
     
     // 獲取自定義詞彙
@@ -59,162 +54,133 @@ class VocabStorage {
     
     // 添加自定義詞彙
     addVocab(vocab) {
-        try {
-            const customVocab = this.getCustomVocab();
-            
-            // 檢查是否已存在（忽略大小寫）
-            const exists = customVocab.some(item => 
-                item.hiragana.toLowerCase() === vocab.hiragana.toLowerCase() && 
-                item.kanji.toLowerCase() === (vocab.kanji || vocab.hiragana).toLowerCase()
-            );
-            
-            if (exists) {
-                return {
-                    success: false,
-                    message: '詞彙已存在！'
-                };
-            }
-            
-            const newVocab = {
-                id: this.nextId++,
-                hiragana: vocab.hiragana,
-                kanji: vocab.kanji || vocab.hiragana,
-                definition: vocab.definition,
-                example: vocab.example || '',
-                translation: vocab.translation || ''
-            };
-            
-            customVocab.push(newVocab);
-            const saved = this.saveCustomVocab(customVocab);
-            
-            return {
-                success: saved,
-                message: saved ? '添加成功！' : '保存失敗，請檢查瀏覽器設定',
-                vocab: newVocab
-            };
-        } catch (error) {
-            console.error('添加詞彙時出錯:', error);
+        const customVocab = this.getCustomVocab();
+        
+        // 檢查是否已存在
+        const exists = customVocab.some(item => 
+            item.hiragana === vocab.hiragana && 
+            item.kanji === vocab.kanji
+        );
+        
+        if (exists) {
             return {
                 success: false,
-                message: '添加詞彙時發生錯誤：' + error.message
+                message: '詞彙已存在！'
             };
         }
+        
+        const newVocab = {
+            id: this.nextId++,
+            hiragana: vocab.hiragana,
+            kanji: vocab.kanji || vocab.hiragana,
+            definition: vocab.definition,
+            example: vocab.example || '',
+            translation: vocab.translation || ''
+        };
+        
+        customVocab.push(newVocab);
+        const saved = this.saveCustomVocab(customVocab);
+        
+        return {
+            success: saved,
+            message: saved ? '添加成功！' : '保存失敗，請檢查瀏覽器設定'
+        };
     }
     
-    // 更新自定義詞彙
-    updateVocab(id, vocab) {
-        try {
-            const customVocab = this.getCustomVocab();
-            const index = customVocab.findIndex(item => item.id === id);
-            
-            if (index === -1) {
-                return {
-                    success: false,
-                    message: '找不到要更新的詞彙'
-                };
-            }
-            
-            // 檢查是否與其他詞彙重複（排除自己）
-            const duplicate = customVocab.some((item, i) => 
-                i !== index &&
-                item.hiragana.toLowerCase() === vocab.hiragana.toLowerCase() && 
-                item.kanji.toLowerCase() === (vocab.kanji || vocab.hiragana).toLowerCase()
-            );
-            
-            if (duplicate) {
-                return {
-                    success: false,
-                    message: '詞彙已存在！'
-                };
-            }
-            
-            // 更新詞彙
-            customVocab[index] = {
-                id: id,
-                hiragana: vocab.hiragana,
-                kanji: vocab.kanji || vocab.hiragana,
-                definition: vocab.definition,
-                example: vocab.example || '',
-                translation: vocab.translation || ''
-            };
-            
-            const saved = this.saveCustomVocab(customVocab);
-            
-            return {
-                success: saved,
-                message: saved ? '更新成功！' : '保存失敗，請檢查瀏覽器設定'
-            };
-        } catch (error) {
-            console.error('更新詞彙時出錯:', error);
+    // 根據ID獲取詞彙（包含原始和自定義）
+    getVocabById(id) {
+        // 首先檢查自定義詞彙
+        const customVocab = this.getCustomVocab();
+        const customVocabItem = customVocab.find(item => item.id === id);
+        if (customVocabItem) return customVocabItem;
+        
+        // 然後檢查原始詞彙
+        const originalVocabItem = this.originalData.find(item => item.id === id);
+        return originalVocabItem || null;
+    }
+    
+    // 更新詞彙
+    updateVocab(id, updatedVocab) {
+        const customVocab = this.getCustomVocab();
+        const index = customVocab.findIndex(item => item.id === id);
+        
+        if (index === -1) {
             return {
                 success: false,
-                message: '更新詞彙時發生錯誤：' + error.message
+                message: '找不到要更新的詞彙！'
             };
         }
+        
+        // 檢查更新後是否會與其他詞彙衝突
+        const conflict = customVocab.some((item, i) => 
+            i !== index && 
+            item.hiragana === updatedVocab.hiragana && 
+            item.kanji === updatedVocab.kanji
+        );
+        
+        if (conflict) {
+            return {
+                success: false,
+                message: '更新後的詞彙與現有詞彙衝突！'
+            };
+        }
+        
+        // 更新詞彙
+        customVocab[index] = {
+            ...customVocab[index],
+            ...updatedVocab,
+            id: id // 確保ID不變
+        };
+        
+        const saved = this.saveCustomVocab(customVocab);
+        
+        return {
+            success: saved,
+            message: saved ? '更新成功！' : '保存失敗，請檢查瀏覽器設定'
+        };
     }
     
-    // 刪除自定義詞彙
+    // 刪除詞彙
     deleteVocab(id) {
-        try {
-            const customVocab = this.getCustomVocab();
-            const index = customVocab.findIndex(item => item.id === id);
-            
-            if (index === -1) {
-                return {
-                    success: false,
-                    message: '找不到要刪除的詞彙'
-                };
-            }
-            
-            // 從陣列中移除
-            customVocab.splice(index, 1);
-            const saved = this.saveCustomVocab(customVocab);
-            
-            return {
-                success: saved,
-                message: saved ? '刪除成功！' : '刪除失敗，請檢查瀏覽器設定'
-            };
-        } catch (error) {
-            console.error('刪除詞彙時出錯:', error);
+        const customVocab = this.getCustomVocab();
+        const index = customVocab.findIndex(item => item.id === id);
+        
+        if (index === -1) {
             return {
                 success: false,
-                message: '刪除詞彙時發生錯誤：' + error.message
+                message: '找不到要刪除的詞彙！'
             };
         }
+        
+        // 確認是自定義詞彙（原始詞彙不能刪除）
+        if (id < 1000) {
+            return {
+                success: false,
+                message: '原始詞彙不能刪除！'
+            };
+        }
+        
+        // 刪除詞彙
+        customVocab.splice(index, 1);
+        const saved = this.saveCustomVocab(customVocab);
+        
+        return {
+            success: saved,
+            message: saved ? '刪除成功！' : '刪除失敗，請檢查瀏覽器設定'
+        };
     }
     
     // 獲取所有詞彙（原始 + 自定義）
     getAllVocab() {
-        try {
-            const customVocab = this.getCustomVocab();
-            return [...this.originalData, ...customVocab];
-        } catch (error) {
-            console.error('獲取所有詞彙時出錯:', error);
-            return [...this.originalData];
-        }
-    }
-    
-    // 根據ID獲取詞彙
-    getVocabById(id) {
-        try {
-            const allVocab = this.getAllVocab();
-            return allVocab.find(item => item.id === id);
-        } catch (error) {
-            console.error('根據ID獲取詞彙時出錯:', error);
-            return null;
-        }
+        const customVocab = this.getCustomVocab();
+        return [...this.originalData, ...customVocab];
     }
     
     // 刪除所有自定義詞彙
     clearCustomVocab() {
-        try {
-            localStorage.removeItem(this.storageKey);
-            this.nextId = 1000;
-            return true;
-        } catch (error) {
-            console.error('清空自定義詞彙時出錯:', error);
-            return false;
-        }
+        localStorage.removeItem(this.storageKey);
+        this.nextId = 1000;
+        return true;
     }
     
     // 重置為原始數據（刪除自定義）
@@ -237,34 +203,25 @@ class VocabStorage {
         return this.originalData.length + this.getCustomVocab().length;
     }
     
-    // 批量添加詞彙
+    // 批量添加詞彙（新增功能）
     batchAddVocab(vocabList) {
-        try {
-            const results = {
-                success: 0,
-                failed: 0,
-                messages: []
-            };
-            
-            vocabList.forEach(vocab => {
-                const result = this.addVocab(vocab);
-                if (result.success) {
-                    results.success++;
-                } else {
-                    results.failed++;
-                    results.messages.push(result.message);
-                }
-            });
-            
-            return results;
-        } catch (error) {
-            console.error('批量添加詞彙時出錯:', error);
-            return {
-                success: 0,
-                failed: vocabList.length,
-                messages: ['批量添加時發生錯誤：' + error.message]
-            };
-        }
+        const results = {
+            success: 0,
+            failed: 0,
+            messages: []
+        };
+        
+        vocabList.forEach(vocab => {
+            const result = this.addVocab(vocab);
+            if (result.success) {
+                results.success++;
+            } else {
+                results.failed++;
+                results.messages.push(result.message);
+            }
+        });
+        
+        return results;
     }
 }
 
@@ -279,53 +236,14 @@ window.vocabStorage = vocabStorage;
 window.getAllVocabData = () => vocabStorage.getAllVocab();
 window.getOriginalVocabCount = () => vocabStorage.getOriginalCount();
 window.getCustomVocabCount = () => vocabStorage.getCustomCount();
-window.getVocabById = (id) => vocabStorage.getVocabById(id);
-
-// 添加詞彙
-window.addCustomVocab = (vocab) => {
-    const result = vocabStorage.addVocab(vocab);
-    if (result.success) {
-        currentVocabList = vocabStorage.getAllVocab();
-    }
-    return result;
-};
-
-// 更新詞彙
-window.updateCustomVocab = (id, vocab) => {
-    const result = vocabStorage.updateVocab(id, vocab);
-    if (result.success) {
-        currentVocabList = vocabStorage.getAllVocab();
-    }
-    return result;
-};
-
-// 刪除詞彙
-window.deleteCustomVocab = (id) => {
-    const result = vocabStorage.deleteVocab(id);
-    if (result.success) {
-        currentVocabList = vocabStorage.getAllVocab();
-    }
-    return result;
-};
-
-// 重置功能
+window.addCustomVocab = (vocab) => vocabStorage.addVocab(vocab);
 window.resetCustomVocab = () => {
-    const result = vocabStorage.clearCustomVocab();
-    if (result) {
-        currentVocabList = vocabStorage.getAllVocab();
-    }
-    return result;
+    vocabStorage.clearCustomVocab();
+    currentVocabList = vocabStorage.getAllVocab();
+    return true;
 };
-
 window.resetAllVocab = () => {
-    const result = vocabStorage.resetToOriginal();
-    if (result) {
-        currentVocabList = vocabStorage.getAllVocab();
-    }
-    return result;
+    vocabStorage.resetToOriginal();
+    currentVocabList = vocabStorage.getAllVocab();
+    return true;
 };
-
-// 初始化完成後輸出狀態
-console.log('詞彙存儲系統初始化完成');
-console.log('原始詞彙數:', vocabStorage.getOriginalCount());
-console.log('自定義詞彙數:', vocabStorage.getCustomCount());
