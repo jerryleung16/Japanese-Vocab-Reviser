@@ -14,11 +14,25 @@
             gap: 10px;
             margin-top: 15px;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .action-btn-small {
-            padding: 8px 15px;
+            padding: 10px 15px;
             font-size: 0.9rem;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .action-btn-small:hover {
+            background: #8e44ad;
         }
         
         .management-panel {
@@ -39,16 +53,21 @@
             border-bottom: 2px solid #f0f0f0;
             margin-bottom: 20px;
             flex-wrap: wrap;
+            overflow-x: auto;
         }
         
         .tab-btn {
-            padding: 12px 25px;
+            padding: 12px 20px;
             background: none;
             border: none;
             font-size: 1rem;
             cursor: pointer;
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
+            white-space: nowrap;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
         }
         
         .tab-btn.active {
@@ -92,7 +111,7 @@
         }
         
         .textarea-control {
-            min-height: 150px;
+            min-height: 120px;
             resize: vertical;
         }
         
@@ -112,6 +131,9 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-primary:hover {
@@ -127,6 +149,9 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-secondary:hover {
@@ -142,6 +167,9 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-success:hover {
@@ -157,6 +185,9 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-warning:hover {
@@ -172,6 +203,9 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-danger:hover {
@@ -192,6 +226,8 @@
             padding: 2px 5px;
             border-radius: 3px;
             font-family: monospace;
+            display: inline-block;
+            margin: 2px 0;
         }
         
         .data-stats {
@@ -201,10 +237,12 @@
             padding-top: 20px;
             border-top: 1px solid #eee;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .stat-item {
             text-align: center;
+            min-width: 80px;
         }
         
         .stat-value {
@@ -307,8 +345,9 @@
         .vocab-info {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
             margin-bottom: 5px;
+            flex-wrap: wrap;
         }
         
         .vocab-hiragana {
@@ -327,6 +366,7 @@
             font-size: 0.9rem;
             color: #666;
             margin-bottom: 5px;
+            line-height: 1.4;
         }
         
         .vocab-badge {
@@ -334,7 +374,6 @@
             padding: 2px 8px;
             font-size: 0.7rem;
             border-radius: 10px;
-            margin-right: 5px;
         }
         
         .badge-custom {
@@ -360,6 +399,11 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
         }
         
         .edit-btn {
@@ -469,11 +513,16 @@
             cursor: not-allowed;
         }
         
-        /* 修復模式2在手機上的問題 */
+        /* 修復卡片在手機上的顯示問題 */
         @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
             .tab-btn {
-                padding: 10px 15px;
+                padding: 10px 12px;
                 font-size: 0.9rem;
+                min-width: 90px;
             }
             
             .vocab-item {
@@ -493,50 +542,104 @@
             /* 修復卡片在手機上的顯示問題 */
             .card-container {
                 height: auto;
-                min-height: 400px;
+                min-height: 450px;
+                margin-bottom: 20px;
+            }
+            
+            .card {
+                height: 100%;
+                min-height: 450px;
+            }
+            
+            .card-front, .card-back {
+                height: 100%;
+                min-height: 450px;
+            }
+            
+            .card-content {
+                height: 100%;
+                padding: 20px;
+                overflow: hidden;
             }
             
             #frontText {
                 font-size: 2.2rem !important;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
+                line-height: 1.3;
+                max-width: 100%;
+                padding: 0 10px;
             }
             
             #backKanji {
                 font-size: 1.8rem !important;
+                line-height: 1.3;
+            }
+            
+            .reading {
+                font-size: 1.2rem !important;
             }
             
             .card-back {
                 overflow-y: auto;
-                padding: 15px;
-            }
-            
-            .card-content {
-                padding: 15px;
+                padding: 20px;
+                -webkit-overflow-scrolling: touch;
             }
             
             .answer-content {
                 padding: 10px 0;
             }
+            
+            #backDefinition, #backExample {
+                font-size: 1rem;
+                padding: 12px;
+                margin-bottom: 15px;
+            }
+            
+            .card-footer {
+                padding-top: 15px;
+                margin-top: 10px;
+            }
+            
+            .btn-primary, .btn-secondary, .btn-success, .btn-warning, .btn-danger {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
         }
         
         @media (max-width: 480px) {
-            .tab-btn {
-                padding: 8px 12px;
-                font-size: 0.85rem;
+            body {
+                padding: 10px;
             }
             
-            .btn-group {
-                flex-direction: column;
+            .container {
+                padding: 12px;
+                border-radius: 12px;
             }
             
-            .data-stats {
-                flex-direction: column;
-                gap: 10px;
+            header h1 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+                text-align: center;
+            }
+            
+            .controls {
+                padding: 15px;
+            }
+            
+            .mode-btn {
+                padding: 12px;
+                font-size: 0.9rem;
+                min-width: auto;
             }
             
             #frontText {
                 font-size: 1.8rem !important;
+                padding: 0 5px;
             }
             
             #backKanji {
@@ -544,11 +647,49 @@
             }
             
             .reading {
-                font-size: 1.2rem !important;
+                font-size: 1.1rem !important;
+            }
+            
+            .nav-btn, .action-btn {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+                min-width: auto;
+                flex: 1;
             }
             
             .card-container {
-                min-height: 450px;
+                min-height: 400px;
+                perspective: none;
+            }
+            
+            .card {
+                min-height: 400px;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            }
+            
+            .card-front, .card-back {
+                min-height: 400px;
+            }
+            
+            .instructions {
+                padding: 15px;
+            }
+            
+            .instructions h3 {
+                font-size: 1.2rem;
+            }
+            
+            .instructions li {
+                font-size: 0.9rem;
+            }
+            
+            .management-panel {
+                padding: 15px;
+            }
+            
+            .form-control {
+                padding: 10px 12px;
+                font-size: 0.95rem;
             }
         }
         
@@ -558,7 +699,7 @@
                 cursor: default;
             }
             
-            .mode-btn, .nav-btn, .action-btn {
+            .mode-btn, .nav-btn, .action-btn, .action-btn-small {
                 min-height: 44px; /* iOS建議的最小觸摸目標尺寸 */
             }
             
@@ -570,25 +711,62 @@
                 min-width: 44px;
                 min-height: 44px;
             }
+            
+            /* 防止移動設備上的文字選擇 */
+            .card, .mode-btn, .nav-btn, .action-btn, .tab-btn, .filter-btn, .page-btn {
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            
+            /* 允許表單輸入選擇文字 */
+            input.form-control, textarea.form-control {
+                -webkit-user-select: text;
+                -khtml-user-select: text;
+                -moz-user-select: text;
+                -ms-user-select: text;
+                user-select: text;
+            }
         }
         
-        /* 防止移動設備上的文字選擇 */
-        .card, .mode-btn, .nav-btn, .action-btn, .tab-btn, .form-control {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        /* 額外的移動設備優化 */
+        @media screen and (max-width: 768px) and (orientation: portrait) {
+            .card-container {
+                height: auto;
+                min-height: 500px;
+            }
+            
+            .card {
+                min-height: 500px;
+            }
+            
+            .card-front, .card-back {
+                min-height: 500px;
+            }
         }
         
-        /* 允許表單輸入選擇文字 */
-        input.form-control, textarea.form-control {
-            -webkit-user-select: text;
-            -khtml-user-select: text;
-            -moz-user-select: text;
-            -ms-user-select: text;
-            user-select: text;
+        /* 確保卡片內容在移動設備上可見 */
+        .word-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+        
+        /* 修復卡片翻轉動畫在移動設備上的問題 */
+        @media (max-width: 768px) {
+            .card-container {
+                perspective: 500px;
+            }
+            
+            .card {
+                transition: transform 0.6s ease;
+            }
         }
     </style>
 </head>
@@ -629,10 +807,10 @@
             </div>
             
             <div class="action-buttons">
-                <button id="manageBtn" class="action-btn action-btn-small">
+                <button id="manageBtn" class="action-btn-small">
                     <i class="fas fa-cog"></i> 管理詞彙
                 </button>
-                <button id="exportBtn" class="action-btn action-btn-small">
+                <button id="exportBtn" class="action-btn-small">
                     <i class="fas fa-download"></i> 匯出詞彙
                 </button>
             </div>
@@ -1627,6 +1805,36 @@
             
             // 初始更新統計數據
             updateStats();
+            
+            // 確保卡片在移動設備上正確顯示
+            function ensureCardVisibility() {
+                const cardContainer = document.querySelector('.card-container');
+                const card = document.querySelector('.card');
+                
+                if (window.innerWidth <= 768) {
+                    // 在移動設備上，確保卡片有足夠的高度
+                    const minHeight = Math.min(window.innerHeight * 0.5, 450);
+                    cardContainer.style.minHeight = `${minHeight}px`;
+                    card.style.minHeight = `${minHeight}px`;
+                    
+                    // 確保文字不會溢出
+                    const frontText = document.getElementById('frontText');
+                    if (frontText) {
+                        const textLength = frontText.textContent.length;
+                        if (textLength > 15) {
+                            frontText.style.fontSize = '1.6rem';
+                        } else if (textLength > 10) {
+                            frontText.style.fontSize = '1.8rem';
+                        }
+                    }
+                }
+            }
+            
+            // 監聽窗口大小變化
+            window.addEventListener('resize', ensureCardVisibility);
+            
+            // 初始執行一次
+            setTimeout(ensureCardVisibility, 100);
         });
     </script>
 </body>
