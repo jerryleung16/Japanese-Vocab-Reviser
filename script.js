@@ -1,7 +1,5 @@
 // 等待網頁完全載入
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('日語詞彙複習系統初始化...');
-    
     // 取得DOM元素
     const vocabCard = document.getElementById('vocabCard');
     const frontText = document.getElementById('frontText');
@@ -26,30 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let isFlipped = false;
     
-    // 檢查是否為移動設備
-    function isMobileDevice() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-               (window.innerWidth <= 768);
-    }
-    
     // 更新詞彙列表函數
     function updateVocabList() {
-        try {
-            if (window.vocabStorage && typeof window.vocabStorage.getAllVocab === 'function') {
-                currentVocabList = window.vocabStorage.getAllVocab();
-            } else {
-                console.warn('vocabStorage尚未初始化，使用空數組');
-                currentVocabList = [];
-            }
-            
-            currentIndex = Math.min(currentIndex, currentVocabList.length - 1);
-            if (currentIndex < 0) currentIndex = 0;
-            updateCard();
-        } catch (error) {
-            console.error('更新詞彙列表時出錯:', error);
-            currentVocabList = [];
-            updateCard();
-        }
+        currentVocabList = window.vocabStorage.getAllVocab();
+        currentIndex = Math.min(currentIndex, currentVocabList.length - 1);
+        if (currentIndex < 0) currentIndex = 0;
+        updateCard();
     }
     
     // 公開更新函數供管理面板使用
@@ -57,14 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 初始化
     function init() {
-        console.log('初始化日語詞彙複習系統...');
-        
-        // 移動設備優化
-        if (isMobileDevice()) {
-            console.log('檢測到移動設備，啟用移動優化');
-            optimizeForMobile();
-        }
-        
         updateVocabList();
         
         // 設定事件監聽器
@@ -77,95 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 鍵盤快捷鍵
         document.addEventListener('keydown', handleKeyPress);
-        
-        // 監聽窗口大小變化
-        window.addEventListener('resize', handleResize);
-        
-        console.log('系統初始化完成，詞彙數:', currentVocabList.length);
-    }
-    
-    // 移動設備優化
-    function optimizeForMobile() {
-        // 添加觸摸事件優化
-        vocabCard.style.cursor = 'pointer';
-        
-        // 防止雙擊縮放
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, { passive: false });
-        
-        // 優化卡片觸摸反饋
-        vocabCard.style.tapHighlightColor = 'rgba(0,0,0,0)';
-        
-        // 調整卡片高度
-        adjustCardHeight();
-    }
-    
-    // 調整卡片高度
-    function adjustCardHeight() {
-        const cardContainer = document.querySelector('.card-container');
-        const card = document.querySelector('.card');
-        
-        if (cardContainer && card) {
-            // 根據屏幕高度動態調整
-            const screenHeight = window.innerHeight;
-            const containerHeight = Math.min(screenHeight * 0.5, 450);
-            
-            cardContainer.style.height = 'auto';
-            cardContainer.style.minHeight = `${containerHeight}px`;
-            
-            card.style.height = '100%';
-            card.style.minHeight = `${containerHeight}px`;
-            
-            // 確保卡片正面和背面也有相同高度
-            const cardFront = document.querySelector('.card-front');
-            const cardBack = document.querySelector('.card-back');
-            
-            if (cardFront) cardFront.style.minHeight = `${containerHeight}px`;
-            if (cardBack) cardBack.style.minHeight = `${containerHeight}px`;
-        }
-    }
-    
-    // 處理窗口大小變化
-    function handleResize() {
-        if (isMobileDevice()) {
-            adjustCardHeight();
-            
-            // 調整字體大小
-            const frontText = document.getElementById('frontText');
-            if (frontText) {
-                const text = frontText.textContent;
-                const textLength = text.length;
-                
-                if (window.innerWidth <= 480) {
-                    if (textLength > 15) {
-                        frontText.style.fontSize = '1.6rem';
-                    } else if (textLength > 10) {
-                        frontText.style.fontSize = '1.8rem';
-                    } else {
-                        frontText.style.fontSize = '2rem';
-                    }
-                } else if (window.innerWidth <= 768) {
-                    if (textLength > 20) {
-                        frontText.style.fontSize = '1.8rem';
-                    } else if (textLength > 15) {
-                        frontText.style.fontSize = '2rem';
-                    } else {
-                        frontText.style.fontSize = '2.2rem';
-                    }
-                }
-            }
-        }
     }
     
     // 更新進度顯示
     function updateProgress() {
-        if (!currentVocabList || currentVocabList.length === 0) {
+        if (currentVocabList.length === 0) {
             progressFill.style.width = '0%';
             progressText.textContent = '0/0';
             return;
@@ -178,30 +66,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 更新卡片內容
     function updateCard() {
-        if (!currentVocabList || currentVocabList.length === 0) {
+        if (currentVocabList.length === 0) {
             frontText.textContent = "無詞彙數據";
-            frontLabel.textContent = "提示";
             backKanji.textContent = "請添加詞彙";
             backReading.textContent = "";
             backDefinition.textContent = "點擊「管理詞彙」按鈕添加你的第一個詞彙";
             backExample.textContent = "";
             backTranslation.textContent = "";
             updateProgress();
-            
-            // 移動設備優化
-            if (isMobileDevice()) {
-                frontText.style.fontSize = window.innerWidth <= 480 ? '1.6rem' : '1.8rem';
-            }
-            
             return;
         }
         
         const currentVocab = currentVocabList[currentIndex];
         
-        if (!currentVocab) {
-            console.error('當前詞彙不存在:', currentIndex, currentVocabList);
-            return;
-        }
+        if (!currentVocab) return;
         
         // 重置卡片為正面
         vocabCard.classList.remove('flipped');
@@ -211,12 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // 模式1: 正面顯示平假名，背面顯示漢字+解釋+例句
             frontLabel.textContent = "平假名";
             backLabel.textContent = "漢字+解釋";
-            frontText.textContent = currentVocab.hiragana || '';
-            backKanji.textContent = currentVocab.kanji || currentVocab.hiragana || '';
-            backReading.textContent = `読み方：${currentVocab.hiragana || ''}`;
-            backDefinition.innerHTML = currentVocab.definition || '';
-            backExample.innerHTML = currentVocab.example || '';
-            backTranslation.textContent = currentVocab.translation || '';
+            frontText.textContent = currentVocab.hiragana;
+            backKanji.textContent = currentVocab.kanji;
+            backReading.textContent = `読み方：${currentVocab.hiragana}`;
+            backDefinition.innerHTML = currentVocab.definition;
+            backExample.innerHTML = currentVocab.example;
+            backTranslation.textContent = currentVocab.translation;
             
             // 標記自定義詞彙
             if (currentVocab.id >= 1000) {
@@ -226,12 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // 模式2: 正面顯示漢字，背面顯示平假名+解釋+例句
             frontLabel.textContent = "漢字";
             backLabel.textContent = "平假名+解釋";
-            frontText.textContent = currentVocab.kanji || currentVocab.hiragana || '';
-            backKanji.textContent = currentVocab.hiragana || '';
-            backReading.textContent = `漢字：${currentVocab.kanji || currentVocab.hiragana || ''}`;
-            backDefinition.innerHTML = currentVocab.definition || '';
-            backExample.innerHTML = currentVocab.example || '';
-            backTranslation.textContent = currentVocab.translation || '';
+            frontText.textContent = currentVocab.kanji;
+            backKanji.textContent = currentVocab.hiragana;
+            backReading.textContent = `漢字：${currentVocab.kanji}`;
+            backDefinition.innerHTML = currentVocab.definition;
+            backExample.innerHTML = currentVocab.example;
+            backTranslation.textContent = currentVocab.translation;
             
             // 標記自定義詞彙
             if (currentVocab.id >= 1000) {
@@ -239,70 +117,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // 移動設備字體大小優化
-        if (isMobileDevice()) {
-            const text = frontText.textContent;
-            const textLength = text.length;
-            
-            if (window.innerWidth <= 480) {
-                if (textLength > 15) {
-                    frontText.style.fontSize = '1.6rem';
-                } else if (textLength > 10) {
-                    frontText.style.fontSize = '1.8rem';
-                } else {
-                    frontText.style.fontSize = '2rem';
-                }
-                
-                if (backKanji.textContent.length > 15) {
-                    backKanji.style.fontSize = '1.4rem';
-                } else if (backKanji.textContent.length > 10) {
-                    backKanji.style.fontSize = '1.5rem';
-                } else {
-                    backKanji.style.fontSize = '1.6rem';
-                }
-            } else if (window.innerWidth <= 768) {
-                if (textLength > 20) {
-                    frontText.style.fontSize = '1.8rem';
-                } else if (textLength > 15) {
-                    frontText.style.fontSize = '2rem';
-                } else {
-                    frontText.style.fontSize = '2.2rem';
-                }
-                
-                if (backKanji.textContent.length > 20) {
-                    backKanji.style.fontSize = '1.6rem';
-                } else if (backKanji.textContent.length > 15) {
-                    backKanji.style.fontSize = '1.8rem';
-                } else {
-                    backKanji.style.fontSize = '2rem';
-                }
-            }
-        } else {
-            // 桌面設備
-            frontText.style.fontSize = '';
-            backKanji.style.fontSize = '';
-        }
-        
         updateProgress();
     }
     
     // 翻轉卡片
     function flipCard() {
-        if (!currentVocabList || currentVocabList.length === 0) return;
-        
-        // 移動設備優化：使用requestAnimationFrame確保流暢
-        if (isMobileDevice()) {
-            // 添加觸摸反饋
-            vocabCard.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                vocabCard.style.transform = '';
-            }, 150);
-        }
-        
-        requestAnimationFrame(() => {
-            isFlipped = !isFlipped;
-            vocabCard.classList.toggle('flipped');
-        });
+        if (currentVocabList.length === 0) return;
+        isFlipped = !isFlipped;
+        vocabCard.classList.toggle('flipped');
     }
     
     // 切換模式
@@ -326,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 顯示上一個單字
     function showPrevious() {
-        if (!currentVocabList || currentVocabList.length === 0) return;
+        if (currentVocabList.length === 0) return;
         
         if (currentIndex > 0) {
             currentIndex--;
@@ -338,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 顯示下一個單字
     function showNext() {
-        if (!currentVocabList || currentVocabList.length === 0) return;
+        if (currentVocabList.length === 0) return;
         
         if (currentIndex < currentVocabList.length - 1) {
             currentIndex++;
@@ -350,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 隨機排序詞彙
     function shuffleVocab() {
-        if (!currentVocabList || currentVocabList.length === 0) return;
+        if (currentVocabList.length === 0) return;
         
         // 隨機排序陣列 (Fisher-Yates 洗牌算法)
         for (let i = currentVocabList.length - 1; i > 0; i--) {
@@ -363,11 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateCard();
         
         // 顯示提示
-        if (typeof showNotification === 'function') {
-            showNotification('單字已隨機排序！');
-        } else {
-            alert('單字已隨機排序！');
-        }
+        showNotification('單字已隨機排序！');
     }
     
     // 處理鍵盤按鍵
@@ -438,12 +256,4 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 開始應用
     init();
-    
-    // 確保卡片在初始載入時正確顯示
-    setTimeout(() => {
-        if (isMobileDevice()) {
-            adjustCardHeight();
-            handleResize();
-        }
-    }, 500);
 });
