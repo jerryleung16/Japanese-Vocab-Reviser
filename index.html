@@ -8,168 +8,217 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* 所有之前定義的樣式保持不變 */
-        /* 只新增編輯相關樣式 */
-        
-        .vocab-list-container {
-            max-height: 400px;
-            overflow-y: auto;
-            margin: 20px 0;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            background: #f8f9fa;
-        }
-        
-        .vocab-list {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .vocab-list th {
-            background: #3498db;
-            color: white;
-            padding: 12px 15px;
-            text-align: left;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        .vocab-list td {
-            padding: 10px 15px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .vocab-list tr:hover {
-            background: #f0f7ff;
-        }
-        
-        .vocab-list tr.custom-vocab {
-            background: #fff8e1;
-        }
-        
-        .action-buttons-small {
+        /* 額外樣式用於新增功能 */
+        .action-buttons {
             display: flex;
-            gap: 5px;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
         }
         
-        .edit-btn, .delete-btn {
-            padding: 5px 10px;
+        .action-btn-small {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .management-panel {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .management-panel.active {
+            display: block;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: none;
             border: none;
-            border-radius: 5px;
-            font-size: 0.8rem;
+            font-size: 1rem;
             cursor: pointer;
+            border-bottom: 3px solid transparent;
             transition: all 0.3s;
         }
         
-        .edit-btn {
-            background: #3498db;
-            color: white;
+        .tab-btn.active {
+            border-bottom: 3px solid #3498db;
+            color: #3498db;
+            font-weight: 500;
         }
         
-        .edit-btn:hover {
-            background: #2980b9;
+        .tab-content {
+            display: none;
         }
         
-        .delete-btn {
-            background: #e74c3c;
-            color: white;
+        .tab-content.active {
+            display: block;
         }
         
-        .delete-btn:hover {
-            background: #c0392b;
+        .form-group {
+            margin-bottom: 20px;
         }
         
-        .delete-btn:disabled, .edit-btn:disabled {
-            background: #95a5a6;
-            cursor: not-allowed;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2c3e50;
         }
         
-        .search-box {
-            margin-bottom: 15px;
-            position: relative;
-        }
-        
-        .search-box input {
+        .form-control {
             width: 100%;
-            padding: 10px 15px 10px 40px;
+            padding: 12px 15px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 1rem;
+            font-family: 'Noto Sans TC', sans-serif;
             transition: border-color 0.3s;
         }
         
-        .search-box input:focus {
+        .form-control:focus {
             outline: none;
             border-color: #3498db;
         }
         
-        .search-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #7f8c8d;
+        .textarea-control {
+            min-height: 150px;
+            resize: vertical;
         }
         
-        .pagination {
+        .btn-group {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
         }
         
-        .page-btn {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
+        .btn-primary {
             background: #3498db;
             color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 1rem;
             transition: background 0.3s;
         }
         
-        .page-btn:hover:not(:disabled) {
+        .btn-primary:hover {
             background: #2980b9;
         }
         
-        .page-btn:disabled {
-            background: #bdc3c7;
-            cursor: not-allowed;
-        }
-        
-        .page-info {
-            color: #7f8c8d;
-            font-weight: 500;
-        }
-        
-        .filter-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .filter-btn {
-            padding: 8px 15px;
-            border: 2px solid #3498db;
-            background: white;
-            color: #3498db;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .filter-btn.active {
-            background: #3498db;
+        .btn-secondary {
+            background: #7f8c8d;
             color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
         }
         
-        .filter-btn:hover {
-            background: #e3f2fd;
+        .btn-secondary:hover {
+            background: #6c7b7d;
         }
         
-        .edit-dialog {
+        .btn-success {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn-success:hover {
+            background: #219653;
+        }
+        
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .format-guide {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .format-guide code {
+            background: #e0e0e0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .data-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3498db;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        
+        .confirmation-dialog {
             position: fixed;
             top: 0;
             left: 0;
@@ -179,78 +228,282 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1001;
+            z-index: 1000;
             display: none;
         }
         
-        .edit-dialog.active {
+        .confirmation-dialog.active {
             display: flex;
         }
         
-        .edit-dialog-content {
+        .dialog-content {
             background: white;
             padding: 30px;
             border-radius: 15px;
-            max-width: 600px;
+            max-width: 500px;
             width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .edit-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .edit-header h3 {
-            margin: 0;
-            color: #2c3e50;
-        }
-        
-        .close-edit {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #7f8c8d;
-            cursor: pointer;
-            padding: 5px;
-        }
-        
-        .close-edit:hover {
-            color: #e74c3c;
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-            margin-bottom: 0;
-        }
-        
-        .form-group small {
-            display: block;
-            margin-top: 5px;
-            color: #7f8c8d;
-            font-size: 0.85rem;
-        }
-        
-        .current-vocab-actions {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
             text-align: center;
         }
         
-        .current-vocab-actions button {
-            margin: 0 5px;
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #27ae60;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+        }
+        
+        .notification.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* 詞彙列表樣式 */
+        .vocab-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+        }
+        
+        .vocab-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.3s;
+        }
+        
+        .vocab-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .vocab-item:last-child {
+            border-bottom: none;
+        }
+        
+        .vocab-content {
+            flex: 1;
+        }
+        
+        .vocab-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+        
+        .vocab-hiragana {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .vocab-kanji {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #3498db;
+        }
+        
+        .vocab-definition {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .vocab-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 0.7rem;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+        
+        .badge-custom {
+            background: #e8f4fc;
+            color: #3498db;
+        }
+        
+        .badge-original {
+            background: #f0f0f0;
+            color: #7f8c8d;
+        }
+        
+        .vocab-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-btn-icon {
+            background: none;
+            border: none;
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .edit-btn {
+            color: #3498db;
+        }
+        
+        .edit-btn:hover {
+            background: #e8f4fc;
+        }
+        
+        .delete-btn {
+            color: #e74c3c;
+        }
+        
+        .delete-btn:hover {
+            background: #fde8e6;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #7f8c8d;
+        }
+        
+        .no-vocab-message {
+            text-align: center;
+            padding: 30px;
+            color: #7f8c8d;
+        }
+        
+        /* 編輯表單樣式 */
+        .edit-form {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .edit-form.active {
+            display: block;
+        }
+        
+        /* 篩選器樣式 */
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        /* 分頁樣式 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .page-btn {
+            padding: 8px 12px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            min-width: 40px;
+        }
+        
+        .page-btn.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .vocab-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .vocab-actions {
+                align-self: flex-end;
+            }
+            
+            .vocab-info {
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .tab-btn {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .data-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -296,9 +549,6 @@
                 </button>
                 <button id="exportBtn" class="action-btn action-btn-small">
                     <i class="fas fa-download"></i> 匯出詞彙
-                </button>
-                <button id="editCurrentBtn" class="action-btn action-btn-small">
-                    <i class="fas fa-edit"></i> 編輯當前詞彙
                 </button>
             </div>
         </div>
@@ -351,12 +601,11 @@
             <div class="tab-buttons">
                 <button class="tab-btn active" data-tab="single">添加單個詞彙</button>
                 <button class="tab-btn" data-tab="bulk">批量導入詞彙</button>
-                <button class="tab-btn" data-tab="list">所有詞彙列表</button>
-                <button class="tab-btn" data-tab="manage">管理現有詞彙</button>
+                <button class="tab-btn" data-tab="edit">編輯/刪除詞彙</button>
+                <button class="tab-btn" data-tab="manage">管理設置</button>
             </div>
             
             <div class="tab-content active" id="singleTab">
-                <!-- 單個添加表單 - 保持不變 -->
                 <h3><i class="fas fa-plus-circle"></i> 添加新的單字</h3>
                 <div class="form-group">
                     <label for="hiraganaInput">平假名（必填）</label>
@@ -389,13 +638,11 @@
             </div>
             
             <div class="tab-content" id="bulkTab">
-                <!-- 批量導入表單 - 保持不變 -->
                 <h3><i class="fas fa-file-import"></i> 批量導入詞彙</h3>
                 <p>請按照以下格式輸入（每行一個詞彙，用 "|" 分隔）：</p>
                 <div class="format-guide">
                     <p><strong>格式：</strong> 平假名|漢字|解釋|例句|例句翻譯</p>
                     <p><strong>範例：</strong></p>
-                    <code>みちにまよう|道に迷う|迷路|（常用表達）|</code><br>
                     <code>せいかくがあかるい|性格が明るい|性格開朗|彼女は性格が明るくて、誰からも好かれる。|她性格開朗，受到大家的喜愛。</code><br>
                     <code>ポイント|ポイント|要點、重點|彼の話はポイントがはっきりしていて分かりやすい。|他的話重點明確，容易理解。</code>
                     <p class="small">注意：漢字、例句、例句翻譯可以留空，但平假名和解釋必須填寫</p>
@@ -420,47 +667,33 @@
                 </div>
             </div>
             
-            <div class="tab-content" id="listTab">
-                <h3><i class="fas fa-list-alt"></i> 所有詞彙列表</h3>
+            <div class="tab-content" id="editTab">
+                <h3><i class="fas fa-edit"></i> 編輯/刪除詞彙</h3>
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchVocab" class="form-control search-input" placeholder="搜尋詞彙...">
+                </div>
                 
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">全部詞彙</button>
-                    <button class="filter-btn" data-filter="custom">只顯示自定義</button>
-                    <button class="filter-btn" data-filter="original">只顯示原始</button>
+                    <button class="filter-btn" data-filter="custom">自定義詞彙</button>
+                    <button class="filter-btn" data-filter="original">原始詞彙</button>
                 </div>
                 
-                <div class="search-box">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="searchInput" placeholder="搜尋詞彙...">
+                <div id="vocabList" class="vocab-list">
+                    <!-- 詞彙列表會在這裡動態生成 -->
+                    <div class="no-vocab-message">
+                        <p>正在載入詞彙...</p>
+                    </div>
                 </div>
                 
-                <div class="vocab-list-container">
-                    <table class="vocab-list" id="vocabTable">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>平假名</th>
-                                <th>漢字</th>
-                                <th>解釋</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody id="vocabListBody">
-                            <!-- 詞彙列表將在這裡動態生成 -->
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="pagination">
-                    <button id="prevPageBtn" class="page-btn">上一頁</button>
-                    <span class="page-info" id="pageInfo">第 1 頁 / 共 1 頁</span>
-                    <button id="nextPageBtn" class="page-btn">下一頁</button>
+                <div class="pagination" id="pagination">
+                    <!-- 分頁按鈕會在這裡動態生成 -->
                 </div>
             </div>
             
             <div class="tab-content" id="manageTab">
-                <!-- 管理統計 - 保持不變 -->
-                <h3><i class="fas fa-list"></i> 管理現有詞彙</h3>
+                <h3><i class="fas fa-list"></i> 管理設置</h3>
                 <div class="data-stats">
                     <div class="stat-item">
                         <div class="stat-value" id="totalCount">0</div>
@@ -476,16 +709,54 @@
                     </div>
                 </div>
                 <div class="btn-group">
-                    <button id="resetCustomBtn" class="btn-secondary">
+                    <button id="resetCustomBtn" class="btn-warning">
                         <i class="fas fa-trash"></i> 刪除所有自定義詞彙
                     </button>
-                    <button id="resetAllBtn" class="btn-secondary">
+                    <button id="resetAllBtn" class="btn-danger">
                         <i class="fas fa-redo"></i> 重置為原始數據
                     </button>
                 </div>
                 <div class="format-guide">
-                    <p><i class="fas fa-info-circle"></i> 自定義詞彙會保存在你的瀏覽器中，不會影響其他人</p>
+                    <p><i class="fas fa-info-circle"></i> 注意事項：</p>
+                    <ul>
+                        <li>自定義詞彙會保存在你的瀏覽器中，不會影響其他人</li>
+                        <li>原始詞彙無法編輯或刪除</li>
+                        <li>重置操作無法恢復，請謹慎操作</li>
+                    </ul>
                 </div>
+            </div>
+        </div>
+
+        <!-- 編輯詞彙表單（隱藏，用於編輯時彈出） -->
+        <div class="edit-form" id="editForm">
+            <h3><i class="fas fa-edit"></i> 編輯詞彙</h3>
+            <div class="form-group">
+                <label for="editHiragana">平假名（必填）</label>
+                <input type="text" id="editHiragana" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="editKanji">漢字（可選）</label>
+                <input type="text" id="editKanji" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="editDefinition">解釋（必填）</label>
+                <input type="text" id="editDefinition" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="editExample">例句（可選）</label>
+                <textarea id="editExample" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="editTranslation">例句翻譯（可選）</label>
+                <textarea id="editTranslation" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="btn-group">
+                <button id="saveEditBtn" class="btn-primary">
+                    <i class="fas fa-save"></i> 保存修改
+                </button>
+                <button id="cancelEditBtn" class="btn-secondary">
+                    <i class="fas fa-times"></i> 取消編輯
+                </button>
             </div>
         </div>
 
@@ -495,64 +766,9 @@
                 <li><strong>模式1</strong>：正面顯示平假名，背面顯示漢字、解釋和例句</li>
                 <li><strong>模式2</strong>：正面顯示漢字，背面顯示平假名、解釋和例句</li>
                 <li><strong>操作</strong>：點擊卡片翻面，使用按鈕切換單字</li>
-                <li><strong>管理功能</strong>：點擊「管理詞彙」可以添加、編輯、刪除或導入詞彙</li>
-                <li><strong>編輯功能</strong>：在「所有詞彙列表」中可以編輯或刪除自定義詞彙</li>
+                <li><strong>管理功能</strong>：點擊「管理詞彙」可以添加、編輯、刪除詞彙</li>
                 <li><strong>數據保存</strong>：所有自定義詞彙會自動保存在你的瀏覽器中</li>
             </ul>
-        </div>
-    </div>
-
-    <!-- 編輯對話框 -->
-    <div class="edit-dialog" id="editDialog">
-        <div class="edit-dialog-content">
-            <div class="edit-header">
-                <h3 id="editDialogTitle">編輯詞彙</h3>
-                <button class="close-edit" id="closeEditBtn">&times;</button>
-            </div>
-            
-            <div class="form-group">
-                <label for="editHiragana">平假名（必填）</label>
-                <input type="text" id="editHiragana" class="form-control">
-                <small>日語發音，例如：みちにまよう</small>
-            </div>
-            
-            <div class="form-group">
-                <label for="editKanji">漢字（可選）</label>
-                <input type="text" id="editKanji" class="form-control">
-                <small>對應的漢字，如果沒有漢字可以留空</small>
-            </div>
-            
-            <div class="form-group">
-                <label for="editDefinition">解釋（必填）</label>
-                <input type="text" id="editDefinition" class="form-control">
-                <small>詞彙的意思，例如：迷路</small>
-            </div>
-            
-            <div class="form-group">
-                <label for="editExample">例句（可選）</label>
-                <textarea id="editExample" class="form-control" rows="3"></textarea>
-                <small>使用這個詞彙的例句，日文</small>
-            </div>
-            
-            <div class="form-group">
-                <label for="editTranslation">例句翻譯（可選）</label>
-                <textarea id="editTranslation" class="form-control" rows="3"></textarea>
-                <small>例句的中文翻譯</small>
-            </div>
-            
-            <div class="btn-group">
-                <button id="saveEditBtn" class="btn-primary">
-                    <i class="fas fa-save"></i> 保存修改
-                </button>
-                <button id="cancelEditBtn" class="btn-secondary">
-                    <i class="fas fa-times"></i> 取消
-                </button>
-                <button id="deleteVocabBtn" class="btn-secondary" style="background: #e74c3c;">
-                    <i class="fas fa-trash"></i> 刪除詞彙
-                </button>
-            </div>
-            
-            <div id="editError" style="color: #e74c3c; margin-top: 15px; display: none;"></div>
         </div>
     </div>
 
@@ -576,126 +792,157 @@
     <script src="vocab-data.js"></script>
     <script src="script.js"></script>
     <script>
-        // 擴展的管理功能JavaScript
+        // 新增的管理功能JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // 所有之前的管理面板代碼保持不變...
-            // 這裡只顯示新增的部分
+            // 管理面板元素
+            const manageBtn = document.getElementById('manageBtn');
+            const exportBtn = document.getElementById('exportBtn');
+            const managementPanel = document.getElementById('managementPanel');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
             
-            // 新增的編輯相關元素
-            const editCurrentBtn = document.getElementById('editCurrentBtn');
-            const editDialog = document.getElementById('editDialog');
-            const closeEditBtn = document.getElementById('closeEditBtn');
-            const cancelEditBtn = document.getElementById('cancelEditBtn');
-            const saveEditBtn = document.getElementById('saveEditBtn');
-            const deleteVocabBtn = document.getElementById('deleteVocabBtn');
+            // 單個添加元素
+            const hiraganaInput = document.getElementById('hiraganaInput');
+            const kanjiInput = document.getElementById('kanjiInput');
+            const definitionInput = document.getElementById('definitionInput');
+            const exampleInput = document.getElementById('exampleInput');
+            const translationInput = document.getElementById('translationInput');
+            const addVocabBtn = document.getElementById('addVocabBtn');
+            const clearFormBtn = document.getElementById('clearFormBtn');
             
+            // 批量導入元素
+            const bulkInput = document.getElementById('bulkInput');
+            const bulkPreview = document.getElementById('bulkPreview');
+            const importBulkBtn = document.getElementById('importBulkBtn');
+            const clearBulkBtn = document.getElementById('clearBulkBtn');
+            
+            // 編輯/刪除元素
+            const searchVocab = document.getElementById('searchVocab');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const vocabList = document.getElementById('vocabList');
+            const pagination = document.getElementById('pagination');
+            
+            // 編輯表單元素
+            const editForm = document.getElementById('editForm');
             const editHiragana = document.getElementById('editHiragana');
             const editKanji = document.getElementById('editKanji');
             const editDefinition = document.getElementById('editDefinition');
             const editExample = document.getElementById('editExample');
             const editTranslation = document.getElementById('editTranslation');
-            const editDialogTitle = document.getElementById('editDialogTitle');
-            const editError = document.getElementById('editError');
+            const saveEditBtn = document.getElementById('saveEditBtn');
+            const cancelEditBtn = document.getElementById('cancelEditBtn');
             
-            // 詞彙列表相關元素
-            const listTab = document.getElementById('listTab');
-            const vocabListBody = document.getElementById('vocabListBody');
-            const searchInput = document.getElementById('searchInput');
-            const prevPageBtn = document.getElementById('prevPageBtn');
-            const nextPageBtn = document.getElementById('nextPageBtn');
-            const pageInfo = document.getElementById('pageInfo');
-            const filterButtons = document.querySelectorAll('.filter-btn');
+            // 管理元素
+            const totalCountElem = document.getElementById('totalCount');
+            const originalCountElem = document.getElementById('originalCount');
+            const customCountElem = document.getElementById('customCount');
+            const resetCustomBtn = document.getElementById('resetCustomBtn');
+            const resetAllBtn = document.getElementById('resetAllBtn');
             
-            // 分頁和篩選變量
-            let currentPage = 1;
-            let itemsPerPage = 10;
+            // 對話框元素
+            const confirmDialog = document.getElementById('confirmDialog');
+            const dialogTitle = document.getElementById('dialogTitle');
+            const dialogMessage = document.getElementById('dialogMessage');
+            const dialogConfirmBtn = document.getElementById('dialogConfirmBtn');
+            const dialogCancelBtn = document.getElementById('dialogCancelBtn');
+            
+            // 通知元素
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notificationMessage');
+            
+            // 當前狀態
+            let currentAction = '';
             let currentFilter = 'all';
             let currentSearch = '';
+            let currentPage = 1;
+            let itemsPerPage = 10;
+            let currentEditingId = null;
             
-            // 當前正在編輯的詞彙ID
-            let editingVocabId = null;
-            
-            // 編輯當前顯示的詞彙
-            editCurrentBtn.addEventListener('click', function() {
-                const allVocab = window.vocabStorage.getAllVocab();
-                if (allVocab.length === 0) {
-                    showNotification('沒有詞彙可以編輯！', 'error');
-                    return;
-                }
-                
-                const currentVocab = allVocab[currentIndex];
-                if (currentVocab) {
-                    openEditDialog(currentVocab.id);
+            // 切換管理面板顯示
+            manageBtn.addEventListener('click', function() {
+                managementPanel.classList.toggle('active');
+                if (managementPanel.classList.contains('active')) {
+                    updateStats();
+                    if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
+                        loadVocabList();
+                    }
                 }
             });
             
-            // 打開編輯對話框
-            function openEditDialog(vocabId) {
-                const vocab = window.vocabStorage.getVocabById(vocabId);
-                if (!vocab) {
-                    showNotification('找不到要編輯的詞彙！', 'error');
-                    return;
-                }
+            // 導出詞彙功能
+            exportBtn.addEventListener('click', function() {
+                const allVocab = window.getAllVocabData();
+                const exportData = JSON.stringify(allVocab, null, 2);
+                const blob = new Blob([exportData], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'japanese_vocabulary_' + new Date().toISOString().split('T')[0] + '.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
                 
-                editingVocabId = vocabId;
-                
-                // 填充表單
-                editHiragana.value = vocab.hiragana || '';
-                editKanji.value = vocab.kanji || '';
-                editDefinition.value = vocab.definition || '';
-                editExample.value = vocab.example || '';
-                editTranslation.value = vocab.translation || '';
-                
-                // 設置對話框標題
-                editDialogTitle.textContent = `編輯詞彙: ${vocab.kanji || vocab.hiragana}`;
-                
-                // 如果是原始詞彙，禁用刪除按鈕
-                if (vocab.id < 1000) {
-                    deleteVocabBtn.disabled = true;
-                    deleteVocabBtn.title = '原始詞彙不能刪除';
-                } else {
-                    deleteVocabBtn.disabled = false;
-                    deleteVocabBtn.title = '';
-                }
-                
-                // 顯示對話框
-                editDialog.classList.add('active');
-                editError.style.display = 'none';
-                
-                // 聚焦到第一個輸入框
-                setTimeout(() => editHiragana.focus(), 100);
-            }
+                showNotification('詞彙已導出為JSON文件！');
+            });
             
-            // 關閉編輯對話框
-            function closeEditDialog() {
-                editDialog.classList.remove('active');
-                editingVocabId = null;
-                editError.style.display = 'none';
-            }
+            // 標籤切換功能
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // 更新標籤按鈕狀態
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // 更新標籤內容
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === tabId + 'Tab') {
+                            content.classList.add('active');
+                        }
+                    });
+                    
+                    // 特殊處理不同標籤頁
+                    if (tabId === 'bulk') {
+                        updateBulkPreview();
+                    } else if (tabId === 'edit') {
+                        loadVocabList();
+                    } else if (tabId === 'manage') {
+                        updateStats();
+                    }
+                    
+                    // 隱藏編輯表單
+                    editForm.classList.remove('active');
+                    currentEditingId = null;
+                });
+            });
             
-            // 關閉對話框事件
-            closeEditBtn.addEventListener('click', closeEditDialog);
-            cancelEditBtn.addEventListener('click', closeEditDialog);
+            // 清空表單
+            clearFormBtn.addEventListener('click', function() {
+                hiraganaInput.value = '';
+                kanjiInput.value = '';
+                definitionInput.value = '';
+                exampleInput.value = '';
+                translationInput.value = '';
+            });
             
-            // 保存編輯
-            saveEditBtn.addEventListener('click', function() {
-                if (!editingVocabId) return;
-                
-                const hiragana = editHiragana.value.trim();
-                const kanji = editKanji.value.trim();
-                const definition = editDefinition.value.trim();
-                const example = editExample.value.trim();
-                const translation = editTranslation.value.trim();
+            // 添加單個詞彙
+            addVocabBtn.addEventListener('click', function() {
+                const hiragana = hiraganaInput.value.trim();
+                const kanji = kanjiInput.value.trim();
+                const definition = definitionInput.value.trim();
+                const example = exampleInput.value.trim();
+                const translation = translationInput.value.trim();
                 
                 // 驗證輸入
                 if (!hiragana || !definition) {
-                    editError.textContent = '請至少填寫平假名和解釋！';
-                    editError.style.display = 'block';
+                    showNotification('請至少填寫平假名和解釋！', 'error');
                     return;
                 }
                 
-                // 更新詞彙
-                const result = window.vocabStorage.updateVocab(editingVocabId, {
+                // 添加詞彙
+                const result = window.addCustomVocab({
                     hiragana: hiragana,
                     kanji: kanji || hiragana,
                     definition: definition,
@@ -704,198 +951,549 @@
                 });
                 
                 if (result.success) {
-                    showNotification('詞彙已更新！');
-                    closeEditDialog();
+                    // 清空表單
+                    clearFormBtn.click();
                     
-                    // 更新主頁面顯示
-                    if (window.updateVocabList) {
-                        window.updateVocabList();
+                    // 更新卡片顯示
+                    if (window.updateCard) {
+                        window.updateCard();
                     }
                     
-                    // 更新詞彙列表
-                    updateVocabListTable();
+                    // 顯示成功訊息
+                    showNotification(`已添加詞彙：${kanji || hiragana}`);
+                    
+                    // 更新統計數據
                     updateStats();
+                    
+                    // 如果正在編輯標籤頁，重新載入列表
+                    if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
+                        loadVocabList();
+                    }
                 } else {
-                    editError.textContent = result.message;
-                    editError.style.display = 'block';
+                    showNotification(result.message, 'error');
                 }
             });
             
-            // 刪除詞彙
-            deleteVocabBtn.addEventListener('click', function() {
-                if (!editingVocabId) return;
+            // 批量輸入實時預覽
+            bulkInput.addEventListener('input', updateBulkPreview);
+            
+            // 清空批量輸入
+            clearBulkBtn.addEventListener('click', function() {
+                bulkInput.value = '';
+                updateBulkPreview();
+            });
+            
+            // 導入批量詞彙
+            importBulkBtn.addEventListener('click', function() {
+                const bulkText = bulkInput.value.trim();
+                if (!bulkText) {
+                    showNotification('請輸入要導入的詞彙數據！', 'error');
+                    return;
+                }
                 
-                currentAction = 'deleteSingle';
-                dialogTitle.textContent = '刪除詞彙';
-                dialogMessage.textContent = `你確定要刪除這個詞彙嗎？這個操作無法撤銷。`;
+                const lines = bulkText.split('\n').filter(line => line.trim() !== '');
+                const importedVocab = [];
+                const errors = [];
+                
+                lines.forEach((line, index) => {
+                    const parts = line.split('|').map(part => part.trim());
+                    
+                    // 驗證格式
+                    if (parts.length < 3) {
+                        errors.push(`第 ${index + 1} 行：格式不正確（需要至少3個欄位）`);
+                        return;
+                    }
+                    
+                    const [hiragana, kanji, definition, example, translation] = parts;
+                    
+                    if (!hiragana || !definition) {
+                        errors.push(`第 ${index + 1} 行：平假名和解釋不能為空`);
+                        return;
+                    }
+                    
+                    importedVocab.push({
+                        hiragana: hiragana,
+                        kanji: kanji || hiragana,
+                        definition: definition,
+                        example: example || '',
+                        translation: translation || ''
+                    });
+                });
+                
+                if (errors.length > 0) {
+                    showNotification(`導入失敗：\n${errors.slice(0, 3).join('\n')}${errors.length > 3 ? '\n...' : ''}`, 'error');
+                    return;
+                }
+                
+                if (importedVocab.length === 0) {
+                    showNotification('沒有找到有效的詞彙數據！', 'error');
+                    return;
+                }
+                
+                // 批量添加詞彙
+                importedVocab.forEach(vocab => {
+                    window.addCustomVocab(vocab);
+                });
+                
+                // 清空輸入框
+                bulkInput.value = '';
+                updateBulkPreview();
+                
+                // 更新卡片顯示
+                if (window.updateCard) {
+                    window.updateCard();
+                }
+                
+                // 顯示成功訊息
+                showNotification(`成功導入 ${importedVocab.length} 個詞彙！`);
+                
+                // 更新統計數據
+                updateStats();
+                
+                // 如果正在編輯標籤頁，重新載入列表
+                if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
+                    loadVocabList();
+                }
+            });
+            
+            // 刪除自定義詞彙
+            resetCustomBtn.addEventListener('click', function() {
+                currentAction = 'resetCustom';
+                dialogTitle.textContent = '刪除自定義詞彙';
+                dialogMessage.textContent = '你確定要刪除所有自定義詞彙嗎？這個操作無法撤銷。';
                 confirmDialog.classList.add('active');
             });
             
-            // 更新對話框確認按鈕處理
+            // 重置所有詞彙
+            resetAllBtn.addEventListener('click', function() {
+                currentAction = 'resetAll';
+                dialogTitle.textContent = '重置為原始數據';
+                dialogMessage.textContent = '你確定要重置所有詞彙嗎？所有自定義詞彙將會被刪除。';
+                confirmDialog.classList.add('active');
+            });
+            
+            // 確認對話框操作
             dialogConfirmBtn.addEventListener('click', function() {
-                if (currentAction === 'deleteSingle') {
-                    const result = window.vocabStorage.deleteVocab(editingVocabId);
-                    if (result.success) {
-                        showNotification('詞彙已刪除！');
-                        closeEditDialog();
-                        
-                        // 更新主頁面顯示
-                        if (window.updateVocabList) {
-                            window.updateVocabList();
-                        }
-                        
-                        // 更新詞彙列表
-                        updateVocabListTable();
-                        updateStats();
-                    } else {
-                        showNotification(result.message, 'error');
+                if (currentAction === 'resetCustom') {
+                    // 刪除自定義詞彙
+                    if (window.resetCustomVocab) {
+                        window.resetCustomVocab();
+                        showNotification('已刪除所有自定義詞彙');
+                    }
+                } else if (currentAction === 'resetAll') {
+                    // 重置所有詞彙
+                    if (window.resetAllVocab) {
+                        window.resetAllVocab();
+                        showNotification('已重置所有詞彙');
                     }
                 }
                 
+                // 更新卡片顯示
+                if (window.updateCard) {
+                    window.updateCard();
+                }
+                
+                // 更新統計數據
+                updateStats();
+                
+                // 重新載入詞彙列表
+                if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
+                    loadVocabList();
+                }
+                
+                // 關閉對話框
                 confirmDialog.classList.remove('active');
             });
             
-            // 詞彙列表相關功能
-            function updateVocabListTable() {
-                const allVocab = window.vocabStorage.getAllVocab();
+            dialogCancelBtn.addEventListener('click', function() {
+                confirmDialog.classList.remove('active');
+            });
+            
+            // 搜索詞彙功能
+            searchVocab.addEventListener('input', function() {
+                currentSearch = this.value.trim();
+                currentPage = 1;
+                loadVocabList();
+            });
+            
+            // 篩選器功能
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.getAttribute('data-filter');
+                    currentFilter = filter;
+                    
+                    // 更新篩選器按鈕狀態
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    currentPage = 1;
+                    loadVocabList();
+                });
+            });
+            
+            // 取消編輯
+            cancelEditBtn.addEventListener('click', function() {
+                editForm.classList.remove('active');
+                currentEditingId = null;
+            });
+            
+            // 保存編輯
+            saveEditBtn.addEventListener('click', function() {
+                const hiragana = editHiragana.value.trim();
+                const kanji = editKanji.value.trim();
+                const definition = editDefinition.value.trim();
+                const example = editExample.value.trim();
+                const translation = editTranslation.value.trim();
                 
-                // 應用篩選
-                let filteredVocab = allVocab;
+                // 驗證輸入
+                if (!hiragana || !definition) {
+                    showNotification('請至少填寫平假名和解釋！', 'error');
+                    return;
+                }
+                
+                if (!currentEditingId) {
+                    showNotification('編輯錯誤：找不到詞彙ID', 'error');
+                    return;
+                }
+                
+                // 更新詞彙
+                const result = window.updateCustomVocab(currentEditingId, {
+                    hiragana: hiragana,
+                    kanji: kanji || hiragana,
+                    definition: definition,
+                    example: example,
+                    translation: translation
+                });
+                
+                if (result.success) {
+                    // 關閉編輯表單
+                    editForm.classList.remove('active');
+                    currentEditingId = null;
+                    
+                    // 更新卡片顯示
+                    if (window.updateCard) {
+                        window.updateCard();
+                    }
+                    
+                    // 顯示成功訊息
+                    showNotification('詞彙修改成功！');
+                    
+                    // 重新載入詞彙列表
+                    loadVocabList();
+                    
+                    // 更新統計數據
+                    updateStats();
+                } else {
+                    showNotification(result.message, 'error');
+                }
+            });
+            
+            // 更新批量輸入預覽
+            function updateBulkPreview() {
+                const text = bulkInput.value.trim();
+                if (!text) {
+                    bulkPreview.innerHTML = '請輸入數據以查看預覽...';
+                    return;
+                }
+                
+                const lines = text.split('\n').filter(line => line.trim() !== '').slice(0, 3);
+                let previewHTML = '';
+                
+                lines.forEach((line, index) => {
+                    const parts = line.split('|');
+                    if (parts.length >= 3) {
+                        previewHTML += `<div class="preview-item"><strong>${index + 1}.</strong> ${parts[0]} → ${parts[1] || parts[0]}</div>`;
+                    } else {
+                        previewHTML += `<div class="preview-item error"><strong>${index + 1}.</strong> 格式錯誤（需要至少3個欄位）</div>`;
+                    }
+                });
+                
+                const totalLines = text.split('\n').filter(line => line.trim() !== '').length;
+                if (totalLines > 3) {
+                    previewHTML += `<div class="preview-item">... 還有 ${totalLines - 3} 個詞彙</div>`;
+                }
+                
+                bulkPreview.innerHTML = previewHTML;
+            }
+            
+            // 載入詞彙列表
+            function loadVocabList() {
+                const allVocab = window.getAllVocabData();
+                
+                // 篩選詞彙
+                let filteredVocab = allVocab.filter(vocab => {
+                    // 搜索篩選
+                    if (currentSearch) {
+                        const searchLower = currentSearch.toLowerCase();
+                        return vocab.hiragana.toLowerCase().includes(searchLower) ||
+                               vocab.kanji.toLowerCase().includes(searchLower) ||
+                               vocab.definition.toLowerCase().includes(searchLower);
+                    }
+                    return true;
+                });
+                
+                // 類型篩選
                 if (currentFilter === 'custom') {
-                    filteredVocab = allVocab.filter(vocab => vocab.id >= 1000);
+                    filteredVocab = filteredVocab.filter(vocab => vocab.id >= 1000);
                 } else if (currentFilter === 'original') {
-                    filteredVocab = allVocab.filter(vocab => vocab.id < 1000);
+                    filteredVocab = filteredVocab.filter(vocab => vocab.id < 1000);
                 }
                 
-                // 應用搜尋
-                if (currentSearch) {
-                    const searchLower = currentSearch.toLowerCase();
-                    filteredVocab = filteredVocab.filter(vocab => 
-                        (vocab.hiragana && vocab.hiragana.toLowerCase().includes(searchLower)) ||
-                        (vocab.kanji && vocab.kanji.toLowerCase().includes(searchLower)) ||
-                        (vocab.definition && vocab.definition.toLowerCase().includes(searchLower))
-                    );
-                }
-                
-                // 計算分頁
+                // 分頁計算
                 const totalItems = filteredVocab.length;
                 const totalPages = Math.ceil(totalItems / itemsPerPage);
-                
-                // 確保當前頁有效
-                if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
-                
-                // 獲取當前頁的詞彙
                 const startIndex = (currentPage - 1) * itemsPerPage;
                 const endIndex = Math.min(startIndex + itemsPerPage, totalItems);
                 const pageVocab = filteredVocab.slice(startIndex, endIndex);
                 
-                // 清空表格
-                vocabListBody.innerHTML = '';
+                // 清空列表
+                vocabList.innerHTML = '';
                 
-                // 填充表格
+                // 如果沒有詞彙
+                if (pageVocab.length === 0) {
+                    const message = document.createElement('div');
+                    message.className = 'no-vocab-message';
+                    message.innerHTML = currentSearch ? 
+                        `<p>找不到符合 "${currentSearch}" 的詞彙</p>` :
+                        `<p>沒有詞彙數據，請添加詞彙</p>`;
+                    vocabList.appendChild(message);
+                    
+                    // 清空分頁
+                    pagination.innerHTML = '';
+                    return;
+                }
+                
+                // 顯示詞彙列表
                 pageVocab.forEach(vocab => {
-                    const row = document.createElement('tr');
-                    if (vocab.id >= 1000) {
-                        row.classList.add('custom-vocab');
-                    }
-                    
-                    row.innerHTML = `
-                        <td>${vocab.id}</td>
-                        <td>${vocab.hiragana}</td>
-                        <td>${vocab.kanji || '-'}</td>
-                        <td>${vocab.definition.length > 30 ? vocab.definition.substring(0, 30) + '...' : vocab.definition}</td>
-                        <td>
-                            <div class="action-buttons-small">
-                                <button class="edit-btn" data-id="${vocab.id}" ${vocab.id < 1000 ? 'disabled title="原始詞彙不能編輯"' : ''}>
-                                    <i class="fas fa-edit"></i> 編輯
-                                </button>
-                                <button class="delete-btn" data-id="${vocab.id}" ${vocab.id < 1000 ? 'disabled title="原始詞彙不能刪除"' : ''}>
-                                    <i class="fas fa-trash"></i> 刪除
-                                </button>
-                            </div>
-                        </td>
-                    `;
-                    
-                    vocabListBody.appendChild(row);
+                    const vocabItem = createVocabItem(vocab);
+                    vocabList.appendChild(vocabItem);
                 });
                 
-                // 更新分頁信息
-                pageInfo.textContent = `第 ${currentPage} 頁 / 共 ${totalPages} 頁 (共 ${totalItems} 個詞彙)`;
-                prevPageBtn.disabled = currentPage <= 1;
-                nextPageBtn.disabled = currentPage >= totalPages;
-                
-                // 為編輯和刪除按鈕添加事件監聽器
-                document.querySelectorAll('.edit-btn:not([disabled])').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const vocabId = parseInt(this.getAttribute('data-id'));
-                        openEditDialog(vocabId);
-                    });
-                });
-                
-                document.querySelectorAll('.delete-btn:not([disabled])').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const vocabId = parseInt(this.getAttribute('data-id'));
-                        editingVocabId = vocabId;
-                        
-                        currentAction = 'deleteSingle';
-                        dialogTitle.textContent = '刪除詞彙';
-                        dialogMessage.textContent = `你確定要刪除這個詞彙嗎？這個操作無法撤銷。`;
-                        confirmDialog.classList.add('active');
-                    });
-                });
+                // 更新分頁
+                updatePagination(totalPages);
             }
             
-            // 篩選按鈕事件
-            filterButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    filterButtons.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    currentFilter = this.getAttribute('data-filter');
-                    currentPage = 1;
-                    updateVocabListTable();
+            // 創建詞彙項目
+            function createVocabItem(vocab) {
+                const item = document.createElement('div');
+                item.className = 'vocab-item';
+                item.dataset.id = vocab.id;
+                
+                const isCustom = vocab.id >= 1000;
+                const badgeType = isCustom ? 'badge-custom' : 'badge-original';
+                const badgeText = isCustom ? '自定義' : '原始';
+                
+                item.innerHTML = `
+                    <div class="vocab-content">
+                        <div class="vocab-info">
+                            <span class="vocab-hiragana">${vocab.hiragana}</span>
+                            <span class="vocab-kanji">${vocab.kanji}</span>
+                            <span class="vocab-badge ${badgeType}">${badgeText}</span>
+                        </div>
+                        <div class="vocab-definition">${vocab.definition}</div>
+                    </div>
+                    <div class="vocab-actions">
+                        ${isCustom ? `
+                            <button class="action-btn-icon edit-btn" title="編輯">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn-icon delete-btn" title="刪除">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        ` : `
+                            <button class="action-btn-icon edit-btn" title="原始詞彙無法編輯" disabled>
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn-icon delete-btn" title="原始詞彙無法刪除" disabled>
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        `}
+                    </div>
+                `;
+                
+                // 添加事件監聽器
+                if (isCustom) {
+                    const editBtn = item.querySelector('.edit-btn');
+                    const deleteBtn = item.querySelector('.delete-btn');
+                    
+                    editBtn.addEventListener('click', function() {
+                        openEditForm(vocab);
+                    });
+                    
+                    deleteBtn.addEventListener('click', function() {
+                        showDeleteConfirmation(vocab);
+                    });
+                }
+                
+                return item;
+            }
+            
+            // 打開編輯表單
+            function openEditForm(vocab) {
+                currentEditingId = vocab.id;
+                
+                // 填充表單數據
+                editHiragana.value = vocab.hiragana;
+                editKanji.value = vocab.kanji;
+                editDefinition.value = vocab.definition;
+                editExample.value = vocab.example || '';
+                editTranslation.value = vocab.translation || '';
+                
+                // 顯示編輯表單
+                editForm.classList.add('active');
+                
+                // 滾動到編輯表單
+                editForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+            
+            // 顯示刪除確認
+            function showDeleteConfirmation(vocab) {
+                currentAction = 'deleteSingle';
+                currentEditingId = vocab.id;
+                
+                dialogTitle.textContent = '刪除詞彙';
+                dialogMessage.textContent = `你確定要刪除詞彙「${vocab.kanji || vocab.hiragana}」嗎？這個操作無法撤銷。`;
+                confirmDialog.classList.add('active');
+            }
+            
+            // 更新分頁
+            function updatePagination(totalPages) {
+                pagination.innerHTML = '';
+                
+                if (totalPages <= 1) return;
+                
+                // 上一頁按鈕
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'page-btn';
+                prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                prevBtn.disabled = currentPage === 1;
+                prevBtn.addEventListener('click', function() {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        loadVocabList();
+                    }
                 });
-            });
-            
-            // 搜尋功能
-            searchInput.addEventListener('input', function() {
-                currentSearch = this.value.trim();
-                currentPage = 1;
-                updateVocabListTable();
-            });
-            
-            // 分頁功能
-            prevPageBtn.addEventListener('click', function() {
-                if (currentPage > 1) {
-                    currentPage--;
-                    updateVocabListTable();
+                pagination.appendChild(prevBtn);
+                
+                // 頁碼按鈕
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
                 }
-            });
-            
-            nextPageBtn.addEventListener('click', function() {
-                const allVocab = window.vocabStorage.getAllVocab();
-                const totalPages = Math.ceil(allVocab.length / itemsPerPage);
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    updateVocabListTable();
+                
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageBtn = document.createElement('button');
+                    pageBtn.className = 'page-btn';
+                    if (i === currentPage) pageBtn.classList.add('active');
+                    pageBtn.textContent = i;
+                    pageBtn.addEventListener('click', function() {
+                        currentPage = i;
+                        loadVocabList();
+                    });
+                    pagination.appendChild(pageBtn);
                 }
-            });
+                
+                // 下一頁按鈕
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'page-btn';
+                nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                nextBtn.disabled = currentPage === totalPages;
+                nextBtn.addEventListener('click', function() {
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                        loadVocabList();
+                    }
+                });
+                pagination.appendChild(nextBtn);
+            }
             
-            // 當切換到列表標籤時，更新表格
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    if (tabId === 'list') {
-                        currentPage = 1;
-                        updateVocabListTable();
+            // 更新統計數據
+            function updateStats() {
+                const allVocab = window.getAllVocabData();
+                const originalCount = window.getOriginalVocabCount();
+                const customCount = window.getCustomVocabCount();
+                
+                totalCountElem.textContent = allVocab.length;
+                originalCountElem.textContent = originalCount;
+                customCountElem.textContent = customCount;
+            }
+            
+            // 顯示通知訊息
+            function showNotification(message, type = 'success') {
+                notificationMessage.textContent = message;
+                notification.className = 'notification';
+                
+                if (type === 'error') {
+                    notification.style.background = '#e74c3c';
+                } else if (type === 'warning') {
+                    notification.style.background = '#f39c12';
+                } else {
+                    notification.style.background = '#27ae60';
+                }
+                
+                notification.classList.add('active');
+                
+                // 3秒後自動隱藏
+                setTimeout(() => {
+                    notification.classList.remove('active');
+                }, 3000);
+            }
+            
+            // 為表單添加Enter鍵提交功能
+            const formInputs = [hiraganaInput, kanjiInput, definitionInput, exampleInput, translationInput];
+            formInputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        addVocabBtn.click();
+                        e.preventDefault();
                     }
                 });
             });
             
-            // 公開函數供主腳本使用
-            window.updateVocabListTable = updateVocabListTable;
-            window.updateStats = updateStats;
-            window.showNotification = showNotification;
+            // 為編輯表單添加Enter鍵提交功能
+            const editInputs = [editHiragana, editKanji, editDefinition, editExample, editTranslation];
+            editInputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        saveEditBtn.click();
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // 初始更新統計數據
+            updateStats();
+            
+            // 為刪除單個詞彙添加確認處理
+            dialogConfirmBtn.addEventListener('click', function() {
+                if (currentAction === 'deleteSingle' && currentEditingId) {
+                    const result = window.deleteCustomVocab(currentEditingId);
+                    if (result.success) {
+                        showNotification('詞彙刪除成功！');
+                        
+                        // 更新卡片顯示
+                        if (window.updateCard) {
+                            window.updateCard();
+                        }
+                        
+                        // 重新載入詞彙列表
+                        loadVocabList();
+                        
+                        // 更新統計數據
+                        updateStats();
+                    } else {
+                        showNotification(result.message, 'error');
+                    }
+                    
+                    currentEditingId = null;
+                }
+                
+                // 關閉對話框
+                confirmDialog.classList.remove('active');
+            });
         });
     </script>
 </body>
