@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>日語單字複習系統</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,21 +18,10 @@
         }
         
         .action-btn-small {
-            padding: 10px 15px;
+            padding: 8px 15px;
             font-size: 0.9rem;
-            background: #9b59b6;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .action-btn-small:hover {
-            background: #8e44ad;
+            flex: 1;
+            min-width: 150px;
         }
         
         .management-panel {
@@ -42,18 +31,10 @@
             margin-top: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             display: none;
-            position: relative;
-            z-index: 10;
         }
         
         .management-panel.active {
             display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         .tab-buttons {
@@ -61,20 +42,17 @@
             border-bottom: 2px solid #f0f0f0;
             margin-bottom: 20px;
             flex-wrap: wrap;
-            overflow-x: auto;
         }
         
         .tab-btn {
-            padding: 12px 20px;
+            padding: 12px 25px;
             background: none;
             border: none;
             font-size: 1rem;
             cursor: pointer;
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
-            white-space: nowrap;
             flex: 1;
-            min-width: 120px;
             text-align: center;
         }
         
@@ -90,7 +68,6 @@
         
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.3s ease;
         }
         
         .form-group {
@@ -120,7 +97,7 @@
         }
         
         .textarea-control {
-            min-height: 120px;
+            min-height: 150px;
             resize: vertical;
         }
         
@@ -140,9 +117,8 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            flex: 1;
+            min-width: 120px;
         }
         
         .btn-primary:hover {
@@ -158,9 +134,8 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            flex: 1;
+            min-width: 120px;
         }
         
         .btn-secondary:hover {
@@ -176,9 +151,8 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            flex: 1;
+            min-width: 120px;
         }
         
         .btn-success:hover {
@@ -194,9 +168,8 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            flex: 1;
+            min-width: 120px;
         }
         
         .btn-warning:hover {
@@ -212,9 +185,8 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            flex: 1;
+            min-width: 120px;
         }
         
         .btn-danger:hover {
@@ -235,8 +207,6 @@
             padding: 2px 5px;
             border-radius: 3px;
             font-family: monospace;
-            display: inline-block;
-            margin: 2px 0;
         }
         
         .data-stats {
@@ -246,11 +216,11 @@
             padding-top: 20px;
             border-top: 1px solid #eee;
             flex-wrap: wrap;
-            justify-content: center;
         }
         
         .stat-item {
             text-align: center;
+            flex: 1;
             min-width: 80px;
         }
         
@@ -275,13 +245,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 2000;
+            z-index: 1000;
             display: none;
         }
         
         .confirmation-dialog.active {
             display: flex;
-            animation: fadeIn 0.3s ease;
         }
         
         .dialog-content {
@@ -291,7 +260,6 @@
             max-width: 500px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .notification {
@@ -304,7 +272,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             display: none;
-            z-index: 2000;
+            z-index: 1000;
         }
         
         .notification.active {
@@ -325,7 +293,7 @@
         
         /* 詞彙列表樣式 */
         .vocab-list {
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
             margin-top: 20px;
             border: 1px solid #e0e0e0;
@@ -356,7 +324,7 @@
         .vocab-info {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 5px;
             flex-wrap: wrap;
         }
@@ -377,7 +345,6 @@
             font-size: 0.9rem;
             color: #666;
             margin-bottom: 5px;
-            line-height: 1.4;
         }
         
         .vocab-badge {
@@ -385,6 +352,7 @@
             padding: 2px 8px;
             font-size: 0.7rem;
             border-radius: 10px;
+            margin-right: 5px;
         }
         
         .badge-custom {
@@ -410,11 +378,6 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
         }
         
         .edit-btn {
@@ -489,6 +452,8 @@
             cursor: pointer;
             font-size: 0.9rem;
             transition: all 0.3s;
+            flex: 1;
+            text-align: center;
         }
         
         .filter-btn.active {
@@ -524,168 +489,298 @@
             cursor: not-allowed;
         }
         
-        /* 修復卡片在手機上的顯示問題 */
+        /* 修復卡片在手機上的顯示問題 - 核心修復 */
+        .card-container-wrapper {
+            width: 100%;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .card-container {
+            perspective: 1000px;
+            height: 450px;
+            margin: 0 auto;
+            position: relative;
+            overflow: visible !important;
+        }
+        
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+        }
+        
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            z-index: 2;
+        }
+        
+        .card-back {
+            background: white;
+            color: #333;
+            transform: rotateY(180deg);
+            z-index: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .card-content {
+            width: 100%;
+            height: 100%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .card-back .card-content {
+            overflow-y: auto;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+        
+        .card-label {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .card-back .card-label {
+            background: #f0f0f0;
+            color: #666;
+        }
+        
+        .hint {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .word-display {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 0;
+            overflow: hidden;
+        }
+        
+        #frontText {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.2;
+            max-width: 100%;
+        }
+        
+        .answer-content {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 5px;
+            min-height: 0;
+        }
+        
+        .answer-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .answer-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .answer-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+        
+        .kanji-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            flex-shrink: 0;
+        }
+        
+        #backKanji {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 700;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+        
+        .reading {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .definition-section, .example-section {
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+        
+        .definition-section h4, .example-section h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .definition-section h4 i {
+            color: #3498db;
+        }
+        
+        .example-section h4 i {
+            color: #e74c3c;
+        }
+        
+        #backDefinition, #backExample {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            overflow-wrap: break-word;
+        }
+        
+        #backExample {
+            border-left-color: #e74c3c;
+        }
+        
+        .translation {
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+            padding-left: 15px;
+            border-left: 3px solid #f39c12;
+        }
+        
+        .card-footer {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        
+        .card-back .card-footer {
+            border-top: 1px solid #eee;
+            color: #999;
+        }
+        
+        /* 響應式設計 - 修復移動設備問題 */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
             }
             
-            .tab-btn {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-                min-width: 90px;
-            }
-            
-            .vocab-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-            
-            .vocab-actions {
-                align-self: flex-end;
-            }
-            
-            .vocab-info {
-                flex-wrap: wrap;
-            }
-            
-            /* 修復卡片在手機上的顯示問題 */
-            .card-container {
-                height: 350px;
-                margin-bottom: 20px;
-            }
-            
-            .card {
-                height: 100%;
-            }
-            
-            .card-front, .card-back {
-                height: 100%;
-            }
-            
-            .card-content {
-                height: 100%;
-                padding: 20px;
-                overflow: hidden;
-            }
-            
-            #frontText {
-                font-size: 2rem !important;
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-                line-height: 1.3;
-                max-width: 100%;
-                padding: 0 10px;
-            }
-            
-            #backKanji {
-                font-size: 1.6rem !important;
-                line-height: 1.3;
-            }
-            
-            .reading {
-                font-size: 1.2rem !important;
-            }
-            
-            .card-back {
-                overflow-y: auto;
-                padding: 20px;
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            .answer-content {
-                padding: 10px 0;
-            }
-            
-            #backDefinition, #backExample {
-                font-size: 1rem;
-                padding: 12px;
-                margin-bottom: 15px;
-            }
-            
-            .card-footer {
-                padding-top: 15px;
-                margin-top: 10px;
-            }
-            
-            .btn-primary, .btn-secondary, .btn-success, .btn-warning, .btn-danger {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            /* 管理面板在移動設備上的優化 */
-            .management-panel {
-                padding: 20px;
-                margin-top: 20px;
-            }
-            
-            .vocab-list {
-                max-height: 250px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-            
-            .container {
-                padding: 12px;
-                border-radius: 12px;
-            }
-            
             header h1 {
-                font-size: 1.5rem;
-                text-align: center;
+                font-size: 1.6rem;
+                flex-direction: column;
+                gap: 8px;
             }
             
-            .subtitle {
-                font-size: 0.9rem;
-                text-align: center;
-            }
-            
-            .controls {
-                padding: 15px;
+            .mode-selector {
+                flex-direction: column;
             }
             
             .mode-btn {
-                padding: 12px;
+                min-width: 100%;
+                padding: 12px 15px;
                 font-size: 0.9rem;
-                min-width: auto;
             }
             
-            #frontText {
-                font-size: 1.6rem !important;
-                padding: 0 5px;
-            }
-            
-            #backKanji {
-                font-size: 1.4rem !important;
-            }
-            
-            .reading {
-                font-size: 1.1rem !important;
-            }
-            
-            .nav-btn, .action-btn {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-                min-width: auto;
-                flex: 1;
+            .card-container-wrapper {
+                margin-bottom: 20px;
             }
             
             .card-container {
-                height: 300px;
-                perspective: none;
+                height: 500px;
+                max-height: 60vh;
             }
             
-            .card {
-                box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            .card-content {
+                padding: 20px;
+            }
+            
+            .card-back {
+                padding: 0;
+            }
+            
+            #frontText {
+                font-size: 2.2rem;
+            }
+            
+            #backKanji {
+                font-size: 2rem;
+            }
+            
+            .reading {
+                font-size: 1.3rem;
+            }
+            
+            .card-footer {
+                font-size: 0.8rem;
+            }
+            
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 0.85rem;
+            }
+            
+            .action-btn-small {
+                min-width: 140px;
+            }
+            
+            .management-panel {
+                padding: 20px;
             }
             
             .instructions {
-                padding: 15px;
+                padding: 20px;
             }
             
             .instructions h3 {
@@ -695,9 +790,75 @@
             .instructions li {
                 font-size: 0.9rem;
             }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
             
-            .management-panel {
+            .container {
                 padding: 15px;
+                border-radius: 15px;
+            }
+            
+            header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .controls {
+                padding: 15px;
+            }
+            
+            .buttons {
+                gap: 10px;
+            }
+            
+            .nav-btn, .action-btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+                min-width: auto;
+                flex: 1;
+            }
+            
+            .card-container {
+                height: 500px;
+                max-height: 55vh;
+            }
+            
+            .card-content {
+                padding: 15px;
+            }
+            
+            #frontText {
+                font-size: 1.8rem;
+            }
+            
+            #backKanji {
+                font-size: 1.6rem;
+            }
+            
+            .reading {
+                font-size: 1.2rem;
+            }
+            
+            #backDefinition, #backExample {
+                font-size: 1rem;
+                padding: 12px;
+                line-height: 1.5;
+            }
+            
+            .definition-section h4, .example-section h4 {
+                font-size: 1.1rem;
+            }
+            
+            .tab-btn {
+                padding: 8px 10px;
+                font-size: 0.8rem;
             }
             
             .form-control {
@@ -705,8 +866,66 @@
                 font-size: 0.95rem;
             }
             
-            .vocab-list {
-                max-height: 200px;
+            .btn-primary, .btn-secondary, .btn-success, .btn-warning, .btn-danger {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .action-btn-small {
+                min-width: 130px;
+                padding: 8px 12px;
+            }
+            
+            .management-panel {
+                padding: 15px;
+            }
+            
+            .instructions {
+                padding: 15px;
+            }
+        }
+        
+        /* 非常小的手機設備 */
+        @media (max-width: 360px) {
+            .card-container {
+                height: 450px;
+            }
+            
+            #frontText {
+                font-size: 1.6rem;
+            }
+            
+            #backKanji {
+                font-size: 1.4rem;
+            }
+            
+            .reading {
+                font-size: 1.1rem;
+            }
+            
+            .mode-btn, .nav-btn, .action-btn {
+                font-size: 0.85rem;
+                padding: 8px 12px;
+            }
+            
+            .tab-btn {
+                padding: 6px 8px;
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* 平板設備 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .card-container {
+                height: 500px;
+            }
+            
+            #frontText {
+                font-size: 2.5rem;
+            }
+            
+            #backKanji {
+                font-size: 2rem;
             }
         }
         
@@ -716,65 +935,77 @@
                 cursor: default;
             }
             
-            .mode-btn, .nav-btn, .action-btn, .action-btn-small {
+            .mode-btn, .nav-btn, .action-btn {
                 min-height: 44px; /* iOS建議的最小觸摸目標尺寸 */
             }
             
             .tab-btn, .filter-btn {
-                min-height: 36px;
+                min-height: 40px;
             }
             
             .action-btn-icon {
                 min-width: 44px;
                 min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
-            /* 防止移動設備上的文字選擇 */
-            .card, .mode-btn, .nav-btn, .action-btn, .tab-btn, .filter-btn, .page-btn {
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
+            .page-btn {
+                min-width: 44px;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        
+        /* 防止移動設備上的文字選擇 */
+        .card, .mode-btn, .nav-btn, .action-btn, .tab-btn, .filter-btn, .page-btn, .action-btn-icon {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* 允許表單輸入選擇文字 */
+        input.form-control, textarea.form-control {
+            -webkit-user-select: text;
+            -khtml-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+        
+        /* 高對比度模式支持 */
+        @media (prefers-contrast: high) {
+            .card-front {
+                background: #2c3e50;
             }
             
-            /* 允許表單輸入選擇文字 */
-            input.form-control, textarea.form-control {
-                -webkit-user-select: text;
-                -khtml-user-select: text;
-                -moz-user-select: text;
-                -ms-user-select: text;
-                user-select: text;
-            }
-        }
-        
-        /* 確保管理面板打開時，卡片不會遮擋 */
-        .management-panel-wrapper {
-            position: relative;
-            margin-top: 20px;
-        }
-        
-        /* 添加滾動優化 */
-        .container {
-            max-height: 90vh;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        /* 當管理面板打開時，調整容器高度 */
-        .management-panel.active + .instructions {
-            margin-top: 20px;
-        }
-        
-        /* 修復卡片翻轉動畫在移動設備上的問題 */
-        @media (max-width: 768px) {
-            .card-container {
-                perspective: 500px;
+            .mode-btn.active {
+                background: #2c3e50;
             }
             
+            .btn-primary {
+                background: #2c3e50;
+            }
+        }
+        
+        /* 減少動畫模式 */
+        @media (prefers-reduced-motion: reduce) {
             .card {
-                transition: transform 0.6s ease;
+                transition: none;
+            }
+            
+            .notification.active {
+                animation: none;
+            }
+            
+            .mode-btn:hover, .nav-btn:hover, .action-btn:hover {
+                transform: none;
             }
         }
     </style>
@@ -783,7 +1014,7 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-book"></i> 日語單字複習系統</h1>
-            <p class="subtitle">點擊卡片翻面，按按鈕切換模式</p>
+            <p class="subtitle">點擊卡片翻面，使用按鈕切換單字</p>
         </header>
 
         <div class="controls">
@@ -816,188 +1047,188 @@
             </div>
             
             <div class="action-buttons">
-                <button id="manageBtn" class="action-btn-small">
+                <button id="manageBtn" class="action-btn action-btn-small">
                     <i class="fas fa-cog"></i> 管理詞彙
                 </button>
-                <button id="exportBtn" class="action-btn-small">
+                <button id="exportBtn" class="action-btn action-btn-small">
                     <i class="fas fa-download"></i> 匯出詞彙
                 </button>
             </div>
         </div>
 
-        <div class="card-container">
-            <div class="card" id="vocabCard">
-                <div class="card-front">
-                    <div class="card-content">
-                        <div class="card-header">
-                            <span class="card-label" id="frontLabel">平假名</span>
-                            <span class="hint">點擊卡片查看答案</span>
-                        </div>
-                        <div class="word-display">
-                            <h2 id="frontText">載入中...</h2>
-                        </div>
-                        <div class="card-footer">
-                            <i class="fas fa-hand-point-up"></i> 點擊卡片翻面
+        <div class="card-container-wrapper">
+            <div class="card-container">
+                <div class="card" id="vocabCard">
+                    <div class="card-front">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <span class="card-label" id="frontLabel">平假名</span>
+                                <span class="hint">點擊卡片查看答案</span>
+                            </div>
+                            <div class="word-display">
+                                <h2 id="frontText">載入中...</h2>
+                            </div>
+                            <div class="card-footer">
+                                <i class="fas fa-hand-point-up"></i> 點擊卡片翻面
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-back">
-                    <div class="card-content">
-                        <div class="card-header">
-                            <span class="card-label" id="backLabel">答案</span>
-                        </div>
-                        <div class="answer-content">
-                            <div class="kanji-section">
-                                <h3 id="backKanji">漢字</h3>
-                                <div class="reading" id="backReading">読み方</div>
+                    <div class="card-back">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <span class="card-label" id="backLabel">答案</span>
                             </div>
-                            <div class="definition-section">
-                                <h4><i class="fas fa-book-open"></i> 解釋</h4>
-                                <p id="backDefinition">解釋內容</p>
+                            <div class="answer-content">
+                                <div class="kanji-section">
+                                    <h3 id="backKanji">漢字</h3>
+                                    <div class="reading" id="backReading">読み方</div>
+                                </div>
+                                <div class="definition-section">
+                                    <h4><i class="fas fa-book-open"></i> 解釋</h4>
+                                    <p id="backDefinition">解釋內容</p>
+                                </div>
+                                <div class="example-section">
+                                    <h4><i class="fas fa-comment"></i> 例句</h4>
+                                    <p id="backExample">例句內容</p>
+                                    <p class="translation" id="backTranslation">例句翻譯</p>
+                                </div>
                             </div>
-                            <div class="example-section">
-                                <h4><i class="fas fa-comment"></i> 例句</h4>
-                                <p id="backExample">例句內容</p>
-                                <p class="translation" id="backTranslation">例句翻譯</p>
+                            <div class="card-footer">
+                                <i class="fas fa-redo"></i> 點擊卡片返回
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <i class="fas fa-redo"></i> 點擊卡片返回
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="management-panel-wrapper">
-            <div class="management-panel" id="managementPanel">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="single">添加單個詞彙</button>
-                    <button class="tab-btn" data-tab="bulk">批量導入詞彙</button>
-                    <button class="tab-btn" data-tab="edit">編輯/刪除詞彙</button>
-                    <button class="tab-btn" data-tab="manage">管理設置</button>
+        <div class="management-panel" id="managementPanel">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="single">添加單個詞彙</button>
+                <button class="tab-btn" data-tab="bulk">批量導入詞彙</button>
+                <button class="tab-btn" data-tab="edit">編輯/刪除詞彙</button>
+                <button class="tab-btn" data-tab="manage">管理設置</button>
+            </div>
+            
+            <div class="tab-content active" id="singleTab">
+                <h3><i class="fas fa-plus-circle"></i> 添加新的單字</h3>
+                <div class="form-group">
+                    <label for="hiraganaInput">平假名（必填）</label>
+                    <input type="text" id="hiraganaInput" class="form-control" placeholder="例：みちにまよう">
                 </div>
-                
-                <div class="tab-content active" id="singleTab">
-                    <h3><i class="fas fa-plus-circle"></i> 添加新的單字</h3>
-                    <div class="form-group">
-                        <label for="hiraganaInput">平假名（必填）</label>
-                        <input type="text" id="hiraganaInput" class="form-control" placeholder="例：みちにまよう">
-                    </div>
-                    <div class="form-group">
-                        <label for="kanjiInput">漢字（可選）</label>
-                        <input type="text" id="kanjiInput" class="form-control" placeholder="例：道に迷う">
-                    </div>
-                    <div class="form-group">
-                        <label for="definitionInput">解釋（必填）</label>
-                        <input type="text" id="definitionInput" class="form-control" placeholder="例：迷路">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInput">例句（可選）</label>
-                        <textarea id="exampleInput" class="form-control" rows="2" placeholder="例：（常用表達）"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="translationInput">例句翻譯（可選）</label>
-                        <textarea id="translationInput" class="form-control" rows="2" placeholder="例：迷路"></textarea>
-                    </div>
-                    <div class="btn-group">
-                        <button id="addVocabBtn" class="btn-primary">
-                            <i class="fas fa-save"></i> 保存詞彙
-                        </button>
-                        <button id="clearFormBtn" class="btn-secondary">
-                            <i class="fas fa-eraser"></i> 清空表單
-                        </button>
-                    </div>
+                <div class="form-group">
+                    <label for="kanjiInput">漢字（可選）</label>
+                    <input type="text" id="kanjiInput" class="form-control" placeholder="例：道に迷う">
                 </div>
-                
-                <div class="tab-content" id="bulkTab">
-                    <h3><i class="fas fa-file-import"></i> 批量導入詞彙</h3>
-                    <p>請按照以下格式輸入（每行一個詞彙，用 "|" 分隔）：</p>
-                    <div class="format-guide">
-                        <p><strong>格式：</strong> 平假名|漢字|解釋|例句|例句翻譯</p>
-                        <p><strong>範例：</strong></p>
-                        <code>みちにまよう|道に迷う|迷路|（常用表達）|</code><br>
-                        <code>せいかくがあかるい|性格が明るい|性格開朗|彼女は性格が明るくて、誰からも好かれる。|她性格開朗，受到大家的喜愛。</code><br>
-                        <code>ポイント|ポイント|要點、重點|彼の話はポイントがはっきりしていて分かりやすい。|他的話重點明確，容易理解。</code>
-                        <p class="small">注意：漢字、例句、例句翻譯可以留空，但平假名和解釋必須填寫</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="bulkInput">批量輸入</label>
-                        <textarea id="bulkInput" class="form-control textarea-control" placeholder="在這裡貼上你的詞彙數據..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>預覽（顯示前3個詞彙）：</label>
-                        <div id="bulkPreview" class="format-guide">
-                            請輸入數據以查看預覽...
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <button id="importBulkBtn" class="btn-success">
-                            <i class="fas fa-file-import"></i> 導入詞彙
-                        </button>
-                        <button id="clearBulkBtn" class="btn-secondary">
-                            <i class="fas fa-eraser"></i> 清空輸入
-                        </button>
+                <div class="form-group">
+                    <label for="definitionInput">解釋（必填）</label>
+                    <input type="text" id="definitionInput" class="form-control" placeholder="例：迷路">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInput">例句（可選）</label>
+                    <textarea id="exampleInput" class="form-control" rows="3" placeholder="例：（常用表達）"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="translationInput">例句翻譯（可選）</label>
+                    <textarea id="translationInput" class="form-control" rows="3" placeholder="例：迷路"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button id="addVocabBtn" class="btn-primary">
+                        <i class="fas fa-save"></i> 保存詞彙
+                    </button>
+                    <button id="clearFormBtn" class="btn-secondary">
+                        <i class="fas fa-eraser"></i> 清空表單
+                    </button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="bulkTab">
+                <h3><i class="fas fa-file-import"></i> 批量導入詞彙</h3>
+                <p>請按照以下格式輸入（每行一個詞彙，用 "|" 分隔）：</p>
+                <div class="format-guide">
+                    <p><strong>格式：</strong> 平假名|漢字|解釋|例句|例句翻譯</p>
+                    <p><strong>範例：</strong></p>
+                    <code>みちにまよう|道に迷う|迷路|（常用表達）|</code><br>
+                    <code>せいかくがあかるい|性格が明るい|性格開朗|彼女は性格が明るくて、誰からも好かれる。|她性格開朗，受到大家的喜愛。</code><br>
+                    <code>ポイント|ポイント|要點、重點|彼の話はポイントがはっきりしていて分かりやすい。|他的話重點明確，容易理解。</code>
+                    <p class="small">注意：漢字、例句、例句翻譯可以留空，但平假名和解釋必須填寫</p>
+                </div>
+                <div class="form-group">
+                    <label for="bulkInput">批量輸入</label>
+                    <textarea id="bulkInput" class="form-control textarea-control" placeholder="在這裡貼上你的詞彙數據..." rows="8"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>預覽（顯示前3個詞彙）：</label>
+                    <div id="bulkPreview" class="format-guide">
+                        請輸入數據以查看預覽...
                     </div>
                 </div>
+                <div class="btn-group">
+                    <button id="importBulkBtn" class="btn-success">
+                        <i class="fas fa-file-import"></i> 導入詞彙
+                    </button>
+                    <button id="clearBulkBtn" class="btn-secondary">
+                        <i class="fas fa-eraser"></i> 清空輸入
+                    </button>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="editTab">
+                <h3><i class="fas fa-edit"></i> 編輯/刪除詞彙</h3>
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchVocab" class="form-control search-input" placeholder="搜尋詞彙...">
+                </div>
                 
-                <div class="tab-content" id="editTab">
-                    <h3><i class="fas fa-edit"></i> 編輯/刪除詞彙</h3>
-                    <div class="search-box">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="searchVocab" class="form-control search-input" placeholder="搜尋詞彙...">
-                    </div>
-                    
-                    <div class="filter-buttons">
-                        <button class="filter-btn active" data-filter="all">全部詞彙</button>
-                        <button class="filter-btn" data-filter="custom">自定義詞彙</button>
-                        <button class="filter-btn" data-filter="original">原始詞彙</button>
-                    </div>
-                    
-                    <div id="vocabList" class="vocab-list">
-                        <!-- 詞彙列表會在這裡動態生成 -->
-                        <div class="no-vocab-message">
-                            <p>正在載入詞彙...</p>
-                        </div>
-                    </div>
-                    
-                    <div class="pagination" id="pagination">
-                        <!-- 分頁按鈕會在這裡動態生成 -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">全部詞彙</button>
+                    <button class="filter-btn" data-filter="custom">自定義詞彙</button>
+                    <button class="filter-btn" data-filter="original">原始詞彙</button>
+                </div>
+                
+                <div id="vocabList" class="vocab-list">
+                    <!-- 詞彙列表會在這裡動態生成 -->
+                    <div class="no-vocab-message">
+                        <p>正在載入詞彙...</p>
                     </div>
                 </div>
                 
-                <div class="tab-content" id="manageTab">
-                    <h3><i class="fas fa-list"></i> 管理設置</h3>
-                    <div class="data-stats">
-                        <div class="stat-item">
-                            <div class="stat-value" id="totalCount">0</div>
-                            <div class="stat-label">總詞彙數</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="originalCount">0</div>
-                            <div class="stat-label">原始詞彙</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value" id="customCount">0</div>
-                            <div class="stat-label">自定義詞彙</div>
-                        </div>
+                <div class="pagination" id="pagination">
+                    <!-- 分頁按鈕會在這裡動態生成 -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="manageTab">
+                <h3><i class="fas fa-list"></i> 管理設置</h3>
+                <div class="data-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalCount">0</div>
+                        <div class="stat-label">總詞彙數</div>
                     </div>
-                    <div class="btn-group">
-                        <button id="resetCustomBtn" class="btn-warning">
-                            <i class="fas fa-trash"></i> 刪除所有自定義詞彙
-                        </button>
-                        <button id="resetAllBtn" class="btn-danger">
-                            <i class="fas fa-redo"></i> 重置為原始數據
-                        </button>
+                    <div class="stat-item">
+                        <div class="stat-value" id="originalCount">0</div>
+                        <div class="stat-label">原始詞彙</div>
                     </div>
-                    <div class="format-guide">
-                        <p><i class="fas fa-info-circle"></i> 注意事項：</p>
-                        <ul>
-                            <li>自定義詞彙會保存在你的瀏覽器中，不會影響其他人</li>
-                            <li>原始詞彙無法編輯或刪除</li>
-                            <li>重置操作無法恢復，請謹慎操作</li>
-                        </ul>
+                    <div class="stat-item">
+                        <div class="stat-value" id="customCount">0</div>
+                        <div class="stat-label">自定義詞彙</div>
                     </div>
+                </div>
+                <div class="btn-group">
+                    <button id="resetCustomBtn" class="btn-warning">
+                        <i class="fas fa-trash"></i> 刪除所有自定義詞彙
+                    </button>
+                    <button id="resetAllBtn" class="btn-danger">
+                        <i class="fas fa-redo"></i> 重置為原始數據
+                    </button>
+                </div>
+                <div class="format-guide">
+                    <p><i class="fas fa-info-circle"></i> 注意事項：</p>
+                    <ul>
+                        <li>自定義詞彙會保存在你的瀏覽器中，不會影響其他人</li>
+                        <li>原始詞彙無法編輯或刪除</li>
+                        <li>重置操作無法恢復，請謹慎操作</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1019,11 +1250,11 @@
             </div>
             <div class="form-group">
                 <label for="editExample">例句（可選）</label>
-                <textarea id="editExample" class="form-control" rows="2"></textarea>
+                <textarea id="editExample" class="form-control" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label for="editTranslation">例句翻譯（可選）</label>
-                <textarea id="editTranslation" class="form-control" rows="2"></textarea>
+                <textarea id="editTranslation" class="form-control" rows="3"></textarea>
             </div>
             <div class="btn-group">
                 <button id="saveEditBtn" class="btn-primary">
@@ -1043,7 +1274,7 @@
                 <li><strong>操作</strong>：點擊卡片翻面，使用按鈕切換單字</li>
                 <li><strong>管理功能</strong>：點擊「管理詞彙」可以添加、編輯、刪除詞彙</li>
                 <li><strong>數據保存</strong>：所有自定義詞彙會自動保存在你的瀏覽器中</li>
-                <li><strong>移動設備</strong>：已優化觸摸操作，確保在手機和平板上正常使用</li>
+                <li><strong>移動設備</strong>：卡片內容可以滾動，適應不同螢幕大小</li>
             </ul>
         </div>
     </div>
@@ -1142,11 +1373,8 @@
                     if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
                         loadVocabList();
                     }
-                    
-                    // 滾動到管理面板頂部
-                    setTimeout(() => {
-                        managementPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
+                    // 確保卡片不會被管理面板遮擋
+                    document.querySelector('.card-container-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
             
@@ -1197,13 +1425,12 @@
                     editForm.classList.remove('active');
                     currentEditingId = null;
                     
-                    // 滾動到標籤頁頂部
-                    setTimeout(() => {
-                        const activeTab = document.getElementById(tabId + 'Tab');
-                        if (activeTab) {
-                            activeTab.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    }, 100);
+                    // 在移動設備上確保內容可見
+                    if (window.innerWidth <= 768) {
+                        setTimeout(() => {
+                            this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 100);
+                    }
                 });
             });
             
@@ -1829,50 +2056,6 @@
             
             // 初始更新統計數據
             updateStats();
-            
-            // 確保卡片在移動設備上正確顯示
-            function ensureCardVisibility() {
-                const cardContainer = document.querySelector('.card-container');
-                const card = document.querySelector('.card');
-                
-                if (window.innerWidth <= 768) {
-                    // 在移動設備上，確保卡片有適當的高度
-                    const screenHeight = window.innerHeight;
-                    const cardHeight = Math.min(screenHeight * 0.4, 350);
-                    
-                    if (cardContainer) {
-                        cardContainer.style.height = `${cardHeight}px`;
-                    }
-                    
-                    if (card) {
-                        card.style.height = '100%';
-                    }
-                    
-                    // 確保文字不會溢出
-                    const frontText = document.getElementById('frontText');
-                    if (frontText) {
-                        const textLength = frontText.textContent.length;
-                        if (textLength > 15) {
-                            frontText.style.fontSize = '1.6rem';
-                        } else if (textLength > 10) {
-                            frontText.style.fontSize = '1.8rem';
-                        }
-                    }
-                }
-            }
-            
-            // 監聽窗口大小變化
-            window.addEventListener('resize', ensureCardVisibility);
-            
-            // 初始執行一次
-            setTimeout(ensureCardVisibility, 100);
-            
-            // 管理面板打開時，確保整個容器可以滾動
-            const container = document.querySelector('.container');
-            if (container) {
-                container.style.overflowY = 'auto';
-                container.style.maxHeight = '90vh';
-            }
         });
     </script>
 </body>
