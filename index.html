@@ -42,10 +42,18 @@
             margin-top: 25px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             display: none;
+            position: relative;
+            z-index: 10;
         }
         
         .management-panel.active {
             display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .tab-buttons {
@@ -82,6 +90,7 @@
         
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
         
         .form-group {
@@ -266,12 +275,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
             display: none;
         }
         
         .confirmation-dialog.active {
             display: flex;
+            animation: fadeIn 0.3s ease;
         }
         
         .dialog-content {
@@ -281,6 +291,7 @@
             max-width: 500px;
             width: 90%;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .notification {
@@ -293,7 +304,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             display: none;
-            z-index: 1000;
+            z-index: 2000;
         }
         
         .notification.active {
@@ -314,7 +325,7 @@
         
         /* 詞彙列表樣式 */
         .vocab-list {
-            max-height: 400px;
+            max-height: 300px;
             overflow-y: auto;
             margin-top: 20px;
             border: 1px solid #e0e0e0;
@@ -541,19 +552,16 @@
             
             /* 修復卡片在手機上的顯示問題 */
             .card-container {
-                height: auto;
-                min-height: 450px;
+                height: 350px;
                 margin-bottom: 20px;
             }
             
             .card {
                 height: 100%;
-                min-height: 450px;
             }
             
             .card-front, .card-back {
                 height: 100%;
-                min-height: 450px;
             }
             
             .card-content {
@@ -563,7 +571,7 @@
             }
             
             #frontText {
-                font-size: 2.2rem !important;
+                font-size: 2rem !important;
                 word-wrap: break-word;
                 overflow-wrap: break-word;
                 line-height: 1.3;
@@ -572,7 +580,7 @@
             }
             
             #backKanji {
-                font-size: 1.8rem !important;
+                font-size: 1.6rem !important;
                 line-height: 1.3;
             }
             
@@ -604,6 +612,16 @@
             .btn-primary, .btn-secondary, .btn-success, .btn-warning, .btn-danger {
                 padding: 10px 15px;
                 font-size: 0.9rem;
+            }
+            
+            /* 管理面板在移動設備上的優化 */
+            .management-panel {
+                padding: 20px;
+                margin-top: 20px;
+            }
+            
+            .vocab-list {
+                max-height: 250px;
             }
         }
         
@@ -638,12 +656,12 @@
             }
             
             #frontText {
-                font-size: 1.8rem !important;
+                font-size: 1.6rem !important;
                 padding: 0 5px;
             }
             
             #backKanji {
-                font-size: 1.5rem !important;
+                font-size: 1.4rem !important;
             }
             
             .reading {
@@ -658,17 +676,12 @@
             }
             
             .card-container {
-                min-height: 400px;
+                height: 300px;
                 perspective: none;
             }
             
             .card {
-                min-height: 400px;
                 box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            }
-            
-            .card-front, .card-back {
-                min-height: 400px;
             }
             
             .instructions {
@@ -690,6 +703,10 @@
             .form-control {
                 padding: 10px 12px;
                 font-size: 0.95rem;
+            }
+            
+            .vocab-list {
+                max-height: 200px;
             }
         }
         
@@ -732,30 +749,22 @@
             }
         }
         
-        /* 額外的移動設備優化 */
-        @media screen and (max-width: 768px) and (orientation: portrait) {
-            .card-container {
-                height: auto;
-                min-height: 500px;
-            }
-            
-            .card {
-                min-height: 500px;
-            }
-            
-            .card-front, .card-back {
-                min-height: 500px;
-            }
+        /* 確保管理面板打開時，卡片不會遮擋 */
+        .management-panel-wrapper {
+            position: relative;
+            margin-top: 20px;
         }
         
-        /* 確保卡片內容在移動設備上可見 */
-        .word-display {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            padding: 20px;
+        /* 添加滾動優化 */
+        .container {
+            max-height: 90vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* 當管理面板打開時，調整容器高度 */
+        .management-panel.active + .instructions {
+            margin-top: 20px;
         }
         
         /* 修復卡片翻轉動畫在移動設備上的問題 */
@@ -860,133 +869,135 @@
             </div>
         </div>
 
-        <div class="management-panel" id="managementPanel">
-            <div class="tab-buttons">
-                <button class="tab-btn active" data-tab="single">添加單個詞彙</button>
-                <button class="tab-btn" data-tab="bulk">批量導入詞彙</button>
-                <button class="tab-btn" data-tab="edit">編輯/刪除詞彙</button>
-                <button class="tab-btn" data-tab="manage">管理設置</button>
-            </div>
-            
-            <div class="tab-content active" id="singleTab">
-                <h3><i class="fas fa-plus-circle"></i> 添加新的單字</h3>
-                <div class="form-group">
-                    <label for="hiraganaInput">平假名（必填）</label>
-                    <input type="text" id="hiraganaInput" class="form-control" placeholder="例：みちにまよう">
+        <div class="management-panel-wrapper">
+            <div class="management-panel" id="managementPanel">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="single">添加單個詞彙</button>
+                    <button class="tab-btn" data-tab="bulk">批量導入詞彙</button>
+                    <button class="tab-btn" data-tab="edit">編輯/刪除詞彙</button>
+                    <button class="tab-btn" data-tab="manage">管理設置</button>
                 </div>
-                <div class="form-group">
-                    <label for="kanjiInput">漢字（可選）</label>
-                    <input type="text" id="kanjiInput" class="form-control" placeholder="例：道に迷う">
-                </div>
-                <div class="form-group">
-                    <label for="definitionInput">解釋（必填）</label>
-                    <input type="text" id="definitionInput" class="form-control" placeholder="例：迷路">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInput">例句（可選）</label>
-                    <textarea id="exampleInput" class="form-control" rows="2" placeholder="例：（常用表達）"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="translationInput">例句翻譯（可選）</label>
-                    <textarea id="translationInput" class="form-control" rows="2" placeholder="例：迷路"></textarea>
-                </div>
-                <div class="btn-group">
-                    <button id="addVocabBtn" class="btn-primary">
-                        <i class="fas fa-save"></i> 保存詞彙
-                    </button>
-                    <button id="clearFormBtn" class="btn-secondary">
-                        <i class="fas fa-eraser"></i> 清空表單
-                    </button>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="bulkTab">
-                <h3><i class="fas fa-file-import"></i> 批量導入詞彙</h3>
-                <p>請按照以下格式輸入（每行一個詞彙，用 "|" 分隔）：</p>
-                <div class="format-guide">
-                    <p><strong>格式：</strong> 平假名|漢字|解釋|例句|例句翻譯</p>
-                    <p><strong>範例：</strong></p>
-                    <code>みちにまよう|道に迷う|迷路|（常用表達）|</code><br>
-                    <code>せいかくがあかるい|性格が明るい|性格開朗|彼女は性格が明るくて、誰からも好かれる。|她性格開朗，受到大家的喜愛。</code><br>
-                    <code>ポイント|ポイント|要點、重點|彼の話はポイントがはっきりしていて分かりやすい。|他的話重點明確，容易理解。</code>
-                    <p class="small">注意：漢字、例句、例句翻譯可以留空，但平假名和解釋必須填寫</p>
-                </div>
-                <div class="form-group">
-                    <label for="bulkInput">批量輸入</label>
-                    <textarea id="bulkInput" class="form-control textarea-control" placeholder="在這裡貼上你的詞彙數據..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>預覽（顯示前3個詞彙）：</label>
-                    <div id="bulkPreview" class="format-guide">
-                        請輸入數據以查看預覽...
+                
+                <div class="tab-content active" id="singleTab">
+                    <h3><i class="fas fa-plus-circle"></i> 添加新的單字</h3>
+                    <div class="form-group">
+                        <label for="hiraganaInput">平假名（必填）</label>
+                        <input type="text" id="hiraganaInput" class="form-control" placeholder="例：みちにまよう">
                     </div>
-                </div>
-                <div class="btn-group">
-                    <button id="importBulkBtn" class="btn-success">
-                        <i class="fas fa-file-import"></i> 導入詞彙
-                    </button>
-                    <button id="clearBulkBtn" class="btn-secondary">
-                        <i class="fas fa-eraser"></i> 清空輸入
-                    </button>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="editTab">
-                <h3><i class="fas fa-edit"></i> 編輯/刪除詞彙</h3>
-                <div class="search-box">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="searchVocab" class="form-control search-input" placeholder="搜尋詞彙...">
-                </div>
-                
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">全部詞彙</button>
-                    <button class="filter-btn" data-filter="custom">自定義詞彙</button>
-                    <button class="filter-btn" data-filter="original">原始詞彙</button>
-                </div>
-                
-                <div id="vocabList" class="vocab-list">
-                    <!-- 詞彙列表會在這裡動態生成 -->
-                    <div class="no-vocab-message">
-                        <p>正在載入詞彙...</p>
+                    <div class="form-group">
+                        <label for="kanjiInput">漢字（可選）</label>
+                        <input type="text" id="kanjiInput" class="form-control" placeholder="例：道に迷う">
+                    </div>
+                    <div class="form-group">
+                        <label for="definitionInput">解釋（必填）</label>
+                        <input type="text" id="definitionInput" class="form-control" placeholder="例：迷路">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInput">例句（可選）</label>
+                        <textarea id="exampleInput" class="form-control" rows="2" placeholder="例：（常用表達）"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="translationInput">例句翻譯（可選）</label>
+                        <textarea id="translationInput" class="form-control" rows="2" placeholder="例：迷路"></textarea>
+                    </div>
+                    <div class="btn-group">
+                        <button id="addVocabBtn" class="btn-primary">
+                            <i class="fas fa-save"></i> 保存詞彙
+                        </button>
+                        <button id="clearFormBtn" class="btn-secondary">
+                            <i class="fas fa-eraser"></i> 清空表單
+                        </button>
                     </div>
                 </div>
                 
-                <div class="pagination" id="pagination">
-                    <!-- 分頁按鈕會在這裡動態生成 -->
-                </div>
-            </div>
-            
-            <div class="tab-content" id="manageTab">
-                <h3><i class="fas fa-list"></i> 管理設置</h3>
-                <div class="data-stats">
-                    <div class="stat-item">
-                        <div class="stat-value" id="totalCount">0</div>
-                        <div class="stat-label">總詞彙數</div>
+                <div class="tab-content" id="bulkTab">
+                    <h3><i class="fas fa-file-import"></i> 批量導入詞彙</h3>
+                    <p>請按照以下格式輸入（每行一個詞彙，用 "|" 分隔）：</p>
+                    <div class="format-guide">
+                        <p><strong>格式：</strong> 平假名|漢字|解釋|例句|例句翻譯</p>
+                        <p><strong>範例：</strong></p>
+                        <code>みちにまよう|道に迷う|迷路|（常用表達）|</code><br>
+                        <code>せいかくがあかるい|性格が明るい|性格開朗|彼女は性格が明るくて、誰からも好かれる。|她性格開朗，受到大家的喜愛。</code><br>
+                        <code>ポイント|ポイント|要點、重點|彼の話はポイントがはっきりしていて分かりやすい。|他的話重點明確，容易理解。</code>
+                        <p class="small">注意：漢字、例句、例句翻譯可以留空，但平假名和解釋必須填寫</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="originalCount">0</div>
-                        <div class="stat-label">原始詞彙</div>
+                    <div class="form-group">
+                        <label for="bulkInput">批量輸入</label>
+                        <textarea id="bulkInput" class="form-control textarea-control" placeholder="在這裡貼上你的詞彙數據..."></textarea>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-value" id="customCount">0</div>
-                        <div class="stat-label">自定義詞彙</div>
+                    <div class="form-group">
+                        <label>預覽（顯示前3個詞彙）：</label>
+                        <div id="bulkPreview" class="format-guide">
+                            請輸入數據以查看預覽...
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button id="importBulkBtn" class="btn-success">
+                            <i class="fas fa-file-import"></i> 導入詞彙
+                        </button>
+                        <button id="clearBulkBtn" class="btn-secondary">
+                            <i class="fas fa-eraser"></i> 清空輸入
+                        </button>
                     </div>
                 </div>
-                <div class="btn-group">
-                    <button id="resetCustomBtn" class="btn-warning">
-                        <i class="fas fa-trash"></i> 刪除所有自定義詞彙
-                    </button>
-                    <button id="resetAllBtn" class="btn-danger">
-                        <i class="fas fa-redo"></i> 重置為原始數據
-                    </button>
+                
+                <div class="tab-content" id="editTab">
+                    <h3><i class="fas fa-edit"></i> 編輯/刪除詞彙</h3>
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchVocab" class="form-control search-input" placeholder="搜尋詞彙...">
+                    </div>
+                    
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">全部詞彙</button>
+                        <button class="filter-btn" data-filter="custom">自定義詞彙</button>
+                        <button class="filter-btn" data-filter="original">原始詞彙</button>
+                    </div>
+                    
+                    <div id="vocabList" class="vocab-list">
+                        <!-- 詞彙列表會在這裡動態生成 -->
+                        <div class="no-vocab-message">
+                            <p>正在載入詞彙...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination" id="pagination">
+                        <!-- 分頁按鈕會在這裡動態生成 -->
+                    </div>
                 </div>
-                <div class="format-guide">
-                    <p><i class="fas fa-info-circle"></i> 注意事項：</p>
-                    <ul>
-                        <li>自定義詞彙會保存在你的瀏覽器中，不會影響其他人</li>
-                        <li>原始詞彙無法編輯或刪除</li>
-                        <li>重置操作無法恢復，請謹慎操作</li>
-                    </ul>
+                
+                <div class="tab-content" id="manageTab">
+                    <h3><i class="fas fa-list"></i> 管理設置</h3>
+                    <div class="data-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="totalCount">0</div>
+                            <div class="stat-label">總詞彙數</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="originalCount">0</div>
+                            <div class="stat-label">原始詞彙</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="customCount">0</div>
+                            <div class="stat-label">自定義詞彙</div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button id="resetCustomBtn" class="btn-warning">
+                            <i class="fas fa-trash"></i> 刪除所有自定義詞彙
+                        </button>
+                        <button id="resetAllBtn" class="btn-danger">
+                            <i class="fas fa-redo"></i> 重置為原始數據
+                        </button>
+                    </div>
+                    <div class="format-guide">
+                        <p><i class="fas fa-info-circle"></i> 注意事項：</p>
+                        <ul>
+                            <li>自定義詞彙會保存在你的瀏覽器中，不會影響其他人</li>
+                            <li>原始詞彙無法編輯或刪除</li>
+                            <li>重置操作無法恢復，請謹慎操作</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1000,29 +1011,29 @@
             </div>
             <div class="form-group">
                 <label for="editKanji">漢字（可選）</label>
-                    <input type="text" id="editKanji" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="editDefinition">解釋（必填）</label>
-                    <input type="text" id="editDefinition" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="editExample">例句（可選）</label>
-                    <textarea id="editExample" class="form-control" rows="2"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="editTranslation">例句翻譯（可選）</label>
-                    <textarea id="editTranslation" class="form-control" rows="2"></textarea>
-                </div>
-                <div class="btn-group">
-                    <button id="saveEditBtn" class="btn-primary">
-                        <i class="fas fa-save"></i> 保存修改
-                    </button>
-                    <button id="cancelEditBtn" class="btn-secondary">
-                        <i class="fas fa-times"></i> 取消編輯
-                    </button>
-                </div>
+                <input type="text" id="editKanji" class="form-control">
             </div>
+            <div class="form-group">
+                <label for="editDefinition">解釋（必填）</label>
+                <input type="text" id="editDefinition" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="editExample">例句（可選）</label>
+                <textarea id="editExample" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="editTranslation">例句翻譯（可選）</label>
+                <textarea id="editTranslation" class="form-control" rows="2"></textarea>
+            </div>
+            <div class="btn-group">
+                <button id="saveEditBtn" class="btn-primary">
+                    <i class="fas fa-save"></i> 保存修改
+                </button>
+                <button id="cancelEditBtn" class="btn-secondary">
+                    <i class="fas fa-times"></i> 取消編輯
+                </button>
+            </div>
+        </div>
 
         <div class="instructions">
             <h3><i class="fas fa-info-circle"></i> 使用說明</h3>
@@ -1131,6 +1142,11 @@
                     if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
                         loadVocabList();
                     }
+                    
+                    // 滾動到管理面板頂部
+                    setTimeout(() => {
+                        managementPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
                 }
             });
             
@@ -1180,6 +1196,14 @@
                     // 隱藏編輯表單
                     editForm.classList.remove('active');
                     currentEditingId = null;
+                    
+                    // 滾動到標籤頁頂部
+                    setTimeout(() => {
+                        const activeTab = document.getElementById(tabId + 'Tab');
+                        if (activeTab) {
+                            activeTab.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 100);
                 });
             });
             
@@ -1812,10 +1836,17 @@
                 const card = document.querySelector('.card');
                 
                 if (window.innerWidth <= 768) {
-                    // 在移動設備上，確保卡片有足夠的高度
-                    const minHeight = Math.min(window.innerHeight * 0.5, 450);
-                    cardContainer.style.minHeight = `${minHeight}px`;
-                    card.style.minHeight = `${minHeight}px`;
+                    // 在移動設備上，確保卡片有適當的高度
+                    const screenHeight = window.innerHeight;
+                    const cardHeight = Math.min(screenHeight * 0.4, 350);
+                    
+                    if (cardContainer) {
+                        cardContainer.style.height = `${cardHeight}px`;
+                    }
+                    
+                    if (card) {
+                        card.style.height = '100%';
+                    }
                     
                     // 確保文字不會溢出
                     const frontText = document.getElementById('frontText');
@@ -1835,6 +1866,13 @@
             
             // 初始執行一次
             setTimeout(ensureCardVisibility, 100);
+            
+            // 管理面板打開時，確保整個容器可以滾動
+            const container = document.querySelector('.container');
+            if (container) {
+                container.style.overflowY = 'auto';
+                container.style.maxHeight = '90vh';
+            }
         });
     </script>
 </body>
