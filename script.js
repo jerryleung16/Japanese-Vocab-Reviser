@@ -1,5 +1,7 @@
 // 等待網頁完全載入
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('日語詞彙複習系統初始化...');
+    
     // 取得DOM元素
     const vocabCard = document.getElementById('vocabCard');
     const frontText = document.getElementById('frontText');
@@ -24,10 +26,22 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let isFlipped = false;
     
+    // 檢查是否為移動設備
+    function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+               (window.innerWidth <= 768);
+    }
+    
     // 更新詞彙列表函數
     function updateVocabList() {
         try {
-            currentVocabList = window.vocabStorage ? window.vocabStorage.getAllVocab() : [];
+            if (window.vocabStorage && typeof window.vocabStorage.getAllVocab === 'function') {
+                currentVocabList = window.vocabStorage.getAllVocab();
+            } else {
+                console.warn('vocabStorage尚未初始化，使用空數組');
+                currentVocabList = [];
+            }
+            
             currentIndex = Math.min(currentIndex, currentVocabList.length - 1);
             if (currentIndex < 0) currentIndex = 0;
             updateCard();
@@ -44,6 +58,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化
     function init() {
         console.log('初始化日語詞彙複習系統...');
+        
+        // 移動設備優化
+        if (isMobileDevice()) {
+            console.log('檢測到移動設備，啟用移動優化');
+            optimizeForMobile();
+        }
+        
         updateVocabList();
         
         // 設定事件監聽器
@@ -57,12 +78,89 @@ document.addEventListener('DOMContentLoaded', function() {
         // 鍵盤快捷鍵
         document.addEventListener('keydown', handleKeyPress);
         
-        // 觸摸設備優化：防止點擊延遲
-        if ('ontouchstart' in window) {
-            vocabCard.style.cursor = 'pointer';
-        }
+        // 監聽窗口大小變化
+        window.addEventListener('resize', handleResize);
         
-        console.log('系統初始化完成');
+        console.log('系統初始化完成，詞彙數:', currentVocabList.length);
+    }
+    
+    // 移動設備優化
+    function optimizeForMobile() {
+        // 添加觸摸事件優化
+        vocabCard.style.cursor = 'pointer';
+        
+        // 防止雙擊縮放
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+        
+        // 優化卡片觸摸反饋
+        vocabCard.style.tapHighlightColor = 'rgba(0,0,0,0)';
+        
+        // 調整卡片高度
+        adjustCardHeight();
+    }
+    
+    // 調整卡片高度
+    function adjustCardHeight() {
+        const cardContainer = document.querySelector('.card-container');
+        const card = document.querySelector('.card');
+        
+        if (cardContainer && card) {
+            // 根據屏幕高度動態調整
+            const screenHeight = window.innerHeight;
+            const containerHeight = Math.min(screenHeight * 0.5, 450);
+            
+            cardContainer.style.height = 'auto';
+            cardContainer.style.minHeight = `${containerHeight}px`;
+            
+            card.style.height = '100%';
+            card.style.minHeight = `${containerHeight}px`;
+            
+            // 確保卡片正面和背面也有相同高度
+            const cardFront = document.querySelector('.card-front');
+            const cardBack = document.querySelector('.card-back');
+            
+            if (cardFront) cardFront.style.minHeight = `${containerHeight}px`;
+            if (cardBack) cardBack.style.minHeight = `${containerHeight}px`;
+        }
+    }
+    
+    // 處理窗口大小變化
+    function handleResize() {
+        if (isMobileDevice()) {
+            adjustCardHeight();
+            
+            // 調整字體大小
+            const frontText = document.getElementById('frontText');
+            if (frontText) {
+                const text = frontText.textContent;
+                const textLength = text.length;
+                
+                if (window.innerWidth <= 480) {
+                    if (textLength > 15) {
+                        frontText.style.fontSize = '1.6rem';
+                    } else if (textLength > 10) {
+                        frontText.style.fontSize = '1.8rem';
+                    } else {
+                        frontText.style.fontSize = '2rem';
+                    }
+                } else if (window.innerWidth <= 768) {
+                    if (textLength > 20) {
+                        frontText.style.fontSize = '1.8rem';
+                    } else if (textLength > 15) {
+                        frontText.style.fontSize = '2rem';
+                    } else {
+                        frontText.style.fontSize = '2.2rem';
+                    }
+                }
+            }
+        }
     }
     
     // 更新進度顯示
@@ -89,6 +187,12 @@ document.addEventListener('DOMContentLoaded', function() {
             backExample.textContent = "";
             backTranslation.textContent = "";
             updateProgress();
+            
+            // 移動設備優化
+            if (isMobileDevice()) {
+                frontText.style.fontSize = window.innerWidth <= 480 ? '1.6rem' : '1.8rem';
+            }
+            
             return;
         }
         
@@ -135,14 +239,46 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // 修復移動設備上的字體大小
-        if (window.innerWidth <= 768) {
-            const frontTextSize = frontText.textContent.length > 10 ? '1.8rem' : '2.2rem';
-            frontText.style.fontSize = frontTextSize;
+        // 移動設備字體大小優化
+        if (isMobileDevice()) {
+            const text = frontText.textContent;
+            const textLength = text.length;
             
-            const backKanjiSize = backKanji.textContent.length > 10 ? '1.5rem' : '1.8rem';
-            backKanji.style.fontSize = backKanjiSize;
+            if (window.innerWidth <= 480) {
+                if (textLength > 15) {
+                    frontText.style.fontSize = '1.6rem';
+                } else if (textLength > 10) {
+                    frontText.style.fontSize = '1.8rem';
+                } else {
+                    frontText.style.fontSize = '2rem';
+                }
+                
+                if (backKanji.textContent.length > 15) {
+                    backKanji.style.fontSize = '1.4rem';
+                } else if (backKanji.textContent.length > 10) {
+                    backKanji.style.fontSize = '1.5rem';
+                } else {
+                    backKanji.style.fontSize = '1.6rem';
+                }
+            } else if (window.innerWidth <= 768) {
+                if (textLength > 20) {
+                    frontText.style.fontSize = '1.8rem';
+                } else if (textLength > 15) {
+                    frontText.style.fontSize = '2rem';
+                } else {
+                    frontText.style.fontSize = '2.2rem';
+                }
+                
+                if (backKanji.textContent.length > 20) {
+                    backKanji.style.fontSize = '1.6rem';
+                } else if (backKanji.textContent.length > 15) {
+                    backKanji.style.fontSize = '1.8rem';
+                } else {
+                    backKanji.style.fontSize = '2rem';
+                }
+            }
         } else {
+            // 桌面設備
             frontText.style.fontSize = '';
             backKanji.style.fontSize = '';
         }
@@ -155,6 +291,14 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!currentVocabList || currentVocabList.length === 0) return;
         
         // 移動設備優化：使用requestAnimationFrame確保流暢
+        if (isMobileDevice()) {
+            // 添加觸摸反饋
+            vocabCard.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                vocabCard.style.transform = '';
+            }, 150);
+        }
+        
         requestAnimationFrame(() => {
             isFlipped = !isFlipped;
             vocabCard.classList.toggle('flipped');
@@ -295,42 +439,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 開始應用
     init();
     
-    // 移動設備檢測和優化
-    function isMobileDevice() {
-        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-    
-    if (isMobileDevice()) {
-        console.log('檢測到移動設備，啟用移動優化');
-        
-        // 防止雙擊縮放
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(event) {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                event.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-        
-        // 優化卡片點擊
-        vocabCard.style.cursor = 'pointer';
-        
-        // 為移動設備調整字體大小
-        if (window.innerWidth <= 480) {
-            const style = document.createElement('style');
-            style.textContent = `
-                #frontText {
-                    font-size: 1.8rem !important;
-                }
-                #backKanji {
-                    font-size: 1.5rem !important;
-                }
-                .reading {
-                    font-size: 1.1rem !important;
-                }
-            `;
-            document.head.appendChild(style);
+    // 確保卡片在初始載入時正確顯示
+    setTimeout(() => {
+        if (isMobileDevice()) {
+            adjustCardHeight();
+            handleResize();
         }
-    }
+    }, 500);
 });
