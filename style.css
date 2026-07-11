@@ -830,3 +830,103 @@ header h1 i {
         width: 95%;
     }
 }
+
+/* =========================================
+   新增：狀態與過濾按鈕樣式
+   ========================================= */
+
+.status-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.status-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.status-btn.known {
+    background: #27ae60;
+    color: white;
+}
+
+.status-btn.unknown {
+    background: #e74c3c;
+    color: white;
+}
+
+.status-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.status-btn:active {
+    transform: translateY(0);
+}
+
+.control-btn {
+    padding: 10px 20px;
+    border: 2px solid #3498db;
+    background: transparent;
+    color: #3498db;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 5px;
+}
+
+.control-btn:hover {
+    background: #f0f8ff;
+}
+
+.control-btn.active {
+    background: #3498db;
+    color: white;
+}
+
+.control-btn.reset {
+    border-color: #95a5a6;
+    color: #7f8c8d;
+}
+
+.control-btn.reset:hover {
+    background: #f8f9fa;
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+/* 狀態徽章 (顯示在卡片上) */
+.status-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.known-badge {
+    background-color: rgba(39, 174, 96, 0.9);
+    color: white;
+}
+
+.unknown-badge {
+    background-color: rgba(231, 76, 60, 0.9);
+    color: white;
+}
