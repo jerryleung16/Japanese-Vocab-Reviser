@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const vocabCard = document.getElementById('vocabCard');
     const frontText = document.getElementById('frontText');
     const backKanji = document.getElementById('backKanji');
+    
+    const markKnownBtn = document.getElementById('markKnownBtn');
+    const markUnknownBtn = document.getElementById('markUnknownBtn');
+    const filterUnknownBtn = document.getElementById('filterUnknownBtn');
+    const resetStatusBtn = document.getElementById('resetStatusBtn');
+    const statusBadgeFront = document.getElementById('statusBadgeFront');
+    const statusBadgeBack = document.getElementById('statusBadgeBack');
+    
     const backReading = document.getElementById('backReading');
     const backDefinition = document.getElementById('backDefinition');
     const backExample = document.getElementById('backExample');
@@ -23,12 +31,24 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentMode = 1; // 1: 平假名→漢字, 2: 漢字→平假名
     let currentIndex = 0;
     let isFlipped = false;
+    let showOnlyUnknown = false; // 新增：是否只顯示不熟詞彙
     
     // 更新詞彙列表函數
     function updateVocabList() {
-        currentVocabList = window.vocabStorage.getAllVocab();
+        let allVocab = window.vocabStorage.getAllVocab();
+        
+        if (showOnlyUnknown) {
+            // 只篩選出不在「已學會」列表中的單字
+            const knownIds = window.vocabStorage.getKnownVocabIds();
+            currentVocabList = allVocab.filter(vocab => !knownIds.includes(vocab.id));
+        } else {
+            currentVocabList = allVocab;
+        }
+        
+        // 確保索引不越界
         currentIndex = Math.min(currentIndex, currentVocabList.length - 1);
         if (currentIndex < 0) currentIndex = 0;
+        
         updateCard();
     }
     
@@ -46,6 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
         prevBtn.addEventListener('click', showPrevious);
         nextBtn.addEventListener('click', showNext);
         shuffleBtn.addEventListener('click', shuffleVocab);
+
+        if(markKnownBtn) markKnownBtn.addEventListener('click', () => setVocabStatus(true));
+        if(markUnknownBtn) markUnknownBtn.addEventListener('click', () => setVocabStatus(false));
+        if(filterUnknownBtn) filterUnknownBtn.addEventListener('click', toggleFilterMode);
+        if(resetStatusBtn) resetStatusBtn.addEventListener('click', resetStatus);
         
         // 鍵盤快捷鍵
         document.addEventListener('keydown', handleKeyPress);
@@ -62,6 +87,37 @@ document.addEventListener('DOMContentLoaded', function() {
         const progress = ((currentIndex + 1) / currentVocabList.length) * 100;
         progressFill.style.width = `${progress}%`;
         progressText.textContent = `${currentIndex + 1}/${currentVocabList.length}`;
+    }
+
+    function setVocabStatus(isKnown) {
+        if (currentVocabList.length === 0) return;
+        const currentVocab = currentVocabList[currentIndex];
+        
+        if (isKnown) {
+            window.vocabStorage.markAsKnown(currentVocab.id);
+            showNotification('已標記為「已學會」', 'success');
+        } else {
+            window.vocabStorage.markAsUnknown(currentVocab.id);
+            showNotification('已標記為「還不熟」', 'warning');
+        }
+        
+        if (showOnlyUnknown && isKnown) {
+            // 如果在過濾模式下標記為學會，則該字會從列表中移除，刷新列表
+            updateVocabList();
+        } else {
+            // 否則僅更新當前卡片顯示狀態
+            updateCard();
+        }
+    }
+    
+    // 新增：切換過濾模式
+    function toggleFilterMode() {
+        showOnlyUnknown = !showOnlyUnknown;
+        filterUnknownBtn.classList.toggle('active', showOnlyUnknown);
+        filterUnknownBtn.textContent = showOnlyUnknown ? '顯示所有詞彙' : '只顯示不熟詞彙';
+        
+        updateVocabList();
+        showNotification(showOnlyUnknown ? '已切換：只顯示不熟的詞彙' : '已切換：顯示所有詞彙');
     }
     
     // 更新卡片內容
@@ -84,6 +140,39 @@ document.addEventListener('DOMContentLoaded', function() {
         // 重置卡片為正面
         vocabCard.classList.remove('flipped');
         isFlipped = false;
+
+        if (currentVocabList.length === 0) {
+            frontText.textContent = showOnlyUnknown ? "沒有不熟的詞彙了！" : "無詞彙數據";
+            backKanji.textContent = showOnlyUnknown ? "太棒了！" : "請添加詞彙";
+            // ... [清空其他文本] ...
+            if (statusBadgeFront) statusBadgeFront.style.display = 'none';
+            if (statusBadgeBack) statusBadgeBack.style.display = 'none';
+            updateProgress();
+            return;
+        }
+        
+        const currentVocab = currentVocabList[currentIndex];
+        if (!currentVocab) return;
+        
+        // 重置卡片為正面
+        vocabCard.classList.remove('flipped');
+        isFlipped = false;
+        
+        // 更新狀態徽章
+        const isKnown = window.vocabStorage.isKnown(currentVocab.id);
+        const badgeText = isKnown ? "✅ 已學會" : "❌ 還不熟";
+        const badgeClass = isKnown ? "known-badge" : "unknown-badge";
+        
+        if (statusBadgeFront && statusBadgeBack) {
+            statusBadgeFront.style.display = 'block';
+            statusBadgeBack.style.display = 'block';
+            statusBadgeFront.textContent = badgeText;
+            statusBadgeBack.textContent = badgeText;
+            
+            // 更新 Class
+            statusBadgeFront.className = `status-badge ${badgeClass}`;
+            statusBadgeBack.className = `status-badge ${badgeClass}`;
+        }
         
         if (currentMode === 1) {
             // 模式1: 正面顯示平假名，背面顯示漢字+解釋+例句
