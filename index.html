@@ -530,15 +530,6 @@
                 </div>
                 <span id="progressText">0/0</span>
             </div>
-
-            <div class="status-controls">
-            <button id="markKnownBtn" class="status-btn known"><i class="fas fa-check"></i> 我已學會</button>
-            <button id="markUnknownBtn" class="status-btn unknown"><i class="fas fa-times"></i> 還不熟</button>
-            </div>
-            <div class="filter-controls" style="margin-top: 15px; margin-bottom: 25px; text-align: center;">
-                <button id="filterUnknownBtn" class="control-btn">只顯示不熟詞彙</button>
-                <button id="resetStatusBtn" class="control-btn reset">重置學習狀態</button>
-            </div>
             
             <div class="buttons">
                 <button id="prevBtn" class="nav-btn">
@@ -553,6 +544,9 @@
             </div>
             
             <div class="action-buttons">
+                <button id="resetReviewBtn" class="action-btn action-btn-small">
+                    <i class="fas fa-undo"></i> 重設標記
+                </button>
                 <button id="manageBtn" class="action-btn action-btn-small">
                     <i class="fas fa-cog"></i> 管理詞彙
                 </button>
@@ -565,7 +559,6 @@
         <div class="card-container">
             <div class="card" id="vocabCard">
                 <div class="card-front">
-                    <div id="statusBadgeFront" class="status-badge"></div>
                     <div class="card-content">
                         <div class="card-header">
                             <span class="card-label" id="frontLabel">平假名</span>
@@ -580,7 +573,6 @@
                     </div>
                 </div>
                 <div class="card-back">
-                    <div id="statusBadgeBack" class="status-badge"></div>
                     <div class="card-content">
                         <div class="card-header">
                             <span class="card-label" id="backLabel">答案</span>
@@ -599,6 +591,15 @@
                                 <p id="backExample">例句內容</p>
                                 <p class="translation" id="backTranslation">例句翻譯</p>
                             </div>
+                        </div>
+                        <div class="review-status" id="reviewStatus">尚未標記</div>
+                        <div class="review-actions">
+                            <button id="knowBtn" class="review-btn review-btn-know" type="button">
+                                <i class="fas fa-check"></i> 我會了
+                            </button>
+                            <button id="dontKnowBtn" class="review-btn review-btn-dontknow" type="button">
+                                <i class="fas fa-times"></i> 我還不會
+                            </button>
                         </div>
                         <div class="card-footer">
                             <i class="fas fa-redo"></i> 點擊卡片返回
@@ -1508,5 +1509,4 @@
         });
     </script>
 </body>
-
 </html>
