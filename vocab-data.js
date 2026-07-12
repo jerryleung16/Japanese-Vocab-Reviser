@@ -18,7 +18,7 @@ class VocabStorage {
     constructor() {
         this.originalData = originalVocabData;
         this.storageKey = 'japanese_custom_vocab';
-        this.statusKey = 'japanese_vocab_known_status'; // 新增狀態儲存鍵值
+        this.reviewStateKey = 'japanese_vocab_review_states';
         this.nextId = this.getNextId();
     }
     
@@ -148,6 +148,12 @@ class VocabStorage {
         // 從陣列中移除
         customVocab.splice(index, 1);
         const saved = this.saveCustomVocab(customVocab);
+
+        if (saved) {
+            const states = this.getReviewStates();
+            delete states[id];
+            this.saveReviewStates(states);
+        }
         
         return {
             success: saved,
@@ -165,6 +171,59 @@ class VocabStorage {
     getVocabById(id) {
         const allVocab = this.getAllVocab();
         return allVocab.find(item => item.id === id);
+    }
+
+    // 讀取複習標記狀態
+    getReviewStates() {
+        try {
+            const stored = localStorage.getItem(this.reviewStateKey);
+            return stored ? JSON.parse(stored) : {};
+        } catch (error) {
+            console.error('讀取複習標記失敗:', error);
+            return {};
+        }
+    }
+
+    // 保存複習標記狀態
+    saveReviewStates(states) {
+        try {
+            localStorage.setItem(this.reviewStateKey, JSON.stringify(states));
+            return true;
+        } catch (error) {
+            console.error('保存複習標記失敗:', error);
+            return false;
+        }
+    }
+
+    // 獲取詞彙的複習狀態
+    getVocabStatus(id) {
+        const states = this.getReviewStates();
+        return states[id] || 'pending';
+    }
+
+    // 設定詞彙的複習狀態
+    setVocabStatus(id, status) {
+        const states = this.getReviewStates();
+
+        if (!status || status === 'pending') {
+            delete states[id];
+        } else {
+            states[id] = status;
+        }
+
+        return this.saveReviewStates(states);
+    }
+
+    // 重置所有複習標記
+    resetVocabStatus() {
+        localStorage.removeItem(this.reviewStateKey);
+        return true;
+    }
+
+    // 取得要進行複習的詞彙列表（排除已標記為「我會了」的詞彙）
+    getReviewVocab(vocabList = this.getAllVocab()) {
+        const states = this.getReviewStates();
+        return vocabList.filter(item => states[item.id] !== 'known');
     }
     
     // 刪除所有自定義詞彙
@@ -213,60 +272,6 @@ class VocabStorage {
         });
         
         return results;
-    getAllVocab() {
-        const customVocab = this.getCustomVocab();
-        return [...this.originalData, ...customVocab];
-    }
-    
-    // --- 新增：學習狀態管理功能 ---
-    
-    // 獲取已學會的詞彙 ID 列表
-    getKnownVocabIds() {
-        try {
-            const stored = localStorage.getItem(this.statusKey);
-            return stored ? JSON.parse(stored) : [];
-        } catch (error) {
-            console.error('讀取學習狀態失敗:', error);
-            return [];
-        }
-    }
-    
-    // 儲存已學會的詞彙 ID 列表
-    saveKnownVocabIds(ids) {
-        try {
-            localStorage.setItem(this.statusKey, JSON.stringify(ids));
-            return true;
-        } catch (error) {
-            console.error('儲存學習狀態失敗:', error);
-            return false;
-        }
-    }
-    
-    // 標記為已學會
-    markAsKnown(id) {
-        const ids = this.getKnownVocabIds();
-        if (!ids.includes(id)) {
-            ids.push(id);
-            this.saveKnownVocabIds(ids);
-        }
-    }
-    
-    // 標記為還不熟
-    markAsUnknown(id) {
-        let ids = this.getKnownVocabIds();
-        ids = ids.filter(storedId => storedId !== id);
-        this.saveKnownVocabIds(ids);
-    }
-    
-    // 檢查是否已學會
-    isKnown(id) {
-        return this.getKnownVocabIds().includes(id);
-    }
-    
-    // 重置所有學習狀態
-    resetAllStatus() {
-        localStorage.removeItem(this.statusKey);
-        return true;
     }
 }
 
@@ -279,10 +284,6 @@ let currentVocabList = vocabStorage.getAllVocab();
 // 公開函數供其他腳本使用
 window.vocabStorage = vocabStorage;
 window.getAllVocabData = () => vocabStorage.getAllVocab();
-window.markAsKnown = (id) => vocabStorage.markAsKnown(id);
-window.markAsUnknown = (id) => vocabStorage.markAsUnknown(id);
-window.isKnown = (id) => vocabStorage.isKnown(id);
-window.resetAllStatus = () => vocabStorage.resetAllStatus();
 window.getOriginalVocabCount = () => vocabStorage.getOriginalCount();
 window.getCustomVocabCount = () => vocabStorage.getCustomCount();
 window.getVocabById = (id) => vocabStorage.getVocabById(id);
@@ -314,3 +315,9 @@ window.resetAllVocab = () => {
     currentVocabList = vocabStorage.getAllVocab();
     return true;
 };
+
+// 複習狀態相關
+window.setVocabStatus = (id, status) => vocabStorage.setVocabStatus(id, status);
+window.getVocabStatus = (id) => vocabStorage.getVocabStatus(id);
+window.resetVocabStatuses = () => vocabStorage.resetVocabStatus();
+window.getReviewVocabList = () => vocabStorage.getReviewVocab();
