@@ -598,9 +598,6 @@
                 <button id="manageBtn" class="action-btn action-btn-small">
                     <i class="fas fa-cog"></i> 管理詞彙
                 </button>
-                <button id="exportBtn" class="action-btn action-btn-small">
-                    <i class="fas fa-download"></i> 匯出詞彙
-                </button>
             </div>
         </div>
 
@@ -663,7 +660,7 @@
                     × 我還不會
                 </button>
                 <button id="deckKnownBtn" class="deck-filter-btn" type="button">
-                    √ 我會了
+                    <i class="fas fa-check"></i> 我會了
                 </button>
             </div>
             <div class="review-actions review-actions-outside">
@@ -933,7 +930,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             // 管理面板元素
             const manageBtn = document.getElementById('manageBtn');
-            const exportBtn = document.getElementById('exportBtn');
             const managementPanel = document.getElementById('managementPanel');
             const tabButtons = document.querySelectorAll('.tab-btn');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -1022,23 +1018,6 @@
                         loadVocabList();
                     }
                 }
-            });
-            
-            // 導出詞彙功能
-            exportBtn.addEventListener('click', function() {
-                const allVocab = window.getAllVocabData();
-                const exportData = JSON.stringify(allVocab, null, 2);
-                const blob = new Blob([exportData], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'japanese_vocabulary_' + new Date().toISOString().split('T')[0] + '.json';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                
-                showNotification('詞彙已導出為JSON文件！');
             });
             
             // 標籤切換功能
