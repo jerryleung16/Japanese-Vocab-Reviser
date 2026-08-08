@@ -22,21 +22,56 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
     const reviewStatus = document.getElementById('reviewStatus');
+    const pendingCount = document.getElementById('pendingCount');
     const knownCount = document.getElementById('knownCount');
     const dontKnowCount = document.getElementById('dontKnowCount');
-    const knownBoardCount = document.getElementById('knownBoardCount');
-    const dontKnowBoardCount = document.getElementById('dontKnowBoardCount');
-    const knownCardsList = document.getElementById('knownCardsList');
-    const dontKnowCardsList = document.getElementById('dontKnowCardsList');
+    const deckPendingBtn = document.getElementById('deckPendingBtn');
+    const deckDontKnowBtn = document.getElementById('deckDontKnowBtn');
+    const deckKnownBtn = document.getElementById('deckKnownBtn');
     
     // 當前狀態
     let currentMode = 1; // 1: 平假名→漢字, 2: 漢字→平假名
     let currentIndex = 0;
     let isFlipped = false;
+    let currentDeckFilter = 'pending'; // pending | dontknow | known
+
+    function getDeckFilterLabel(filter = currentDeckFilter) {
+        if (filter === 'known') return '我會了';
+        if (filter === 'dontknow') return '我還不會';
+        return '未分類';
+    }
+
+    function filterVocabByDeck(vocabList, filter = currentDeckFilter) {
+        if (!Array.isArray(vocabList)) return [];
+
+        return vocabList.filter(item => {
+            const status = window.getVocabStatus ? window.getVocabStatus(item.id) : 'pending';
+            if (filter === 'known') return status === 'known';
+            if (filter === 'dontknow') return status === 'dontknow';
+            return status === 'pending';
+        });
+    }
+
+    function updateDeckFilterButtons() {
+        if (!deckPendingBtn || !deckDontKnowBtn || !deckKnownBtn) return;
+
+        deckPendingBtn.classList.toggle('active', currentDeckFilter === 'pending');
+        deckDontKnowBtn.classList.toggle('active', currentDeckFilter === 'dontknow');
+        deckKnownBtn.classList.toggle('active', currentDeckFilter === 'known');
+    }
+
+    function switchDeckFilter(filter) {
+        currentDeckFilter = filter;
+        currentIndex = 0;
+        updateDeckFilterButtons();
+        updateVocabList();
+        showNotification(`目前顯示：${getDeckFilterLabel(filter)}`);
+    }
     
     // 更新詞彙列表函數
     function updateVocabList() {
-        currentVocabList = window.vocabStorage.getReviewVocab(window.getAllVocabData ? window.getAllVocabData() : window.vocabStorage.getAllVocab());
+        const allVocab = window.getAllVocabData ? window.getAllVocabData() : window.vocabStorage.getAllVocab();
+        currentVocabList = filterVocabByDeck(allVocab, currentDeckFilter);
         currentVocabList = Array.isArray(currentVocabList) ? currentVocabList : [];
         currentIndex = Math.min(currentIndex, Math.max(currentVocabList.length - 1, 0));
         if (currentIndex < 0) currentIndex = 0;
@@ -61,9 +96,14 @@ document.addEventListener('DOMContentLoaded', function() {
         resetReviewBtn.addEventListener('click', resetReviewStates);
         knowBtn.addEventListener('click', () => markCurrentVocab('known'));
         dontKnowBtn.addEventListener('click', () => markCurrentVocab('dontknow'));
+        if (deckPendingBtn) deckPendingBtn.addEventListener('click', () => switchDeckFilter('pending'));
+        if (deckDontKnowBtn) deckDontKnowBtn.addEventListener('click', () => switchDeckFilter('dontknow'));
+        if (deckKnownBtn) deckKnownBtn.addEventListener('click', () => switchDeckFilter('known'));
         
         // 鍵盤快捷鍵
         document.addEventListener('keydown', handleKeyPress);
+
+        updateDeckFilterButtons();
     }
     
     // 更新進度顯示
@@ -84,12 +124,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (currentVocabList.length === 0) {
             forceCardFront();
             frontText.textContent = "已完成";
-            backKanji.textContent = "沒有要複習的詞彙";
+            backKanji.textContent = `沒有「${getDeckFilterLabel()}」詞彙`;
             backReading.textContent = "";
-            backDefinition.textContent = "所有詞彙都已標記為「我會了」，或你可以重設標記後繼續複習。";
+            backDefinition.textContent = "可點上方篩選按鈕切換詞彙分類，或調整目前詞彙標記。";
             backExample.textContent = "";
             backTranslation.textContent = "";
-            if (reviewStatus) reviewStatus.textContent = "目前沒有待複習詞彙";
+            if (reviewStatus) reviewStatus.textContent = `目前分類：${getDeckFilterLabel()}`;
             updateProgress();
             return;
         }
@@ -154,64 +194,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateReviewSummary() {
-        if (!knownCount || !dontKnowCount) return;
+        if (!pendingCount || !knownCount || !dontKnowCount) return;
 
-        const counts = window.getReviewStatusCounts ? window.getReviewStatusCounts() : { known: 0, dontknow: 0 };
+        const counts = window.getReviewStatusCounts ? window.getReviewStatusCounts() : { pending: 0, known: 0, dontknow: 0 };
+        pendingCount.textContent = String(counts.pending || 0);
         knownCount.textContent = String(counts.known || 0);
         dontKnowCount.textContent = String(counts.dontknow || 0);
-        renderStatusBoards();
-    }
-
-    function renderStatusBoards() {
-        if (!knownCardsList || !dontKnowCardsList || !knownBoardCount || !dontKnowBoardCount) return;
-
-        const allVocab = window.getAllVocabData ? window.getAllVocabData() : [];
-        const knownItems = [];
-        const dontKnowItems = [];
-
-        allVocab.forEach(vocab => {
-            const status = window.getVocabStatus ? window.getVocabStatus(vocab.id) : 'pending';
-            if (status === 'known') {
-                knownItems.push(vocab);
-            } else if (status === 'dontknow') {
-                dontKnowItems.push(vocab);
-            }
-        });
-
-        const byHiragana = (a, b) => String(a.hiragana || '').localeCompare(String(b.hiragana || ''), 'ja');
-        knownItems.sort(byHiragana);
-        dontKnowItems.sort(byHiragana);
-
-        knownBoardCount.textContent = String(knownItems.length);
-        dontKnowBoardCount.textContent = String(dontKnowItems.length);
-
-        renderStatusList(knownCardsList, knownItems, '目前沒有我會了的卡片');
-        renderStatusList(dontKnowCardsList, dontKnowItems, '目前沒有我還不會的卡片');
-    }
-
-    function renderStatusList(container, items, emptyText) {
-        container.innerHTML = '';
-
-        if (!items.length) {
-            const empty = document.createElement('div');
-            empty.className = 'status-empty';
-            empty.textContent = emptyText;
-            container.appendChild(empty);
-            return;
-        }
-
-        items.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'status-mini-card';
-            card.innerHTML = `
-                <div class="status-mini-head">
-                    <span class="status-mini-hiragana">${item.hiragana || ''}</span>
-                    <span class="status-mini-kanji">${item.kanji || ''}</span>
-                </div>
-                <div class="status-mini-definition">${item.definition || ''}</div>
-            `;
-            container.appendChild(card);
-        });
+        updateDeckFilterButtons();
     }
     
     // 翻轉卡片

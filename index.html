@@ -651,8 +651,20 @@
 
         <div class="review-panel">
             <div class="review-summary" id="reviewSummary">
+                <span class="summary-pill summary-pill-pending">未分類：<strong id="pendingCount">0</strong></span>
                 <span class="summary-pill summary-pill-know">我會了：<strong id="knownCount">0</strong></span>
                 <span class="summary-pill summary-pill-dontknow">我還不會：<strong id="dontKnowCount">0</strong></span>
+            </div>
+            <div class="deck-filter-actions">
+                <button id="deckPendingBtn" class="deck-filter-btn active" type="button">
+                    未分類
+                </button>
+                <button id="deckDontKnowBtn" class="deck-filter-btn" type="button">
+                    × 我還不會
+                </button>
+                <button id="deckKnownBtn" class="deck-filter-btn" type="button">
+                    √ 我會了
+                </button>
             </div>
             <div class="review-actions review-actions-outside">
                 <button id="knowBtn" class="review-btn review-btn-know" type="button">
@@ -661,21 +673,6 @@
                 <button id="dontKnowBtn" class="review-btn review-btn-dontknow" type="button">
                     <i class="fas fa-times"></i> 我還不會
                 </button>
-            </div>
-        </div>
-
-        <div class="status-card-board">
-            <div class="status-card-column">
-                <h3><i class="fas fa-check-circle"></i> 我會了卡片（<span id="knownBoardCount">0</span>）</h3>
-                <div id="knownCardsList" class="status-card-list">
-                    <div class="status-empty">目前沒有我會了的卡片</div>
-                </div>
-            </div>
-            <div class="status-card-column">
-                <h3><i class="fas fa-times-circle"></i> 我還不會卡片（<span id="dontKnowBoardCount">0</span>）</h3>
-                <div id="dontKnowCardsList" class="status-card-list">
-                    <div class="status-empty">目前沒有我還不會的卡片</div>
-                </div>
             </div>
         </div>
 
@@ -808,7 +805,24 @@
                 </div>
 
                 <div class="cloud-sync-panel">
-                    <h4><i class="fab fa-github"></i> 跨裝置雲端同步（GitHub）</h4>
+                    <h4><i class="fas fa-magic"></i> 快速同步（新手推薦）</h4>
+                    <div class="btn-group">
+                        <button id="downloadEasySyncBtn" class="btn-success">
+                            <i class="fas fa-file-export"></i> 下載同步檔
+                        </button>
+                        <button id="importEasySyncBtn" class="btn-primary">
+                            <i class="fas fa-file-import"></i> 匯入同步檔
+                        </button>
+                    </div>
+                    <input type="file" id="easySyncFileInput" accept="application/json" style="display:none;">
+                    <div class="cloud-sync-note">
+                        最簡單流程：A 裝置先按「下載同步檔」→ 把檔案傳到 B 裝置（例如 OneDrive/Email）→ B 裝置按「匯入同步檔」。
+                    </div>
+                    <div id="easySyncStatus" class="cloud-sync-status">尚未進行快速同步</div>
+                </div>
+
+                <div class="cloud-sync-panel">
+                    <h4><i class="fab fa-github"></i> 進階同步（GitHub Token）</h4>
                     <div class="cloud-sync-grid">
                         <div class="form-group">
                             <label for="githubSyncOwner">GitHub Owner</label>
@@ -845,19 +859,6 @@
                     <div class="cloud-sync-note">
                         會同步：自定義詞彙 + 我會了/我還不會標記。為了安全，Token 僅存於你目前瀏覽器的本地儲存。
                     </div>
-                    <details class="cloud-sync-help">
-                        <summary><i class="fas fa-circle-info"></i> 我不會用 Personal Access Token（點我看教學）</summary>
-                        <ol>
-                            <li>登入 GitHub，點右上角頭像，進入 Settings。</li>
-                            <li>左側選單最下方點 Developer settings。</li>
-                            <li>點 Personal access tokens，建議選 Fine-grained tokens。</li>
-                            <li>建立新 Token：Repository access 選你這個倉庫 Japanese-Vocab-Reviser。</li>
-                            <li>Permissions 裡把 Contents 設成 Read and write。</li>
-                            <li>產生後立刻複製 Token（只會顯示一次），貼到本頁的 Token 欄位。</li>
-                            <li>先按「儲存雲端設定」，再按「上傳到雲端」。在另一台裝置按「從雲端下載」。</li>
-                        </ol>
-                        <p class="cloud-sync-warning">安全提醒：不要把 Token 分享給別人，也不要貼在公開聊天室或截圖中。</p>
-                    </details>
                     <div id="cloudSyncStatus" class="cloud-sync-status">尚未同步</div>
                 </div>
             </div>
@@ -974,6 +975,12 @@
             const customCountElem = document.getElementById('customCount');
             const resetCustomBtn = document.getElementById('resetCustomBtn');
             const resetAllBtn = document.getElementById('resetAllBtn');
+
+            // 快速同步元素（新手推薦）
+            const downloadEasySyncBtn = document.getElementById('downloadEasySyncBtn');
+            const importEasySyncBtn = document.getElementById('importEasySyncBtn');
+            const easySyncFileInput = document.getElementById('easySyncFileInput');
+            const easySyncStatus = document.getElementById('easySyncStatus');
 
             // 雲端同步元素
             const githubSyncOwner = document.getElementById('githubSyncOwner');
@@ -1579,6 +1586,76 @@
                 }
             }
 
+            function setEasySyncStatus(message, type = 'info') {
+                easySyncStatus.textContent = message;
+                easySyncStatus.className = 'cloud-sync-status';
+                if (type === 'error') {
+                    easySyncStatus.classList.add('error');
+                } else if (type === 'success') {
+                    easySyncStatus.classList.add('success');
+                }
+            }
+
+            function downloadEasySyncFile() {
+                try {
+                    const payload = window.exportSyncPayload ? window.exportSyncPayload() : null;
+                    if (!payload) {
+                        throw new Error('無法取得同步資料');
+                    }
+
+                    const text = JSON.stringify(payload, null, 2);
+                    const blob = new Blob([text], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `japanese-vocab-sync-${new Date().toISOString().split('T')[0]}.json`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+
+                    const now = new Date().toLocaleString();
+                    setEasySyncStatus(`已下載同步檔：${now}`, 'success');
+                    showNotification('同步檔下載完成！');
+                } catch (error) {
+                    console.error(error);
+                    setEasySyncStatus(`下載失敗：${error.message}`, 'error');
+                    showNotification('下載同步檔失敗', 'error');
+                }
+            }
+
+            async function importEasySyncFile(file) {
+                if (!file) return;
+
+                try {
+                    const text = await file.text();
+                    const payload = JSON.parse(text);
+                    const result = window.importSyncPayload ? window.importSyncPayload(payload, { overwrite: true }) : { success: false, message: '匯入功能不可用' };
+
+                    if (!result.success) {
+                        throw new Error(result.message || '匯入失敗');
+                    }
+
+                    if (window.updateCard) {
+                        window.updateCard();
+                    }
+                    updateStats();
+                    if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
+                        loadVocabList();
+                    }
+
+                    const now = new Date().toLocaleString();
+                    setEasySyncStatus(`匯入成功：${now}`, 'success');
+                    showNotification('同步檔匯入成功！');
+                } catch (error) {
+                    console.error(error);
+                    setEasySyncStatus(`匯入失敗：${error.message}`, 'error');
+                    showNotification('同步檔匯入失敗，請確認檔案格式', 'error');
+                } finally {
+                    easySyncFileInput.value = '';
+                }
+            }
+
             function getCloudSyncConfigFromInputs() {
                 return {
                     owner: githubSyncOwner.value.trim(),
@@ -1806,6 +1883,19 @@
                 saveCloudSyncConfig();
                 setCloudSyncStatus('雲端設定已儲存', 'success');
                 showNotification('雲端設定已儲存');
+            });
+
+            downloadEasySyncBtn.addEventListener('click', function() {
+                downloadEasySyncFile();
+            });
+
+            importEasySyncBtn.addEventListener('click', function() {
+                easySyncFileInput.click();
+            });
+
+            easySyncFileInput.addEventListener('change', function() {
+                const file = this.files && this.files[0] ? this.files[0] : null;
+                importEasySyncFile(file);
             });
 
             uploadCloudBtn.addEventListener('click', function() {
