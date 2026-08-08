@@ -1662,7 +1662,7 @@
                     repo: githubSyncRepo.value.trim(),
                     branch: githubSyncBranch.value.trim() || 'main',
                     path: githubSyncPath.value.trim() || 'shared/japanese-vocab-sync.json',
-                    token: githubSyncToken.value.trim(),
+                    token: githubSyncToken.value.trim().replace(/^['"]|['"]$/g, ''),
                     lastSyncAt: ''
                 };
             }
@@ -1711,13 +1711,31 @@
                 return new TextDecoder().decode(bytes);
             }
 
-            async function fetchCloudFile(config) {
+            function getReadableGithubErrorText(status, bodyText, action = '操作') {
+                if (status === 401) {
+                    return `${action}失敗：GitHub Token 無效或已過期（401 Bad credentials）。請重新產生 Token，並確認貼上時沒有多餘空白。`;
+                }
+
+                if (status === 403) {
+                    return `${action}失敗：權限不足（403）。請確認 Token 有 repository 內容權限。`;
+                }
+
+                return `${action}失敗 (${status}): ${bodyText}`;
+            }
+
+            async function fetchCloudFile(config, options = {}) {
+                const useAuth = options.useAuth !== false && !!config.token;
                 const fileUrl = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${config.path}?ref=${encodeURIComponent(config.branch)}`;
+                const headers = {
+                    Accept: 'application/vnd.github+json'
+                };
+
+                if (useAuth) {
+                    headers.Authorization = `Bearer ${config.token}`;
+                }
+
                 const response = await fetch(fileUrl, {
-                    headers: {
-                        Authorization: `Bearer ${config.token}`,
-                        Accept: 'application/vnd.github+json'
-                    }
+                    headers
                 });
 
                 if (response.status === 404) {
@@ -1726,7 +1744,7 @@
 
                 if (!response.ok) {
                     const text = await response.text();
-                    throw new Error(`讀取雲端文件失敗 (${response.status}): ${text}`);
+                    throw new Error(getReadableGithubErrorText(response.status, text, '讀取雲端文件'));
                 }
 
                 return response.json();
@@ -1774,7 +1792,7 @@
 
                     if (!updateResp.ok) {
                         const text = await updateResp.text();
-                        throw new Error(`上傳失敗 (${updateResp.status}): ${text}`);
+                        throw new Error(getReadableGithubErrorText(updateResp.status, text, '上傳'));
                     }
 
                     const now = new Date().toISOString();
@@ -1790,8 +1808,8 @@
 
             async function downloadCloudSync() {
                 const config = getCloudSyncConfigFromInputs();
-                if (!config.owner || !config.repo || !config.path || !config.token) {
-                    showNotification('請完整填寫雲端同步設定與 Token', 'error');
+                if (!config.owner || !config.repo || !config.path) {
+                    showNotification('請完整填寫雲端同步設定', 'error');
                     setCloudSyncStatus('下載失敗：設定不完整', 'error');
                     return;
                 }
@@ -1799,7 +1817,24 @@
                 setCloudSyncStatus('正在從雲端下載...');
 
                 try {
-                    const cloudFile = await fetchCloudFile(config);
+                    let cloudFile = null;
+
+                    if (config.token) {
+                        try {
+                            cloudFile = await fetchCloudFile(config, { useAuth: true });
+                        } catch (error) {
+                            if (error.message.includes('401') || error.message.includes('Bad credentials')) {
+                                // Token 錯誤時，公開 repo 仍嘗試匿名讀取
+                                cloudFile = await fetchCloudFile(config, { useAuth: false });
+                                showNotification('Token 驗證失敗，已改用公開讀取模式下載。', 'warning');
+                            } else {
+                                throw error;
+                            }
+                        }
+                    } else {
+                        cloudFile = await fetchCloudFile(config, { useAuth: false });
+                    }
+
                     if (!cloudFile || !cloudFile.content) {
                         throw new Error('找不到雲端同步文件，請先上傳一次');
                     }
@@ -1828,7 +1863,7 @@
                 } catch (error) {
                     console.error(error);
                     setCloudSyncStatus(`下載失敗：${error.message}`, 'error');
-                    showNotification('雲端下載失敗，請檢查設定或 Token 權限', 'error');
+                    showNotification('雲端下載失敗，請檢查設定或改用快速同步。', 'error');
                 }
             }
             
