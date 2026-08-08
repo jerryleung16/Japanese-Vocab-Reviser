@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const reviewStatus = document.getElementById('reviewStatus');
     const knownCount = document.getElementById('knownCount');
     const dontKnowCount = document.getElementById('dontKnowCount');
+    const knownBoardCount = document.getElementById('knownBoardCount');
+    const dontKnowBoardCount = document.getElementById('dontKnowBoardCount');
+    const knownCardsList = document.getElementById('knownCardsList');
+    const dontKnowCardsList = document.getElementById('dontKnowCardsList');
     
     // 當前狀態
     let currentMode = 1; // 1: 平假名→漢字, 2: 漢字→平假名
@@ -155,6 +159,59 @@ document.addEventListener('DOMContentLoaded', function() {
         const counts = window.getReviewStatusCounts ? window.getReviewStatusCounts() : { known: 0, dontknow: 0 };
         knownCount.textContent = String(counts.known || 0);
         dontKnowCount.textContent = String(counts.dontknow || 0);
+        renderStatusBoards();
+    }
+
+    function renderStatusBoards() {
+        if (!knownCardsList || !dontKnowCardsList || !knownBoardCount || !dontKnowBoardCount) return;
+
+        const allVocab = window.getAllVocabData ? window.getAllVocabData() : [];
+        const knownItems = [];
+        const dontKnowItems = [];
+
+        allVocab.forEach(vocab => {
+            const status = window.getVocabStatus ? window.getVocabStatus(vocab.id) : 'pending';
+            if (status === 'known') {
+                knownItems.push(vocab);
+            } else if (status === 'dontknow') {
+                dontKnowItems.push(vocab);
+            }
+        });
+
+        const byHiragana = (a, b) => String(a.hiragana || '').localeCompare(String(b.hiragana || ''), 'ja');
+        knownItems.sort(byHiragana);
+        dontKnowItems.sort(byHiragana);
+
+        knownBoardCount.textContent = String(knownItems.length);
+        dontKnowBoardCount.textContent = String(dontKnowItems.length);
+
+        renderStatusList(knownCardsList, knownItems, '目前沒有我會了的卡片');
+        renderStatusList(dontKnowCardsList, dontKnowItems, '目前沒有我還不會的卡片');
+    }
+
+    function renderStatusList(container, items, emptyText) {
+        container.innerHTML = '';
+
+        if (!items.length) {
+            const empty = document.createElement('div');
+            empty.className = 'status-empty';
+            empty.textContent = emptyText;
+            container.appendChild(empty);
+            return;
+        }
+
+        items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'status-mini-card';
+            card.innerHTML = `
+                <div class="status-mini-head">
+                    <span class="status-mini-hiragana">${item.hiragana || ''}</span>
+                    <span class="status-mini-kanji">${item.kanji || ''}</span>
+                </div>
+                <div class="status-mini-definition">${item.definition || ''}</div>
+            `;
+            container.appendChild(card);
+        });
     }
     
     // 翻轉卡片

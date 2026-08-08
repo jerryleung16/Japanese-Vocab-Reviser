@@ -664,6 +664,21 @@
             </div>
         </div>
 
+        <div class="status-card-board">
+            <div class="status-card-column">
+                <h3><i class="fas fa-check-circle"></i> 我會了卡片（<span id="knownBoardCount">0</span>）</h3>
+                <div id="knownCardsList" class="status-card-list">
+                    <div class="status-empty">目前沒有我會了的卡片</div>
+                </div>
+            </div>
+            <div class="status-card-column">
+                <h3><i class="fas fa-times-circle"></i> 我還不會卡片（<span id="dontKnowBoardCount">0</span>）</h3>
+                <div id="dontKnowCardsList" class="status-card-list">
+                    <div class="status-empty">目前沒有我還不會的卡片</div>
+                </div>
+            </div>
+        </div>
+
         <div class="management-panel" id="managementPanel">
             <div class="tab-buttons">
                 <button class="tab-btn active" data-tab="single">添加單個詞彙</button>
@@ -830,6 +845,19 @@
                     <div class="cloud-sync-note">
                         會同步：自定義詞彙 + 我會了/我還不會標記。為了安全，Token 僅存於你目前瀏覽器的本地儲存。
                     </div>
+                    <details class="cloud-sync-help">
+                        <summary><i class="fas fa-circle-info"></i> 我不會用 Personal Access Token（點我看教學）</summary>
+                        <ol>
+                            <li>登入 GitHub，點右上角頭像，進入 Settings。</li>
+                            <li>左側選單最下方點 Developer settings。</li>
+                            <li>點 Personal access tokens，建議選 Fine-grained tokens。</li>
+                            <li>建立新 Token：Repository access 選你這個倉庫 Japanese-Vocab-Reviser。</li>
+                            <li>Permissions 裡把 Contents 設成 Read and write。</li>
+                            <li>產生後立刻複製 Token（只會顯示一次），貼到本頁的 Token 欄位。</li>
+                            <li>先按「儲存雲端設定」，再按「上傳到雲端」。在另一台裝置按「從雲端下載」。</li>
+                        </ol>
+                        <p class="cloud-sync-warning">安全提醒：不要把 Token 分享給別人，也不要貼在公開聊天室或截圖中。</p>
+                    </details>
                     <div id="cloudSyncStatus" class="cloud-sync-status">尚未同步</div>
                 </div>
             </div>
