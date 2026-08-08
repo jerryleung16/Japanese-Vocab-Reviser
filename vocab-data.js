@@ -297,6 +297,60 @@ class VocabStorage {
         
         return results;
     }
+
+    // 匯出同步資料（自定義詞彙 + 複習標記）
+    exportSyncPayload() {
+        return {
+            version: 1,
+            exportedAt: new Date().toISOString(),
+            customVocab: this.getCustomVocab(),
+            reviewStates: this.getReviewStates()
+        };
+    }
+
+    // 匯入同步資料（可選覆蓋或合併）
+    importSyncPayload(payload, options = {}) {
+        const overwrite = options.overwrite !== false;
+
+        if (!payload || typeof payload !== 'object') {
+            return {
+                success: false,
+                message: '同步資料格式錯誤'
+            };
+        }
+
+        const incomingCustom = Array.isArray(payload.customVocab) ? payload.customVocab : [];
+        const incomingStates = payload.reviewStates && typeof payload.reviewStates === 'object' ? payload.reviewStates : {};
+
+        if (overwrite) {
+            this.saveCustomVocab(incomingCustom);
+            this.saveReviewStates(incomingStates);
+        } else {
+            const localCustom = this.getCustomVocab();
+            const mergedById = new Map();
+
+            localCustom.forEach(item => mergedById.set(item.id, item));
+            incomingCustom.forEach(item => mergedById.set(item.id, item));
+
+            const mergedCustom = Array.from(mergedById.values());
+            const mergedStates = {
+                ...this.getReviewStates(),
+                ...incomingStates
+            };
+
+            this.saveCustomVocab(mergedCustom);
+            this.saveReviewStates(mergedStates);
+        }
+
+        this.nextId = this.getNextId();
+
+        return {
+            success: true,
+            message: '同步資料已匯入',
+            total: this.getTotalCount(),
+            custom: this.getCustomCount()
+        };
+    }
 }
 
 // 創建儲存實例
@@ -346,3 +400,11 @@ window.getVocabStatus = (id) => vocabStorage.getVocabStatus(id);
 window.resetVocabStatuses = () => vocabStorage.resetVocabStatus();
 window.getReviewVocabList = () => vocabStorage.getReviewVocab();
 window.getReviewStatusCounts = () => vocabStorage.getReviewStatusCounts();
+window.exportSyncPayload = () => vocabStorage.exportSyncPayload();
+window.importSyncPayload = (payload, options) => {
+    const result = vocabStorage.importSyncPayload(payload, options);
+    if (result.success) {
+        currentVocabList = vocabStorage.getAllVocab();
+    }
+    return result;
+};

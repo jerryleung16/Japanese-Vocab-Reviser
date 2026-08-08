@@ -193,6 +193,50 @@
             border-radius: 3px;
             font-family: monospace;
         }
+
+        .cloud-sync-panel {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 18px;
+            margin-top: 18px;
+            border: 1px solid #e8ecef;
+        }
+
+        .cloud-sync-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .cloud-sync-grid .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .cloud-sync-note {
+            margin-top: 10px;
+            font-size: 0.88rem;
+            color: #6c757d;
+            line-height: 1.5;
+        }
+
+        .cloud-sync-status {
+            margin-top: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: #eef4ff;
+            color: #2f5ea5;
+        }
+
+        .cloud-sync-status.error {
+            background: #fdecea;
+            color: #c0392b;
+        }
+
+        .cloud-sync-status.success {
+            background: #e9f8f0;
+            color: #1f8f4f;
+        }
         
         .data-stats {
             display: flex;
@@ -504,6 +548,10 @@
                 flex-direction: column;
                 gap: 10px;
             }
+
+            .cloud-sync-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -743,6 +791,47 @@
                         <li>重置操作無法恢復，請謹慎操作</li>
                     </ul>
                 </div>
+
+                <div class="cloud-sync-panel">
+                    <h4><i class="fab fa-github"></i> 跨裝置雲端同步（GitHub）</h4>
+                    <div class="cloud-sync-grid">
+                        <div class="form-group">
+                            <label for="githubSyncOwner">GitHub Owner</label>
+                            <input type="text" id="githubSyncOwner" class="form-control" value="jerryleung16">
+                        </div>
+                        <div class="form-group">
+                            <label for="githubSyncRepo">Repository</label>
+                            <input type="text" id="githubSyncRepo" class="form-control" value="Japanese-Vocab-Reviser">
+                        </div>
+                        <div class="form-group">
+                            <label for="githubSyncBranch">Branch</label>
+                            <input type="text" id="githubSyncBranch" class="form-control" value="main">
+                        </div>
+                        <div class="form-group">
+                            <label for="githubSyncPath">Sync File Path</label>
+                            <input type="text" id="githubSyncPath" class="form-control" value="shared/japanese-vocab-sync.json">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="githubSyncToken">GitHub Personal Access Token（需要 Contents: Read and write）</label>
+                            <input type="password" id="githubSyncToken" class="form-control" placeholder="ghp_xxx...">
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button id="saveCloudConfigBtn" class="btn-secondary">
+                            <i class="fas fa-save"></i> 儲存雲端設定
+                        </button>
+                        <button id="uploadCloudBtn" class="btn-success">
+                            <i class="fas fa-upload"></i> 上傳到雲端
+                        </button>
+                        <button id="downloadCloudBtn" class="btn-primary">
+                            <i class="fas fa-download"></i> 從雲端下載
+                        </button>
+                    </div>
+                    <div class="cloud-sync-note">
+                        會同步：自定義詞彙 + 我會了/我還不會標記。為了安全，Token 僅存於你目前瀏覽器的本地儲存。
+                    </div>
+                    <div id="cloudSyncStatus" class="cloud-sync-status">尚未同步</div>
+                </div>
             </div>
         </div>
 
@@ -857,6 +946,17 @@
             const customCountElem = document.getElementById('customCount');
             const resetCustomBtn = document.getElementById('resetCustomBtn');
             const resetAllBtn = document.getElementById('resetAllBtn');
+
+            // 雲端同步元素
+            const githubSyncOwner = document.getElementById('githubSyncOwner');
+            const githubSyncRepo = document.getElementById('githubSyncRepo');
+            const githubSyncBranch = document.getElementById('githubSyncBranch');
+            const githubSyncPath = document.getElementById('githubSyncPath');
+            const githubSyncToken = document.getElementById('githubSyncToken');
+            const saveCloudConfigBtn = document.getElementById('saveCloudConfigBtn');
+            const uploadCloudBtn = document.getElementById('uploadCloudBtn');
+            const downloadCloudBtn = document.getElementById('downloadCloudBtn');
+            const cloudSyncStatus = document.getElementById('cloudSyncStatus');
             
             // 對話框元素
             const confirmDialog = document.getElementById('confirmDialog');
@@ -876,6 +976,7 @@
             let currentPage = 1;
             let itemsPerPage = 10;
             let currentEditingId = null;
+            const cloudSyncConfigKey = 'japanese_vocab_cloud_sync_config';
             
             // 切換管理面板顯示
             manageBtn.addEventListener('click', function() {
@@ -1439,6 +1540,192 @@
                 originalCountElem.textContent = originalCount;
                 customCountElem.textContent = customCount;
             }
+
+            function setCloudSyncStatus(message, type = 'info') {
+                cloudSyncStatus.textContent = message;
+                cloudSyncStatus.className = 'cloud-sync-status';
+                if (type === 'error') {
+                    cloudSyncStatus.classList.add('error');
+                } else if (type === 'success') {
+                    cloudSyncStatus.classList.add('success');
+                }
+            }
+
+            function getCloudSyncConfigFromInputs() {
+                return {
+                    owner: githubSyncOwner.value.trim(),
+                    repo: githubSyncRepo.value.trim(),
+                    branch: githubSyncBranch.value.trim() || 'main',
+                    path: githubSyncPath.value.trim() || 'shared/japanese-vocab-sync.json',
+                    token: githubSyncToken.value.trim(),
+                    lastSyncAt: ''
+                };
+            }
+
+            function loadCloudSyncConfig() {
+                try {
+                    const stored = localStorage.getItem(cloudSyncConfigKey);
+                    if (!stored) return;
+
+                    const config = JSON.parse(stored);
+                    if (!config || typeof config !== 'object') return;
+
+                    githubSyncOwner.value = config.owner || githubSyncOwner.value;
+                    githubSyncRepo.value = config.repo || githubSyncRepo.value;
+                    githubSyncBranch.value = config.branch || githubSyncBranch.value;
+                    githubSyncPath.value = config.path || githubSyncPath.value;
+                    githubSyncToken.value = config.token || '';
+
+                    if (config.lastSyncAt) {
+                        setCloudSyncStatus(`上次同步：${new Date(config.lastSyncAt).toLocaleString()}`);
+                    }
+                } catch (error) {
+                    console.error('載入雲端設定失敗:', error);
+                }
+            }
+
+            function saveCloudSyncConfig(lastSyncAt = '') {
+                const config = getCloudSyncConfigFromInputs();
+                config.lastSyncAt = lastSyncAt;
+                localStorage.setItem(cloudSyncConfigKey, JSON.stringify(config));
+                return config;
+            }
+
+            function encodeBase64Utf8(text) {
+                const bytes = new TextEncoder().encode(text);
+                let binary = '';
+                bytes.forEach(byte => {
+                    binary += String.fromCharCode(byte);
+                });
+                return btoa(binary);
+            }
+
+            function decodeBase64Utf8(base64Text) {
+                const binary = atob(base64Text);
+                const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+                return new TextDecoder().decode(bytes);
+            }
+
+            async function fetchCloudFile(config) {
+                const fileUrl = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${config.path}?ref=${encodeURIComponent(config.branch)}`;
+                const response = await fetch(fileUrl, {
+                    headers: {
+                        Authorization: `Bearer ${config.token}`,
+                        Accept: 'application/vnd.github+json'
+                    }
+                });
+
+                if (response.status === 404) {
+                    return null;
+                }
+
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(`讀取雲端文件失敗 (${response.status}): ${text}`);
+                }
+
+                return response.json();
+            }
+
+            async function uploadCloudSync() {
+                const config = getCloudSyncConfigFromInputs();
+                if (!config.owner || !config.repo || !config.path || !config.token) {
+                    showNotification('請完整填寫雲端同步設定與 Token', 'error');
+                    setCloudSyncStatus('上傳失敗：設定不完整', 'error');
+                    return;
+                }
+
+                setCloudSyncStatus('正在上傳到雲端...');
+
+                try {
+                    const payload = window.exportSyncPayload ? window.exportSyncPayload() : null;
+                    if (!payload) {
+                        throw new Error('無法取得同步資料');
+                    }
+
+                    const existing = await fetchCloudFile(config);
+                    const contentBase64 = encodeBase64Utf8(JSON.stringify(payload, null, 2));
+
+                    const updateUrl = `https://api.github.com/repos/${encodeURIComponent(config.owner)}/${encodeURIComponent(config.repo)}/contents/${config.path}`;
+                    const body = {
+                        message: `sync vocab data ${new Date().toISOString()}`,
+                        content: contentBase64,
+                        branch: config.branch
+                    };
+
+                    if (existing && existing.sha) {
+                        body.sha = existing.sha;
+                    }
+
+                    const updateResp = await fetch(updateUrl, {
+                        method: 'PUT',
+                        headers: {
+                            Authorization: `Bearer ${config.token}`,
+                            Accept: 'application/vnd.github+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    });
+
+                    if (!updateResp.ok) {
+                        const text = await updateResp.text();
+                        throw new Error(`上傳失敗 (${updateResp.status}): ${text}`);
+                    }
+
+                    const now = new Date().toISOString();
+                    saveCloudSyncConfig(now);
+                    setCloudSyncStatus(`上傳成功：${new Date(now).toLocaleString()}`, 'success');
+                    showNotification('雲端同步上傳成功！');
+                } catch (error) {
+                    console.error(error);
+                    setCloudSyncStatus(`上傳失敗：${error.message}`, 'error');
+                    showNotification('雲端上傳失敗，請檢查設定或 Token 權限', 'error');
+                }
+            }
+
+            async function downloadCloudSync() {
+                const config = getCloudSyncConfigFromInputs();
+                if (!config.owner || !config.repo || !config.path || !config.token) {
+                    showNotification('請完整填寫雲端同步設定與 Token', 'error');
+                    setCloudSyncStatus('下載失敗：設定不完整', 'error');
+                    return;
+                }
+
+                setCloudSyncStatus('正在從雲端下載...');
+
+                try {
+                    const cloudFile = await fetchCloudFile(config);
+                    if (!cloudFile || !cloudFile.content) {
+                        throw new Error('找不到雲端同步文件，請先上傳一次');
+                    }
+
+                    const jsonText = decodeBase64Utf8(cloudFile.content.replace(/\n/g, ''));
+                    const payload = JSON.parse(jsonText);
+                    const result = window.importSyncPayload ? window.importSyncPayload(payload, { overwrite: true }) : { success: false, message: '匯入功能不可用' };
+
+                    if (!result.success) {
+                        throw new Error(result.message || '匯入失敗');
+                    }
+
+                    const now = new Date().toISOString();
+                    saveCloudSyncConfig(now);
+
+                    if (window.updateCard) {
+                        window.updateCard();
+                    }
+                    updateStats();
+                    if (document.querySelector('.tab-btn[data-tab="edit"]').classList.contains('active')) {
+                        loadVocabList();
+                    }
+
+                    setCloudSyncStatus(`下載成功：${new Date(now).toLocaleString()}`, 'success');
+                    showNotification('已從雲端同步詞彙與標記！');
+                } catch (error) {
+                    console.error(error);
+                    setCloudSyncStatus(`下載失敗：${error.message}`, 'error');
+                    showNotification('雲端下載失敗，請檢查設定或 Token 權限', 'error');
+                }
+            }
             
             // 顯示通知訊息
             function showNotification(message, type = 'success') {
@@ -1485,6 +1772,21 @@
             
             // 初始更新統計數據
             updateStats();
+            loadCloudSyncConfig();
+
+            saveCloudConfigBtn.addEventListener('click', function() {
+                saveCloudSyncConfig();
+                setCloudSyncStatus('雲端設定已儲存', 'success');
+                showNotification('雲端設定已儲存');
+            });
+
+            uploadCloudBtn.addEventListener('click', function() {
+                uploadCloudSync();
+            });
+
+            downloadCloudBtn.addEventListener('click', function() {
+                downloadCloudSync();
+            });
             
             // 為刪除單個詞彙添加確認處理
             dialogConfirmBtn.addEventListener('click', function() {
