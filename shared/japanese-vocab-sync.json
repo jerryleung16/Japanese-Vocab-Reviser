@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-10T09:45:38.060Z",
+  "exportedAt": "2026-09-10T13:41:03.170Z",
   "customVocab": [
     {
       "id": 1000,
@@ -30,7 +30,7 @@
       "id": 1003,
       "hiragana": "じれる",
       "kanji": "焦れる",
-      "definition": "因事情進展不如預期而焦急、焦躁",
+      "definition": "因事情進展不如預期而焦急、焦躁（指他人或事情進展太慢，而讓旁觀者感到焦急、不耐煩、心急如焚。）",
       "example": "バスを三十分待っても来ないので、彼は焦れている。",
       "translation": "等了公車三十分鐘還沒來，他感到很焦躁。"
     },
@@ -38,7 +38,7 @@
       "id": 1004,
       "hiragana": "あせる",
       "kanji": "焦る",
-      "definition": "著急、慌張；因擔心而急躁",
+      "definition": "著急、慌張；因擔心而急躁（指自己因為進度落後、事情不如預期或時間緊迫，而感到心慌、失去冷靜、急於求成的主觀情緒。）",
       "example": "まだ時間があるので、そんなに焦らなくても大丈夫です。",
       "translation": "還有時間，所以不用那麼著急。"
     },
@@ -46,7 +46,7 @@
       "id": 1005,
       "hiragana": "じれったい",
       "kanji": "焦れったい",
-      "definition": "令人焦急、令人不耐煩；事情遲遲沒有進展而感到心急",
+      "definition": "（形容詞）形容對方或事情進展太慢，讓你看了覺得很吊胃口、很急。",
       "example": "話がなかなか進まなくて、焦れったい気持ちになった。",
       "translation": "事情一直沒有進展，讓人感到很焦急。"
     },
@@ -270,7 +270,7 @@
       "id": 1033,
       "hiragana": "よるがふける",
       "kanji": "夜が更ける",
-      "definition": "夜深；夜色漸深",
+      "definition": "夜深；夜色漸深（可以作動詞/名詞）",
       "example": "夜が更けるにつれて、街は静かになった。",
       "translation": "夜越深，街道就越安靜。"
     },
@@ -3981,6 +3981,44 @@
   ],
   "reviewStates": {
     "1000": "dontknow",
-    "1001": "dontknow"
+    "1001": "dontknow",
+    "1002": "known",
+    "1003": "dontknow",
+    "1004": "dontknow",
+    "1005": "dontknow",
+    "1006": "dontknow",
+    "1007": "dontknow",
+    "1008": "dontknow",
+    "1009": "known",
+    "1010": "known",
+    "1011": "dontknow",
+    "1012": "known",
+    "1013": "known",
+    "1014": "known",
+    "1015": "known",
+    "1016": "known",
+    "1017": "known",
+    "1018": "known",
+    "1019": "known",
+    "1020": "known",
+    "1021": "known",
+    "1022": "known",
+    "1023": "dontknow",
+    "1024": "dontknow",
+    "1025": "known",
+    "1026": "known",
+    "1027": "known",
+    "1028": "dontknow",
+    "1029": "dontknow",
+    "1030": "dontknow",
+    "1031": "dontknow",
+    "1032": "known",
+    "1033": "dontknow",
+    "1034": "dontknow",
+    "1035": "dontknow",
+    "1036": "dontknow",
+    "1037": "dontknow",
+    "1038": "known",
+    "1039": "dontknow"
   }
 }
