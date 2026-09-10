@@ -1,2548 +1,3986 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-01T13:38:45.078Z",
+  "exportedAt": "2026-09-10T09:45:38.060Z",
   "customVocab": [
     {
       "id": 1000,
-      "hiragana": "わり",
-      "kanji": "割",
-      "definition": "比例/成（例如一成）",
-      "example": "一割安く買えました。",
-      "translation": "平咗一成買到。"
+      "hiragana": "たいら",
+      "kanji": "平ら（な）",
+      "definition": "平的、平坦的；平穩、沒有起伏",
+      "example": "この道は平らで歩きやすい。",
+      "translation": "這條路很平坦，走起來很容易。"
     },
     {
       "id": 1001,
-      "hiragana": "いとこ",
-      "kanji": "いとこ",
-      "definition": "表/堂兄弟姊妹",
-      "example": "彼とはいとこです。",
-      "translation": "我同佢係表兄弟。"
+      "hiragana": "へい",
+      "kanji": "平",
+      "definition": "普通、平常；平面；平社員",
+      "example": "彼はまだ平社員だが、仕事には責任を持って取り組んでいる。",
+      "translation": "他現在還是普通職員，但會負責任地投入工作。"
     },
     {
       "id": 1002,
-      "hiragana": "どうし",
-      "kanji": "同士",
-      "definition": "互相/同伴",
-      "example": "友達同士で旅行に行く。",
-      "translation": "同朋友一齊去旅行。"
+      "hiragana": "へいじつ",
+      "kanji": "平日",
+      "definition": "平日、工作日",
+      "example": "平日は毎朝七時に家を出ます。",
+      "translation": "平日每天早上七點離開家。"
     },
     {
       "id": 1003,
-      "hiragana": "うりあげ",
-      "kanji": "売り上げ",
-      "definition": "營業額/銷售額",
-      "example": "今月の売り上げは良いです。",
-      "translation": "今個月嘅營業額唔錯。"
+      "hiragana": "じれる",
+      "kanji": "焦れる",
+      "definition": "因事情進展不如預期而焦急、焦躁",
+      "example": "バスを三十分待っても来ないので、彼は焦れている。",
+      "translation": "等了公車三十分鐘還沒來，他感到很焦躁。"
     },
     {
       "id": 1004,
-      "hiragana": "からとう",
-      "kanji": "辛党",
-      "definition": "鍾意飲酒嘅人",
-      "example": "私は辛党だから、ケーキよりお酒がいい。",
-      "translation": "我係鍾意飲酒嘅人，比起蛋糕我寧願要酒。"
+      "hiragana": "あせる",
+      "kanji": "焦る",
+      "definition": "著急、慌張；因擔心而急躁",
+      "example": "まだ時間があるので、そんなに焦らなくても大丈夫です。",
+      "translation": "還有時間，所以不用那麼著急。"
     },
     {
       "id": 1005,
-      "hiragana": "あまとう",
-      "kanji": "甘党",
-      "definition": "鍾意食甜嘢嘅人",
-      "example": "彼は甘党で、毎日チョコを食べる。",
-      "translation": "佢好鍾意食甜嘢，日日食朱古力。"
+      "hiragana": "じれったい",
+      "kanji": "焦れったい",
+      "definition": "令人焦急、令人不耐煩；事情遲遲沒有進展而感到心急",
+      "example": "話がなかなか進まなくて、焦れったい気持ちになった。",
+      "translation": "事情一直沒有進展，讓人感到很焦急。"
     },
     {
       "id": 1006,
-      "hiragana": "らいにち",
-      "kanji": "来日",
-      "definition": "嚟日本",
-      "example": "友人が来日する予定です。",
-      "translation": "朋友打算嚟日本。"
+      "hiragana": "しょうてん",
+      "kanji": "焦点",
+      "definition": "焦點；重點；焦距",
+      "example": "会議では問題の焦点をはっきりさせる必要がある。",
+      "translation": "會議中有必要明確問題的焦點。"
     },
     {
       "id": 1007,
-      "hiragana": "つきぎめ",
-      "kanji": "月極",
-      "definition": "包月/按月計算",
-      "example": "月極駐車場を借りた。",
-      "translation": "租咗個包月停車場。"
+      "hiragana": "こげる",
+      "kanji": "焦げる",
+      "definition": "燒焦、烤焦；因加熱過度而變黑",
+      "example": "パンを焼きすぎて、少し焦げてしまった。",
+      "translation": "麵包烤過頭，稍微焦掉了。"
     },
     {
       "id": 1008,
-      "hiragana": "つくだに",
-      "kanji": "佃煮",
-      "definition": "佃煮（用醬油同糖煮嘅餸）",
-      "example": "海苔の佃煮でご飯を食べる。",
-      "translation": "用紫菜佃煮送飯。"
+      "hiragana": "こがす",
+      "kanji": "焦がす",
+      "definition": "把……燒焦、烤焦",
+      "example": "母はトーストを焦がしてしまった。",
+      "translation": "媽媽不小心把吐司烤焦了。"
     },
     {
       "id": 1009,
-      "hiragana": "そうじき",
-      "kanji": "掃除機",
-      "definition": "吸塵機",
-      "example": "掃除機をかける。",
-      "translation": "用吸塵機吸塵。"
+      "hiragana": "つらい",
+      "kanji": "辛い",
+      "definition": "辛苦的、難受的、痛苦的；難以忍受的",
+      "example": "失敗を誰にも相談できず、毎日が辛かった。",
+      "translation": "無法向任何人商量失敗的事，每天都很痛苦。"
     },
     {
       "id": 1010,
-      "hiragana": "ためいき(をつく)",
-      "kanji": "ため息(をつく)",
-      "definition": "嘆氣",
-      "example": "疲れてため息をついた。",
-      "translation": "攰到嘆氣。"
+      "hiragana": "からい",
+      "kanji": "辛い",
+      "definition": "辣的；味道刺激的；嚴厲的、苛刻的",
+      "example": "このカレーは辛いので、水をください。",
+      "translation": "這咖哩很辣，請給我水。"
     },
     {
       "id": 1011,
-      "hiragana": "もん",
-      "kanji": "門",
-      "definition": "大門/校門(將一個區域跟另一個區域區分開來所使用的門，中文簡稱「大門」，就是家的大門或是各機關單位外部的大門，大樓進出口的大門等等。  )",
-      "example": "学校の門の前で待つ。",
-      "translation": "喺學校大門前等。"
+      "hiragana": "きょひ",
+      "kanji": "拒否",
+      "definition": "拒絕；拒不接受；否決",
+      "example": "彼は会社からの転勤命令を拒否した。",
+      "translation": "他拒絕了公司要求調職的命令。"
     },
     {
       "id": 1012,
-      "hiragana": "しったかぶり",
-      "kanji": "知ったかぶり",
-      "definition": "扮識/扮代表",
-      "example": "知ったかぶりをして恥をかいた。",
-      "translation": "扮識結果出醜。"
+      "hiragana": "やめる",
+      "kanji": "止める",
+      "definition": "停止；放棄；戒掉；取消",
+      "example": "健康のために、たばこをやめました。",
+      "translation": "為了健康，我戒菸了。"
     },
     {
       "id": 1013,
-      "hiragana": "いっとき",
-      "kanji": "一時",
-      "definition": "一時/暫時",
-      "example": "一時の感情で決めないで。",
-      "translation": "唔好憑一時嘅感情做決定。"
+      "hiragana": "とめる",
+      "kanji": "止める",
+      "definition": "使停止；攔住；停放",
+      "example": "係員が入口で車を止めた。",
+      "translation": "工作人員在入口處讓車停下來。"
     },
     {
       "id": 1014,
-      "hiragana": "こんぱ",
-      "kanji": "コンパ",
-      "definition": "聯誼/聚會（空巴（日語：コンパ，羅馬化：Konpa）是日本大學生之間在輕鬆氛圍下，於居酒屋等場所舉行的飲酒聚會，比傳統的飲酒會（日語：飲み会／のみかい，羅馬化：nomikai）更隨意。關於詞源，有說法認為來自「德語：Kompanie」、「英語：company」、或「法語：compagnie」）",
-      "example": "週末にコンパがある。",
-      "translation": "週末有聯誼活動。"
+      "hiragana": "とまる",
+      "kanji": "止まる",
+      "definition": "停止；停留；停住",
+      "example": "電車が駅に止まった。",
+      "translation": "電車在車站停下來了。"
     },
     {
       "id": 1015,
-      "hiragana": "みやこ",
-      "kanji": "都",
-      "definition": "首都/繁華都市",
-      "example": "京都は昔の都です。",
-      "translation": "京都係古代嘅首都。"
+      "hiragana": "さがる",
+      "kanji": "下がる",
+      "definition": "下降；降低；退後；價格或溫度變低",
+      "example": "夜になると、気温が急に下がる。",
+      "translation": "到了晚上，氣溫會突然下降。"
     },
     {
       "id": 1016,
-      "hiragana": "かぶしきがいしゃ",
-      "kanji": "株式会社",
-      "definition": "股份有限公司",
-      "example": "株式会社を設立する。",
-      "translation": "成立股份有限公司。"
+      "hiragana": "さげる",
+      "kanji": "下げる",
+      "definition": "使下降；降低；放下；懸掛",
+      "example": "店は商品の価格を下げた。",
+      "translation": "商店降低了商品的價格。"
     },
     {
       "id": 1017,
-      "hiragana": "ずいひつ",
-      "kanji": "随筆",
-      "definition": "隨筆/散文",
-      "example": "有名な作家の随筆を読む。",
-      "translation": "讀著名作家嘅散文。"
+      "hiragana": "おちる",
+      "kanji": "落ちる",
+      "definition": "掉落；墜落；下降；落榜",
+      "example": "階段から落ちて、足をけがした。",
+      "translation": "從樓梯上摔下來，弄傷了腳。"
     },
     {
       "id": 1018,
-      "hiragana": "しょうにん",
-      "kanji": "小人",
-      "definition": "用於公共交通（如 JR東日本 等鐵路公司）或設施門票的收費價格區分。通常指 6歲以上至12歲未滿（即小學生）的兒童。",
-      "example": "入館料\n大人（中学生以上）500円\n小人（小学生）200円",
-      "translation": ""
+      "hiragana": "おとす",
+      "kanji": "落とす",
+      "definition": "使掉落；弄掉；降低；遺失",
+      "example": "橋の上から石を落としてはいけません。",
+      "translation": "不可以從橋上把石頭丟下去。"
     },
     {
       "id": 1019,
-      "hiragana": "とい",
-      "kanji": "問い",
-      "definition": "問題/提問",
-      "example": "次の問いに答えなさい。",
-      "translation": "請回答以下問題。"
+      "hiragana": "しらべる",
+      "kanji": "調べる",
+      "definition": "調查；查詢；檢查；查字典",
+      "example": "分からない言葉を辞書で調べた。",
+      "translation": "用字典查了不懂的詞。"
     },
     {
       "id": 1020,
-      "hiragana": "よじじゅくご",
-      "kanji": "四字熟語",
-      "definition": "四字成語",
-      "example": "四字熟語の意味を調べる。",
-      "translation": "查四字成語嘅意思。"
+      "hiragana": "ちょうせつ",
+      "kanji": "調節",
+      "definition": "調節；調整；控制",
+      "example": "部屋の温度を適切に調節してください。",
+      "translation": "請適當調節房間的溫度。"
     },
     {
       "id": 1021,
-      "hiragana": "じゅくご",
-      "kanji": "熟語",
-      "definition": "熟語/詞語",
-      "example": "漢字の熟語を覚える。",
-      "translation": "記漢字嘅詞語。"
+      "hiragana": "いし",
+      "kanji": "石",
+      "definition": "石頭；石塊",
+      "example": "道で丸い石を拾った。",
+      "translation": "我在路上撿到一塊圓石頭。"
     },
     {
       "id": 1022,
-      "hiragana": "つきひ",
-      "kanji": "月日",
-      "definition": "歲月/日子",
-      "example": "月日が経つのは早い。",
-      "translation": "日子過得真係快。"
+      "hiragana": "せきゆ",
+      "kanji": "石油",
+      "definition": "石油、原油",
+      "example": "この国は石油を外国から輸入している。",
+      "translation": "這個國家從外國進口石油。"
     },
     {
       "id": 1023,
-      "hiragana": "いちば/しじょう",
-      "kanji": "市場",
-      "definition": "市場/街市",
-      "example": "朝早く市場へ行く。",
-      "translation": "一早去街市。"
+      "hiragana": "らくせき",
+      "kanji": "落石",
+      "definition": "落石；從山上掉下來的石頭",
+      "example": "大雨の後、山道で落石があった。",
+      "translation": "大雨過後，山路上發生了落石。"
     },
     {
       "id": 1024,
-      "hiragana": "いちぶじょうじょう",
-      "kanji": "一部上場",
-      "definition": "主板上市",
-      "example": "彼の会社は一部上場企業だ。",
-      "translation": "佢間公司係主板上市企業。"
+      "hiragana": "じしゃく",
+      "kanji": "磁石",
+      "definition": "磁鐵；磁石",
+      "example": "磁石に鉄のクリップがついた。",
+      "translation": "鐵製迴紋針被磁鐵吸住了。"
     },
     {
       "id": 1025,
-      "hiragana": "じょうじょう",
-      "kanji": "上場",
-      "definition": "上市",
-      "example": "あの会社は来月上場する。",
-      "translation": "嗰間公司下個月上市。"
+      "hiragana": "ちきゅう",
+      "kanji": "地球",
+      "definition": "地球",
+      "example": "地球は太陽の周りを回っている。",
+      "translation": "地球繞著太陽運行。"
     },
     {
       "id": 1026,
-      "hiragana": "みょうじ",
-      "kanji": "苗字",
-      "definition": "姓氏",
-      "example": "苗字が変わりました。",
-      "translation": "改咗姓氏。"
+      "hiragana": "ちほう",
+      "kanji": "地方",
+      "definition": "地方；地區；鄉下",
+      "example": "地方の人口減少が大きな問題になっている。",
+      "translation": "地方人口減少已成為一個嚴重問題。"
     },
     {
       "id": 1027,
-      "hiragana": "ぱっと",
-      "kanji": "パッと",
-      "definition": "瞬間發生、立刻、一下子",
-      "example": "パッと電気がついた。",
-      "translation": "電燈啪地一下亮了。"
+      "hiragana": "じもと",
+      "kanji": "地元",
+      "definition": "當地；家鄉；本地",
+      "example": "地元の祭りに毎年参加しています。",
+      "translation": "我每年都參加家鄉的祭典。"
     },
     {
       "id": 1028,
-      "hiragana": "ひび",
-      "kanji": "日々",
-      "definition": "日子/每一日",
-      "example": "平穏な日々を送る。",
-      "translation": "過住平靜嘅每一日。"
+      "hiragana": "あくしつな",
+      "kanji": "悪質な",
+      "definition": "惡質的；惡劣的；帶有惡意的",
+      "example": "悪質な業者にだまされないように注意してください。",
+      "translation": "請小心不要被惡質的業者欺騙。"
     },
     {
       "id": 1029,
-      "hiragana": "しぐれ",
-      "kanji": "時雨",
-      "definition": "陣雨（秋冬之間）",
-      "example": "時雨が降ってきた。",
-      "translation": "落起秋冬陣雨。"
+      "hiragana": "あくにん",
+      "kanji": "悪人",
+      "definition": "壞人；惡人；犯罪者",
+      "example": "その映画では、彼が悪人を演じている。",
+      "translation": "在那部電影中，他飾演壞人。"
     },
     {
       "id": 1030,
-      "hiragana": "おおや",
-      "kanji": "大家",
-      "definition": "業主/房東",
-      "example": "アパートの大家さんに挨拶する。",
-      "translation": "同公寓嘅業主打招呼。"
+      "hiragana": "あくしん",
+      "kanji": "悪心",
+      "definition": "惡念、害人之心；噁心、反胃（醫學用語）",
+      "example": "彼は人を傷つける悪心を抱いていた。",
+      "translation": "他懷有傷害他人的惡念。"
     },
     {
       "id": 1031,
-      "hiragana": "てみやげ",
-      "kanji": "手土産",
-      "definition": "手信/小禮物",
-      "example": "手土産にケーキを買う。",
-      "translation": "買蛋糕做手信。"
+      "hiragana": "わるくち",
+      "kanji": "悪口",
+      "definition": "壞話；惡意批評；辱罵",
+      "example": "人の悪口を言うのはやめましょう。",
+      "translation": "不要說別人的壞話。"
     },
     {
       "id": 1032,
-      "hiragana": "くれーむ",
-      "kanji": "クレーム",
-      "definition": "投訴",
-      "example": "お客様からクレームが来た。",
-      "translation": "收到客嘅投訴。"
+      "hiragana": "ふかい",
+      "kanji": "深い",
+      "definition": "深的；深厚的；程度深的",
+      "example": "この湖はとても深いので、泳いではいけません。",
+      "translation": "這座湖很深，不可以游泳。"
     },
     {
       "id": 1033,
-      "hiragana": "はんのう",
-      "kanji": "反応",
-      "definition": "反應",
-      "example": "薬の反応を見る。",
-      "translation": "睇下藥物嘅反應。"
+      "hiragana": "よるがふける",
+      "kanji": "夜が更ける",
+      "definition": "夜深；夜色漸深",
+      "example": "夜が更けるにつれて、街は静かになった。",
+      "translation": "夜越深，街道就越安靜。"
     },
     {
       "id": 1034,
-      "hiragana": "ふり",
-      "kanji": "ふり",
-      "definition": "假裝/扮",
-      "example": "寝たふりをする。",
-      "translation": "扮瞓覺。"
+      "hiragana": "ふける",
+      "kanji": "更ける",
+      "definition": "夜深；時間進入深夜",
+      "example": "夜が更けても、彼はまだ仕事をしていた。",
+      "translation": "即使已經深夜，他仍然在工作。"
     },
     {
       "id": 1035,
-      "hiragana": "しんせつごころ",
-      "kanji": "（親切）心",
-      "definition": "善心/好心",
-      "example": "親切心から手伝った。",
-      "translation": "出於好心幫手。"
+      "hiragana": "ふかまる",
+      "kanji": "深まる",
+      "definition": "加深；變深；關係、理解或感情變得更深",
+      "example": "話し合いを重ねるほど、二人の理解が深まった。",
+      "translation": "經過多次討論，兩人的理解更加深了。"
     },
     {
       "id": 1036,
-      "hiragana": "にんげんせい",
-      "kanji": "（人間）性",
-      "definition": "人性/人品",
-      "example": "彼の人間性を疑う。",
-      "translation": "懷疑佢嘅人品。"
+      "hiragana": "ふかめる",
+      "kanji": "深める",
+      "definition": "加深；深化；增進理解或關係",
+      "example": "交換留学を通して、異文化への理解を深めた。",
+      "translation": "透過交換留學，加深了對異文化的理解。"
     },
     {
       "id": 1037,
-      "hiragana": "あきる",
-      "kanji": "飽きる",
-      "definition": "玩厭/厭倦",
-      "example": "毎日同じ料理で飽きた。",
-      "translation": "日日食同一款餸食到厭。"
+      "hiragana": "しんこくな",
+      "kanji": "深刻な",
+      "definition": "嚴重的；深刻的；事態不容忽視的",
+      "example": "事故によって、地域は深刻な被害を受けた。",
+      "translation": "因為事故，該地區遭受了嚴重的損害。"
     },
     {
       "id": 1038,
-      "hiragana": "かいどくする",
-      "kanji": "解読[する]",
-      "definition": "解讀/破解",
-      "example": "暗号を解読する。",
-      "translation": "破解密碼。"
+      "hiragana": "だく",
+      "kanji": "抱く",
+      "definition": "抱、擁抱；把人抱在懷中",
+      "example": "母親は泣いている子どもを抱いた。",
+      "translation": "母親抱起正在哭泣的孩子。"
     },
     {
       "id": 1039,
-      "hiragana": "しぼる",
-      "kanji": "搾る",
-      "definition": "擠/榨",
-      "example": "レモンを搾る。",
-      "translation": "榨檸檬汁。"
+      "hiragana": "いだく",
+      "kanji": "抱く",
+      "definition": "懷有、抱持；心中產生感情、希望或疑問",
+      "example": "彼は将来への不安を抱いている。",
+      "translation": "他對未來抱有不安。"
     },
     {
       "id": 1040,
-      "hiragana": "よみち加える",
-      "kanji": "読み違える",
-      "definition": "睇錯/解錯",
-      "example": "相手の意圖を読み違える。",
-      "translation": "誤解咗對方嘅用意。"
+      "hiragana": "かかえる",
+      "kanji": "抱える",
+      "definition": "抱著、夾在腋下；承擔問題；雇用",
+      "example": "彼は大きな荷物を抱えて駅へ向かった。",
+      "translation": "他抱著大行李前往車站。"
     },
     {
       "id": 1041,
-      "hiragana": "あふれる",
-      "kanji": "溢れる",
-      "definition": "滿瀉/溢出",
-      "example": "コップから水が溢れる。",
-      "translation": "水喺水杯度滿瀉出嚟。"
+      "hiragana": "じゅんびする",
+      "kanji": "準備する",
+      "definition": "準備、防備；為某件事預先做好安排",
+      "example": "旅行の前に、必要な物を準備しておきましょう。",
+      "translation": "旅行前請先準備好必要的物品。"
     },
     {
       "id": 1042,
-      "hiragana": "たまる",
-      "kanji": "たまる",
-      "definition": "積聚/儲埋",
-      "example": "ストレスがたまる。",
-      "translation": "積埋好多壓力。"
+      "hiragana": "そなえる",
+      "kanji": "備える",
+      "definition": "準備、防備；裝設、備有",
+      "example": "地震や停電に備えて、懐中電灯を用意している。",
+      "translation": "為了防備地震或停電，準備了手電筒。"
     },
     {
       "id": 1043,
-      "hiragana": "かんちがいする",
-      "kanji": "勘違い[する]",
-      "definition": "誤會/搞錯",
-      "example": "時間を勘違いしていた。",
-      "translation": "搞錯咗時間。"
+      "hiragana": "じょうぎ",
+      "kanji": "定規",
+      "definition": "尺、尺規；用來畫直線的工具",
+      "example": "定規を使って、まっすぐな線を引いた。",
+      "translation": "我用尺畫了一條直線。"
     },
     {
       "id": 1044,
-      "hiragana": "とりちがえる",
-      "kanji": "取り違える",
-      "definition": "拎錯/誤解",
-      "example": "傘を取り違える。",
-      "translation": "拎錯遮。"
+      "hiragana": "ていちゃく",
+      "kanji": "定着",
+      "definition": "固定下來、定居；習慣或制度扎根",
+      "example": "新しい制度が会社に定着するまでには時間がかかる。",
+      "translation": "新制度要在公司扎根需要時間。"
     },
     {
       "id": 1045,
-      "hiragana": "とおざける",
-      "kanji": "遠ざける",
-      "definition": "避開/疏遠",
-      "example": "悪い友達を遠ざける。",
-      "translation": "疏遠啲壞朋友。"
+      "hiragana": "どう",
+      "kanji": "同",
+      "definition": "相同、同樣；同一個",
+      "example": "二人は同じ学校の同級生だ。",
+      "translation": "兩人是同一所學校的同學。"
     },
     {
       "id": 1046,
-      "hiragana": "かんれんする",
-      "kanji": "関連[する]",
-      "definition": "關聯/有關",
-      "example": "事件に関連する人物。",
-      "translation": "同單案有關嘅人。"
+      "hiragana": "どうりょう",
+      "kanji": "同僚",
+      "definition": "同事、一起工作的夥伴",
+      "example": "同僚と協力して、仕事を終わらせた。",
+      "translation": "我和同事合作完成了工作。"
     },
     {
       "id": 1047,
-      "hiragana": "ひろがる",
-      "kanji": "広がる",
-      "definition": "蔓延/擴散",
-      "example": "噂が広がる。",
-      "translation": "謠言四處散播。"
+      "hiragana": "どうそうかい",
+      "kanji": "同窓会",
+      "definition": "同學會、校友會",
+      "example": "来月、高校時代の同窓会が開かれる。",
+      "translation": "下個月要舉辦高中時代的同學會。"
     },
     {
       "id": 1048,
-      "hiragana": "けいかする",
-      "kanji": "経過[する]",
-      "definition": "經過/流逝",
-      "example": "手術から一週間が経過した。",
-      "translation": "手術過後過咗一星期。"
+      "hiragana": "とう",
+      "kanji": "等",
+      "definition": "等級；等等；表示同類事物",
+      "example": "一等の席を予約した。",
+      "translation": "我預訂了頭等座位。"
     },
     {
       "id": 1049,
-      "hiragana": "のみこむ",
-      "kanji": "飲み込む",
-      "definition": "吞落去/理解",
-      "example": "薬を水で飲み込む。",
-      "translation": "用水送服粒藥吞落去。"
+      "hiragana": "とうぶん",
+      "kanji": "等分",
+      "definition": "平分、等量分配",
+      "example": "ケーキを四等分して、みんなで食べた。",
+      "translation": "把蛋糕平均分成四份，大家一起吃。"
     },
     {
       "id": 1050,
-      "hiragana": "ようする",
-      "kanji": "要する",
-      "definition": "需要",
-      "example": "解決に時間を要する。",
-      "translation": "需要時間去解決。"
+      "hiragana": "こうとうがっこう",
+      "kanji": "高等学校",
+      "definition": "高中、高等學校",
+      "example": "兄は高等学校で数学を教えている。",
+      "translation": "哥哥在高中教數學。"
     },
     {
       "id": 1051,
-      "hiragana": "うかぶ",
-      "kanji": "浮かぶ",
-      "definition": "浮現/諗起",
-      "example": "いいアイデアが浮かんだ。",
-      "translation": "諗到條好橋。"
+      "hiragana": "とう",
+      "kanji": "当",
+      "definition": "當然；相當、符合；該、這一",
+      "example": "当時、私はまだ学生だった。",
+      "translation": "當時我還是學生。"
     },
     {
       "id": 1052,
-      "hiragana": "でくわす",
-      "kanji": "出くわす",
-      "definition": "撞見/偶遇【100% 偶然、突發、通常帶點麻煩或驚嚇 🐻】",
-      "example": "道で先生に出くわした。",
-      "translation": "喺街度撞見老師。"
+      "hiragana": "とうぜん",
+      "kanji": "当然",
+      "definition": "當然、理所當然",
+      "example": "努力した人が合格するのは当然のことだ。",
+      "translation": "努力的人考上是理所當然的事。"
     },
     {
       "id": 1053,
-      "hiragana": "つっぱしる",
-      "kanji": "突っ走る",
-      "definition": "物理上的「狂奔／極速爆衝」or 行動／性格上的「一意孤行／憑衝動一路衝到底」",
-      "example": "ゴールに向かって突っ走る。/周りの反対を押し切って、自分の理想だけを突っ走った。",
-      "translation": "向住終點狂奔。/唔理身邊人嘅反對，單憑自己嘅理想一路衝到底。"
+      "hiragana": "けんとう",
+      "kanji": "見当",
+      "definition": "推測、估計；方向；目標或線索",
+      "example": "犯人の居場所はまだ見当がつかない。",
+      "translation": "還推測不出犯人的所在位置。"
     },
     {
       "id": 1054,
-      "hiragana": "しのばせる",
-      "kanji": "忍ばせる",
-      "definition": "靜雞雞收埋（忍ぶ的使役形）（忍ぶ= 自己去死頂、自己隱藏蹤影)",
-      "example": "ポケットに手紙を忍ばせる。/笑顔の裏に悲しみを忍ばせる。/",
-      "translation": "靜雞雞將封信收埋喺袋度。/笑容背後藏住悲傷"
+      "hiragana": "みあたる",
+      "kanji": "見当たる",
+      "definition": "找到、看見；找到所尋找的東西",
+      "example": "探していた鍵がやっと見当たった。",
+      "translation": "一直在找的鑰匙終於找到了。"
     },
     {
       "id": 1055,
-      "hiragana": "けいやくする",
-      "kanji": "契約[する]",
-      "definition": "簽約/訂合同",
-      "example": "新しいスマホを契約する。",
-      "translation": "簽新電話合約。"
+      "hiragana": "つうろ",
+      "kanji": "通路",
+      "definition": "走道、通路；供人或車通行的道路",
+      "example": "通路に荷物を置かないでください。",
+      "translation": "請不要把行李放在通道上。"
     },
     {
       "id": 1056,
-      "hiragana": "かきいれる",
-      "kanji": "書き入れる",
-      "definition": "寫入去/填寫",
-      "example": "手帳に予定を書き入れる。",
-      "translation": "將行程寫入記事簿。"
+      "hiragana": "とおる",
+      "kanji": "通る",
+      "definition": "通過、通行；電話接通；考試或審查通過",
+      "example": "この道を通ると、駅に着きます。",
+      "translation": "走過這條路就會到車站。"
     },
     {
       "id": 1057,
-      "hiragana": "かきとめる",
-      "kanji": "書き留める",
-      "definition": "記低/寫低",
-      "example": "先生の話を書き留める。",
-      "translation": "將老師講嘅嘢記低。"
+      "hiragana": "とおす",
+      "kanji": "通す",
+      "definition": "讓某人或某物通過；貫穿；透過；堅持到底",
+      "example": "係員は入場者を順番に通した。",
+      "translation": "工作人員依序讓入場者通過。"
     },
     {
       "id": 1058,
-      "hiragana": "しんようする",
-      "kanji": "信用[する]",
-      "definition": "信任/相信",
-      "example": "彼の言葉を信用する。",
-      "translation": "信佢講嘅嘢。"
+      "hiragana": "つうじる",
+      "kanji": "通じる",
+      "definition": "相通、接通；理解；通曉；通往",
+      "example": "この電話は海外にも通じます。",
+      "translation": "這部電話也能接通海外。"
     },
     {
       "id": 1059,
-      "hiragana": "してきする",
-      "kanji": "指摘[する]",
-      "definition": "指出",
-      "example": "ミスを指摘される。",
-      "translation": "被人指出錯誤。"
+      "hiragana": "そくめん",
+      "kanji": "側面",
+      "definition": "側面；事情的一面",
+      "example": "問題の側面だけを見てはいけない。",
+      "translation": "不能只看問題的一面。"
     },
     {
       "id": 1060,
-      "hiragana": "うけとめる",
-      "kanji": "受け止める",
-      "definition": "接受、正視/接住",
-      "example": "厳しいご指摘を真摯に受け止めます。/ボールを受け止める。",
-      "translation": "我哋會非常真誠聽取嚴厲嘅指正。/接住個波。"
+      "hiragana": "りょうがわ",
+      "kanji": "両側",
+      "definition": "兩側、雙方",
+      "example": "道路の両側に桜の木が植えられている。",
+      "translation": "道路兩側都種了櫻花樹。"
     },
     {
       "id": 1061,
-      "hiragana": "つたわる",
-      "kanji": "伝わる",
-      "definition": "傳達/流傳",
-      "example": "気持ちが伝わる。",
-      "translation": "心意傳達咗出去。"
+      "hiragana": "ふる",
+      "kanji": "降る",
+      "definition": "下雨、下雪；雨或雪從天而降",
+      "example": "午後から雨が降るそうです。",
+      "translation": "聽說下午開始會下雨。"
     },
     {
       "id": 1062,
-      "hiragana": "るーず",
-      "kanji": "ルーズ",
-      "definition": "散漫/求其",
-      "example": "時間にお金にルーズな人。",
-      "translation": "時間同金錢觀念都好散漫嘅人。"
+      "hiragana": "おりる",
+      "kanji": "降りる",
+      "definition": "下來、下車、下山；從高處往下移動",
+      "example": "次の駅で電車を降ります。",
+      "translation": "我在下一站下電車。"
     },
     {
       "id": 1063,
-      "hiragana": "がまんづよい",
-      "kanji": "我慢強い",
-      "definition": "忍耐力強/好忍得",
-      "example": "彼はとても我慢強い。",
-      "translation": "佢個人好忍得。"
+      "hiragana": "かこう",
+      "kanji": "下降",
+      "definition": "下降、下落；數值或程度降低",
+      "example": "景気の悪化で、株価が下降している。",
+      "translation": "由於景氣惡化，股價正在下跌。"
     },
     {
       "id": 1064,
-      "hiragana": "さかさまな",
-      "kanji": "逆さま[な]",
-      "definition": "倒轉/反轉",
-      "example": "本を逆さまに持つ。",
-      "translation": "將本書掉轉拎。"
+      "hiragana": "きがえる",
+      "kanji": "着替える",
+      "definition": "換衣服",
+      "example": "家に帰ったら、すぐ部屋着に着替えた。",
+      "translation": "回家後，我馬上換上家居服。"
     },
     {
       "id": 1065,
-      "hiragana": "てきどな",
-      "kanji": "適度[な]",
-      "definition": "適度/啱啱好",
-      "example": "適度な運動をする。",
-      "translation": "做適度嘅運動。"
+      "hiragana": "りょうがえ",
+      "kanji": "両替",
+      "definition": "兌換、換錢",
+      "example": "空港で日本円に両替した。",
+      "translation": "我在機場兌換成日圓。"
     },
     {
       "id": 1066,
-      "hiragana": "なにげない",
-      "kanji": "何気ない",
-      "definition": "無意中嘅/若無其事嘅",
-      "example": "何気ない一言で傷ついた。",
-      "translation": "因為一句無心之失嘅說話而受傷。"
+      "hiragana": "かわせ",
+      "kanji": "為替",
+      "definition": "匯款、匯票；外匯",
+      "example": "銀行で海外為替の手続きをした。",
+      "translation": "我在銀行辦理了海外匯款手續。"
     },
     {
       "id": 1067,
-      "hiragana": "わいわい",
-      "kanji": "わいわい",
-      "definition": "嘈喧巴閉/熱熱鬧鬧",
-      "example": "みんなでわいわい騒ぐ。",
-      "translation": "大家一齊熱熱鬧鬧咁玩。"
+      "hiragana": "りゆう",
+      "kanji": "理由",
+      "definition": "理由、原因",
+      "example": "遅刻した理由を先生に説明した。",
+      "translation": "我向老師說明了遲到的理由。"
     },
     {
       "id": 1068,
-      "hiragana": "そのうち",
-      "kanji": "そのうち",
-      "definition": "遲啲/過一排",
-      "example": "そのうちわかるよ。",
-      "translation": "遲啲你就會明㗎啦。"
+      "hiragana": "じゆう",
+      "kanji": "自由",
+      "definition": "自由；不受限制",
+      "example": "この席は自由に使ってもかまいません。",
+      "translation": "這個座位可以自由使用。"
     },
     {
       "id": 1069,
-      "hiragana": "ただ",
-      "kanji": "ただ",
-      "definition": "淨係/只係",
-      "example": "ただ待つしかない。",
-      "translation": "淨係可以得個等字。"
+      "hiragana": "けいゆ",
+      "kanji": "経由",
+      "definition": "經由、通過某地或某程序",
+      "example": "大阪経由で東京へ向かいます。",
+      "translation": "我經由大阪前往東京。"
     },
     {
       "id": 1070,
-      "hiragana": "ひょっとして",
-      "kanji": "ひょっとして",
-      "definition": "唔通/莫非(≒もしかして)",
-      "example": "ひょっとして、彼は来ないの？",
-      "translation": "唔通佢唔嚟？"
+      "hiragana": "なさけ",
+      "kanji": "情け",
+      "definition": "人情、慈悲；同情心",
+      "example": "困っている人には情けをかけるべきだ。",
+      "translation": "應該對有困難的人施以同情。"
     },
     {
       "id": 1071,
-      "hiragana": "なんとなく",
-      "kanji": "なんとなく",
-      "definition": "總覺得/唔知點解【側重喺**「原因不明、感覺好模糊」**】(なん：理由)",
-      "example": "なんとなく頭が痛い。",
-      "translation": "總覺得有啲頭痛。"
+      "hiragana": "なさけない",
+      "kanji": "情けない",
+      "definition": "可悲的、可憐的；丟臉的、令人失望的",
+      "example": "こんな簡単な問題も解けないなんて情けない。",
+      "translation": "連這麼簡單的問題都解不出來，真令人失望。"
     },
     {
       "id": 1072,
-      "hiragana": "どうやら",
-      "kanji": "どうやら",
-      "definition": "睇嚟/似乎（やら：…之類）",
-      "example": "どうやら雨が降るそうだ。",
-      "translation": "睇嚟好似會落雨咁。"
+      "hiragana": "ぶんかつ",
+      "kanji": "分割",
+      "definition": "分割、區分；分期付款",
+      "example": "料金を三回に分割して支払う。",
+      "translation": "把費用分三次支付。"
     },
     {
       "id": 1073,
-      "hiragana": "なおさら",
-      "kanji": "尚更",
-      "definition": "更加",
-      "example": "注意されたら、尚更やりたくない。",
-      "translation": "畀人話完，就更加唔想做。"
+      "hiragana": "じかんわり",
+      "kanji": "時間割",
+      "definition": "時間表、課表",
+      "example": "新学期の時間割を確認した。",
+      "translation": "確認了新學期的課表。"
     },
     {
       "id": 1074,
-      "hiragana": "～なおす",
-      "kanji": "～直す",
-      "definition": "重新做～",
-      "example": "書類を書き直す。",
-      "translation": "重新寫過份文件。"
+      "hiragana": "わりびき",
+      "kanji": "割引",
+      "definition": "折扣、打折",
+      "example": "学生証を見せると、料金が一割引になる。",
+      "translation": "出示學生證後，費用會打九折。"
     },
     {
       "id": 1075,
-      "hiragana": "～ごと(に)",
-      "kanji": "～ごと(に)",
-      "definition": "以每～、逐～的方式",
-      "example": "一週間ごとにミーティングを行う。/道路の両側に 10メートルごとに木が植えられている。/家ごとに挨拶して回る。",
-      "translation": "每隔一星期開一次會。 📅/道路兩旁每隔 10 米就種咗一棵樹。 🌳/逐家逐戶去打招呼。 🏘️"
+      "hiragana": "ふえる",
+      "kanji": "増える",
+      "definition": "增加、變多；數量或程度上升",
+      "example": "最近、外国人観光客が増えている。",
+      "translation": "最近外國觀光客增加了。"
     },
     {
       "id": 1076,
-      "hiragana": "～ていど",
-      "kanji": "～程度",
-      "definition": "大約～/～左右：口語中通常「一時間ほど」或「一時間くらい」更常使用，「程度」則給人稍微正式一點的感覺。",
-      "example": "一時間程度かかります。",
-      "translation": "大約要一個鐘左右。"
+      "hiragana": "ます",
+      "kanji": "増す",
+      "definition": "增加、增強；程度變得更高",
+      "example": "春になると、花の香りがますます増す。",
+      "translation": "到了春天，花香會越來越濃。"
     },
     {
       "id": 1077,
-      "hiragana": "くちにだす",
-      "kanji": "口に出す",
-      "definition": "講出口",
-      "example": "不満を口に出す。",
-      "translation": "將不滿講出口。"
+      "hiragana": "ぞうか",
+      "kanji": "増加",
+      "definition": "增加、增長；數量或程度上升",
+      "example": "人口の増加によって、住宅が不足している。",
+      "translation": "由於人口增加，住宅不足。"
     },
     {
       "id": 1078,
-      "hiragana": "なさけはひとのためならず",
-      "kanji": "情けは人の為ならず",
-      "definition": "好心有好報",
-      "example": "情けは人の為ならずという。",
-      "translation": "俗語話好心有好報。"
+      "hiragana": "わりまし",
+      "kanji": "割増",
+      "definition": "加價、額外費用；在基本費用上增加",
+      "example": "夜間に利用すると、料金が割増になる。",
+      "translation": "夜間使用的話，費用會加價。"
     },
     {
       "id": 1079,
-      "hiragana": "はなしをひろげる",
-      "kanji": "[話を]広げる",
-      "definition": "展開話題",
-      "example": "趣味の話を広げる。",
-      "translation": "展開興趣嘅話題。"
+      "hiragana": "しずかな",
+      "kanji": "静かな",
+      "definition": "安靜的、寧靜的；沒有喧鬧聲的",
+      "example": "この図書館はとても静かです。",
+      "translation": "這間圖書館非常安靜。"
     },
     {
       "id": 1080,
-      "hiragana": "いしのうえにもさんねん",
-      "kanji": "石の上にも三年",
-      "definition": "鐵杵磨成針/有志者事竟成（字面直譯： 連冰冷嘅石頭，只要坐足三年，都會變暖。)",
-      "example": "石の上にも三年だから、頑張ろう。",
-      "translation": "只要有恆心鐵杵磨成針，努力啦。"
+      "hiragana": "しずまる",
+      "kanji": "静まる",
+      "definition": "安靜下來、平靜下來；騷動停止",
+      "example": "会場が静まるまで、少し待ちましょう。",
+      "translation": "等會場安靜下來再說吧。"
     },
     {
       "id": 1081,
-      "hiragana": "すめばみやこ",
-      "kanji": "住めば都",
-      "definition": "久居則安/住慣就係好地方",
-      "example": "どんな田舎でも住めば都だ。",
-      "translation": "幾鄉下都好，住慣就係好地方。"
+      "hiragana": "れいせいな",
+      "kanji": "冷静な",
+      "definition": "冷靜的、沉著的；不受感情影響的",
+      "example": "どんな時でも冷静な判断が必要だ。",
+      "translation": "無論何時都需要冷靜的判斷。"
     },
     {
       "id": 1082,
-      "hiragana": "さるもきからおちる",
-      "kanji": "猿も木から落ちる",
-      "definition": "智者千慮，必有一失",
-      "example": "プロでも失敗する、猿も木から落ちるだ。",
-      "translation": "專家都會失手，智者千慮必有一失。"
+      "hiragana": "だんたい",
+      "kanji": "団体",
+      "definition": "團體、組織；為共同目的聚集的人",
+      "example": "学生団体が地域の清掃活動を行った。",
+      "translation": "學生團體進行了地區清潔活動。"
     },
     {
       "id": 1083,
-      "hiragana": "いっしんいったい",
-      "kanji": "一進一退",
-      "definition": "一進一退/時好時壞",
-      "example": "病状は一進一退だ。",
-      "translation": "病情時好時壞。"
+      "hiragana": "しゅうだん",
+      "kanji": "集団",
+      "definition": "集體、群體；聚集在一起的人或物",
+      "example": "大きな集団が駅の前に集まっている。",
+      "translation": "一大群人聚集在車站前。"
     },
     {
       "id": 1084,
-      "hiragana": "しこうさくご",
-      "kanji": "試行錯誤",
-      "definition": "不斷嘗試/Try and error",
-      "example": "試行錯誤を繰り返す。",
-      "translation": "不斷去嘗試同糾正。"
+      "hiragana": "しゅうごう",
+      "kanji": "集合",
+      "definition": "集合、聚集；集合在同一地點",
+      "example": "八時に駅の改札口に集合してください。",
+      "translation": "請八點在車站剪票口集合。"
     },
     {
       "id": 1085,
-      "hiragana": "あたまにつく",
-      "kanji": "頭につく",
-      "definition": "記住/留喺腦海",
-      "example": "その歌のメロディーが頭につく。",
-      "translation": "嗰首歌嘅旋律留咗喺腦海入面。"
+      "hiragana": "すわる",
+      "kanji": "座る",
+      "definition": "坐下；就座",
+      "example": "空いている席に座ってください。",
+      "translation": "請坐到空著的座位上。"
     },
     {
       "id": 1086,
-      "hiragana": "あたまにいれる",
-      "kanji": "頭に入れる",
-      "definition": "記住/擺喺心度（源於「頭に来る」）",
-      "example": "このルールを頭に入れてください。",
-      "translation": "請將呢個規矩記喺心度。"
+      "hiragana": "ざせき",
+      "kanji": "座席",
+      "definition": "座位；坐席，尤其指交通工具或會場的座位",
+      "example": "飛行機の座席を予約した。",
+      "translation": "我預訂了飛機座位。"
     },
     {
       "id": 1087,
-      "hiragana": "めにはいる",
-      "kanji": "目に入る",
-      "definition": "睇到/映入眼簾（「被動映入眼簾」、「唔覺意望到」）",
-      "example": "綺麗な景色が目に入る。",
-      "translation": "靚景映入眼簾。"
+      "hiragana": "ざすう",
+      "kanji": "座数",
+      "definition": "座位數；房間可鋪設的榻榻米數量",
+      "example": "この部屋は六畳の座数になっている。",
+      "translation": "這個房間是六張榻榻米的大小。"
     },
     {
       "id": 1088,
-      "hiragana": "ぶんしょうのながれ",
-      "kanji": "（文章の）流れ",
-      "definition": "(文章嘅) 脈絡/流暢度",
-      "example": "文章の流れが自然だ。",
-      "translation": "文章嘅脈絡好自然。"
+      "hiragana": "ぎんこうこうざ",
+      "kanji": "銀行口座",
+      "definition": "銀行帳戶",
+      "example": "給料は銀行口座に振り込まれます。",
+      "translation": "薪水會匯入銀行帳戶。"
     },
     {
       "id": 1089,
-      "hiragana": "たかみのけんぶつ(する)",
-      "kanji": "高みの見物(する)",
-      "definition": "袖手旁觀/食花生",
-      "example": "喧嘩を高みの見物する。",
-      "translation": "食住花生睇人鬧交。"
+      "hiragana": "すさむ",
+      "kanji": "荒む",
+      "definition": "荒蕪、粗暴；心情變得頹喪或粗野",
+      "example": "忙しい生活が続くと、心が荒むことがある。",
+      "translation": "忙碌的生活持續下去，心情有時會變得頹喪。"
     },
     {
       "id": 1090,
-      "hiragana": "きがおけない",
-      "kanji": "気が置けない",
-      "definition": "唔使客氣/無所不談（≒遠慮なく)",
-      "example": "気が置けない仲間と飲む。",
-      "translation": "同無所不談嘅好兄弟飲酒。"
+      "hiragana": "あらい",
+      "kanji": "荒い",
+      "definition": "粗暴的、猛烈的；粗糙的、凌亂的",
+      "example": "彼は運転が荒いので、少し怖い。",
+      "translation": "他開車很猛烈，所以有點可怕。"
     },
     {
       "id": 1091,
-      "hiragana": "あったまきちゃったな",
-      "kanji": "あったま、きちゃったな",
-      "definition": "真係激死人啦（源自「頭に来る＝怒る」)",
-      "example": "何度もミスされて、あったまきちゃったな。",
-      "translation": "錯完又錯，真係激死人啦。"
+      "hiragana": "たっする",
+      "kanji": "達する",
+      "definition": "達到、到達；達成某個目標或數值",
+      "example": "売上は目標の百万円に達した。",
+      "translation": "銷售額達到了目標的一百萬日圓。"
     },
     {
       "id": 1092,
-      "hiragana": "きにかける",
-      "kanji": "気にかける",
-      "definition": "掛心/在意",
-      "example": "後輩のことを気にかける。",
-      "translation": "掛心啲後輩。"
+      "hiragana": "はったつ",
+      "kanji": "発達",
+      "definition": "發達、發展；身體、技術或能力進步",
+      "example": "医学の発達によって、多くの病気が治せるようになった。",
+      "translation": "由於醫學發達，許多疾病都能治療了。"
     },
     {
       "id": 1093,
-      "hiragana": "きをつかう",
-      "kanji": "気を使う",
-      "definition": "顧慮/費心",
-      "example": "周りに気を使う。",
-      "translation": "顧慮身邊嘅人。"
+      "hiragana": "そくたつ",
+      "kanji": "速達",
+      "definition": "限時郵件、速遞；快速寄送的郵件",
+      "example": "重要な書類を速達で送った。",
+      "translation": "我用限時郵件寄出了重要文件。"
     },
     {
       "id": 1094,
-      "hiragana": "めにする",
-      "kanji": "目にする",
-      "definition": "睇到/見到（「主動目睹」、「親眼望實」）（你有意識地將視線投過去，或者親身見證某件事 👁️）",
-      "example": "珍しい動物を目にする。",
-      "translation": "見到罕有嘅動物。"
+      "hiragana": "ほうたい",
+      "kanji": "包帯",
+      "definition": "繃帶、包紮用的布",
+      "example": "けがをした腕に包帯を巻いた。",
+      "translation": "在受傷的手臂上纏了繃帶。"
     },
     {
       "id": 1095,
-      "hiragana": "あんずるよりうむがやすし",
-      "kanji": "案ずるより産むがやすし",
-      "definition": "擔心不如直接做/船到橋頭自然直（案ずる（自動詞）： 古文寫法，即係現代日文嘅「心配する（擔心、焦慮、思前想後）」。  より（助詞）： 用作對比，即係「比起……」。  やすし（形容詞）： 古文文言文嘅終止形，即係現代日文嘅「易しい（やさしい，簡單、容易）」。）",
-      "example": "案ずるより産むが易しで、やってみたら簡単だった。",
-      "translation": "擔心不如直接做，試完發現其實好簡單。"
+      "hiragana": "つつむ",
+      "kanji": "包む",
+      "definition": "包、包裹；將物品包起來",
+      "example": "プレゼントをきれいな紙で包んだ。",
+      "translation": "用漂亮的紙把禮物包起來。"
     },
     {
       "id": 1096,
-      "hiragana": "ふれる",
-      "kanji": "触れる",
-      "definition": "1. 觸碰、觸摸 2. 提及、涉及、觸犯",
-      "example": "1. 貴重な展示品には触れないでください。 2. 彼はその件について一切触れなかった。",
-      "translation": "1. 請不要觸碰珍貴的展品。 2. 他對那件事隻字未提。"
+      "hiragana": "くるむ",
+      "kanji": "包む",
+      "definition": "包住、裹住；把人或物完整包在裡面",
+      "example": "赤ちゃんを毛布でくるんだ。",
+      "translation": "用毛毯把嬰兒裹住。"
     },
     {
       "id": 1097,
-      "hiragana": "ちがかよう",
-      "kanji": "血が通う",
-      "definition": "1. 充滿人情味、溫暖 2. 血液循環、有生命力",
-      "example": "1. 血の通った温かいサービスを提供したい。 2. 冷たくなった指先に、ようやく血が通ってきた。",
-      "translation": "1. 希望能提供充滿人情味、溫暖的服務。 2. 冰冷的手指尖，終於恢復血液循環了。"
+      "hiragana": "くすり",
+      "kanji": "薬",
+      "definition": "藥；藥物",
+      "example": "食後にこの薬を飲んでください。",
+      "translation": "請在飯後服用這個藥。"
     },
     {
       "id": 1098,
-      "hiragana": "かたる",
-      "kanji": "語る",
-      "definition": "講述、談論",
-      "example": "彼は自分の夢を熱心に語った。",
-      "translation": "他熱情地講述了自己的夢想。"
+      "hiragana": "こなぐすり",
+      "kanji": "粉薬",
+      "definition": "粉末藥",
+      "example": "子どもに粉薬を飲ませた。",
+      "translation": "讓孩子服用了粉末藥。"
     },
     {
       "id": 1099,
-      "hiragana": "ちまき",
-      "kanji": "粽",
-      "definition": "粽子",
-      "example": "端午の節句には粽を食べる。",
-      "translation": "端午節會吃粽子。"
+      "hiragana": "やっきょく",
+      "kanji": "薬局",
+      "definition": "藥局、藥房",
+      "example": "病院の隣に薬局があります。",
+      "translation": "醫院旁邊有藥局。"
     },
     {
       "id": 1100,
-      "hiragana": "かしわもち",
-      "kanji": "柏餅",
-      "definition": "柏餅 (日本端午節/兒童節吃的和菓子)",
-      "example": "こどもの日に柏餅を食べる習慣がある。",
-      "translation": "兒童節有吃柏餅的習慣。"
+      "hiragana": "やくぼう",
+      "kanji": "薬房",
+      "definition": "藥房、藥店；販賣藥品的店",
+      "example": "駅の近くに昔ながらの薬房がある。",
+      "translation": "車站附近有一家老式藥房。"
     },
     {
       "id": 1101,
-      "hiragana": "かしわ",
-      "kanji": "柏",
-      "definition": "槲樹、柏樹",
-      "example": "柏の葉は香りがいい。",
-      "translation": "槲樹葉的香氣很好。"
+      "hiragana": "はつ",
+      "kanji": "初",
+      "definition": "首次、初次；最開始",
+      "example": "初めて日本へ行ったのは十年前です。",
+      "translation": "我第一次去日本是十年前。"
     },
     {
       "id": 1102,
-      "hiragana": "みちる",
-      "kanji": "満ちる",
-      "definition": "1. 充滿、洋溢（抽象情感） 2. 屆滿、月圓（時間或空間）",
-      "example": "1. 彼女の顔は自信に満ちている。 2. 月が満ちる。",
-      "translation": "1. 她的臉上充滿了自信。 2. 月亮變圓。"
+      "hiragana": "はじめ",
+      "kanji": "初め",
+      "definition": "開始、最初；事物的起點",
+      "example": "初めは難しかったが、だんだん慣れた。",
+      "translation": "一開始很難，但漸漸習慣了。"
     },
     {
       "id": 1103,
-      "hiragana": "こうけい",
-      "kanji": "光景",
-      "definition": "光景、情景、景象",
-      "example": "そこには信じられない光景が広がっていた。",
-      "translation": "那裡展現著令人難以置信的景象。"
+      "hiragana": "はじめて",
+      "kanji": "初めて",
+      "definition": "第一次、初次",
+      "example": "初めて一人で海外旅行をした。",
+      "translation": "我第一次獨自去海外旅行。"
     },
     {
       "id": 1104,
-      "hiragana": "えがく",
-      "kanji": "描く",
-      "definition": "描繪、畫",
-      "example": "彼女は美しい風景を描いた。",
-      "translation": "她描繪了美麗的風景。"
+      "hiragana": "さいしょ",
+      "kanji": "最初",
+      "definition": "最初、開始時",
+      "example": "最初に名前を書いてください。",
+      "translation": "請先寫上名字。"
     },
     {
       "id": 1105,
-      "hiragana": "さばく",
-      "kanji": "砂漠",
-      "definition": "沙漠",
-      "example": "砂漠に木を植えるプロジェクトが進んでいる。",
-      "translation": "正在進行在沙漠種樹的計畫。"
+      "hiragana": "かがく",
+      "kanji": "科学",
+      "definition": "科學；研究自然現象的學問",
+      "example": "科学の進歩は私たちの生活を変えた。",
+      "translation": "科學的進步改變了我們的生活。"
     },
     {
       "id": 1106,
-      "hiragana": "ねんげつ",
-      "kanji": "年月",
-      "definition": "年月、歲月",
-      "example": "長い年月をかけて、この技術を開発した。",
-      "translation": "花費了漫長的歲月，研發出了這項技術。"
+      "hiragana": "げか",
+      "kanji": "外科",
+      "definition": "外科；治療外傷或以手術為主的醫學科別",
+      "example": "足をけがしたので、外科を受診した。",
+      "translation": "因為腳受傷，所以去看外科。"
     },
     {
       "id": 1107,
-      "hiragana": "へる",
-      "kanji": "経る",
-      "definition": "1. 經過（時間、歲月） 2. 經由（場所）、通過（過程、手續）",
-      "example": "1. 長い年月を経て、町は大きく変わった。 2. 正式な手続きを経て、ビザが発給された。",
-      "translation": "1. 經過漫長的歲月，城鎮發生了巨大的變化。 2. 經過正式手續後，簽證獲發了。"
+      "hiragana": "ないか",
+      "kanji": "内科",
+      "definition": "內科；以內部疾病診療為主的醫學科別",
+      "example": "熱が続くので、内科へ行った。",
+      "translation": "因為持續發燒，所以去了內科。"
     },
     {
       "id": 1108,
-      "hiragana": "さめる",
-      "kanji": "冷める",
-      "definition": "1. 變涼、冷卻（溫度） 2. 冷淡、冷卻（熱情、感情）",
-      "example": "1. スープが冷めないうちに食べてください。 2. 彼の熱い情熱も、今ではすっかり冷めてしまった。",
-      "translation": "1. 請趁湯還沒涼的時候喝。 2. 他熱烈的熱情，現在也完全冷卻了。"
+      "hiragana": "かもく",
+      "kanji": "科目",
+      "definition": "科目、學科；學校課程中的一門課",
+      "example": "大学で好きな科目を選んだ。",
+      "translation": "在大學選了自己喜歡的科目。"
     },
     {
       "id": 1109,
-      "hiragana": "かかす",
-      "kanji": "欠かす",
-      "definition": "缺少、缺漏",
-      "example": "毎朝のジョギングは欠かさない。",
-      "translation": "每天早上的慢跑是不可缺少的。"
+      "hiragana": "ひふ",
+      "kanji": "皮膚",
+      "definition": "皮膚",
+      "example": "乾燥すると、皮膚がかゆくなる。",
+      "translation": "乾燥時皮膚會發癢。"
     },
     {
       "id": 1110,
-      "hiragana": "ひがい",
-      "kanji": "被害",
-      "definition": "受害、損害",
-      "example": "台風で大きな被害が出た。",
-      "translation": "因為颱風產生了巨大的損害。"
+      "hiragana": "はだ",
+      "kanji": "肌",
+      "definition": "肌膚、皮膚；也可指人的肌膚觸感",
+      "example": "冬は肌が乾燥しやすい。",
+      "translation": "冬天皮膚容易乾燥。"
     },
     {
       "id": 1111,
-      "hiragana": "うける",
-      "kanji": "（アニメが）受ける",
-      "definition": "1. （動畫、笑話等）大受歡迎、吃香 2. 接受、遭受（原動詞受ける）",
-      "example": "1. このアニメは若者の間で非常によく受けている。 2. 影響を受ける。/ 試験を受ける。",
-      "translation": "1. 這部動畫在年輕人之間非常受歡迎。 2. 受到影響。/ 參加考試。"
+      "hiragana": "きき",
+      "kanji": "危機",
+      "definition": "危機、危險狀態；經濟或社會上的重大困境",
+      "example": "会社は経営の危機に直面している。",
+      "translation": "公司正面臨經營危機。"
     },
     {
       "id": 1112,
-      "hiragana": "まけるがかち",
-      "kanji": "負けるが勝ち",
-      "definition": "吃虧就是占便宜、退一步海闊天空",
-      "example": "相手と争うより、負けるが勝ちだと思う。",
-      "translation": "與其和對方爭論，我覺得退一步海闊天空。"
+      "hiragana": "あぶない",
+      "kanji": "危ない",
+      "definition": "危險的；有可能發生不好的事",
+      "example": "危ないですから、下がってください。",
+      "translation": "很危險，請退後。"
     },
     {
       "id": 1113,
-      "hiragana": "とく[な]",
-      "kanji": "得[な]",
-      "definition": "1. 划算、有利、便宜 2. 好處、利益",
-      "example": "1. セールで買うのが一番得だ。 2. 早起きすると、一日が長く使えて得をする。",
-      "translation": "1. 在特價時買最划算。 2. 早起的話，一天時間變長，很有好處。"
+      "hiragana": "けわしい",
+      "kanji": "険しい",
+      "definition": "險峻的；表情嚴厲或態度強硬的",
+      "example": "険しい山道をゆっくり登った。",
+      "translation": "慢慢爬上險峻的山路。"
     },
     {
       "id": 1114,
-      "hiragana": "ちらしずし",
-      "kanji": "ちらし寿司",
-      "definition": "散壽司",
-      "example": "ひな祭りにはちらし寿司を作る。",
-      "translation": "女兒節會做散壽司。"
+      "hiragana": "さからう",
+      "kanji": "逆らう",
+      "definition": "反抗、違抗；逆流而行",
+      "example": "親の忠告に逆らって、危険な道を選んだ。",
+      "translation": "違抗父母的忠告，選擇了危險的道路。"
     },
     {
       "id": 1115,
-      "hiragana": "せんでん[する]",
-      "kanji": "宣伝[する]",
-      "definition": "宣傳",
-      "example": "新製品をテレビで宣伝する。",
-      "translation": "在電視上宣傳新產品。"
+      "hiragana": "ぎゃくてん",
+      "kanji": "逆転",
+      "definition": "逆轉；形勢或結果由不利轉為有利",
+      "example": "試合の最後に逆転して勝った。",
+      "translation": "比賽最後逆轉並獲勝。"
     },
     {
       "id": 1116,
-      "hiragana": "ゆうそう[する]",
-      "kanji": "郵送[する]",
-      "definition": "郵寄",
-      "example": "書類は郵送してください。",
-      "translation": "請將文件郵寄過來。"
+      "hiragana": "すいぶん",
+      "kanji": "水分",
+      "definition": "水分；含在食物或身體中的水",
+      "example": "汗をかいたら、十分に水分を取ってください。",
+      "translation": "流汗後請充分補充水分。"
     },
     {
       "id": 1117,
-      "hiragana": "ゆうかん",
-      "kanji": "夕刊",
-      "definition": "晚報",
-      "example": "毎日夕刊を読んでいる。",
-      "translation": "每天都會看晚報。"
+      "hiragana": "せいぶん",
+      "kanji": "成分",
+      "definition": "成分、組成；構成某物的要素",
+      "example": "この薬の成分を確認してください。",
+      "translation": "請確認這種藥的成分。"
     },
     {
       "id": 1118,
-      "hiragana": "はっこう[する]",
-      "kanji": "発行[する]",
-      "definition": "發行",
-      "example": "新しい雑誌が発行された。",
-      "translation": "發行了新雜誌。"
+      "hiragana": "みぶん",
+      "kanji": "身分",
+      "definition": "身分、地位；個人在社會上的資格或身份",
+      "example": "身分証明書を見せてください。",
+      "translation": "請出示身分證明文件。"
     },
     {
       "id": 1119,
-      "hiragana": "はやおきはさんもんのとく",
-      "kanji": "早起きは三文の得",
-      "definition": "早起三分利 (早起總會有好處)",
-      "example": "昔から「早起きは三文の得」と言う。",
-      "translation": "自古就說「早起三分利」。"
+      "hiragana": "すてる",
+      "kanji": "捨てる",
+      "definition": "丟掉、拋棄；放棄",
+      "example": "ごみは決められた場所に捨ててください。",
+      "translation": "請把垃圾丟在指定地點。"
     },
     {
       "id": 1120,
-      "hiragana": "はやおき",
-      "kanji": "早起き",
-      "definition": "早起",
-      "example": "健康のために早起きを心がけている。",
-      "translation": "為了健康，我用心保持早起的習慣。"
+      "hiragana": "ししゃごにゅう",
+      "kanji": "四捨五入",
+      "definition": "四捨五入",
+      "example": "小数点以下を四捨五入して計算する。",
+      "translation": "將小數點以下四捨五入後計算。"
     },
     {
       "id": 1121,
-      "hiragana": "～ごとく",
-      "kanji": "～如く",
-      "definition": "1. 宛如～、就像～一樣 2. 像...那樣（如前所述）（＝〜のように)",
-      "example": "1. 風の如く走り去った。 2. 先に述べたごとく、この計画は中止になった。",
-      "translation": "1. 如風一般奔馳而去。 2. 正如先前所述，這個計畫已經中止了。"
+      "hiragana": "かぞえる",
+      "kanji": "数える",
+      "definition": "數、計算數量",
+      "example": "出席者の人数を数えた。",
+      "translation": "數了出席者的人數。"
     },
     {
       "id": 1122,
-      "hiragana": "ちいきしゃかい",
-      "kanji": "地域社会",
-      "definition": "地方社會、社區",
-      "example": "地域社会の発展に貢献する。",
-      "translation": "對社區發展做出貢獻。"
+      "hiragana": "てんすう",
+      "kanji": "点数",
+      "definition": "分數、得分；商品或作品的件數",
+      "example": "試験の点数が思ったより高かった。",
+      "translation": "考試分數比想像中高。"
     },
     {
       "id": 1123,
-      "hiragana": "ぶしょ",
-      "kanji": "部署",
-      "definition": "部署、部門",
-      "example": "新しい部署に配属された。",
-      "translation": "被分配到了新部門。"
+      "hiragana": "すうじ",
+      "kanji": "数字",
+      "definition": "數字；表示數量的符號",
+      "example": "電話番号を数字で入力してください。",
+      "translation": "請用數字輸入電話號碼。"
     },
     {
       "id": 1124,
-      "hiragana": "ぶんせき[する]",
-      "kanji": "分析[する]",
-      "definition": "分析",
-      "example": "データを分析して原因を調べる。",
-      "translation": "分析數據並調查原因。"
+      "hiragana": "すうがく",
+      "kanji": "数学",
+      "definition": "數學",
+      "example": "高校で数学を勉強している。",
+      "translation": "我在高中學習數學。"
     },
     {
       "id": 1125,
-      "hiragana": "かいぜん[する]",
-      "kanji": "改善[する]",
-      "definition": "改善",
-      "example": "サービスを改善する必要がある。",
-      "translation": "有必要改善服務。"
+      "hiragana": "かたづける",
+      "kanji": "片付ける",
+      "definition": "收拾、整理；處理完畢",
+      "example": "食事の後で、テーブルを片付けた。",
+      "translation": "吃完飯後收拾了桌子。"
     },
     {
       "id": 1126,
-      "hiragana": "(260ねん)あまり",
-      "kanji": "(260年)余り",
-      "definition": "超過、多…（表示數量、時間、年齡等超過某個數字）",
-      "example": "260年余り続いた江戸幕府が終焉を迎えた。",
-      "translation": "持續了兩百六十多年的江戶幕府迎來了終結。"
+      "hiragana": "しゅうしゅう",
+      "kanji": "収拾",
+      "definition": "收拾、整理；把混亂的事物整理好",
+      "example": "部屋の中を収拾するのに時間がかかった。",
+      "translation": "整理房間花了很長時間。"
     },
     {
       "id": 1127,
-      "hiragana": "ぐろーばる",
-      "kanji": "グローバル",
-      "definition": "全球的、世界的、國際化的",
-      "example": "現代のビジネスにはグローバルな視点が不可欠だ。",
-      "translation": "現代商業不可或缺全球化的視角。"
+      "hiragana": "はへん",
+      "kanji": "破片",
+      "definition": "碎片、破片",
+      "example": "窓ガラスの破片に気をつけてください。",
+      "translation": "請小心窗玻璃的碎片。"
     },
     {
       "id": 1128,
-      "hiragana": "なつび",
-      "kanji": "夏日",
-      "definition": "夏日（日本氣象學指最高氣溫達到或超過25℃的日子）",
-      "example": "今日は最高気温が26度を超えて、今年初の夏日となった。",
-      "translation": "今天最高氣溫超過了26度，成了今年的第一個夏日。"
+      "hiragana": "かけら",
+      "kanji": "欠片",
+      "definition": "碎片、一小塊；殘留的一部分",
+      "example": "皿の欠片を拾って捨てた。",
+      "translation": "撿起盤子的碎片並丟掉。"
     },
     {
       "id": 1129,
-      "hiragana": "つくりあげる",
-      "kanji": "作り上げる",
-      "definition": "1. 完成、做完<br>2. 創立、打造出（事業、體系等）",
-      "example": "1. 長い時間をかけて、素晴らしい作品を作り上げた。<br>2. 彼は一から自分のビジネス帝国を作り上げた。",
-      "translation": "1. 花費了長久歲月，打造出了優秀的作品。<br>2. 他從零開始打造了自己的商業帝國。"
+      "hiragana": "はかい",
+      "kanji": "破壊",
+      "definition": "破壞；使物體或制度失去原來的形狀或功能",
+      "example": "地震が多くの建物を破壊した。",
+      "translation": "地震破壞了許多建築物。"
     },
     {
       "id": 1130,
-      "hiragana": "のうはう",
-      "kanji": "ノウハウ",
-      "definition": "專業知識、技術訣竅（know-how）",
-      "example": "長年の経験で培ったノウハウを後輩に伝授する。",
-      "translation": "將多年經驗積累的技術訣竅傳授給後輩。"
+      "hiragana": "やぶれる",
+      "kanji": "破れる",
+      "definition": "破掉、裂開；紙或布等出現破洞",
+      "example": "袋が破れて、中身が落ちてしまった。",
+      "translation": "袋子破了，裡面的東西掉了出來。"
     },
     {
       "id": 1131,
-      "hiragana": "むちゅう",
-      "kanji": "夢中",
-      "definition": "1. 熱衷、沉迷（形容動詞）<br>2. 在夢中、如在夢中（名詞）",
-      "example": "1. 彼は寝食を忘れてゲームに夢中になっている。<br>2. 夢中で逃げたので、どこを走ったか覚えていない。",
-      "translation": "1. 他廢寢忘食地沉迷於遊戲。<br>2. 因為拼命逃跑，所以不記得跑過了哪裡。"
+      "hiragana": "あらわす",
+      "kanji": "表す",
+      "definition": "表示、表達；將想法或感情表現出來",
+      "example": "彼は言葉で感謝の気持ちを表した。",
+      "translation": "他用言語表達了感謝之情。"
     },
     {
       "id": 1132,
-      "hiragana": "せいさん",
-      "kanji": "生産",
-      "definition": "生產、製造",
-      "example": "この工場では電気自動車を大量生産している。",
-      "translation": "這家工廠大量生產電動汽車。"
+      "hiragana": "げんしょう",
+      "kanji": "現象",
+      "definition": "現象；可以觀察到的事情或變化",
+      "example": "これは自然界でよく見られる現象です。",
+      "translation": "這是自然界常見的現象。"
     },
     {
       "id": 1133,
-      "hiragana": "なぞ",
-      "kanji": "謎",
-      "definition": "謎團、秘密、謎語",
-      "example": "古代遺跡の建造については、未だに多くの謎が残されている。",
-      "translation": "關於古代遺跡的建造，至今仍留有許多謎團。"
+      "hiragana": "ひょうげんする",
+      "kanji": "表現する",
+      "definition": "表現、表達；以語言或行動呈現想法",
+      "example": "絵で自分の気持ちを表現した。",
+      "translation": "用畫作表達了自己的心情。"
+    },
+    {
+      "id": 1134,
+      "hiragana": "はっぴょう",
+      "kanji": "発表",
+      "definition": "發表、公布；公開說明研究或結果",
+      "example": "来週、研究結果を発表します。",
+      "translation": "下週要發表研究結果。"
     },
     {
       "id": 1135,
-      "hiragana": "はなして",
-      "kanji": "話し手",
-      "definition": "說話者、講者【話し手\t發言者/講嘢的人、聞き手\t聆聽者/聽眾、書き手\t作者/ 執筆的人、読み手\t讀者/朗讀的人、買い手\t買家/顧客】",
-      "example": "聞き手は話し手の目を見てしっかり話を聞くべきだ。",
-      "translation": "傾聽者應該看著說話者的眼睛認真聽講。"
+      "hiragana": "ひょうじ",
+      "kanji": "表示",
+      "definition": "顯示、標示；在畫面或標誌上表示資訊",
+      "example": "画面にエラーメッセージが表示された。",
+      "translation": "畫面上顯示了錯誤訊息。"
     },
     {
       "id": 1136,
-      "hiragana": "あいづち(をうつ)",
-      "kanji": "相槌(を打つ)",
-      "definition": "（說話時的）附和、隨聲應和",
-      "example": "相手の話に適度な相槌を打つと、会話がスムーズに進む。",
-      "translation": "適當地附和對方的話，對話就會順暢進行。"
+      "hiragana": "おもて",
+      "kanji": "表",
+      "definition": "表面、正面；外表",
+      "example": "紙の表に名前を書いてください。",
+      "translation": "請在紙張正面寫上名字。"
     },
     {
       "id": 1137,
-      "hiragana": "ひとこと",
-      "kanji": "一言",
-      "definition": "一句話、簡短的發言",
-      "example": "去り際に彼が言った一言が、ずっと心に残っている。",
-      "translation": "他離去時說的那一句話，一直留在我心裡。"
+      "hiragana": "うら",
+      "kanji": "裏",
+      "definition": "背面、後面；內情、另一面",
+      "example": "紙の裏に答えを書いた。",
+      "translation": "在紙張背面寫了答案。"
     },
     {
       "id": 1138,
-      "hiragana": "けつまつ",
-      "kanji": "結末",
-      "definition": "（故事、事件的）結局、結末",
-      "example": "この小説は予想外の結末で終わった。",
-      "translation": "這本小說以意想不到的結局告終。"
+      "hiragana": "しめす",
+      "kanji": "示す",
+      "definition": "表示、指出；展示方向、數值或態度",
+      "example": "地図は駅までの道を示している。",
+      "translation": "地圖顯示通往車站的道路。"
     },
     {
       "id": 1139,
-      "hiragana": "しんぴてき",
-      "kanji": "神秘的",
-      "definition": "神秘的、充滿神秘色彩的",
-      "example": "その古い寺院は朝霧に包まれて神秘的な雰囲気を醸し出していた。",
-      "translation": "那座古老的寺廟被晨霧包圍，散發著神秘的氣氛。"
+      "hiragana": "けいじ",
+      "kanji": "掲示",
+      "definition": "公告、張貼；將通知公開展示",
+      "example": "入口に注意事項が掲示されている。",
+      "translation": "入口張貼了注意事項。"
     },
     {
       "id": 1140,
-      "hiragana": "(あにめに)はまる",
-      "kanji": "(アニメに)嵌まる",
-      "definition": "1. 沉迷、迷上（某事物）<br>2. 陷入、吻合",
-      "example": "1. 友達に勧められて、すっかりそのアニメにはまってしまった。<br>2. 彼の作った計画は見事に敵の罠にはまった。",
-      "translation": "1. 經朋友推薦，我完全迷上了那部動畫。<br>2. 他制定的計劃完美地中了敵人的圈套。"
+      "hiragana": "さす",
+      "kanji": "指す",
+      "definition": "指、指向；以某物為目標",
+      "example": "先生が地図の場所を指した。",
+      "translation": "老師指著地圖上的位置。"
     },
     {
       "id": 1141,
-      "hiragana": "とりのこす",
-      "kanji": "取り残す",
-      "definition": "留下、遺落、甩在後面",
-      "example": "時代の急速な変化に取り残されないように、常に勉強が必要だ。",
-      "translation": "為了不被時代的急速變化甩在後面，持續學習是必要的。"
+      "hiragana": "どりょくする",
+      "kanji": "努力する",
+      "definition": "努力、盡力；為達成目標付出力量",
+      "example": "目標を達成するために努力している。",
+      "translation": "為了達成目標而努力。"
     },
     {
       "id": 1142,
-      "hiragana": "なまみ",
-      "kanji": "生身",
-      "definition": "血肉之軀、活生生的人體",
-      "example": "機械と違って、生身の人間には限界がある。",
-      "translation": "與機械不同，血肉之軀的人類是有極限的。"
+      "hiragana": "ほそく",
+      "kanji": "補足",
+      "definition": "補充說明；補足不足的資訊",
+      "example": "説明が足りないので、少し補足します。",
+      "translation": "說明不夠完整，所以補充一下。"
     },
     {
       "id": 1143,
-      "hiragana": "しゅりょう",
-      "kanji": "狩猟",
-      "definition": "狩獵、打獵",
-      "example": "原始時代の人々は狩猟と採集によって生活していた。",
-      "translation": "原始時代的人們靠狩獵與採集生活。"
+      "hiragana": "おぎなう",
+      "kanji": "補う",
+      "definition": "補充、彌補；填補不足",
+      "example": "不足している栄養を食事で補う。",
+      "translation": "用飲食補充不足的營養。"
     },
     {
       "id": 1144,
-      "hiragana": "ぎせい",
-      "kanji": "犠牲",
-      "definition": "犧牲、付出代價",
-      "example": "多くの人の犠牲の上に、現在の平和が成り立っている。",
-      "translation": "在許多人的犧牲之上，建立了現在的平和。"
+      "hiragana": "おしえる",
+      "kanji": "教える",
+      "definition": "教導、告訴；把知識或方法傳授給別人",
+      "example": "先生が学生に文法を教えている。",
+      "translation": "老師正在教學生文法。"
     },
     {
       "id": 1145,
-      "hiragana": "ゆいごん",
-      "kanji": "遺言",
-      "definition": "遺言、臨終囑咐",
-      "example": "祖父は家族に見守られながら、静かに最後の遺言を残した。",
-      "translation": "祖父在家人的陪伴下，安靜地留下了最後的遺言。"
+      "hiragana": "おそわる",
+      "kanji": "教わる",
+      "definition": "受教、向某人學習",
+      "example": "私は大学の先生に日本語を教わった。",
+      "translation": "我向大學老師學習日語。"
     },
     {
       "id": 1146,
-      "hiragana": "であう",
-      "kanji": "出会う",
-      "definition": "偶然遇見、相遇、碰到",
-      "example": "旅先で偶然、昔の友人と出会った。",
-      "translation": "在旅行途中偶然遇見了以前的朋友。"
+      "hiragana": "まなぶ",
+      "kanji": "学ぶ",
+      "definition": "學習；透過讀書或經驗獲得知識",
+      "example": "外国語を学ぶには、毎日の練習が大切だ。",
+      "translation": "學習外語時，每天練習很重要。"
     },
     {
       "id": 1147,
-      "hiragana": "どせい",
-      "kanji": "土星",
-      "definition": "土星",
-      "example": "望遠鏡を使えば、土星の美しい環を観察することができる。",
-      "translation": "使用望遠鏡的話，可以觀察到土星美麗的光環。"
+      "hiragana": "ならう",
+      "kanji": "習う",
+      "definition": "學習、跟老師學；接受指導",
+      "example": "子どものころ、ピアノを習っていた。",
+      "translation": "我小時候學過鋼琴。"
     },
     {
       "id": 1148,
-      "hiragana": "げんかく",
-      "kanji": "幻覚",
-      "definition": "幻覺",
-      "example": "高熱のせいで、彼は幻覚を見ているようだった。",
-      "translation": "因為發高燒，他好像出現了幻覺。"
+      "hiragana": "ゆでる",
+      "kanji": "茹でる",
+      "definition": "水煮、汆燙；在熱水中煮熟",
+      "example": "卵を十個ゆでた。",
+      "translation": "煮了十顆蛋。"
     },
     {
       "id": 1149,
-      "hiragana": "おそう",
-      "kanji": "襲う",
-      "definition": "1. 襲擊、攻擊<br>2. （災害、不安等）來襲、籠罩",
-      "example": "1. 夜道で突然不審者に襲われた。<br>2. 試験の前日、猛烈な不安に襲われた。",
-      "translation": "1. 在夜路上突然遭到了可疑人士的襲擊。<br>2. 考試前一天，被強烈的焦慮籠罩。"
+      "hiragana": "にる",
+      "kanji": "煮る",
+      "definition": "燉煮、水煮；用熱水或湯汁煮熟",
+      "example": "野菜を柔らかく煮た。",
+      "translation": "把蔬菜煮軟了。"
     },
     {
       "id": 1150,
-      "hiragana": "みをなげだす",
-      "kanji": "身を投げ出す",
-      "definition": "1. 投身、縱身跳下<br>2. 獻身、不惜犧牲生命",
-      "example": "1. 彼は危険を顧みず、溺れている子供を救うために川へ身を投げ出した。<br>2. 国家の安全のために身を投げ出して戦った。",
-      "translation": "1. 他不顧危險，投身河中救起溺水的孩子。<br>2. 為了國家的安全，不惜犧牲性命奮戰。"
+      "hiragana": "はる",
+      "kanji": "貼る",
+      "definition": "貼、張貼；把紙或物品黏在表面",
+      "example": "壁にポスターを貼った。",
+      "translation": "把海報貼在牆上。"
     },
     {
       "id": 1151,
-      "hiragana": "こなごな",
-      "kanji": "粉々",
-      "definition": "粉碎、碎成碎片",
-      "example": "落としたお皿が粉々に割れてしまった。",
-      "translation": "掉落的盤子碎成了粉碎。"
+      "hiragana": "はがす",
+      "kanji": "剥がす",
+      "definition": "撕下、剝下；將貼著的東西取下",
+      "example": "古いシールをきれいに剥がした。",
+      "translation": "把舊貼紙乾淨地撕下來。"
     },
     {
       "id": 1152,
-      "hiragana": "ちる",
-      "kanji": "散る",
-      "definition": "1. （花、葉等）凋謝、飄落<br>2. 散開、分散<br>3. （注意力等）分散",
-      "example": "1. 風が吹いて、桜の花びらが美しく散っていった。<br>2. 雑音のせいで集中力が散ってしまう。",
-      "translation": "1. 起風了，櫻花花瓣美麗地飄落下來。<br>2. 因為噪音，注意力都被分散了。"
+      "hiragana": "きざむ",
+      "kanji": "刻む",
+      "definition": "刻、雕刻；切成細小的形狀；銘刻",
+      "example": "玉ねぎを細かく刻んだ。",
+      "translation": "把洋蔥切得很細。"
     },
     {
       "id": 1153,
-      "hiragana": "びけい",
-      "kanji": "美形",
-      "definition": "容貌美麗的人、俊男/美女",
-      "example": "彼は誰もが見とれるほどの美形だ。",
-      "translation": "他是個任誰看了都會著迷的美男子。"
+      "hiragana": "われる",
+      "kanji": "割れる",
+      "definition": "破裂、裂開；玻璃等碎掉",
+      "example": "落とした皿が割れてしまった。",
+      "translation": "掉下去的盤子破掉了。"
     },
     {
       "id": 1154,
-      "hiragana": "こうざん",
-      "kanji": "鉱山",
-      "definition": "礦山、礦場",
-      "example": "かつてこの町は金鉱山で栄えていた。",
-      "translation": "這座城鎮過去曾因金礦山而繁榮興盛。"
+      "hiragana": "もれる",
+      "kanji": "漏れる",
+      "definition": "漏出、滲出；液體或資訊從縫隙流出",
+      "example": "バケツから水が漏れている。",
+      "translation": "水正從水桶裡漏出來。"
     },
     {
       "id": 1155,
-      "hiragana": "とじこめる",
-      "kanji": "閉じ込める",
-      "definition": "關起來、囚禁、鎖住",
-      "example": "彼は故障したエレベーターの中に1時間も閉じ込められた。",
-      "translation": "他被困在故障的電梯裡長達一小時。"
+      "hiragana": "もらす",
+      "kanji": "漏らす",
+      "definition": "使液體漏出；洩漏、說漏嘴",
+      "example": "秘密を他の人に漏らしてはいけない。",
+      "translation": "不可以把秘密洩漏給別人。"
     },
     {
       "id": 1156,
-      "hiragana": "ちえ",
-      "kanji": "知恵",
-      "definition": "智慧、點子、主意",
-      "example": "みんなで知恵を出し合って、この難題を解決しよう。",
-      "translation": "大家一起集思廣益，來解決這個難題吧。"
+      "hiragana": "かわく",
+      "kanji": "渇く",
+      "definition": "口渴；缺乏水分而乾燥",
+      "example": "運動した後は喉が渇く。",
+      "translation": "運動後會口渴。"
     },
     {
       "id": 1157,
-      "hiragana": "へいし",
-      "kanji": "兵士",
-      "definition": "士兵、軍人",
-      "example": "多くの若い兵士が戦場へと向かった。",
-      "translation": "許多年輕士兵前往了戰場。"
+      "hiragana": "いどむ",
+      "kanji": "挑む",
+      "definition": "挑戰；向困難或對手挑戰",
+      "example": "今年は難しい試験に挑む。",
+      "translation": "今年要挑戰困難的考試。"
     },
     {
       "id": 1158,
-      "hiragana": "わくぐみ",
-      "kanji": "枠組み",
-      "definition": "框架、結構、輪廓、體制",
-      "example": "新しいプロジェクトの基本的な枠組みが決定した。",
-      "translation": "新專案的基本框架已經確定。"
+      "hiragana": "たおれる",
+      "kanji": "倒れる",
+      "definition": "倒下、倒塌；因病或疲勞倒下",
+      "example": "強い風で木が倒れた。",
+      "translation": "樹被強風吹倒了。"
     },
     {
       "id": 1159,
-      "hiragana": "うながす",
-      "kanji": "促す",
-      "definition": "1. 催促　2. 促進、推動",
-      "example": "1. 司会者は発言を忘れている出席者に発言を促した。2. 適度な運動は健康維持と睡眠の質を促す。",
-      "translation": "1. 主持人催促忘記發言的出席者發言。2. 適度的運動能促進健康維持與睡眠品質。"
+      "hiragana": "つぶれる",
+      "kanji": "潰れる",
+      "definition": "壓扁、壓壞；倒閉、破產",
+      "example": "箱が潰れて、中の商品が壊れた。",
+      "translation": "箱子被壓壞，裡面的商品也壞了。"
     },
     {
       "id": 1160,
-      "hiragana": "ものごと",
-      "kanji": "物事",
-      "definition": "事物、萬事萬物",
-      "example": "彼は物事を多角的に考えることができる。",
-      "translation": "他能夠多角度思考事物。"
+      "hiragana": "つぶす",
+      "kanji": "潰す",
+      "definition": "壓扁、壓壞；使組織或公司倒閉；消磨時間",
+      "example": "空き缶を足で潰した。",
+      "translation": "用腳把空罐踩扁了。"
     },
     {
       "id": 1161,
-      "hiragana": "へんせいする",
-      "kanji": "編成する",
-      "definition": "①組編成、組織（團隊、隊伍） ②編排（節目表等）",
-      "example": "①新しいプロジェクトチームを編成する。 ②特集番組を編成して放送する。",
-      "translation": "①組建新的專案團隊。 ②編排並播出特別節目。"
+      "hiragana": "よす",
+      "kanji": "止す",
+      "definition": "停止、不再做；戒除某種行為",
+      "example": "健康のために、たばこは止すことにした。",
+      "translation": "為了健康，我決定戒菸。"
     },
     {
       "id": 1162,
-      "hiragana": "あなうめ",
-      "kanji": "穴埋め",
-      "definition": "①填空（填補空缺） ②填補虧空、彌補不足（資金或時間）",
-      "example": "①テストの穴埋め問題に答える。 ②売上の赤字を貯金で穴埋めした。",
-      "translation": "①回答考試的填空題。 ②用積蓄填補了銷售額的赤字。"
+      "hiragana": "つかむ",
+      "kanji": "掴む",
+      "definition": "抓住、握住；掌握機會、特徵或人心",
+      "example": "チャンスをしっかり掴んでください。",
+      "translation": "請好好把握機會。"
     },
     {
       "id": 1163,
-      "hiragana": "ささえる",
-      "kanji": "支える",
-      "definition": "①支撐、扶住（使物體不倒下） ②支持、作後盾（精神、經濟或生活）",
-      "example": "①倒れそうな木を棒で支える。 ②家族の支えがあって、困難を乗り越えられた。",
-      "translation": "①用棒子支撐快要倒下的樹。 ②有家族的支持，才能克服困難。"
+      "hiragana": "つかまえる",
+      "kanji": "捕まえる",
+      "definition": "抓住、捕捉；逮捕；抓到某人",
+      "example": "警察が犯人を捕まえた。",
+      "translation": "警察抓住了犯人。"
     },
     {
       "id": 1164,
-      "hiragana": "そう",
-      "kanji": "層",
-      "definition": "①階層、族群、基層（具有共同特徵的人群） ②地層、重疊物體的一層",
-      "example": "①この雑誌は幅広い年齢層に読まれている。 ②地震の影響で地層がずれてしまった。",
-      "translation": "①這本雜誌被廣泛年齡層的人閱讀。 ②受地震影響，地層發生了錯位。"
+      "hiragana": "つかまる",
+      "kanji": "捕まる",
+      "definition": "被抓住、被捕；被某人或某物抓到",
+      "example": "逃げていた犯人が捕まった。",
+      "translation": "正在逃跑的犯人被抓到了。"
     },
     {
       "id": 1165,
-      "hiragana": "あつさ",
-      "kanji": "厚さ",
-      "definition": "①厚度 ②（比喻）雄厚、龐大（如戰力、人才、粉絲基礎）",
-      "example": "①この本の厚さは5センチもある。 ②我がチームは選手層の厚さが自慢だ。",
-      "translation": "①這本書的厚度足足有5公分。 ②我們團隊以選手陣容的雄厚自豪。"
+      "hiragana": "やぶれる",
+      "kanji": "敗れる",
+      "definition": "敗北、輸掉；在競爭或比賽中落敗",
+      "example": "最後の試合で敗れてしまった。",
+      "translation": "在最後一場比賽中輸掉了。"
     },
     {
       "id": 1166,
-      "hiragana": "たんこうぼん",
-      "kanji": "単行本",
-      "definition": "單行本（將連載作品彙整獨立出版的一冊圖書）",
-      "example": "雑誌で連載されていた漫画が単行本になった。",
-      "translation": "在雜誌上連載的漫畫出了單行本。"
+      "hiragana": "やぶく",
+      "kanji": "破く",
+      "definition": "撕破、弄破；把紙或包裝撕開",
+      "example": "封筒を破いて、中の手紙を取り出した。",
+      "translation": "撕開信封，取出裡面的信。"
     },
     {
       "id": 1167,
-      "hiragana": "きょうそうげんり",
-      "kanji": "競争原理",
-      "definition": "競爭機制、競爭原理（透過市場自由競爭提升效率與品質的法則）",
-      "example": "市場に競争原理を導入することで、サービスの質が向上した。",
-      "translation": "透過在市場引進競爭機制，提升了服務品質。"
+      "hiragana": "やぶる",
+      "kanji": "破る",
+      "definition": "弄破；打破紀錄、約定或規則；擊敗對手",
+      "example": "大切な約束を破ってはいけない。",
+      "translation": "不可以違反重要的約定。"
     },
     {
       "id": 1168,
-      "hiragana": "うみだす",
-      "kanji": "生み出す",
-      "definition": "①產出、創造（發明或產生新事物） ②產下、培養出（生命或人才）",
-      "example": "①彼は新しいアイデアを次々と生み出した。 ②この地域は多くの偉人を生み出してきた。",
-      "translation": "①他接連創造出新的創意。 ②這個地區培養出了許多偉人。"
+      "hiragana": "あれる",
+      "kanji": "荒れる",
+      "definition": "天氣惡劣；土地荒蕪；局面混亂；皮膚粗糙",
+      "example": "台風で海が荒れている。",
+      "translation": "因為颱風，海面很洶湧。"
     },
     {
       "id": 1169,
-      "hiragana": "のみ",
-      "kanji": "〜のみ",
-      "definition": "只有、僅僅（表示限定，相當於「〜だけ」）",
-      "example": "本日の営業は午前のみとさせていただきます。",
-      "translation": "今天的營業時間僅限於上午。"
+      "hiragana": "みだれる",
+      "kanji": "乱れる",
+      "definition": "散亂、混亂；秩序或生活節奏被打亂",
+      "example": "最近、生活のリズムが乱れている。",
+      "translation": "最近生活作息被打亂了。"
     },
     {
       "id": 1170,
-      "hiragana": "かじょう",
-      "kanji": "過剰",
-      "definition": "過剩、過度（超過正常限度）",
-      "example": "自信過剰になるとミスをしやすくなる。",
-      "translation": "自信過頭的話容易犯錯。"
+      "hiragana": "あばれる",
+      "kanji": "暴れる",
+      "definition": "胡鬧、橫行；粗暴地行動；孩子或醉漢大鬧",
+      "example": "酔った客が店の中で暴れた。",
+      "translation": "喝醉的客人在店裡大鬧。"
     },
     {
       "id": 1171,
-      "hiragana": "じしゅう",
-      "kanji": "次週",
-      "definition": "下週、來週",
-      "example": "この番組の続きは次週放送されます。",
-      "translation": "這檔節目的後續將於下週播出。"
+      "hiragana": "ちらかる",
+      "kanji": "散らかる",
+      "definition": "散亂、凌亂；東西到處散放",
+      "example": "子ども部屋のおもちゃが散らかっている。",
+      "translation": "孩子房間的玩具散得到處都是。"
     },
     {
       "id": 1172,
-      "hiragana": "ちくせきする",
-      "kanji": "蓄積する",
-      "definition": "累積、蓄積（漸漸積攢知識、經驗、資金等）",
-      "example": "長年の研究成果と知識を蓄積する。",
-      "translation": "累積長年的研究成果與知識。"
+      "hiragana": "つながる",
+      "kanji": "繋がる",
+      "definition": "連接、接通；彼此有關聯",
+      "example": "電話がやっと繋がった。",
+      "translation": "電話終於接通了。"
     },
     {
       "id": 1173,
-      "hiragana": "ありゅう",
-      "kanji": "亜流",
-      "definition": "「山寨版」、「三流模仿者」、「次等抄襲派」，或者帶有 「東施效顰」 嘅意思",
-      "example": "彼の作品は名作の亜流にすぎないと批判された。",
-      "translation": "他的作品被批判只不過是名作的跟風模仿之作。"
+      "hiragana": "つなぐ",
+      "kanji": "繋ぐ",
+      "definition": "連接、繫上；將兩個人或物連起來",
+      "example": "インターネットにパソコンを繋いだ。",
+      "translation": "把電腦連接到網際網路。"
     },
     {
       "id": 1174,
-      "hiragana": "べっさつ",
-      "kanji": "別冊",
-      "definition": "別冊、附冊（作為雜誌或書籍的附錄獨立出版的冊子）",
-      "example": "今月は別冊の付録としてカレンダーがついてくる。",
-      "translation": "這個月附贈了別冊日曆作為附錄。"
+      "hiragana": "せつぞくする",
+      "kanji": "接続する",
+      "definition": "連接、接駁；使設備或網路相連",
+      "example": "パソコンにプリンターを接続した。",
+      "translation": "把印表機連接到電腦。"
     },
     {
       "id": 1175,
-      "hiragana": "とりあげる",
-      "kanji": "取り上げる",
-      "definition": "①舉例、討論、報導（提出某話題作為對象） ②沒收、強行奪取",
-      "example": "①今回の授業では環境問題を例に取り上げる。 ②授業中に遊んでいた生徒のスマホを取り上げた。",
-      "translation": "①這次的課程將舉環境問題為例進行討論。 ②沒收了上課中在玩的學生的手機。"
+      "hiragana": "はたす",
+      "kanji": "果たす",
+      "definition": "完成、實現；履行任務或承諾",
+      "example": "彼は責任を果たした。",
+      "translation": "他履行了責任。"
     },
     {
       "id": 1176,
-      "hiragana": "やく",
-      "kanji": "役",
-      "definition": "①角色、戲份（戲劇或影視中的角色） ②職務、職責、作用",
-      "example": "①彼は劇で主人公の役を演じた。 ②彼女はチームで調整役を果たしている。",
-      "translation": "①他在劇中飾演了主角的角色。 ②她在團隊中發揮著協調者的作用。"
+      "hiragana": "みのる",
+      "kanji": "実る",
+      "definition": "結果實；成果實現、取得成果",
+      "example": "長い努力がようやく実った。",
+      "translation": "長久的努力終於有了成果。"
     },
     {
       "id": 1177,
-      "hiragana": "さいちゅう",
-      "kanji": "最中",
-      "definition": "正當…的時候、最熱烈之際（某一動作正在進行的高潮）",
-      "example": "食事の最中に電話が鳴った。",
-      "translation": "正在吃飯的時候，電話響了。"
+      "hiragana": "まかせる",
+      "kanji": "任せる",
+      "definition": "交給、委託；讓別人負責",
+      "example": "この仕事はあなたに任せます。",
+      "translation": "這項工作交給你負責。"
     },
     {
       "id": 1178,
-      "hiragana": "かっき",
-      "kanji": "活気",
-      "definition": "活力、生氣、熱鬧氣氛",
-      "example": "商店街は買い物客で活気にあふれている。",
-      "translation": "商店街因為顧客而充滿活力。"
+      "hiragana": "もうしあげる",
+      "kanji": "申し上げる",
+      "definition": "說、陳述；「言う」的謙讓語",
+      "example": "心からお礼を申し上げます。",
+      "translation": "由衷地向您致謝。"
     },
     {
       "id": 1179,
-      "hiragana": "いきいきする",
-      "kanji": "生き生きする",
-      "definition": "神采奕奕、充滿生氣、活潑充實",
-      "example": "好きなことに打ち込んでいる時の彼は生き生きしている。",
-      "translation": "全神貫注在喜歡的事物上時，他看起來神采奕奕。"
+      "hiragana": "える",
+      "kanji": "得る",
+      "definition": "得到、取得；獲得某種結果或理解",
+      "example": "努力して、希望の仕事を得た。",
+      "translation": "努力後，獲得了理想的工作。"
     },
     {
       "id": 1180,
-      "hiragana": "じっしゃ",
-      "kanji": "実写",
-      "definition": "真人演出、實景拍攝（相對於動畫或繪畫）",
-      "example": "人気の漫画が実写映画化されることになった。",
-      "translation": "人氣漫畫決定被改編成真人版電影。"
+      "hiragana": "ける",
+      "kanji": "蹴る",
+      "definition": "踢；用腳踢",
+      "example": "子どもがボールを蹴った。",
+      "translation": "孩子踢了球。"
     },
     {
       "id": 1181,
-      "hiragana": "とおりすぎる",
-      "kanji": "通り過ぎる",
-      "definition": "①通過、路過（經過某地而不停留） ②（颱風等）過境、掠過",
-      "example": "①特急列車が駅を止まらずに通り過ぎた。 ②台風が通り過ぎて、すっかり晴れ渡った。",
-      "translation": "①特急列車沒有停站就直接通過了車站。 ②颱風過境後，天空完全放晴了。"
+      "hiragana": "なやむ",
+      "kanji": "悩む",
+      "definition": "煩惱、苦惱；為問題而困擾",
+      "example": "将来について悩んでいる。",
+      "translation": "正在為未來而煩惱。"
+    },
+    {
+      "id": 1182,
+      "hiragana": "なぐさめる",
+      "kanji": "慰める",
+      "definition": "安慰、撫慰；使悲傷的人心情平靜",
+      "example": "友達が失敗した私を慰めてくれた。",
+      "translation": "朋友安慰了失敗的我。"
     },
     {
       "id": 1183,
-      "hiragana": "しにせ",
-      "kanji": "老舗",
-      "definition": "歷史悠久、有傳統的店鋪或企業（仕（し）： 泛指「做」或者「侍奉」（同「仕事」的「仕」）。  似せる（にせる）： 模仿、照住做。 「仕似せる」加起來的意思就是：「模仿先祖或前人的做法，將傳統的方法和規矩一代傳一代地繼承下去」。後來這個動詞變成了名詞**「仕似せ（しにせ）」**，專門用來指代那些代代相傳、堅守傳統的家業。)",
-      "example": "この店は江戸時代から続く老舗だ。",
-      "translation": "這家店是從江戶時代延續至今的老字號。"
+      "hiragana": "くたびれる",
+      "kanji": "くたびれる",
+      "definition": "疲憊、疲累；因長時間活動而疲倦",
+      "example": "一日中歩いて、すっかりくたびれた。",
+      "translation": "走了一整天，已經累壞了。"
     },
     {
       "id": 1184,
-      "hiragana": "えいよ",
-      "kanji": "栄誉",
-      "definition": "光榮的名譽、榮耀",
-      "example": "ノーベル賞を受賞することは最高の栄誉だ。",
-      "translation": "獲得諾貝爾獎是最高的榮譽。"
+      "hiragana": "いそぐ",
+      "kanji": "急ぐ",
+      "definition": "趕快、急忙；加快速度",
+      "example": "遅刻しそうなので、急いで駅へ向かった。",
+      "translation": "快要遲到了，所以急忙前往車站。"
     },
     {
       "id": 1185,
-      "hiragana": "しんらい[する]",
-      "kanji": "信頼[する]",
-      "definition": "相信並依賴對方",
-      "example": "彼は上司から深く信頼されている。",
-      "translation": "他深受上司的信任。"
+      "hiragana": "のびる",
+      "kanji": "伸びる",
+      "definition": "伸長、延長；數量、能力或時間增加",
+      "example": "髪がかなり伸びた。",
+      "translation": "頭髮長長了不少。"
     },
     {
       "id": 1186,
-      "hiragana": "てんかい[する]",
-      "kanji": "展開[する]",
-      "definition": "1. 事情的發展或推展。 2. 向外擴展或開展。",
-      "example": "1. 物語は意外な方向に展開した。 2. 全国で新しいビジネスを展開する。",
-      "translation": "1. 故事朝著意想不到的方向發展了。 2. 在全國推展新的業務。"
+      "hiragana": "のばす",
+      "kanji": "伸ばす",
+      "definition": "拉長、延長；伸展；培養能力",
+      "example": "毎朝、体を伸ばす運動をしている。",
+      "translation": "每天早上做伸展身體的運動。"
     },
     {
       "id": 1187,
-      "hiragana": "はしりまわる",
-      "kanji": "走り回る",
-      "definition": "不停地跑來跑去、四處奔走",
-      "example": "子供たちが公園を走り回っている。",
-      "translation": "孩子們在公園裡到處跑。"
+      "hiragana": "ながめる",
+      "kanji": "眺める",
+      "definition": "眺望、觀看；從容地看景色",
+      "example": "窓から海を眺めていた。",
+      "translation": "一直從窗戶眺望海景。"
     },
     {
       "id": 1188,
-      "hiragana": "よこめ",
-      "kanji": "横目",
-      "definition": "斜著眼睛看、眼角餘光",
-      "example": "ショーウィンドウを横目で見ながら歩く。",
-      "translation": "邊走邊用眼角餘光看櫥窗。"
+      "hiragana": "たもつ",
+      "kanji": "保つ",
+      "definition": "保持、維持；使狀態不變",
+      "example": "健康を保つために、毎日歩いている。",
+      "translation": "為了保持健康，每天都走路。"
     },
     {
       "id": 1189,
-      "hiragana": "うごきまわる",
-      "kanji": "動き回る",
-      "definition": "不停地活動、四處走動",
-      "example": "犬が部屋の中を元気に動き回っている。",
-      "translation": "狗在房間裡精神奕奕地跑來跑去。"
+      "hiragana": "ふくらむ",
+      "kanji": "膨らむ",
+      "definition": "膨脹、鼓起；想像或希望擴大",
+      "example": "風船がどんどん膨らんでいる。",
+      "translation": "氣球越來越膨脹。"
     },
     {
       "id": 1190,
-      "hiragana": "てんきゅう",
-      "kanji": "電球",
-      "definition": "發光的球形燈泡",
-      "example": "トイレの電球が切れたので、新しいものに交換した。",
-      "translation": "廁所的燈泡壞了，所以換了個新的。"
+      "hiragana": "ふくむ",
+      "kanji": "含む",
+      "definition": "包含、含有；含在內；嘴裡含著",
+      "example": "この料金には朝食も含まれています。",
+      "translation": "這個費用包含早餐。"
     },
     {
       "id": 1191,
-      "hiragana": "じゅみょう",
-      "kanji": "寿命",
-      "definition": "1. 生命的長度。 2. 物品的使用期限。",
-      "example": "1. 日本人は世界でも寿命が長い。 2. このパソコンはもう寿命だ。",
-      "translation": "1. 日本人在世界上也是壽命很長的。 2. 這台電腦已經到了使用壽命了。"
+      "hiragana": "うけたまわる",
+      "kanji": "承る",
+      "definition": "接受、聽取；「聞く、受ける」的謙讓語",
+      "example": "ご注文を承りました。",
+      "translation": "已收到您的訂單。"
     },
     {
       "id": 1192,
-      "hiragana": "もちいる",
-      "kanji": "用いる",
-      "definition": "使用、採用（較為正式的書面語）",
-      "example": "この製品には最新の技術が用いられている。",
-      "translation": "這項產品採用了最新技術。"
+      "hiragana": "くさる",
+      "kanji": "腐る",
+      "definition": "腐爛；食物變質；墮落、腐敗",
+      "example": "暑い日に食べ物を外に置くと腐る。",
+      "translation": "炎熱天氣把食物放在外面會腐壞。"
     },
     {
       "id": 1193,
-      "hiragana": "からむ",
-      "kanji": "絡む",
-      "definition": "1. 牽涉、與...有關聯。 2. 纏繞。 3. 糾纏（找麻煩）。",
-      "example": "1. 複雑な事情が絡んでいる。 2. 糸が絡んで解けない。 3. 酔っ払いに絡まれた。",
-      "translation": "1. 牽涉到了複雜的情況。 2. 線纏在一起解不開。 3. 被醉漢糾纏了。"
+      "hiragana": "こおる",
+      "kanji": "凍る",
+      "definition": "結冰、凍結",
+      "example": "水たまりが凍っている。",
+      "translation": "水窪結冰了。"
     },
     {
       "id": 1194,
-      "hiragana": "あたる",
-      "kanji": "当たる",
-      "definition": "1. 符合、對應（如法則）。 2. 擊中、碰觸。 3. 中獎。",
-      "example": "1. このケースは法律の第3条に当たる。 2. ボールが頭に当たる。 3. 宝くじが当たった。",
-      "translation": "1. 這個案例符合法律第3條。 2. 球打中頭部。 3. 彩券中獎了。"
+      "hiragana": "ねがう",
+      "kanji": "願う",
+      "definition": "希望、請求；祈願",
+      "example": "皆様の健康を願っています。",
+      "translation": "祝願大家身體健康。"
     },
     {
       "id": 1195,
-      "hiragana": "かっこく",
-      "kanji": "各国",
-      "definition": "世界上的各個國家",
-      "example": "世界各国の代表が会議に参加した。",
-      "translation": "世界各國的代表參加了會議。"
+      "hiragana": "いのる",
+      "kanji": "祈る",
+      "definition": "祈禱、祈求；希望某事實現",
+      "example": "家族の無事を神に祈った。",
+      "translation": "向神祈求家人平安。"
     },
     {
       "id": 1196,
-      "hiragana": "おんだんか",
-      "kanji": "温暖化",
-      "definition": "氣溫逐漸升高的現象（特指全球暖化）",
-      "example": "地球温暖化を防ぐために努力する。",
-      "translation": "為了防止全球暖化而努力。"
+      "hiragana": "いわう",
+      "kanji": "祝う",
+      "definition": "慶祝、祝賀",
+      "example": "友達の卒業をみんなで祝った。",
+      "translation": "大家一起慶祝朋友畢業。"
     },
     {
       "id": 1197,
-      "hiragana": "だいめい",
-      "kanji": "題名",
-      "definition": "書籍、作品、文章等的名稱或標題",
-      "example": "この本の題名は何ですか。",
-      "translation": "這本書的書名是什麼？"
+      "hiragana": "うらなう",
+      "kanji": "占う",
+      "definition": "占卜、算命",
+      "example": "占い師に将来を占ってもらった。",
+      "translation": "請占卜師替我算了未來。"
     },
     {
       "id": 1198,
-      "hiragana": "いっけん",
-      "kanji": "一見",
-      "definition": "1. 乍看之下、表面上。 2. 看一眼。",
-      "example": "1. 彼は一見怖そうだが、実は優しい。 2. 百聞は一見に如かず。",
-      "translation": "1. 他乍看之下很可怕，但其實很溫柔。 2. 百聞不如一見。"
+      "hiragana": "しめる",
+      "kanji": "占める",
+      "definition": "佔有、佔據；在總數中占某比例",
+      "example": "この商品は市場の三割を占めている。",
+      "translation": "這項商品佔有市場的三成。"
     },
     {
       "id": 1199,
-      "hiragana": "かつぐ",
-      "kanji": "担ぐ",
-      "definition": "1. 用肩膀扛起重物。 2. 迷信、講究兆頭（縁起を担ぐ）。 3. 欺騙、捉弄。",
-      "example": "1. 大きな荷物を肩に担ぐ。 2. 彼はよく縁起を担ぐ。 3. 友達にまんまと担がれた。",
-      "translation": "1. 把大件行李扛在肩上。 2. 他很講究迷信／兆頭。 3. 被朋友狠狠地捉弄了。"
+      "hiragana": "つまる",
+      "kanji": "詰まる",
+      "definition": "堵塞；塞滿；陷入困境或話語中斷",
+      "example": "排水口が詰まって、水が流れない。",
+      "translation": "排水口堵塞，水流不出去。"
     },
     {
       "id": 1200,
-      "hiragana": "ベジタリアン",
-      "kanji": "ベジタリアン",
-      "definition": "素食主義者",
-      "example": "彼女はベジタリアンなので、肉料理は食べない。",
-      "translation": "她是一個素食主義者，所以不吃肉類料理。"
+      "hiragana": "つめる",
+      "kanji": "詰める",
+      "definition": "填入、塞入；縮短距離；仔細追究",
+      "example": "箱に荷物を詰めた。",
+      "translation": "把行李塞進箱子裡。"
     },
     {
       "id": 1201,
-      "hiragana": "そしき[する]",
-      "kanji": "組織[する]",
-      "definition": "1. 構成整體的結構。 2. 成立或編組團隊。",
-      "example": "1. 会社の組織が大きく変わった。 2. 新しいチームを組織する。",
-      "translation": "1. 公司的組織發生了很大變化。 2. 組織一支新的隊伍。"
+      "hiragana": "せまる",
+      "kanji": "迫る",
+      "definition": "逼近、迫近；迫使；時間或危險接近",
+      "example": "試験の日が迫っている。",
+      "translation": "考試日期逼近了。"
     },
     {
       "id": 1202,
-      "hiragana": "いだい[なる〜]",
-      "kanji": "偉大[なる〜]",
-      "definition": "非常傑出、超越常人的（「偉大なる」常用於文學作品、歌曲或戲劇標題中）",
-      "example": "彼は歴史に名を残す偉大な科学者だ。/萬城目學的小說作品《偉大なる、しゅららぼん》（偉大的咻啦啦砰）。",
-      "translation": "他是在歷史上留名的偉大科學家。"
+      "hiragana": "せめる",
+      "kanji": "責める",
+      "definition": "責備、責怪；追究責任",
+      "example": "失敗した人を責めてはいけない。",
+      "translation": "不可以責怪失敗的人。"
     },
     {
       "id": 1203,
-      "hiragana": "わきやく",
-      "kanji": "脇役",
-      "definition": "在戲劇、電影或事件中起輔助作用的角色（配角）",
-      "example": "彼は主役よりも脇役として光る俳優だ。",
-      "translation": "相比於主角，他是個作為配角更耀眼的演員。"
+      "hiragana": "せめる",
+      "kanji": "攻める",
+      "definition": "攻擊、進攻；向對手發動攻勢",
+      "example": "チームは積極的に相手を攻めた。",
+      "translation": "隊伍積極地攻擊對手。"
     },
     {
       "id": 1204,
-      "hiragana": "じょじょに",
-      "kanji": "徐々に",
-      "definition": "情況或狀態一點一點地發生變化（逐漸）",
-      "example": "薬の効果が徐々に表れてきた。",
-      "translation": "藥效漸漸顯現出來了。"
+      "hiragana": "うめる",
+      "kanji": "埋める",
+      "definition": "埋入、填埋；填補空白或不足",
+      "example": "庭に穴を掘って、木を埋めた。",
+      "translation": "在庭院挖洞並栽種了樹。"
     },
     {
       "id": 1205,
-      "hiragana": "ひへい[する]",
-      "kanji": "疲弊[する]",
-      "definition": "因長期的勞累或負擔而導致極度疲勞或衰弱",
-      "example": "長引く戦争で国の経済が疲弊している。",
-      "translation": "由於長期的戰爭，國家經濟陷入疲憊。"
+      "hiragana": "よごれる",
+      "kanji": "汚れる",
+      "definition": "弄髒、變髒",
+      "example": "白いシャツが泥で汚れた。",
+      "translation": "白襯衫被泥巴弄髒了。"
     },
     {
       "id": 1206,
-      "hiragana": "せんきょ[する]",
-      "kanji": "選挙[する]",
-      "definition": "透過投票選出代表或負責人",
-      "example": "来月、新しい市長を選ぶ選挙が行われる。",
-      "translation": "下個月將舉行選出新市長的選舉。"
+      "hiragana": "うえる",
+      "kanji": "飢える",
+      "definition": "飢餓；渴望某種知識或愛情",
+      "example": "戦争で多くの人が食べ物に飢えていた。",
+      "translation": "戰爭期間許多人缺乏食物。"
     },
     {
       "id": 1207,
-      "hiragana": "とうばん",
-      "kanji": "当番",
-      "definition": "輪流行使某項職責或工作的值班人員",
-      "example": "今日の掃除当番は誰ですか。",
-      "translation": "今天的打掃值班是誰？"
+      "hiragana": "やしなう",
+      "kanji": "養う",
+      "definition": "養育、撫養；培養能力或維持生活",
+      "example": "家族を養うために働いている。",
+      "translation": "為了養家而工作。"
     },
     {
       "id": 1208,
-      "hiragana": "こうたい[する]",
-      "kanji": "交代[する]",
-      "definition": "替換原本的人或事物，由另一個人接手",
-      "example": "疲れたので、運転を交代しましょう。/「とんぼがえり」を使って、ダメージを与えつつポケモンを交代する。",
-      "translation": "我累了，我們換人開車吧。/使用「急速折返」，一邊造成傷害一邊替換寶可夢。"
+      "hiragana": "いねむりする",
+      "kanji": "居眠りする",
+      "definition": "打瞌睡、坐著睡著",
+      "example": "授業中に居眠りしてしまった。",
+      "translation": "上課時不小心打瞌睡了。"
     },
     {
       "id": 1209,
-      "hiragana": "いっか",
-      "kanji": "一家",
-      "definition": "1. 某個領域的世家或權威（如：音楽一家）。 2. 一家人、全家。",
-      "example": "1. 彼らは音楽一家として知られている。 2. 週末は一家そろって食事をする。",
-      "translation": "1. 他們作為音樂世家而聞名。 2. 週末全家聚在一起吃飯。"
+      "hiragana": "かんべんする",
+      "kanji": "勘弁する",
+      "definition": "原諒、饒恕；請對方不要再做某事",
+      "example": "もう勘弁してください。",
+      "translation": "請饒了我吧。"
     },
     {
       "id": 1210,
-      "hiragana": "きよう[な]",
-      "kanji": "器用[な]",
-      "definition": "1. 手巧，擅長做精細的工作。 2. 處事圓滑、機靈。",
-      "example": "1. 彼女は手先が器用で、自分で服を作る。 2. 彼は人間関係を器用にこなす。",
-      "translation": "1. 她手很巧，會自己做衣服。 2. 他的處理人際關係很圓滑。"
+      "hiragana": "ちえ",
+      "kanji": "知恵",
+      "definition": "智慧、才智；解決問題的巧思",
+      "example": "知恵を出し合って問題を解決した。",
+      "translation": "大家集思廣益解決了問題。"
     },
     {
       "id": 1211,
-      "hiragana": "かく",
-      "kanji": "掻く",
-      "definition": "1. 流汗（汗をかく）。 2. 抓癢（頭をかく）。",
-      "example": "1. 運動してたくさん汗をかいた。 2. 蚊に刺されたところを掻く。",
-      "translation": "1. 運動後流了很多汗。 2. 抓被蚊子叮咬的地方。"
+      "hiragana": "しかい",
+      "kanji": "視界",
+      "definition": "視界；眼睛能看見的範圍",
+      "example": "霧で視界が悪くなっている。",
+      "translation": "因為起霧，視線變得很差。"
     },
     {
       "id": 1212,
-      "hiragana": "みぎにでる",
-      "kanji": "右に出る",
-      "definition": "【慣用句】超越、勝過。通常以「〜の右に出る者はいない」（沒有人能出其右）的否定句型出現，表示在某領域或能力上無人能及、最為優秀。",
-      "example": "語学力において、このクラスで彼の右に出る者はいない。",
-      "translation": "在語言能力方面，這個班上沒有人能超越他（無人能出其右）。"
+      "hiragana": "しや",
+      "kanji": "視野",
+      "definition": "視野；看事情的範圍或角度",
+      "example": "海外で暮らすと、視野が広がる。",
+      "translation": "在海外生活可以拓展視野。"
     },
     {
       "id": 1213,
-      "hiragana": "きりあげる",
-      "kanji": "切り上げる",
-      "definition": "1. 告一段落、提前結束：指將進行中的工作或事物在合適的時機結束。 2. （數學）進位：將小數點或零頭無條件進位。",
-      "example": "1. 雨が降ってきたので、今日の作業はこの辺で切り上げよう。 2. 小数点以下を切り上げて計算する。",
-      "translation": "1. 因為下雨了，今天的工作就在這裡告一段落吧。 2. 將小數點以下進位來計算。"
+      "hiragana": "せいと",
+      "kanji": "生徒",
+      "definition": "學生；通常指中小學學生",
+      "example": "生徒たちは先生の話を静かに聞いている。",
+      "translation": "學生們安靜地聽老師說話。"
     },
     {
       "id": 1214,
-      "hiragana": "けんそんする",
-      "kanji": "謙遜する",
-      "definition": "謙虛、自謙。指刻意貶低自己的能力、成績或評價，以向對方表示禮貌與敬意。",
-      "example": "彼女は「まだまだです」と謙遜して言った。",
-      "translation": "她謙虛地說：「還差得遠呢」。"
+      "hiragana": "ふごう",
+      "kanji": "符号",
+      "definition": "符號、記號；代表某種意思的標誌",
+      "example": "数学では、特別な符号を使う。",
+      "translation": "數學中會使用特殊符號。"
     },
     {
       "id": 1215,
-      "hiragana": "きょうみをしめす",
-      "kanji": "興味を示す",
-      "definition": "表示興趣、展現出興趣。指對某事物表現出關心、好奇或想進一步了解的態度。",
-      "example": "彼は新しいビジネスモデルに強い興味を示した。",
-      "translation": "他對新的商業模式展現出濃厚的興趣。"
+      "hiragana": "い",
+      "kanji": "位",
+      "definition": "位、名次；表示順序或位置的接尾詞",
+      "example": "彼は大会で二位になった。",
+      "translation": "他在大會中取得第二名。"
     },
     {
       "id": 1216,
-      "hiragana": "すぐれる",
-      "kanji": "優れる",
-      "definition": "1. 優秀、出色：能力、品質或價值高於平均。 2. （常接否定形「優れない」）指身體狀況、臉色或心情不佳。",
-      "example": "1. 彼女は語学に優れている。 2. 今日は少し体調が優れないので、早く帰ります。",
-      "translation": "1. 她在語言方面很優秀。 2. 今天身體狀況稍微有點不太好，所以我早點回家。"
+      "hiragana": "かっき",
+      "kanji": "活気",
+      "definition": "活力、生氣；地方或團體充滿朝氣的狀態",
+      "example": "祭りの日は町に活気があふれている。",
+      "translation": "祭典當天城鎮充滿活力。"
     },
     {
       "id": 1217,
-      "hiragana": "うで",
-      "kanji": "腕",
-      "definition": "1. 手臂、胳膊。 2. 本領、技術、技能（如課本中的「太鼓の腕」指打鼓的本領，「料理の腕」指廚藝）。",
-      "example": "1. 転んで腕を怪我した。 2. 彼は長年練習してきたので、太鼓の腕はなかなかのものだ。",
-      "translation": "1. 摔倒把手臂弄傷了。 2. 他練習了很多年，打鼓的本領相當不錯。"
+      "hiragana": "かっぱつな",
+      "kanji": "活発な",
+      "definition": "活潑的；有朝氣、活動頻繁的",
+      "example": "活発な子どもたちが公園で遊んでいる。",
+      "translation": "活潑的孩子們正在公園玩耍。"
     },
     {
       "id": 1218,
-      "hiragana": "じもと",
-      "kanji": "地元",
-      "definition": "當地、本地。指自己居住、出生，或者是某個活動/事物所在的地區。",
-      "example": "大学を卒業したら、地元に戻って就職するつもりだ。",
-      "translation": "大學畢業後，我打算回到家鄉（當地）找工作。"
+      "hiragana": "かつやく",
+      "kanji": "活躍",
+      "definition": "活躍、發揮作用；在某領域表現突出",
+      "example": "若い選手が国際大会で活躍した。",
+      "translation": "年輕選手在國際大賽中活躍。"
     },
     {
       "id": 1219,
-      "hiragana": "じゅうたん",
-      "kanji": "絨毯",
-      "definition": "地毯。鋪在房間地板上的厚重織物。",
-      "example": "冬は寒いので、リビングにふかふかの絨毯を敷いた。",
-      "translation": "因為冬天很冷，所以在客廳鋪了軟綿綿的地毯。"
+      "hiragana": "こうしき",
+      "kanji": "公式",
+      "definition": "正式的；官方的；公式",
+      "example": "公式サイトで情報を確認してください。",
+      "translation": "請在官方網站確認資訊。"
     },
     {
       "id": 1220,
-      "hiragana": "しゅっちょうじょ",
-      "kanji": "出張所",
-      "definition": "辦事處、派出機構。總公司、政府機關等在其他地區設立的分支服務機構。",
-      "example": "パスポートの申請は、市役所の出張所でも行うことができる。",
-      "translation": "申請護照也可以在市政府的辦事處辦理。"
+      "hiragana": "しゃかいしゅぎ",
+      "kanji": "社会主義",
+      "definition": "社會主義；以公共或國家所有為主的制度思想",
+      "example": "社会主義について授業で学んだ。",
+      "translation": "在課堂上學習了社會主義。"
     },
     {
       "id": 1221,
-      "hiragana": "しょちょう",
-      "kanji": "所長",
-      "definition": "所長。研究所、辦事處、派出所或警署等機構的最高負責人。",
-      "example": "彼は長年の功績が認められ、研究所の所長に就任した。",
-      "translation": "他長年的功績得到認可，就任了研究所的所長。"
+      "hiragana": "かいけん",
+      "kanji": "会見",
+      "definition": "會面、會見；正式與記者或他人會面",
+      "example": "首相が記者会見を行った。",
+      "translation": "首相舉行了記者會。"
     },
     {
       "id": 1222,
-      "hiragana": "しゃめい",
-      "kanji": "社名",
-      "definition": "公司名稱。",
-      "example": "経営方針の変更に伴い、新しい社名に変更することになった。",
-      "translation": "隨著經營方針的改變，決定更改新的公司名稱。"
+      "hiragana": "すきま",
+      "kanji": "隙間",
+      "definition": "縫隙、空隙；物體之間的狹窄空間",
+      "example": "ドアの隙間から風が入ってくる。",
+      "translation": "風從門縫吹進來。"
     },
     {
       "id": 1223,
-      "hiragana": "おりもの",
-      "kanji": "織物",
-      "definition": "紡織品、布料。由紗線交織而成的布匹。",
-      "example": "京都の西陣織は、日本を代表する伝統的な織物の一つです。",
-      "translation": "京都的西陣織是代表日本的傳統紡織品之一。"
+      "hiragana": "しそう",
+      "kanji": "思想",
+      "definition": "思想、觀念；對社會或人生的整體看法",
+      "example": "その作家の思想を研究している。",
+      "translation": "正在研究那位作家的思想。"
     },
     {
       "id": 1224,
-      "hiragana": "きっての",
-      "kanji": "きっての",
-      "definition": "第一的、首屈一指的。接在組織或團體等名詞之後（如「社内きっての」），表示在該範圍內能力最突出、最優秀的。",
-      "example": "彼は我が社きっての敏腕営業マンだ。",
-      "translation": "他是我們公司首屈一指的能幹業務員。"
+      "hiragana": "とうろん",
+      "kanji": "討論",
+      "definition": "討論；針對某個議題交換意見",
+      "example": "授業で環境問題について討論した。",
+      "translation": "在課堂上討論了環境問題。"
     },
     {
       "id": 1225,
-      "hiragana": "なにしろ",
-      "kanji": "何しろ",
-      "definition": "反正、無論如何、畢竟。用於強調某個事實或強烈的理由，表示「因為有這樣特別的情況」。",
-      "example": "何しろ初めての海外旅行なもので、分からないことばかりです。",
-      "translation": "畢竟是第一次出國旅行，所以盡是不懂的事情。"
+      "hiragana": "きつい",
+      "kanji": "きつい",
+      "definition": "緊、狹窄；嚴格、辛苦；程度強烈",
+      "example": "この靴は少しきつい。",
+      "translation": "這雙鞋有點緊。"
     },
     {
       "id": 1226,
-      "hiragana": "せいかをあげる",
-      "kanji": "成果を上げる",
-      "definition": "取得成果、獲得好成績。「上げる」在這裡表示產生了好的結果或成效。",
-      "example": "新しいマーケティング戦略が功を奏し、売上に大きな成果を上げた。",
-      "translation": "新的行銷策略奏效，在銷售額上取得了巨大的成果。"
+      "hiragana": "おそろしい",
+      "kanji": "恐ろしい",
+      "definition": "可怕、恐怖的；令人害怕或驚人的",
+      "example": "恐ろしい夢を見て、夜中に目が覚めた。",
+      "translation": "做了可怕的夢，半夜醒了過來。"
     },
     {
       "id": 1227,
-      "hiragana": "み",
-      "kanji": "実",
-      "definition": "1. 果實、種子。 2. （比喻）成果、努力的結晶、實質內容。",
-      "example": "1. 庭の柿の木にたくさんの実がなった。 2. 長年の苦労がついに実を結んだ。",
-      "translation": "1. 院子裡的柿子樹結了很多果實。 2. 長年的辛勞終於結出了成果。"
+      "hiragana": "ようす",
+      "kanji": "様子",
+      "definition": "樣子、情況；人或事物呈現的狀態",
+      "example": "彼の様子がおかしい。",
+      "translation": "他的樣子很奇怪。"
     },
     {
       "id": 1228,
-      "hiragana": "みをむすぶ",
-      "kanji": "実を結ぶ",
-      "definition": "【慣用句】1. 植物結出果實。 2. 努力取得成果、得到回報。",
-      "example": "毎日の厳しい練習がとうとう実を結び、優勝することができた。",
-      "translation": "每天嚴格的訓練終於取得了成果，成功奪得冠軍。"
+      "hiragana": "ほうふ",
+      "kanji": "豊富",
+      "definition": "豐富、充足；數量或種類很多",
+      "example": "この地域は自然が豊富だ。",
+      "translation": "這個地區自然資源豐富。"
     },
     {
       "id": 1229,
-      "hiragana": "みする",
-      "kanji": "魅する",
-      "definition": "吸引、使著迷。使人的心被強烈吸引而無法移開視線。",
-      "example": "彼女の美しく力強いダンスは、観客を完全に魅した。",
-      "translation": "她那優美而充滿力量的舞蹈，完全讓觀眾著迷了。"
+      "hiragana": "おしゃれな",
+      "kanji": "おしゃれな",
+      "definition": "時髦、愛打扮的；具有流行感的",
+      "example": "彼女はいつもおしゃれな服を着ている。",
+      "translation": "她總是穿著時髦的衣服。"
     },
     {
       "id": 1230,
-      "hiragana": "うでをみがく",
-      "kanji": "腕を磨く",
-      "definition": "【慣用句】磨練本領、提升技術。指透過不斷的練習或經驗來增進自身的技能。",
-      "example": "彼は一流のシェフになるため、フランスに渡って料理の腕を磨いた。",
-      "translation": "他為了成為一流的主廚，遠赴法國磨練廚藝。"
+      "hiragana": "はやり",
+      "kanji": "流行",
+      "definition": "流行、時髦；短期間受到很多人喜愛的事物",
+      "example": "この髪型は若者の間で流行している。",
+      "translation": "這種髮型在年輕人之間很流行。"
     },
     {
       "id": 1231,
-      "hiragana": "かおまけ",
-      "kanji": "顔負け",
-      "definition": "連…都自嘆不如、相形見絀。常以「名詞＋顔負け」的形式出現（如「プロ顔負け」），表示某人的程度極高，讓該領域的專家或大人都感到羞愧不如。",
-      "example": "彼は趣味で写真を撮っているが、その技術はプロ顔負けだ。",
-      "translation": "他把攝影當作興趣，但那技術連專業攝影師都自嘆不如。"
+      "hiragana": "じょうひん",
+      "kanji": "上品",
+      "definition": "高雅、優雅；舉止或外表不粗俗",
+      "example": "彼女は上品な話し方をする。",
+      "translation": "她說話方式很優雅。"
     },
     {
       "id": 1232,
-      "hiragana": "おことばにあまえる",
-      "kanji": "お言葉に甘える",
-      "definition": "【慣用句】順從好意、恭敬不如從命。在接受別人的邀請、幫助或款待時使用的客套話，表示不再推辭、大方接受對方的好意。",
-      "example": "「どうぞお泊まりください」「では、お言葉に甘えて一泊させていただきます」",
-      "translation": "「請住下來吧」「那麼，我就恭敬不如從命，在此借宿一晚了。」"
+      "hiragana": "じょうしょう",
+      "kanji": "上昇",
+      "definition": "上升、上漲；數值或程度提高",
+      "example": "物価が上昇して、生活が苦しくなった。",
+      "translation": "物價上漲，生活變得困難。"
     },
     {
       "id": 1233,
-      "hiragana": "こうい",
-      "kanji": "好意",
-      "definition": "好意、善意、親切的心意。也可指對異性的愛慕之情。",
-      "example": "困っていた時に助けてくれた彼の好意に、心から感謝している。",
-      "translation": "衷心感謝他在我困難時伸出援手的好意。"
+      "hiragana": "げんしょう",
+      "kanji": "減少",
+      "definition": "減少；數量或程度變少",
+      "example": "若者の人口が減少している。",
+      "translation": "年輕人口正在減少。"
     },
     {
       "id": 1234,
-      "hiragana": "だいだい",
-      "kanji": "代々",
-      "definition": "代代、世世代代、歷屆。指從祖先開始一代接一代地傳承下去的事物或狀態。",
-      "example": "この土地は代々私たちの家族が受け継いできたものだ。",
-      "translation": "這片土地是我們家族世世代代傳承下來的。"
+      "hiragana": "さくげん",
+      "kanji": "削減",
+      "definition": "削減、縮減；減少費用、預算或人員",
+      "example": "会社は経費を削減した。",
+      "translation": "公司削減了經費。"
     },
     {
       "id": 1235,
-      "hiragana": "せつめいぶん",
-      "kanji": "説明文",
-      "definition": "說明文。旨在解說某個事物、現象或用法的文章。",
-      "example": "この電化製品の説明文は専門用語が多くて分かりにくい。",
-      "translation": "這個電器的說明文專業術語太多，很難懂。"
+      "hiragana": "さくじょ",
+      "kanji": "削除",
+      "definition": "刪除；從資料或文章中去掉",
+      "example": "不要なデータを削除した。",
+      "translation": "刪除了不必要的資料。"
     },
     {
       "id": 1236,
-      "hiragana": "そこで",
-      "kanji": "そこで",
-      "definition": "因此、所以。作為接續詞，承接前文的原因或狀況，引出接下來為了解決問題而採取的行動或結果。",
-      "example": "道に迷ってしまった。そこで、近くの交番で道を尋ねた。",
-      "translation": "迷路了。因此，我在附近的派出所問了路。"
+      "hiragana": "しょうきょ",
+      "kanji": "消去",
+      "definition": "消去、抹除；將資料或痕跡刪除",
+      "example": "間違えた文章を消去してください。",
+      "translation": "請刪除寫錯的文章。"
     },
     {
       "id": 1237,
-      "hiragana": "ぎょうれつ",
-      "kanji": "行列",
-      "definition": "隊伍、排隊。指許多人或事物排成的長長隊列。",
-      "example": "あのラーメン屋はいつも長い行列ができている。",
-      "translation": "那家拉麵店總是排著長長的隊伍。"
+      "hiragana": "たに",
+      "kanji": "谷",
+      "definition": "山谷、谷地",
+      "example": "谷に川が流れている。",
+      "translation": "山谷中有河流。"
     },
     {
       "id": 1238,
-      "hiragana": "ゆききする",
-      "kanji": "行き来する",
-      "definition": "1. 往來、來回（兩地之間）。 2. 互相來往、交往。",
-      "example": "1. 彼は仕事で東京と大阪を頻繁に行き来している。 2. 昔は近所の人とよく行き来があった。",
-      "translation": "1. 他因為工作頻繁在東京和大阪之間來回。 2. 以前和鄰居經常有往來。"
+      "hiragana": "たき",
+      "kanji": "滝",
+      "definition": "瀑布",
+      "example": "山の奥に美しい滝がある。",
+      "translation": "山的深處有一座美麗的瀑布。"
     },
     {
       "id": 1239,
-      "hiragana": "わりあい",
-      "kanji": "割合",
-      "definition": "1. 比例、比率。 2. 【副詞用法】比較、相對地、出乎意料地。",
-      "example": "1. このクラスの男女の割合は半々だ。 2. 今日のテストは割合に易しかった。",
-      "translation": "1. 這個班上男女的比例是一半一半。 2. 今天的考試相對來說比較簡單。"
+      "hiragana": "いっつうのてがみ",
+      "kanji": "一通の手紙",
+      "definition": "一封信；計算信件的量詞",
+      "example": "昨日、友達から一通の手紙が届いた。",
+      "translation": "昨天收到朋友寄來的一封信。"
     },
     {
       "id": 1240,
-      "hiragana": "こうせいする",
-      "kanji": "構成する",
-      "definition": "構成、組成。將多個要素組合起來形成一個整體。",
-      "example": "この委員会は各部署の代表者で構成されている。",
-      "translation": "這個委員會是由各部門的代表構成的。"
+      "hiragana": "おまいり",
+      "kanji": "お参り",
+      "definition": "參拜；到寺廟或神社參拜",
+      "example": "正月に家族と神社へお参りに行った。",
+      "translation": "新年和家人去神社參拜。"
     },
     {
       "id": 1241,
-      "hiragana": "あらたな",
-      "kanji": "新たな",
-      "definition": "新的。修飾名詞，表示前所未有的、剛開始的，或者是重新開始的狀態，語氣比「新しい」更為正式或用於抽象事物。",
-      "example": "新年を迎えて、新たな気持ちで仕事に取り組む。",
-      "translation": "迎接新年，以新的心情投入工作。"
+      "hiragana": "まつり",
+      "kanji": "祭り",
+      "definition": "祭典、節慶；傳統慶祝活動",
+      "example": "夏祭りで花火を見た。",
+      "translation": "在夏日祭典看了煙火。"
     },
     {
       "id": 1242,
-      "hiragana": "しゅうだん",
-      "kanji": "集団",
-      "definition": "集團、群體。聚集在一起的一群人或動物。",
-      "example": "人間は社会的な集団の中で生活している生き物だ。",
-      "translation": "人類是在社會性群體中生活的生物。"
+      "hiragana": "きょうみ",
+      "kanji": "興味",
+      "definition": "興趣、關心",
+      "example": "私は日本の歴史に興味があります。",
+      "translation": "我對日本歷史有興趣。"
     },
     {
       "id": 1243,
-      "hiragana": "たつ",
-      "kanji": "経つ",
-      "definition": "（時間）經過、流逝。隨著時間的推移而過去。",
-      "example": "大学を卒業してから、あっという間に10年が経った。",
-      "translation": "大學畢業後，轉眼間就過了10年。"
+      "hiragana": "きょうみぶかい",
+      "kanji": "興味深い",
+      "definition": "有趣的、值得關注的；引起濃厚興趣的",
+      "example": "とても興味深い記事を読んだ。",
+      "translation": "讀了一篇非常有趣的文章。"
     },
     {
       "id": 1244,
-      "hiragana": "ひりつ",
-      "kanji": "比率",
-      "definition": "比率、比例。兩個數量的比較，或是某部分佔整體的比例。",
-      "example": "企業の利益に対する人件費の比率を計算する。",
-      "translation": "計算人事費用相對於企業利潤的比率。"
+      "hiragana": "いりょう",
+      "kanji": "医療",
+      "definition": "醫療；疾病診斷與治療相關的服務",
+      "example": "医療技術が進歩している。",
+      "translation": "醫療技術正在進步。"
     },
     {
       "id": 1245,
-      "hiragana": "ぶんたんする",
-      "kanji": "分担する",
-      "definition": "分擔。將工作、責任或費用等分配給多人共同承擔。",
-      "example": "チームのメンバーで仕事の役割を分担して進める。",
-      "translation": "團隊成員之間分擔工作角色來推進。"
+      "hiragana": "いがく",
+      "kanji": "医学",
+      "definition": "醫學；研究疾病與治療的學問",
+      "example": "医学を学ぶために大学へ進学した。",
+      "translation": "為了學習醫學而升讀大學。"
     },
     {
       "id": 1246,
-      "hiragana": "さすがに",
-      "kanji": "さすがに",
-      "definition": "1. 就算是...也（畢竟）。表示在極端條件下也免不了有某種反應。 2. 確實、名不虛傳。對高評價的人事物表示認同。",
-      "example": "1. 3日も徹夜すると、さすがに疲れる。 2. 有名なレストランだけあって、さすがに美味しい。",
-      "translation": "1. 連續熬夜3天，畢竟還是會累的。 2. 不愧是著名的餐廳，確實好吃。"
+      "hiragana": "つうがく",
+      "kanji": "通学",
+      "definition": "通學；往返學校",
+      "example": "毎日電車で通学している。",
+      "translation": "每天搭電車上學。"
     },
     {
       "id": 1247,
-      "hiragana": "のうりつ",
-      "kanji": "能率",
-      "definition": "效率。單位時間內完成的工作量或成果。",
-      "example": "適度に休憩をとったほうが、仕事の能率が上がる。",
-      "translation": "適度地休息，工作的效率會比較高。"
+      "hiragana": "ごがく",
+      "kanji": "語学",
+      "definition": "語學；外語學習或語言相關學問",
+      "example": "語学の勉強には継続が必要だ。",
+      "translation": "學習語言需要持續努力。"
     },
     {
       "id": 1248,
-      "hiragana": "おちる",
-      "kanji": "落ちる",
-      "definition": "1. （效率、品質、體力等數值或狀態）下降、變差。 2. 掉落。",
-      "example": "1. 睡眠不足で仕事の能率が落ちている。 2. 木からリンゴが落ちた。",
-      "translation": "1. 因為睡眠不足，工作效率下降了。 2. 蘋果從樹上掉下來了。"
+      "hiragana": "こうじ",
+      "kanji": "工事",
+      "definition": "工程、施工；建設或修繕工作",
+      "example": "駅の前で道路工事をしている。",
+      "translation": "車站前正在進行道路工程。"
     },
     {
       "id": 1249,
-      "hiragana": "とうじょうする",
-      "kanji": "登場する",
-      "definition": "1. （人物）出場、登場。 2. 新產品、新事物問世。",
-      "example": "1. 舞台に主役の俳優が登場した。 2. 画期的な新製品が市場に登場した。",
-      "translation": "1. 主角演員在舞台上登場了。 2. 劃時代的新產品在市場上問世了。"
+      "hiragana": "しんぽ",
+      "kanji": "進歩",
+      "definition": "進步、發展；能力或技術向前提升",
+      "example": "科学技術は急速に進歩している。",
+      "translation": "科學技術正在快速進步。"
     },
     {
       "id": 1250,
-      "hiragana": "ごぞんじ",
-      "kanji": "ご存じ",
-      "definition": "（您）知道、認識。為動詞「知っている」的尊敬語，多用於對長輩或上級詢問。",
-      "example": "山田先生の新しい連絡先をご存じですか。",
-      "translation": "您知道山田老師的新聯絡方式嗎？"
+      "hiragana": "いちめん",
+      "kanji": "一面",
+      "definition": "一面；某事物的一個方面；滿是某物的景象",
+      "example": "新聞の一面に大きく掲載された。",
+      "translation": "被大幅刊登在報紙頭版。"
     },
     {
       "id": 1251,
-      "hiragana": "じんざい",
-      "kanji": "人材",
-      "definition": "人才。具有才能，對企業或組織有價值的人。",
-      "example": "我が社はグローバルに活躍できる優秀な人材を求めている。",
-      "translation": "我們公司正在尋求能在全球活躍的優秀人才。"
+      "hiragana": "じさんする",
+      "kanji": "持参する",
+      "definition": "攜帶、自備；帶著某物前往",
+      "example": "明日は筆記用具を持参してください。",
+      "translation": "明天請自備文具。"
     },
     {
       "id": 1252,
-      "hiragana": "スタートする",
-      "kanji": "スタートする",
-      "definition": "開始、起跑（源自英文 start）。",
-      "example": "新しいプロジェクトが来月からいよいよスタートする。",
-      "translation": "新的企劃下個月終於要開始了。"
+      "hiragana": "けが",
+      "kanji": "怪我",
+      "definition": "受傷、傷口；身體受到的外傷",
+      "example": "転んで足に怪我をした。",
+      "translation": "跌倒弄傷了腳。"
     },
     {
       "id": 1253,
-      "hiragana": "とくめい",
-      "kanji": "特命",
-      "definition": "特別任命、特別使命。為了達成特定任務而下達的特別命令。",
-      "example": "社長からの特命を受けて、新しい部署を立ち上げる。",
-      "translation": "接受社長的特別任命，成立新的部門。"
+      "hiragana": "かげ",
+      "kanji": "陰",
+      "definition": "陰影、背面；背光處",
+      "example": "木の陰で少し休んだ。",
+      "translation": "在樹蔭下休息了一會兒。"
     },
     {
       "id": 1254,
-      "hiragana": "プロジェクト",
-      "kanji": "プロジェクト",
-      "definition": "企劃、專案、計畫（源自英文 project）。",
-      "example": "彼は大きなプロジェクトのリーダーに抜擢された。",
-      "translation": "他被拔擢為大型專案的領導者。"
+      "hiragana": "かげ",
+      "kanji": "影",
+      "definition": "影子；物體遮光形成的暗影",
+      "example": "夕日に長い影ができた。",
+      "translation": "夕陽下形成了長長的影子。"
     },
     {
       "id": 1255,
-      "hiragana": "きゃくほん",
-      "kanji": "脚本",
-      "definition": "劇本。電影、戲劇、電視劇等演出用的台詞與動作指導文本。",
-      "example": "彼は有名な映画の脚本を書いている。",
-      "translation": "他正在寫一部著名電影的劇本。"
+      "hiragana": "みじめな",
+      "kanji": "惨めな",
+      "definition": "悲慘的、淒慘的；令人感到悲傷或羞辱的",
+      "example": "一人で失敗を抱えて、惨めな気持ちになった。",
+      "translation": "獨自承受失敗，感到很淒慘。"
     },
     {
       "id": 1256,
-      "hiragana": "みゃくはく",
-      "kanji": "脈拍",
-      "definition": "脈搏。心臟跳動傳遞到動脈產生的搏動。",
-      "example": "運動した後は脈拍が速くなる。",
-      "translation": "運動後脈搏會變快。"
+      "hiragana": "がっき",
+      "kanji": "楽器",
+      "definition": "樂器",
+      "example": "子どものころ、楽器を習っていた。",
+      "translation": "我小時候學過樂器。"
     },
     {
       "id": 1257,
-      "hiragana": "あがる",
-      "kanji": "上がる",
-      "definition": "（數值、程度）升高、上升。如脈搏升高、氣溫上升等。",
-      "example": "緊張して脈拍が上がった。",
-      "translation": "因為緊張而脈搏升高了。"
+      "hiragana": "あきらかな",
+      "kanji": "明らかな",
+      "definition": "明顯的、清楚的；容易看出來的",
+      "example": "彼の説明には明らかな間違いがある。",
+      "translation": "他的說明中有明顯的錯誤。"
     },
     {
       "id": 1258,
-      "hiragana": "アドレナリン",
-      "kanji": "アドレナリン",
-      "definition": "腎上腺素（源自英文 adrenaline）。",
-      "example": "試合が始まると、アドレナリンが出て痛みを忘れた。",
-      "translation": "比賽一開始，分泌了腎上腺素而忘記了疼痛。"
+      "hiragana": "すいじゅん",
+      "kanji": "水準",
+      "definition": "水準、標準；程度或品質的基準",
+      "example": "この製品は高い水準を保っている。",
+      "translation": "這項產品維持很高的水準。"
     },
     {
       "id": 1259,
-      "hiragana": "りそうてきな",
-      "kanji": "理想的な",
-      "definition": "理想的。符合心中最完美的狀態或條件。",
-      "example": "這裡是讀書の理想的な環境だ。",
-      "translation": "這裡是讀書的理想環境。"
+      "hiragana": "かきとめ",
+      "kanji": "書留",
+      "definition": "掛號信；需要收件確認的郵件",
+      "example": "重要な書類を書留で送った。",
+      "translation": "用掛號信寄出了重要文件。"
     },
     {
       "id": 1260,
-      "hiragana": "げんしょう",
-      "kanji": "現象",
-      "definition": "現象。透過感官能夠察覺到的事物狀態或變化，多用於自然或社會層面。",
-      "example": "温暖化による異常な気象現象が各地で起きている。",
-      "translation": "由於暖化，各地發生了異常的氣象現象。"
+      "hiragana": "ようき",
+      "kanji": "容器",
+      "definition": "容器；盛裝物品的器具",
+      "example": "液体を別の容器に移した。",
+      "translation": "把液體移到另一個容器裡。"
     },
     {
       "id": 1261,
-      "hiragana": "さんこうしりょう",
-      "kanji": "参考資料",
-      "definition": "參考資料。為了調查、研究或決策而作為參考的文獻或數據。",
-      "example": "レポートを書くために、図書館で多くの参考資料を集めた。",
-      "translation": "為了寫報告，在圖書館收集了許多參考資料。"
+      "hiragana": "みさき",
+      "kanji": "岬",
+      "definition": "岬角、海岬；突出海面的陸地",
+      "example": "岬の先から海を眺めた。",
+      "translation": "從海岬頂端眺望大海。"
     },
     {
       "id": 1262,
-      "hiragana": "サイロ",
-      "kanji": "サイロ",
-      "definition": "根據教材，意思是「簡倉、秣草貯藏室」。這是外來語（silo），指農場裡用來貯藏發酵飼料（如牧草）、穀物等的圓筒狀高塔建築，在日本北海道等酪農發達的地區很常見。",
-      "example": "北海道の農場をドライブしていると、大きなサイロがいくつも見える。",
-      "translation": "在北海道的農場開車兜風時，能看到好幾座巨大的圓筒穀倉。"
+      "hiragana": "ふもと",
+      "kanji": "麓",
+      "definition": "山腳、山麓",
+      "example": "山の麓に小さな村がある。",
+      "translation": "山腳下有一座小村莊。"
     },
     {
       "id": 1263,
-      "hiragana": "こんざつした",
-      "kanji": "混雑した",
-      "definition": "根據教材，意思是「混亂、擁擠」。為動詞「混雑する」的過去式或連體形（修飾名詞）。指人多擁擠、交通堵塞或空間內充滿人與物而難以通行的狀態。",
-      "example": "事故の影響で、駅のホームは帰宅する人々で非常に混雑した。",
-      "translation": "受事故影響，車站月台擠滿了要回家的人，非常擁擠。"
+      "hiragana": "とうげ",
+      "kanji": "峠",
+      "definition": "山口、山頂的隘口；困難的高峰",
+      "example": "峠を越えると、町が見えてきた。",
+      "translation": "越過山口後，看見了城鎮。"
     },
     {
       "id": 1264,
-      "hiragana": "ちつじょ",
-      "kanji": "秩序",
-      "definition": "根據教材，意思是「秩序」。指事物有條不紊的狀態，或者是社會、團體中為了維持安定而必須遵守的規範與條理。常見的搭配用法有「秩序を保つ（維持秩序）」、「秩序が乱れる（秩序混亂）」。",
-      "example": "災害時であっても、人々は慌てずに社会の秩序を守って行動した。",
-      "translation": "即使在災害發生時，人們也沒有慌亂，而是遵守著社會秩序來行動。"
+      "hiragana": "さつえい",
+      "kanji": "撮影",
+      "definition": "拍攝、攝影；拍照或拍電影",
+      "example": "ここでは写真撮影は禁止されています。",
+      "translation": "這裡禁止拍照。"
     },
     {
       "id": 1265,
-      "hiragana": "たえず",
-      "kanji": "絶えず",
-      "definition": "根據教材，意思是「不斷地」。作為副詞使用，由動詞「絶える」（中斷、停止）加上否定助動詞「ず」構成。表示動作或狀態持續不斷、沒有任何間歇，語氣上比「いつも」更強調「未曾中斷」的感覺。",
-      "example": "現代の社会では、科学技術が絶えず進歩し続けている。",
-      "translation": "在現代社會中，科學技術正在持續不斷地進步。"
+      "hiragana": "めでたい",
+      "kanji": "めでたい",
+      "definition": "值得慶祝的、吉祥的；令人高興的",
+      "example": "今日はめでたい日なので、家族で祝った。",
+      "translation": "今天是值得慶祝的日子，所以全家一起慶祝。"
     },
     {
       "id": 1266,
-      "hiragana": "かくち",
-      "kanji": "各地",
-      "definition": "根據教材，意思是「各地」。指各個地方、每一個地區。通常用來表示範圍廣泛的許多個地點。",
-      "example": "大雪の影響により、全国各地で交通機関に遅れが出ている。",
-      "translation": "受大雪影響，全國各地的交通運輸工具都出現了延誤。"
+      "hiragana": "ありがたい",
+      "kanji": "ありがたい",
+      "definition": "感謝的、可貴的；受到幫助而感激",
+      "example": "助けていただいて、本当にありがたいです。",
+      "translation": "謝謝您的幫助，我真的很感激。"
     },
     {
       "id": 1267,
-      "hiragana": "しょうぎょう",
-      "kanji": "商業",
-      "definition": "根據教材，意思是「商業」。指以營利為目的，透過商品的買賣、交換或流通等方式來獲取利潤的經濟活動。",
-      "example": "この都市は古くから商業の町として栄えてきた。",
-      "translation": "這座城市自古以來就作為商業城鎮而繁榮發展。"
+      "hiragana": "てきどな",
+      "kanji": "適度な",
+      "definition": "適度的、適當的；不過多也不過少的",
+      "example": "健康のためには適度な運動が必要だ。",
+      "translation": "為了健康，需要適度的運動。"
     },
     {
       "id": 1268,
-      "hiragana": "こうして",
-      "kanji": "こうして",
-      "definition": "如此一來、就這樣。承接前文，表示事物的發展結果或順序。",
-      "example": "こうして、二人は数々の困難を乗り越え、幸せに暮らしました。",
-      "translation": "就這樣，兩人克服了重重困難，過上了幸福的生活。"
+      "hiragana": "てきとうな",
+      "kanji": "適当な",
+      "definition": "適當的、合適的；也可表示隨便、敷衍",
+      "example": "この仕事に適当な人を探している。",
+      "translation": "正在尋找適合這份工作的人。"
     },
     {
       "id": 1269,
-      "hiragana": "あっというま",
-      "kanji": "あっという間",
-      "definition": "瞬間、眨眼之間。形容時間流逝得非常快。",
-      "example": "久しぶりに会った友人と話していると、楽しい時間はあっという間に過ぎてしまう。",
-      "translation": "和久違的朋友聊天，快樂的時光眨眼間就過去了。"
+      "hiragana": "みかけ",
+      "kanji": "見かけ",
+      "definition": "外觀、外表；看起來的樣子",
+      "example": "見かけは若いが、実際は五十歳だ。",
+      "translation": "外表看起來年輕，但實際上五十歲。"
     },
     {
       "id": 1270,
-      "hiragana": "ししゃ",
-      "kanji": "支社",
-      "definition": "分公司。總公司旗下在各地設立的分支機構。",
-      "example": "来月から大阪の支社へ転勤することになり、引越しの準備で忙しい。",
-      "translation": "下個月我將被調到大阪的分公司，正忙著準備搬家。"
+      "hiragana": "にがて",
+      "kanji": "苦手",
+      "definition": "不擅長、不拿手；不喜歡或難以應付",
+      "example": "私は人前で話すのが苦手です。",
+      "translation": "我不擅長在人前說話。"
     },
     {
       "id": 1271,
-      "hiragana": "しみじみ",
-      "kanji": "しみじみ",
-      "definition": "深切地、痛切地。表示從內心深處真切地感受到某種情感，或者安靜仔細地體會。",
-      "example": "自分が親になって初めて、親のありがたみをしみじみと感じた。",
-      "translation": "自己成為父母後，才深切地感受到了父母的恩情。"
+      "hiragana": "とくい",
+      "kanji": "得意",
+      "definition": "擅長、拿手；對某方面很有自信",
+      "example": "彼は料理が得意だ。",
+      "translation": "他很擅長料理。"
     },
     {
       "id": 1272,
-      "hiragana": "つながり",
-      "kanji": "繋がり",
-      "definition": "聯繫、關係、牽絆。事物或人與人之間相連的狀態（如圖片中的「人と人との繋がり」）。",
-      "example": "現代社会では、SNSを通じて遠く離れた人とも簡単につながりを持てるようになった。",
-      "translation": "在現代社會中，透過社群網路也能輕鬆與遠方的人建立聯繫。"
+      "hiragana": "さいそく",
+      "kanji": "催促",
+      "definition": "催促、催辦；要求對方盡快處理",
+      "example": "支払いを催促する電話が来た。",
+      "translation": "接到了催促付款的電話。"
     },
     {
       "id": 1273,
-      "hiragana": "みみにする",
-      "kanji": "耳にする",
-      "definition": "不經意聽到、偶然聽說。並非刻意去聽，而是自然傳入耳中。",
-      "example": "彼が会社を辞めて独立するという噂を耳にした。",
-      "translation": "我不經意聽到了他要辭職創業的傳聞。"
+      "hiragana": "かいし",
+      "kanji": "開始",
+      "definition": "開始；事情或活動的起點",
+      "example": "授業は九時に開始します。",
+      "translation": "課程九點開始。"
     },
     {
       "id": 1274,
-      "hiragana": "ともに",
-      "kanji": "共に",
-      "definition": "一同、一起。與某人或某事物共同進行某事，或指同時發生。",
-      "example": "私たちは苦しい時代を共に乗り越えてきた親友だ。",
-      "translation": "我們是一起熬過艱苦時期的好朋友。"
+      "hiragana": "かんりょう",
+      "kanji": "完了",
+      "definition": "完成、結束；工作或程序全部結束",
+      "example": "登録が完了しました。",
+      "translation": "登記已經完成。"
     },
     {
       "id": 1275,
-      "hiragana": "わかちあう",
-      "kanji": "分かち合う",
-      "definition": "相互分享、分擔。不僅可以指分享喜悅或物品，也可以指共同分擔痛苦與悲傷。",
-      "example": "喜びは友と分かち合うことで倍になり、悲しみは半分になる。",
-      "translation": "與朋友互相分享，喜悅會加倍，悲傷會減半。"
+      "hiragana": "しゅうりょう",
+      "kanji": "終了",
+      "definition": "結束、終止；活動或時間到此為止",
+      "example": "会議は予定より早く終了した。",
+      "translation": "會議比預定時間早結束。"
     },
     {
       "id": 1276,
-      "hiragana": "ヤドカリ",
-      "kanji": "ヤドカリ",
-      "definition": "寄居蟹。一種居住在空貝殼中的甲殼類動物。",
-      "example": "海辺を散歩していると、貝殻を背負って歩く可愛いヤドカリを見つけた。",
-      "translation": "在海邊散步時，發現了背著貝殼行走的可愛寄居蟹。"
+      "hiragana": "かけつ",
+      "kanji": "可決",
+      "definition": "表決通過；議案獲得多數同意",
+      "example": "法案が国会で可決された。",
+      "translation": "法案在國會中獲得通過。"
     },
     {
       "id": 1277,
-      "hiragana": "イソギンチャク",
-      "kanji": "イソギンチャク",
-      "definition": "海葵。海洋中的無脊椎動物，常與寄居蟹或小丑魚等生物共生。",
-      "example": "ヤドカリの中には、自分の殻の上にイソギンチャクを乗せて身を守るものがいる。",
-      "translation": "有些寄居蟹會把海葵放在自己的殼上來保護自己。"
+      "hiragana": "せいりつ",
+      "kanji": "成立",
+      "definition": "成立、達成；組成或交易成功",
+      "example": "新しい契約が成立した。",
+      "translation": "新合約成立了。"
     },
     {
       "id": 1278,
-      "hiragana": "ぶんや",
-      "kanji": "分野",
-      "definition": "領域、範圍。多用來指學問、藝術、活動或事業的特定範疇。",
-      "example": "彼女は医療の分野で画期的な研究成果を発表した。",
-      "translation": "她在醫療領域發表了劃時代的研究成果。"
+      "hiragana": "なっとく",
+      "kanji": "納得",
+      "definition": "理解並接受；對理由感到信服",
+      "example": "説明を聞いて、ようやく納得した。",
+      "translation": "聽完說明後終於理解並接受了。"
     },
     {
       "id": 1279,
-      "hiragana": "こめる",
-      "kanji": "込める",
-      "definition": "包含、注入、傾注。把感情、意義、心思或力量等放入某事物中（如「意味を込める」指蘊含某種意義）。",
-      "example": "皆様への感謝の気持ちを込めて、この歌を歌います。",
-      "translation": "我傾注了對各位的感謝之情來演唱這首歌。"
+      "hiragana": "しゅざい",
+      "kanji": "取材",
+      "definition": "採訪、取材；為報導收集資料",
+      "example": "記者が現場を取材している。",
+      "translation": "記者正在現場採訪。"
     },
     {
       "id": 1280,
-      "hiragana": "のりこえる",
-      "kanji": "乗り越える",
-      "definition": "1. 翻越、跨越（實體的障礙物）。 2. 克服（困難、悲傷等精神或抽象的難關）。",
-      "example": "1. 泥棒は高い壁を乗り越えて逃げた。 2. チーム全員で力を合わせ、数々の困難を乗り越えた。",
-      "translation": "1. 小偷翻越了高牆逃跑了。 2. 全隊齊心協力，克服了重重困難。"
+      "hiragana": "くちべに",
+      "kanji": "口紅",
+      "definition": "口紅",
+      "example": "母に赤い口紅をプレゼントした。",
+      "translation": "送了媽媽一支紅色口紅。"
     },
     {
       "id": 1281,
-      "hiragana": "なまけもの",
-      "kanji": "怠け者",
-      "definition": "懶惰鬼、懶漢。不愛勞動或學習，喜歡偷懶的人。",
-      "example": "彼は本当に怠け者で、休日は一日中ベッドでゴロゴロしている。",
-      "translation": "他真是個懶惰鬼，假日一整天都在床上無所事事。"
+      "hiragana": "かろう",
+      "kanji": "過労",
+      "definition": "過勞；因工作過度而疲勞或生病",
+      "example": "過労で体調を崩してしまった。",
+      "translation": "因過勞而身體不適。"
     },
     {
       "id": 1282,
-      "hiragana": "ナマケモノ",
-      "kanji": "ナマケモノ",
-      "definition": "樹懶。生活在熱帶雨林，動作非常緩慢的哺乳類動物。",
-      "example": "動物園で、木にぶら下がったまま動かないナマケモノを観察した。",
-      "translation": "在動物園裡，觀察了懸掛在樹上一動也不動的樹懶。"
+      "hiragana": "きぼ",
+      "kanji": "規模",
+      "definition": "規模、大小；事物的範圍或程度",
+      "example": "大規模な工事が始まった。",
+      "translation": "大型工程開始了。"
     },
     {
       "id": 1283,
-      "hiragana": "ぶらさがる",
-      "kanji": "ぶら下がる",
-      "definition": "懸掛、垂下。物體上端被固定，下端懸空垂下的狀態。",
-      "example": "電車の中で、子供が手すりにぶら下がって遊んでいた。",
-      "translation": "在電車裡，小孩子懸掛在扶手上玩耍。"
+      "hiragana": "ひとみしり",
+      "kanji": "人見知り",
+      "definition": "怕生；不習慣與陌生人接觸",
+      "example": "妹は人見知りで、初対面の人と話せない。",
+      "translation": "妹妹很怕生，無法和初次見面的人說話。"
     },
     {
       "id": 1284,
-      "hiragana": "かしこい",
-      "kanji": "賢い",
-      "definition": "聰明的、伶俐的。指頭腦好、判斷力準確或學習能力強。",
-      "example": "カラスは非常に賢い鳥として知られており、道具を使うこともある。",
-      "translation": "烏鴉被認為是非常聰明的鳥類，有時還會使用工具。"
+      "hiragana": "いっせきのふね",
+      "kanji": "一隻の船",
+      "definition": "一艘船；船的量詞",
+      "example": "港に一隻の船が入ってきた。",
+      "translation": "一艘船駛入了港口。"
     },
     {
       "id": 1285,
-      "hiragana": "いつわ",
-      "kanji": "逸話",
-      "definition": "軼事、趣聞。指世人不常知曉的、關於某個人物的有趣故事或小插曲。",
-      "example": "彼には学生時代の面白い逸話がいくつもある。",
-      "translation": "關於他的學生時代，有好幾個有趣的軼事。"
+      "hiragana": "こうりょく",
+      "kanji": "効力",
+      "definition": "效力、有效性；法律或藥物產生的作用",
+      "example": "この薬は三時間ほど効力が続く。",
+      "translation": "這種藥的效力會持續約三小時。"
     },
     {
       "id": 1286,
-      "hiragana": "やくご",
-      "kanji": "訳語",
-      "definition": "譯詞、翻譯對應的詞彙。指將外語翻譯成另一種語言時所使用的單字。",
-      "example": "この専門用語にぴったりな日本語の訳語が見つからない。",
-      "translation": "找不到完全符合這個專業術語的日文譯詞。"
+      "hiragana": "るいじ",
+      "kanji": "類似",
+      "definition": "類似、相似；外表或性質相近",
+      "example": "二つの事件には類似点が多い。",
+      "translation": "兩起事件有很多相似之處。"
     },
     {
       "id": 1287,
-      "hiragana": "ゆうべ",
-      "kanji": "夕べ",
-      "definition": "1. 傍晚、黃昏。 2. 昨晚、昨天夜裡。 3. 晚會（如「音楽の夕べ」）。",
-      "example": "1. 秋の夕べは風が涼しくて心地よい。 2. 夕べは遅くまでテレビを見ていた。",
-      "translation": "1. 秋天的傍晚微風涼爽，十分舒適。 2. 昨晚看電視看到很晚。"
+      "hiragana": "こうよう",
+      "kanji": "効用",
+      "definition": "效用、功效；某物能產生的用途或效果",
+      "example": "この薬には痛みを抑える効用がある。",
+      "translation": "這種藥有抑制疼痛的功效。"
     },
     {
       "id": 1288,
-      "hiragana": "ばったり",
-      "kanji": "ばったり",
-      "definition": "1. 偶然遇見、不期而遇（常搭配「会う」）。 2. 突然倒下或掉落的樣子。 3. 事物或狀態突然中斷。",
-      "example": "1. 街で偶然、高校の先生にばったり会った。 2. 彼女は過労でばったりと倒れてしまった。 3. 彼からの連絡がばったりと途絶えた。",
-      "translation": "1. 在街上偶然遇見了高中的老師。 2. 她因為過度勞累而突然倒下了。 3. 來自他的聯絡突然完全中斷了。"
+      "hiragana": "ばくはつ",
+      "kanji": "爆発",
+      "definition": "爆炸；快速猛烈地發生或增加",
+      "example": "工場でガスが爆発した。",
+      "translation": "工廠裡的瓦斯爆炸了。"
+    },
+    {
+      "id": 1289,
+      "hiragana": "ひっしに",
+      "kanji": "必死に",
+      "definition": "拼命地、竭盡全力地；不顧一切地努力",
+      "example": "合格するために必死に勉強した。",
+      "translation": "為了及格而拼命讀書。"
+    },
+    {
+      "id": 1290,
+      "hiragana": "しじゅう",
+      "kanji": "始終",
+      "definition": "始終、一直；從開始到結束",
+      "example": "彼は始終笑顔で対応していた。",
+      "translation": "他始終以笑容應對。"
+    },
+    {
+      "id": 1291,
+      "hiragana": "さいしゅう",
+      "kanji": "最終",
+      "definition": "最後、最終；事情的最後階段或結果",
+      "example": "最終結果は明日発表される。",
+      "translation": "最終結果明天公布。"
+    },
+    {
+      "id": 1292,
+      "hiragana": "ねっちゅう",
+      "kanji": "熱中",
+      "definition": "熱衷、專心；全心投入某件事",
+      "example": "彼は仕事に熱中している。",
+      "translation": "他正專心投入工作。"
+    },
+    {
+      "id": 1293,
+      "hiragana": "むちゅう",
+      "kanji": "夢中",
+      "definition": "入迷、著迷；全神貫注於某事",
+      "example": "子どもたちはゲームに夢中だ。",
+      "translation": "孩子們沉迷於遊戲。"
+    },
+    {
+      "id": 1294,
+      "hiragana": "ていせい",
+      "kanji": "訂正",
+      "definition": "訂正、改正錯誤；修正文字或內容",
+      "example": "間違いがあれば訂正してください。",
+      "translation": "如果有錯誤請訂正。"
+    },
+    {
+      "id": 1295,
+      "hiragana": "かいせい",
+      "kanji": "改正",
+      "definition": "修改、修訂；法律、制度或規則的改變",
+      "example": "法律が改正されることになった。",
+      "translation": "法律決定進行修訂。"
+    },
+    {
+      "id": 1296,
+      "hiragana": "かいぜん",
+      "kanji": "改善",
+      "definition": "改善、改進；使狀況變好",
+      "example": "生活習慣を改善する必要がある。",
+      "translation": "有必要改善生活習慣。"
+    },
+    {
+      "id": 1297,
+      "hiragana": "ふっこう",
+      "kanji": "復興",
+      "definition": "復興、重建；災害或戰爭後重新發展",
+      "example": "町の復興には多くの時間が必要だ。",
+      "translation": "城鎮復興需要很多時間。"
+    },
+    {
+      "id": 1298,
+      "hiragana": "かいふく",
+      "kanji": "回復",
+      "definition": "恢復、康復；回到原來的狀態",
+      "example": "病気が回復して、来週から仕事に戻る。",
+      "translation": "病情恢復後，下週回去工作。"
+    },
+    {
+      "id": 1299,
+      "hiragana": "ぐち",
+      "kanji": "愚痴",
+      "definition": "牢騷、抱怨；對不滿事情的埋怨",
+      "example": "彼はいつも仕事の愚痴を言っている。",
+      "translation": "他總是在抱怨工作的事。"
+    },
+    {
+      "id": 1300,
+      "hiragana": "くじょう",
+      "kanji": "苦情",
+      "definition": "投訴、抱怨；對服務或事情不滿而提出的意見",
+      "example": "店に商品の苦情を申し立てた。",
+      "translation": "向店家提出了商品的投訴。"
+    },
+    {
+      "id": 1301,
+      "hiragana": "クレーム",
+      "kanji": "クレーム",
+      "definition": "投訴、索賠；顧客對商品或服務提出的不滿",
+      "example": "客から商品の品質についてクレームが来た。",
+      "translation": "客人就商品品質提出了投訴。"
+    },
+    {
+      "id": 1302,
+      "hiragana": "ごろごろ",
+      "kanji": "ごろごろ",
+      "definition": "滾來滾去；無所事事；雷聲隆隆",
+      "example": "休日は家でごろごろしていた。",
+      "translation": "假日一直在家裡無所事事。"
+    },
+    {
+      "id": 1303,
+      "hiragana": "ぶらぶら",
+      "kanji": "ぶらぶら",
+      "definition": "漫無目的地閒逛；搖晃、懸掛",
+      "example": "町をぶらぶら歩いていたら、友達に会った。",
+      "translation": "在街上漫無目的地閒逛時遇到了朋友。"
+    },
+    {
+      "id": 1304,
+      "hiragana": "びしょびしょ",
+      "kanji": "びしょびしょ",
+      "definition": "濕透、全身濕淋淋",
+      "example": "雨に降られて、服がびしょびしょになった。",
+      "translation": "被雨淋到衣服全濕了。"
+    },
+    {
+      "id": 1305,
+      "hiragana": "いらいら",
+      "kanji": "いらいら",
+      "definition": "焦躁、不耐煩；因事情不順而心煩",
+      "example": "電車が遅れて、いらいらしている。",
+      "translation": "電車誤點，讓人很焦躁。"
+    },
+    {
+      "id": 1306,
+      "hiragana": "ぶかぶか",
+      "kanji": "ぶかぶか",
+      "definition": "寬鬆、不合身；衣服大得晃動",
+      "example": "この服は私にはぶかぶかだ。",
+      "translation": "這件衣服對我來說太寬鬆了。"
+    },
+    {
+      "id": 1307,
+      "hiragana": "ぼろぼろ",
+      "kanji": "ぼろぼろ",
+      "definition": "破破爛爛；身心疲憊；東西損壞嚴重",
+      "example": "古い靴がぼろぼろになった。",
+      "translation": "舊鞋變得破破爛爛。"
+    },
+    {
+      "id": 1308,
+      "hiragana": "くたくた",
+      "kanji": "くたくた",
+      "definition": "筋疲力竭；疲憊不堪",
+      "example": "一日中働いて、もうくたくただ。",
+      "translation": "工作了一整天，已經累壞了。"
+    },
+    {
+      "id": 1309,
+      "hiragana": "へとへと",
+      "kanji": "へとへと",
+      "definition": "精疲力竭；非常疲累",
+      "example": "長い距離を歩いて、へとへとになった。",
+      "translation": "走了很長的路，累得筋疲力竭。"
+    },
+    {
+      "id": 1310,
+      "hiragana": "しばしば",
+      "kanji": "しばしば",
+      "definition": "屢次、常常；某事反覆發生",
+      "example": "春には雪が降ることもしばしばある。",
+      "translation": "春天也常常會下雪。"
+    },
+    {
+      "id": 1311,
+      "hiragana": "ぽかぽか",
+      "kanji": "ぽかぽか",
+      "definition": "暖和、暖洋洋；身體感到溫暖",
+      "example": "今日はぽかぽかした天気ですね。",
+      "translation": "今天的天氣暖洋洋的。"
+    },
+    {
+      "id": 1312,
+      "hiragana": "ほやほや",
+      "kanji": "ほやほや",
+      "definition": "剛出爐、剛完成；新鮮而有新意",
+      "example": "ほやほやの新入社員が入ってきた。",
+      "translation": "剛加入公司的新員工進來了。"
+    },
+    {
+      "id": 1313,
+      "hiragana": "ぴかぴか",
+      "kanji": "ぴかぴか",
+      "definition": "閃閃發亮；嶄新、光潔",
+      "example": "新しい靴がぴかぴか光っている。",
+      "translation": "新鞋閃閃發亮。"
+    },
+    {
+      "id": 1314,
+      "hiragana": "かさかさ",
+      "kanji": "かさかさ",
+      "definition": "乾燥粗糙；發出沙沙聲",
+      "example": "冬は手がかさかさしやすい。",
+      "translation": "冬天手部容易乾燥粗糙。"
+    },
+    {
+      "id": 1315,
+      "hiragana": "からから",
+      "kanji": "からから",
+      "definition": "乾透、乾渴；空洞地笑；發出喀啦聲",
+      "example": "暑くて喉がからからだ。",
+      "translation": "天氣很熱，喉嚨乾渴得不得了。"
+    },
+    {
+      "id": 1316,
+      "hiragana": "にこにこ",
+      "kanji": "にこにこ",
+      "definition": "笑瞇瞇地；臉上帶著笑容",
+      "example": "彼女はいつもにこにこしている。",
+      "translation": "她總是笑瞇瞇的。"
+    },
+    {
+      "id": 1317,
+      "hiragana": "ぷんぷん",
+      "kanji": "ぷんぷん",
+      "definition": "怒氣沖沖；散發強烈氣味",
+      "example": "彼はぷんぷん怒って部屋を出ていった。",
+      "translation": "他氣沖沖地離開了房間。"
+    },
+    {
+      "id": 1318,
+      "hiragana": "めそめそ",
+      "kanji": "めそめそ",
+      "definition": "抽抽搭搭地哭；軟弱地哭泣",
+      "example": "いつまでもめそめそしてはいけない。",
+      "translation": "不可以一直抽抽搭搭地哭。"
+    },
+    {
+      "id": 1319,
+      "hiragana": "くよくよ",
+      "kanji": "くよくよ",
+      "definition": "為小事煩惱、想不開",
+      "example": "失敗をいつまでもくよくよしないで。",
+      "translation": "不要一直為失敗想不開。"
+    },
+    {
+      "id": 1320,
+      "hiragana": "ぶつぶつ",
+      "kanji": "ぶつぶつ",
+      "definition": "喃喃自語；小聲抱怨",
+      "example": "彼は何かぶつぶつ言っている。",
+      "translation": "他正在小聲嘟囔著什麼。"
+    },
+    {
+      "id": 1321,
+      "hiragana": "ひやひや",
+      "kanji": "ひやひや",
+      "definition": "提心吊膽、捏一把冷汗",
+      "example": "車が急に飛び出してきて、ひやひやした。",
+      "translation": "車子突然衝出來，讓我捏了一把冷汗。"
+    },
+    {
+      "id": 1322,
+      "hiragana": "おどおど",
+      "kanji": "おどおど",
+      "definition": "畏畏縮縮、不安地",
+      "example": "面接でおどおどしてしまった。",
+      "translation": "面試時不小心顯得畏畏縮縮。"
+    },
+    {
+      "id": 1323,
+      "hiragana": "はらはら",
+      "kanji": "はらはら",
+      "definition": "擔心、提心吊膽；眼淚簌簌落下",
+      "example": "子どもが道路に飛び出しそうで、はらはらした。",
+      "translation": "孩子好像要衝到馬路上，讓人很擔心。"
+    },
+    {
+      "id": 1324,
+      "hiragana": "どきどき",
+      "kanji": "どきどき",
+      "definition": "心跳加速、緊張",
+      "example": "試験の結果を待っていて、どきどきした。",
+      "translation": "等待考試結果時緊張得心跳加速。"
+    },
+    {
+      "id": 1325,
+      "hiragana": "そわそわ",
+      "kanji": "そわそわ",
+      "definition": "坐立不安、心神不寧",
+      "example": "初めての発表を前にして、そわそわしている。",
+      "translation": "第一次發表前感到坐立不安。"
+    },
+    {
+      "id": 1326,
+      "hiragana": "うとうと",
+      "kanji": "うとうと",
+      "definition": "打瞌睡、昏昏欲睡",
+      "example": "電車の中でうとうとしてしまった。",
+      "translation": "在電車裡不小心打了瞌睡。"
+    },
+    {
+      "id": 1327,
+      "hiragana": "ぺこぺこ",
+      "kanji": "ぺこぺこ",
+      "definition": "肚子很餓；不停鞠躬",
+      "example": "お腹がぺこぺこなので、何か食べたい。",
+      "translation": "肚子餓得不得了，想吃點東西。"
+    },
+    {
+      "id": 1328,
+      "hiragana": "むかむか",
+      "kanji": "むかむか",
+      "definition": "反胃、噁心；因生氣而不舒服",
+      "example": "食べすぎて、胃がむかむかする。",
+      "translation": "吃太多，胃感到噁心。"
+    },
+    {
+      "id": 1329,
+      "hiragana": "うきうき",
+      "kanji": "うきうき",
+      "definition": "興奮期待、心情雀躍",
+      "example": "明日から旅行なので、うきうきしている。",
+      "translation": "因為明天要旅行，心情很雀躍。"
+    },
+    {
+      "id": 1330,
+      "hiragana": "のびのび",
+      "kanji": "のびのび",
+      "definition": "舒暢自在、無拘無束",
+      "example": "自然の中でのびのびと過ごした。",
+      "translation": "在大自然中自在地度過了時間。"
+    },
+    {
+      "id": 1331,
+      "hiragana": "むしむし",
+      "kanji": "むしむし",
+      "definition": "悶熱、濕熱",
+      "example": "今日はむしむしして暑い。",
+      "translation": "今天又悶又熱。"
+    },
+    {
+      "id": 1332,
+      "hiragana": "いきいき",
+      "kanji": "生き生き",
+      "definition": "生氣勃勃、活潑有朝氣",
+      "example": "子どもたちは生き生きと絵を描いている。",
+      "translation": "孩子們充滿活力地畫畫。"
+    },
+    {
+      "id": 1333,
+      "hiragana": "ばりばり",
+      "kanji": "ばりばり",
+      "definition": "精力充沛地；積極努力地；喀喀作響",
+      "example": "彼は仕事をばりばりこなしている。",
+      "translation": "他充滿幹勁地處理工作。"
+    },
+    {
+      "id": 1334,
+      "hiragana": "きがあう",
+      "kanji": "気が合う",
+      "definition": "合得來、投契；性格或興趣相投",
+      "example": "彼とは趣味が同じで、気が合う。",
+      "translation": "我和他興趣相同，很合得來。"
+    },
+    {
+      "id": 1335,
+      "hiragana": "きをつける",
+      "kanji": "気をつける",
+      "definition": "注意、小心；留意某人或某事",
+      "example": "道を渡るときは車に気をつけてください。",
+      "translation": "過馬路時請小心車輛。"
+    },
+    {
+      "id": 1336,
+      "hiragana": "きにいる",
+      "kanji": "気に入る",
+      "definition": "喜歡、中意；對某物感到滿意",
+      "example": "この店の雰囲気が気に入った。",
+      "translation": "我很喜歡這家店的氣氛。"
+    },
+    {
+      "id": 1337,
+      "hiragana": "きにする",
+      "kanji": "気にする",
+      "definition": "在意、介意；對某事放心不下",
+      "example": "そんな小さな失敗を気にしないでください。",
+      "translation": "請不要在意那麼小的失誤。"
+    },
+    {
+      "id": 1338,
+      "hiragana": "きになる",
+      "kanji": "気になる",
+      "definition": "在意、掛心；引起好奇或關心",
+      "example": "彼の返事が気になる。",
+      "translation": "我很在意他的回覆。"
+    },
+    {
+      "id": 1339,
+      "hiragana": "きをとられる",
+      "kanji": "気を取られる",
+      "definition": "被吸引注意力；因分心而忽略原本的事",
+      "example": "猫に気を取られて、事故を起こした。",
+      "translation": "被貓吸引了注意力，結果發生了事故。"
+    },
+    {
+      "id": 1340,
+      "hiragana": "きのせい",
+      "kanji": "気のせい",
+      "definition": "心理作用、錯覺；其實未必真的如此",
+      "example": "疲れているせいか、音が聞こえたのは気のせいかもしれない。",
+      "translation": "可能是因為疲累，聽到聲音也許只是錯覺。"
+    },
+    {
+      "id": 1341,
+      "hiragana": "きがすむ",
+      "kanji": "気がすむ",
+      "definition": "滿意、心安；心中的不滿或疑慮消除",
+      "example": "自分で確認しないと気がすまない。",
+      "translation": "不親自確認的話就無法安心。"
+    },
+    {
+      "id": 1342,
+      "hiragana": "きがすすまない",
+      "kanji": "気が進まない",
+      "definition": "不太想做；對某事沒有意願",
+      "example": "今日は気が進まないので、出かけたくない。",
+      "translation": "今天不太想出門。"
+    },
+    {
+      "id": 1343,
+      "hiragana": "きがする",
+      "kanji": "気がする",
+      "definition": "覺得、感覺；主觀上產生某種感受",
+      "example": "何か大切なことを忘れた気がする。",
+      "translation": "我覺得好像忘了重要的事情。"
+    },
+    {
+      "id": 1344,
+      "hiragana": "こむ",
+      "kanji": "込む",
+      "definition": "表示深入、充分或進入某種狀態的複合動詞接尾詞",
+      "example": "この川は海に流れ込んでいる。",
+      "translation": "這條河流入大海。"
+    },
+    {
+      "id": 1345,
+      "hiragana": "にこむ",
+      "kanji": "煮込む",
+      "definition": "燉煮；長時間煮到味道充分融合",
+      "example": "肉を柔らかくなるまで煮込んだ。",
+      "translation": "把肉燉煮到變軟。"
+    },
+    {
+      "id": 1346,
+      "hiragana": "もうしこむ",
+      "kanji": "申し込む",
+      "definition": "申請、報名；提出請求",
+      "example": "講座に参加するために申し込んだ。",
+      "translation": "為了參加課程而報名。"
+    },
+    {
+      "id": 1347,
+      "hiragana": "とびこむ",
+      "kanji": "飛び込む",
+      "definition": "跳入、衝入；突然進入某處",
+      "example": "子どもがプールに飛び込んだ。",
+      "translation": "孩子跳進了游泳池。"
+    },
+    {
+      "id": 1348,
+      "hiragana": "ききこむ",
+      "kanji": "聞き込む",
+      "definition": "仔細打聽、深入詢問；聽入其中",
+      "example": "記者が近所の人に詳しく聞き込んだ。",
+      "translation": "記者詳細詢問了附近居民。"
+    },
+    {
+      "id": 1349,
+      "hiragana": "おもいこむ",
+      "kanji": "思い込む",
+      "definition": "深信、認定；未經確認便認為是如此",
+      "example": "彼は自分が正しいと思い込んでいる。",
+      "translation": "他深信自己是正確的。"
+    },
+    {
+      "id": 1350,
+      "hiragana": "かきこむ",
+      "kanji": "書き込む",
+      "definition": "寫入、填寫；在表格或資料中輸入",
+      "example": "申込書に必要事項を書き込んだ。",
+      "translation": "在申請表中填寫了必要事項。"
+    },
+    {
+      "id": 1351,
+      "hiragana": "ねむりこむ",
+      "kanji": "眠り込む",
+      "definition": "熟睡、睡著；不知不覺睡得很沉",
+      "example": "疲れて、ソファで眠り込んでしまった。",
+      "translation": "因為疲累，不知不覺在沙發上睡著了。"
+    },
+    {
+      "id": 1352,
+      "hiragana": "はなしこむ",
+      "kanji": "話し込む",
+      "definition": "談得起勁、聊得很久",
+      "example": "友達と話し込んで、電車を乗り過ごした。",
+      "translation": "和朋友聊得太久，坐過了站。"
+    },
+    {
+      "id": 1353,
+      "hiragana": "つかいこむ",
+      "kanji": "使い込む",
+      "definition": "用舊、使用過度；挪用、私自使用金錢",
+      "example": "会社のお金を使い込んではいけない。",
+      "translation": "不可以挪用公司的錢。"
+    },
+    {
+      "id": 1354,
+      "hiragana": "ふきこむ",
+      "kanji": "吹き込む",
+      "definition": "吹入；灌輸；錄音",
+      "example": "窓から冷たい風が吹き込んできた。",
+      "translation": "冷風從窗戶吹了進來。"
+    },
+    {
+      "id": 1355,
+      "hiragana": "つめこむ",
+      "kanji": "詰め込む",
+      "definition": "塞入、填入；短時間內大量學習或記憶",
+      "example": "試験前に知識を詰め込んだ。",
+      "translation": "考試前臨時塞入了大量知識。"
+    },
+    {
+      "id": 1356,
+      "hiragana": "もちこむ",
+      "kanji": "持ち込む",
+      "definition": "帶入、帶進；把問題或提案提交給某處",
+      "example": "会議に新しい案を持ち込んだ。",
+      "translation": "把新方案帶到會議中討論。"
+    },
+    {
+      "id": 1357,
+      "hiragana": "おちこむ",
+      "kanji": "落ち込む",
+      "definition": "情緒低落；陷入低潮",
+      "example": "試験に落ちて、しばらく落ち込んでいた。",
+      "translation": "考試落榜後，情緒低落了一陣子。"
+    },
+    {
+      "id": 1358,
+      "hiragana": "わりこむ",
+      "kanji": "割り込む",
+      "definition": "插入、插隊；介入原本的順序或談話",
+      "example": "列に割り込むのはやめてください。",
+      "translation": "請不要插隊。"
+    },
+    {
+      "id": 1359,
+      "hiragana": "いれる",
+      "kanji": "入れる",
+      "definition": "放入、加入；使某物進入某處",
+      "example": "箱に本を入れた。",
+      "translation": "把書放進箱子裡。"
+    },
+    {
+      "id": 1360,
+      "hiragana": "ききいれる",
+      "kanji": "聞き入れる",
+      "definition": "聽從、接受；接受對方的意見或請求",
+      "example": "社長は社員の意見を聞き入れた。",
+      "translation": "社長接受了員工的意見。"
+    },
+    {
+      "id": 1361,
+      "hiragana": "ききいれない",
+      "kanji": "聞き入れない",
+      "definition": "不聽從、不接受；拒絕採納",
+      "example": "彼は誰の忠告も聞き入れない。",
+      "translation": "他不接受任何人的忠告。"
+    },
+    {
+      "id": 1362,
+      "hiragana": "うけいれる",
+      "kanji": "受け入れる",
+      "definition": "接受、接納；收下或同意某事",
+      "example": "新しい考え方を受け入れる必要がある。",
+      "translation": "有必要接受新的想法。"
+    },
+    {
+      "id": 1363,
+      "hiragana": "こなす",
+      "kanji": "こなす",
+      "definition": "處理、完成；熟練地完成工作",
+      "example": "彼は一人で多くの仕事をこなしている。",
+      "translation": "他一個人熟練地處理很多工作。"
+    },
+    {
+      "id": 1364,
+      "hiragana": "つかいこなす",
+      "kanji": "使いこなす",
+      "definition": "熟練使用；充分發揮工具或技能",
+      "example": "新しいソフトをまだ使いこなせない。",
+      "translation": "我還不能熟練使用新軟體。"
+    },
+    {
+      "id": 1365,
+      "hiragana": "まわす",
+      "kanji": "回す",
+      "definition": "轉動、旋轉；傳遞；使事情循環進行",
+      "example": "皆で資料を回して読んだ。",
+      "translation": "大家傳閱資料。"
+    },
+    {
+      "id": 1366,
+      "hiragana": "つかいまわす",
+      "kanji": "使い回す",
+      "definition": "重複使用；把同一物品用於多種用途",
+      "example": "古い家具を別の部屋で使い回している。",
+      "translation": "把舊家具拿到另一個房間重複使用。"
+    },
+    {
+      "id": 1367,
+      "hiragana": "みまわす",
+      "kanji": "見回す",
+      "definition": "環視、巡視；四處觀看",
+      "example": "部屋を見回したが、誰もいなかった。",
+      "translation": "環視房間後，發現沒有任何人。"
+    },
+    {
+      "id": 1368,
+      "hiragana": "ふりまわす",
+      "kanji": "振り回す",
+      "definition": "揮舞；任意支配、使人疲於奔命",
+      "example": "彼は権力を振り回している。",
+      "translation": "他任意炫耀並濫用權力。"
+    },
+    {
+      "id": 1369,
+      "hiragana": "いいまわす",
+      "kanji": "言い回す",
+      "definition": "轉述、措辭；用某種方式表達",
+      "example": "同じ内容でも、言い回しによって印象が変わる。",
+      "translation": "即使內容相同，措辭不同也會改變印象。"
+    },
+    {
+      "id": 1370,
+      "hiragana": "ふ",
+      "kanji": "不",
+      "definition": "不、非；表示否定或缺乏",
+      "example": "不勉強、不十分、不可能などの言葉がある。",
+      "translation": "有「不勉強、不十分、不可能」等詞語。"
+    },
+    {
+      "id": 1371,
+      "hiragana": "ぶ",
+      "kanji": "不",
+      "definition": "不、非；音便讀法，常出現在複合詞中",
+      "example": "不器用なので、細かい作業が苦手だ。",
+      "translation": "因為手腳不靈巧，不擅長細緻工作。"
+    },
+    {
+      "id": 1372,
+      "hiragana": "み",
+      "kanji": "未",
+      "definition": "尚未、未；表示某事尚未完成或發生",
+      "example": "未経験の仕事にも挑戦したい。",
+      "translation": "我也想挑戰沒有經驗的工作。"
+    },
+    {
+      "id": 1373,
+      "hiragana": "む",
+      "kanji": "無",
+      "definition": "沒有、無；表示不存在或缺乏",
+      "example": "無意識に同じ動作を繰り返していた。",
+      "translation": "不自覺地反覆做著同樣的動作。"
+    },
+    {
+      "id": 1374,
+      "hiragana": "ひ",
+      "kanji": "非",
+      "definition": "非、不；表示不合理、非正式或否定",
+      "example": "非常識な行動をしてはいけない。",
+      "translation": "不可以做出不合常識的行為。"
+    },
+    {
+      "id": 1375,
+      "hiragana": "げん",
+      "kanji": "現",
+      "definition": "現在、現今；表示目前或現有狀態",
+      "example": "現住所を申込書に記入してください。",
+      "translation": "請在申請表填寫現在住址。"
+    },
+    {
+      "id": 1376,
+      "hiragana": "こん",
+      "kanji": "今",
+      "definition": "現在、本次；表示現在這一時期",
+      "example": "今回は参加できません。",
+      "translation": "這次無法參加。"
+    },
+    {
+      "id": 1377,
+      "hiragana": "そう",
+      "kanji": "総",
+      "definition": "總、全部；表示總和或整體",
+      "example": "総人口は年々減少している。",
+      "translation": "總人口逐年減少。"
+    },
+    {
+      "id": 1378,
+      "hiragana": "ぜん",
+      "kanji": "全",
+      "definition": "全部、整體；表示全體範圍",
+      "example": "全国で同じサービスを利用できる。",
+      "translation": "全國都可以使用相同的服務。"
+    },
+    {
+      "id": 1379,
+      "hiragana": "しょ",
+      "kanji": "諸",
+      "definition": "各、諸多；表示很多或各種",
+      "example": "諸問題を解決しなければならない。",
+      "translation": "必須解決各種問題。"
+    },
+    {
+      "id": 1380,
+      "hiragana": "かく",
+      "kanji": "各",
+      "definition": "各個、每個；表示逐一或個別",
+      "example": "各国の文化を尊重すべきだ。",
+      "translation": "應該尊重各國的文化。"
+    },
+    {
+      "id": 1381,
+      "hiragana": "かい",
+      "kanji": "界",
+      "definition": "界、領域；表示某個專業或事物的範圍",
+      "example": "医学界で新しい発見があった。",
+      "translation": "醫學界有了新的發現。"
+    },
+    {
+      "id": 1382,
+      "hiragana": "たい",
+      "kanji": "帯",
+      "definition": "帶、帶狀區域；表示某種帶狀地區",
+      "example": "この地域は温帯に属している。",
+      "translation": "這個地區屬於溫帶。"
+    },
+    {
+      "id": 1383,
+      "hiragana": "いき",
+      "kanji": "域",
+      "definition": "區域、範圍；表示一定的地域或領域",
+      "example": "行動域を広げる必要がある。",
+      "translation": "有必要擴大活動範圍。"
+    },
+    {
+      "id": 1384,
+      "hiragana": "く",
+      "kanji": "区",
+      "definition": "區、分區；行政或地理上的劃分",
+      "example": "この地域は特別区に指定されている。",
+      "translation": "這個地區被指定為特別區。"
+    },
+    {
+      "id": 1385,
+      "hiragana": "あく",
+      "kanji": "悪",
+      "definition": "壞、惡；表示不良或負面的事物",
+      "example": "悪条件の中で作業を続けた。",
+      "translation": "在惡劣條件下繼續工作。"
+    },
+    {
+      "id": 1386,
+      "hiragana": "こう",
+      "kanji": "好",
+      "definition": "好、喜愛；表示良好或有利",
+      "example": "好天気なので、散歩に出かけた。",
+      "translation": "因為天氣很好，所以出去散步了。"
+    },
+    {
+      "id": 1387,
+      "hiragana": "じょう",
+      "kanji": "状",
+      "definition": "狀態、形狀；表示某種狀態",
+      "example": "クリーム状の薬を使った。",
+      "translation": "使用了乳霜狀的藥。"
+    },
+    {
+      "id": 1388,
+      "hiragana": "りゅう",
+      "kanji": "流",
+      "definition": "流派、作風；表示某種方式或風格",
+      "example": "日本流のサービスを学んだ。",
+      "translation": "學習了日本式的服務方式。"
+    },
+    {
+      "id": 1389,
+      "hiragana": "ふう",
+      "kanji": "風",
+      "definition": "樣子、風格；表示某種風格或樣式",
+      "example": "田舎風の料理を作った。",
+      "translation": "做了鄉村風味的料理。"
+    },
+    {
+      "id": 1390,
+      "hiragana": "しょく",
+      "kanji": "色",
+      "definition": "色彩、景色、外觀；表示色調或風格",
+      "example": "部屋を明るい色で飾った。",
+      "translation": "用明亮的顏色裝飾房間。"
+    },
+    {
+      "id": 1391,
+      "hiragana": "しき",
+      "kanji": "式",
+      "definition": "式、形式；表示方式、形式或類型",
+      "example": "日本式の家に住んでいる。",
+      "translation": "住在日式房屋裡。"
+    },
+    {
+      "id": 1392,
+      "hiragana": "さん",
+      "kanji": "産",
+      "definition": "出產、產地；表示產品的生產地",
+      "example": "このオレンジはアメリカ産です。",
+      "translation": "這個橙子是美國出產的。"
+    },
+    {
+      "id": 1393,
+      "hiragana": "せい",
+      "kanji": "製",
+      "definition": "製造、製品；表示由某地或某種材料製成",
+      "example": "これは日本製の時計です。",
+      "translation": "這是日本製造的手錶。"
+    },
+    {
+      "id": 1394,
+      "hiragana": "あけ",
+      "kanji": "～明け",
+      "definition": "……結束後；表示某段期間剛結束",
+      "example": "仕事明けに友達と食事をした。",
+      "translation": "工作結束後和朋友吃了飯。"
+    },
+    {
+      "id": 1395,
+      "hiragana": "ばなれ",
+      "kanji": "～離れ",
+      "definition": "脫離、遠離；表示離開某處或某種狀態",
+      "example": "親離れした子どもが一人暮らしを始めた。",
+      "translation": "脫離父母的孩子開始獨居。"
+    },
+    {
+      "id": 1396,
+      "hiragana": "ちがい",
+      "kanji": "～違い",
+      "definition": "差異、不同；表示兩者之間的差別",
+      "example": "色違いの商品を見せてください。",
+      "translation": "請給我看看不同顏色的商品。"
+    },
+    {
+      "id": 1397,
+      "hiragana": "おき",
+      "kanji": "～おきに",
+      "definition": "每隔……；表示固定間隔",
+      "example": "一日おきに薬を飲んでください。",
+      "translation": "請每隔一天服藥。"
+    },
+    {
+      "id": 1398,
+      "hiragana": "たて",
+      "kanji": "～たて",
+      "definition": "剛剛……；表示某事剛完成",
+      "example": "焼きたてのパンはとてもおいしい。",
+      "translation": "剛出爐的麵包非常好吃。"
+    },
+    {
+      "id": 1399,
+      "hiragana": "ぞい",
+      "kanji": "～沿い",
+      "definition": "沿著……；表示沿某條道路、河流或線路",
+      "example": "駅沿いに新しい店ができた。",
+      "translation": "車站沿線開了一家新店。"
+    },
+    {
+      "id": 1400,
+      "hiragana": "ずみ",
+      "kanji": "～済み",
+      "definition": "已經完成……；表示某程序已處理完畢",
+      "example": "使用済みの電池を捨ててください。",
+      "translation": "請丟掉已使用過的電池。"
+    },
+    {
+      "id": 1401,
+      "hiragana": "づれ",
+      "kanji": "～連れ",
+      "definition": "帶著……一起；與某人同行",
+      "example": "子ども連れのお客様が多い。",
+      "translation": "帶著孩子的客人很多。"
+    },
+    {
+      "id": 1402,
+      "hiragana": "つき",
+      "kanji": "～つき",
+      "definition": "具有……、附帶……；表示附有某種設備或特徵",
+      "example": "駅近くで家具つきの部屋を探している。",
+      "translation": "正在車站附近找附家具的房間。"
+    },
+    {
+      "id": 1403,
+      "hiragana": "ぶり",
+      "kanji": "～ぶり",
+      "definition": "……的樣子、方式；距離上次……已有多久",
+      "example": "久しぶりに友達と会った。",
+      "translation": "隔了很久再次見到朋友。"
+    },
+    {
+      "id": 1404,
+      "hiragana": "こっそり",
+      "kanji": "こっそり",
+      "definition": "偷偷地、暗中；不讓別人察覺地",
+      "example": "彼はこっそり部屋を出た。",
+      "translation": "他偷偷地離開了房間。"
+    },
+    {
+      "id": 1405,
+      "hiragana": "そっと",
+      "kanji": "そっと",
+      "definition": "輕輕地、悄悄地；不造成聲音或刺激",
+      "example": "赤ちゃんをそっとベッドに寝かせた。",
+      "translation": "輕輕地把嬰兒放到床上。"
+    },
+    {
+      "id": 1406,
+      "hiragana": "そっくり",
+      "kanji": "そっくり",
+      "definition": "非常相像、一模一樣；外貌或性質很相似",
+      "example": "その姉妹は顔がそっくりだ。",
+      "translation": "那對姊妹的長相非常相像。"
+    },
+    {
+      "id": 1407,
+      "hiragana": "はっきり",
+      "kanji": "はっきり",
+      "definition": "清楚、明確；輪廓或意見明白",
+      "example": "自分の意見をはっきり言ってください。",
+      "translation": "請清楚地說出自己的意見。"
+    },
+    {
+      "id": 1408,
+      "hiragana": "しっかり",
+      "kanji": "しっかり",
+      "definition": "牢固地、充分地；可靠、穩妥地",
+      "example": "忘れないように、しっかり覚えておいてください。",
+      "translation": "為免忘記，請牢牢記住。"
+    },
+    {
+      "id": 1409,
+      "hiragana": "すっかり",
+      "kanji": "すっかり",
+      "definition": "完全地、徹底地；整個狀態發生改變",
+      "example": "試験のことをすっかり忘れていた。",
+      "translation": "我完全忘記了考試的事。"
+    },
+    {
+      "id": 1410,
+      "hiragana": "あっさり",
+      "kanji": "あっさり",
+      "definition": "清淡地；爽快、乾脆；事情簡單地完成",
+      "example": "彼はあっさりと問題を解決した。",
+      "translation": "他爽快地解決了問題。"
+    },
+    {
+      "id": 1411,
+      "hiragana": "さっぱり",
+      "kanji": "さっぱり",
+      "definition": "清爽、清淡；完全不……；表示不知道或不明白",
+      "example": "説明を聞いたが、さっぱり分からない。",
+      "translation": "聽了解釋，卻完全不明白。"
+    },
+    {
+      "id": 1412,
+      "hiragana": "すっきり",
+      "kanji": "すっきり",
+      "definition": "清爽、暢快；整潔；心情舒暢",
+      "example": "部屋を掃除して、気分がすっきりした。",
+      "translation": "打掃房間後，心情變得很舒暢。"
+    },
+    {
+      "id": 1413,
+      "hiragana": "うっかり",
+      "kanji": "うっかり",
+      "definition": "不小心、粗心地；因疏忽而犯錯",
+      "example": "うっかり電車を乗り間違えた。",
+      "translation": "不小心搭錯了電車。"
+    },
+    {
+      "id": 1414,
+      "hiragana": "ぎっしり",
+      "kanji": "ぎっしり",
+      "definition": "滿滿地、密密麻麻地；沒有空隙地裝滿",
+      "example": "箱の中に本がぎっしり詰まっている。",
+      "translation": "箱子裡塞滿了書。"
+    },
+    {
+      "id": 1415,
+      "hiragana": "ぴったり",
+      "kanji": "ぴったり",
+      "definition": "正合適、剛好；完全符合",
+      "example": "この靴は私の足にぴったり合う。",
+      "translation": "這雙鞋完全合我的腳。"
+    },
+    {
+      "id": 1416,
+      "hiragana": "にっこり",
+      "kanji": "にっこり",
+      "definition": "微笑、笑瞇瞇地",
+      "example": "彼女はにっこり笑った。",
+      "translation": "她微笑了。"
+    },
+    {
+      "id": 1417,
+      "hiragana": "やはり",
+      "kanji": "やはり",
+      "definition": "果然、仍然；結果與預想相同",
+      "example": "やはり彼が一番早く来た。",
+      "translation": "果然他最早到。"
+    },
+    {
+      "id": 1418,
+      "hiragana": "ぐっすり",
+      "kanji": "ぐっすり",
+      "definition": "熟睡、睡得很沉",
+      "example": "昨夜は疲れて、ぐっすり眠った。",
+      "translation": "昨晚很累，睡得很熟。"
+    },
+    {
+      "id": 1419,
+      "hiragana": "たっぷり",
+      "kanji": "たっぷり",
+      "definition": "充分地、足量地；數量很多",
+      "example": "時間はたっぷりあるので、急がなくてもいい。",
+      "translation": "時間很充裕，不用著急。"
+    },
+    {
+      "id": 1420,
+      "hiragana": "がっかり",
+      "kanji": "がっかり",
+      "definition": "失望、灰心；期待落空",
+      "example": "試験に落ちて、がっかりした。",
+      "translation": "考試落榜，感到很失望。"
+    },
+    {
+      "id": 1421,
+      "hiragana": "びっくり",
+      "kanji": "びっくり",
+      "definition": "吃驚、嚇一跳",
+      "example": "突然大きな音がして、びっくりした。",
+      "translation": "突然傳來巨大的聲音，嚇了我一跳。"
+    },
+    {
+      "id": 1422,
+      "hiragana": "ぼんやり",
+      "kanji": "ぼんやり",
+      "definition": "模糊地；發呆、心不在焉",
+      "example": "窓の外をぼんやり眺めていた。",
+      "translation": "呆呆地望著窗外。"
+    },
+    {
+      "id": 1423,
+      "hiragana": "いっきに",
+      "kanji": "一気に",
+      "definition": "一口氣、一下子；不中斷地完成",
+      "example": "階段を一気に駆け上がった。",
+      "translation": "一口氣跑上了樓梯。"
+    },
+    {
+      "id": 1424,
+      "hiragana": "いっせいに",
+      "kanji": "一斉に",
+      "definition": "同時、一起；所有人或事物在同一時間行動",
+      "example": "学生たちは一斉に立ち上がった。",
+      "translation": "學生們同時站了起來。"
+    },
+    {
+      "id": 1425,
+      "hiragana": "いきなり",
+      "kanji": "いきなり",
+      "definition": "突然、冷不防地；沒有預兆地",
+      "example": "いきなり雨が降り始めた。",
+      "translation": "突然開始下雨。"
+    },
+    {
+      "id": 1426,
+      "hiragana": "かつて",
+      "kanji": "かつて",
+      "definition": "曾經、以前；表示過去某時期",
+      "example": "かつてここには大きな工場があった。",
+      "translation": "這裡以前曾經有一座大工廠。"
+    },
+    {
+      "id": 1427,
+      "hiragana": "なんと",
+      "kanji": "なんと",
+      "definition": "竟然、多麼；表示驚訝或感嘆",
+      "example": "なんと彼はその仕事を一人で完成させた。",
+      "translation": "沒想到他一個人完成了那項工作。"
+    },
+    {
+      "id": 1428,
+      "hiragana": "なんとか",
+      "kanji": "何とか",
+      "definition": "想辦法、設法；以某種方式勉強完成",
+      "example": "なんとか試験に合格した。",
+      "translation": "想辦法通過了考試。"
+    },
+    {
+      "id": 1429,
+      "hiragana": "なんとかなる",
+      "kanji": "何とかなる",
+      "definition": "總會有辦法；表示事情最後可以解決",
+      "example": "心配しなくても、何とかなるよ。",
+      "translation": "不用擔心，總會有辦法的。"
+    },
+    {
+      "id": 1430,
+      "hiragana": "なんとも",
+      "kanji": "何とも",
+      "definition": "一點也不、無法形容；常與否定或感嘆一起使用",
+      "example": "その知らせについては何とも言えない。",
+      "translation": "關於那個消息，我什麼也說不準。"
+    },
+    {
+      "id": 1431,
+      "hiragana": "なんとなく",
+      "kanji": "何となく",
+      "definition": "不知怎麼地、總覺得；沒有明確理由",
+      "example": "今日はなんとなく気分が重い。",
+      "translation": "今天不知怎麼地心情很沉重。"
+    },
+    {
+      "id": 1432,
+      "hiragana": "なんども",
+      "kanji": "何度も",
+      "definition": "多次、好多次",
+      "example": "この説明を何度も読んだ。",
+      "translation": "我把這個說明讀了很多次。"
+    },
+    {
+      "id": 1433,
+      "hiragana": "なにしろ",
+      "kanji": "何しろ",
+      "definition": "總之、畢竟；強調理由或事實",
+      "example": "何しろ初めてなので、よく分かりません。",
+      "translation": "畢竟是第一次，所以不太清楚。"
+    },
+    {
+      "id": 1434,
+      "hiragana": "じっと",
+      "kanji": "じっと",
+      "definition": "一動不動地；集中注意力地",
+      "example": "ここでじっとしていてください。",
+      "translation": "請待在這裡不要動。"
+    },
+    {
+      "id": 1435,
+      "hiragana": "しんと",
+      "kanji": "しんと",
+      "definition": "寂靜無聲；周圍完全安靜",
+      "example": "夜になると、町はしんと静まり返った。",
+      "translation": "到了晚上，城鎮變得一片寂靜。"
+    },
+    {
+      "id": 1436,
+      "hiragana": "このまま",
+      "kanji": "このまま",
+      "definition": "就這樣、維持現狀",
+      "example": "このまま仕事を続けるつもりです。",
+      "translation": "打算就這樣繼續工作。"
+    },
+    {
+      "id": 1437,
+      "hiragana": "そのまま",
+      "kanji": "そのまま",
+      "definition": "照原樣、 그대로；不作改變",
+      "example": "靴を脱がず、そのまま入ってください。",
+      "translation": "請不要脫鞋，就這樣進來。"
+    },
+    {
+      "id": 1438,
+      "hiragana": "ともかく",
+      "kanji": "ともかく",
+      "definition": "總之、姑且不論；先暫時不談其他事情",
+      "example": "ともかく、一度話し合いましょう。",
+      "translation": "總之，先談一次吧。"
+    },
+    {
+      "id": 1439,
+      "hiragana": "～はともかく",
+      "kanji": "～はともかく",
+      "definition": "姑且不論……；先不考慮某事項",
+      "example": "結果はともかく、最後まで頑張った。",
+      "translation": "姑且不論結果如何，至少努力到了最後。"
+    },
+    {
+      "id": 1440,
+      "hiragana": "ただちに",
+      "kanji": "直ちに",
+      "definition": "立即、馬上；沒有延遲地",
+      "example": "火事を見つけたら、直ちに連絡してください。",
+      "translation": "發現火災後請立即聯絡。"
+    },
+    {
+      "id": 1441,
+      "hiragana": "やがて",
+      "kanji": "やがて",
+      "definition": "不久、過了一段時間後；事情最終發生",
+      "example": "やがて夜になり、町は静かになった。",
+      "translation": "不久天黑了，城鎮安靜下來。"
+    },
+    {
+      "id": 1442,
+      "hiragana": "そくざに",
+      "kanji": "即座に",
+      "definition": "立即、當場；毫不遲疑地",
+      "example": "質問に即座に答えた。",
+      "translation": "立即回答了問題。"
+    },
+    {
+      "id": 1443,
+      "hiragana": "どうか",
+      "kanji": "どうか",
+      "definition": "請、務必；委婉地提出請求",
+      "example": "どうかよろしくお願いします。",
+      "translation": "請多多關照。"
+    },
+    {
+      "id": 1444,
+      "hiragana": "どうせ",
+      "kanji": "どうせ",
+      "definition": "反正、無論如何；帶有放棄或諷刺語氣",
+      "example": "どうせ私には無理だと思っている。",
+      "translation": "反正我覺得自己做不到。"
+    },
+    {
+      "id": 1445,
+      "hiragana": "どうしても",
+      "kanji": "どうしても",
+      "definition": "無論如何、怎麼也；表示強烈願望或無法避免",
+      "example": "どうしてもこの本が読みたい。",
+      "translation": "無論如何都想讀這本書。"
+    },
+    {
+      "id": 1446,
+      "hiragana": "どうやって",
+      "kanji": "どうやって",
+      "definition": "怎麼做、用什麼方法",
+      "example": "どうやってその資料を手に入れたのですか。",
+      "translation": "你是怎麼取得那份資料的？"
+    },
+    {
+      "id": 1447,
+      "hiragana": "どうやら",
+      "kanji": "どうやら",
+      "definition": "似乎、看來；根據情況作推測",
+      "example": "どうやら明日は雨らしい。",
+      "translation": "看來明天會下雨。"
+    },
+    {
+      "id": 1448,
+      "hiragana": "ふと",
+      "kanji": "ふと",
+      "definition": "突然、偶然地；一瞬間想起或注意到",
+      "example": "ふと昔の友達を思い出した。",
+      "translation": "突然想起了以前的朋友。"
+    },
+    {
+      "id": 1449,
+      "hiragana": "さっと",
+      "kanji": "さっと",
+      "definition": "迅速地、一下子；動作短暫而快速",
+      "example": "彼はさっと立ち上がった。",
+      "translation": "他迅速地站了起來。"
+    },
+    {
+      "id": 1450,
+      "hiragana": "ざっと",
+      "kanji": "ざっと",
+      "definition": "粗略地、大致地；快速瀏覽或估計",
+      "example": "資料にざっと目を通した。",
+      "translation": "粗略地看了一下資料。"
+    },
+    {
+      "id": 1451,
+      "hiragana": "さっさと",
+      "kanji": "さっさと",
+      "definition": "趕快、迅速地；催促對方不要拖延",
+      "example": "さっさと準備して出かけよう。",
+      "translation": "快點準備好出門吧。"
+    },
+    {
+      "id": 1452,
+      "hiragana": "いちだんと",
+      "kanji": "一段と",
+      "definition": "更加、越發；程度比之前更高",
+      "example": "今年は一段と寒い。",
+      "translation": "今年更加寒冷。"
+    },
+    {
+      "id": 1453,
+      "hiragana": "さらに",
+      "kanji": "更に",
+      "definition": "更加、進一步；在原有程度上再增加",
+      "example": "さらに詳しく説明します。",
+      "translation": "我會進一步詳細說明。"
+    },
+    {
+      "id": 1454,
+      "hiragana": "いっそう",
+      "kanji": "一層",
+      "definition": "更加、越發；程度進一步提高",
+      "example": "これから一層努力します。",
+      "translation": "今後會更加努力。"
+    },
+    {
+      "id": 1455,
+      "hiragana": "あるいは",
+      "kanji": "あるいは",
+      "definition": "或者、也許；表示選擇或可能性",
+      "example": "電話あるいはメールで連絡してください。",
+      "translation": "請用電話或電子郵件聯絡。"
+    },
+    {
+      "id": 1456,
+      "hiragana": "いわゆる",
+      "kanji": "いわゆる",
+      "definition": "所謂的；指一般人所稱的某種事物",
+      "example": "彼はいわゆる天才だ。",
+      "translation": "他就是所謂的天才。"
+    },
+    {
+      "id": 1457,
+      "hiragana": "じょじょに",
+      "kanji": "徐々に",
+      "definition": "逐漸、慢慢地；變化一點一點發生",
+      "example": "気温は徐々に上がってきた。",
+      "translation": "氣溫逐漸上升了。"
+    },
+    {
+      "id": 1458,
+      "hiragana": "すると",
+      "kanji": "すると",
+      "definition": "於是、結果；接著發生某事",
+      "example": "ドアを開けた。すると、猫が飛び出してきた。",
+      "translation": "打開門後，一隻貓突然跑了出來。"
+    },
+    {
+      "id": 1459,
+      "hiragana": "たまたま",
+      "kanji": "たまたま",
+      "definition": "偶然、碰巧",
+      "example": "駅でたまたま昔の先生に会った。",
+      "translation": "偶然在車站遇到了以前的老師。"
+    },
+    {
+      "id": 1460,
+      "hiragana": "やや",
+      "kanji": "やや",
+      "definition": "稍微、有點；程度略高或略低",
+      "example": "予定の時刻よりやや遅れて到着した。",
+      "translation": "比預定時間稍微晚了一點抵達。"
+    },
+    {
+      "id": 1461,
+      "hiragana": "よほど",
+      "kanji": "余程",
+      "definition": "非常、相當；程度遠超一般",
+      "example": "余程疲れていたのか、すぐ眠った。",
+      "translation": "可能非常疲累，馬上就睡著了。"
+    },
+    {
+      "id": 1462,
+      "hiragana": "だいぶ",
+      "kanji": "大分",
+      "definition": "相當、很；程度有明顯變化",
+      "example": "日本語が大分上達した。",
+      "translation": "日語進步了很多。"
+    },
+    {
+      "id": 1463,
+      "hiragana": "かなり",
+      "kanji": "かなり",
+      "definition": "相當、頗為；程度比預期高",
+      "example": "この問題はかなり難しい。",
+      "translation": "這個問題相當難。"
+    },
+    {
+      "id": 1464,
+      "hiragana": "これは日本語で何と言いますか",
+      "kanji": "これは日本語で何と言いますか",
+      "definition": "「這個用日語怎麼說？」；詢問某物的日語名稱",
+      "example": "これは日本語で何と言いますか。",
+      "translation": "這個用日語怎麼說？"
+    },
+    {
+      "id": 1465,
+      "hiragana": "とんでもないこと",
+      "kanji": "とんでもないこと",
+      "definition": "不得了的事；也可用於否定對方的客氣或猜測",
+      "example": "とんでもないことをしてしまった。",
+      "translation": "我做了一件不得了的事。"
+    },
+    {
+      "id": 1466,
+      "hiragana": "とても～ない",
+      "kanji": "とても～ない",
+      "definition": "怎麼也不能……；表示某事困難到無法做到",
+      "example": "今日はとても全部は食べられない。",
+      "translation": "今天怎麼也吃不完全部。"
+    },
+    {
+      "id": 1467,
+      "hiragana": "とてもきれい",
+      "kanji": "とてもきれい",
+      "definition": "非常漂亮、非常乾淨；程度很高的稱讚",
+      "example": "この公園はとてもきれいです。",
+      "translation": "這座公園非常漂亮。"
+    },
+    {
+      "id": 1468,
+      "hiragana": "そうでもない",
+      "kanji": "そうでもない",
+      "definition": "也沒有那麼……；婉轉否定對方的評價",
+      "example": "忙しそうですね。いいえ、そうでもありません。",
+      "translation": "你看起來很忙。沒有，也沒有那麼忙。"
+    },
+    {
+      "id": 1469,
+      "hiragana": "なんでもない",
+      "kanji": "何でもない",
+      "definition": "沒什麼、沒關係；事情不重要或沒有特別原因",
+      "example": "どうしたの。何でもないよ。",
+      "translation": "怎麼了？沒什麼。"
+    },
+    {
+      "id": 1470,
+      "hiragana": "どうでもいい",
+      "kanji": "どうでもいい",
+      "definition": "怎樣都可以、無所謂；對事情不在意",
+      "example": "どの店に行くかはどうでもいい。",
+      "translation": "去哪一家店都無所謂。"
+    },
+    {
+      "id": 1471,
+      "hiragana": "なんでもいい",
+      "kanji": "何でもいい",
+      "definition": "什麼都可以；對選項沒有特別要求",
+      "example": "飲み物は何でもいいです。",
+      "translation": "飲料什麼都可以。"
+    },
+    {
+      "id": 1472,
+      "hiragana": "～ことがある",
+      "kanji": "～ことがある",
+      "definition": "有時會……；表示某事偶爾發生或曾經發生",
+      "example": "週末に映画を見ることがある。",
+      "translation": "週末有時會看電影。"
+    },
+    {
+      "id": 1473,
+      "hiragana": "というわけで",
+      "kanji": "というわけで",
+      "definition": "因此、所以；用來引出結論",
+      "example": "今日は休みです。というわけで、家で過ごします。",
+      "translation": "今天放假，所以會待在家裡。"
+    },
+    {
+      "id": 1474,
+      "hiragana": "～と考えられています",
+      "kanji": "～と考えられています",
+      "definition": "一般認為……；表示普遍的看法或推測",
+      "example": "この地域は昔、海だったと考えられています。",
+      "translation": "一般認為這個地區以前是海。"
+    },
+    {
+      "id": 1475,
+      "hiragana": "～と考えられます",
+      "kanji": "～と考えられます",
+      "definition": "可以認為……；較正式地提出推論",
+      "example": "この結果から、原因は天候だと考えられます。",
+      "translation": "從這個結果可以認為原因是天氣。"
+    },
+    {
+      "id": 1476,
+      "hiragana": "かしこまりました",
+      "kanji": "かしこまりました",
+      "definition": "知道了、遵命；服務場合對客人的禮貌回應",
+      "example": "かしこまりました。すぐにお持ちします。",
+      "translation": "好的，遵命。我馬上拿來。"
+    },
+    {
+      "id": 1477,
+      "hiragana": "いったいどうしたんだろう",
+      "kanji": "いったいどうしたんだろう",
+      "definition": "到底發生了什麼事呢；表示強烈疑問或擔心",
+      "example": "彼はまだ来ない。いったいどうしたんだろう。",
+      "translation": "他還沒來，到底發生了什麼事呢？"
+    },
+    {
+      "id": 1478,
+      "hiragana": "かまわない",
+      "kanji": "構わない",
+      "definition": "不介意、沒關係；表示許可或不在意",
+      "example": "ここに荷物を置いても構わない。",
+      "translation": "把行李放在這裡也沒關係。"
+    },
+    {
+      "id": 1479,
+      "hiragana": "かまいません",
+      "kanji": "構いません",
+      "definition": "沒關係、不介意；禮貌地表示同意",
+      "example": "明日でも構いません。",
+      "translation": "明天也可以。"
+    },
+    {
+      "id": 1480,
+      "hiragana": "おかまいなく",
+      "kanji": "お構いなく",
+      "definition": "不用麻煩、不必招待；請對方不要費心",
+      "example": "どうぞお構いなく、お仕事を続けてください。",
+      "translation": "請不用麻煩，繼續工作就好。"
+    },
+    {
+      "id": 1481,
+      "hiragana": "かならずしも～ない",
+      "kanji": "必ずしも～ない",
+      "definition": "未必、不一定；部分否定",
+      "example": "努力すれば必ずしも成功するとは限らない。",
+      "translation": "努力未必一定會成功。"
+    },
+    {
+      "id": 1482,
+      "hiragana": "いつのまに",
+      "kanji": "いつの間に",
+      "definition": "不知不覺間；不知道何時發生",
+      "example": "いつの間にか、季節が変わっていた。",
+      "translation": "不知不覺間，季節已經變了。"
+    },
+    {
+      "id": 1483,
+      "hiragana": "あるんじゃないか",
+      "kanji": "あるんじゃないか",
+      "definition": "是不是有……；表示推測或反問",
+      "example": "何か理由があるんじゃないか。",
+      "translation": "是不是有什麼理由？"
+    },
+    {
+      "id": 1484,
+      "hiragana": "～は限らない",
+      "kanji": "～は限らない",
+      "definition": "不一定……；表示不能一概而論",
+      "example": "高い物が必ずしも良いとは限らない。",
+      "translation": "昂貴的東西不一定好。"
+    },
+    {
+      "id": 1485,
+      "hiragana": "なかったことにしよう",
+      "kanji": "なかったことにしよう",
+      "definition": "就當作沒發生過吧；把事情當成不存在",
+      "example": "今の話はなかったことにしよう。",
+      "translation": "剛才的話就當作沒說過吧。"
+    },
+    {
+      "id": 1486,
+      "hiragana": "よそにする",
+      "kanji": "余所にする",
+      "definition": "置之不理、撇在一旁；不理會應該處理的事情",
+      "example": "仕事を余所にして遊んではいけない。",
+      "translation": "不可以把工作丟在一旁去玩。"
+    },
+    {
+      "id": 1487,
+      "hiragana": "こころよりおいのりもうしあげます",
+      "kanji": "心よりお祈り申し上げます",
+      "definition": "由衷祈禱、衷心祝願；正式而鄭重的祝福語",
+      "example": "皆様のご健康を心よりお祈り申し上げます。",
+      "translation": "衷心祝願各位身體健康。"
+    },
+    {
+      "id": 1488,
+      "hiragana": "なんとかなんないか",
+      "kanji": "何とかなんないか",
+      "definition": "有沒有辦法；口語中請求想出解決方法",
+      "example": "この問題を何とかなんないか。",
+      "translation": "這個問題有沒有辦法解決？"
+    },
+    {
+      "id": 1489,
+      "hiragana": "おまねきいただき",
+      "kanji": "お招きいただき",
+      "definition": "承蒙邀請；「招く」的禮貌表達",
+      "example": "このたびはお招きいただき、ありがとうございます。",
+      "translation": "這次承蒙邀請，非常感謝。"
+    },
+    {
+      "id": 1490,
+      "hiragana": "いがいにかんがえられない",
+      "kanji": "以外に考えられない",
+      "definition": "除了……之外無法想像；表示強烈的唯一推論",
+      "example": "この結果は努力の成果以外に考えられない。",
+      "translation": "這個結果只能解釋為努力的成果。"
+    },
+    {
+      "id": 1491,
+      "hiragana": "どういうつもりですか",
+      "kanji": "どういうつもりですか",
+      "definition": "你到底打算怎麼做；也可帶有責備或質問語氣",
+      "example": "そんなことをして、どういうつもりですか。",
+      "translation": "你做這種事，到底是什麼意思？"
+    },
+    {
+      "id": 1492,
+      "hiragana": "てにはいりにくい",
+      "kanji": "手に入りにくい",
+      "definition": "難以取得、不容易買到",
+      "example": "人気の商品なので、なかなか手に入りにくい。",
+      "translation": "因為是人氣商品，所以很難買到。"
+    },
+    {
+      "id": 1493,
+      "hiragana": "しかたがない",
+      "kanji": "仕方がない",
+      "definition": "沒辦法、無可奈何；沒有其他可行方法",
+      "example": "電車が止まったので、歩くしか仕方がない。",
+      "translation": "電車停駛了，只好走路。"
+    },
+    {
+      "id": 1494,
+      "hiragana": "どうしようもない",
+      "kanji": "どうしようもない",
+      "definition": "毫無辦法、無計可施；情況無法改善",
+      "example": "今さら謝っても、どうしようもない。",
+      "translation": "事到如今道歉也無濟於事。"
+    },
+    {
+      "id": 1495,
+      "hiragana": "だからこそ",
+      "kanji": "だからこそ",
+      "definition": "正因如此；強調前項理由正是後項結論的原因",
+      "example": "難しい仕事だからこそ、挑戦する価値がある。",
+      "translation": "正因為是困難的工作，才有挑戰的價值。"
+    },
+    {
+      "id": 1496,
+      "hiragana": "だけあって",
+      "kanji": "だけあって",
+      "definition": "不愧是……；因為具備某條件，所以結果符合期待",
+      "example": "専門家だけあって、説明がとても分かりやすい。",
+      "translation": "不愧是專家，說明非常容易理解。"
     }
   ],
   "reviewStates": {
-    "1000": "known",
-    "1001": "known",
-    "1002": "known",
-    "1003": "known",
-    "1004": "known",
-    "1005": "known",
-    "1006": "known",
-    "1007": "known",
-    "1008": "known",
-    "1009": "known",
-    "1010": "known",
-    "1011": "known",
-    "1012": "known",
-    "1013": "known",
-    "1014": "known",
-    "1015": "known",
-    "1016": "known",
-    "1017": "known",
-    "1018": "known",
-    "1019": "dontknow",
-    "1020": "known",
-    "1021": "known",
-    "1022": "dontknow",
-    "1023": "known",
-    "1024": "dontknow",
-    "1025": "known",
-    "1026": "known",
-    "1027": "known",
-    "1028": "known",
-    "1029": "known",
-    "1030": "known",
-    "1031": "known",
-    "1032": "dontknow",
-    "1033": "known",
-    "1034": "known",
-    "1035": "known",
-    "1036": "known",
-    "1037": "known",
-    "1038": "known",
-    "1039": "known",
-    "1040": "known",
-    "1041": "known",
-    "1042": "known",
-    "1043": "dontknow",
-    "1044": "known",
-    "1045": "known",
-    "1046": "known",
-    "1047": "known",
-    "1048": "dontknow",
-    "1049": "known",
-    "1050": "known",
-    "1051": "known",
-    "1052": "known",
-    "1053": "known",
-    "1054": "known",
-    "1055": "known",
-    "1056": "known",
-    "1057": "known",
-    "1058": "known",
-    "1059": "known",
-    "1060": "known",
-    "1061": "known",
-    "1062": "known",
-    "1063": "known",
-    "1064": "known",
-    "1065": "known",
-    "1066": "known",
-    "1067": "known",
-    "1068": "known",
-    "1069": "known",
-    "1070": "known",
-    "1071": "dontknow",
-    "1072": "dontknow",
-    "1073": "known",
-    "1074": "known",
-    "1075": "dontknow",
-    "1076": "known",
-    "1077": "known",
-    "1078": "known",
-    "1079": "known",
-    "1080": "known",
-    "1081": "known",
-    "1082": "known",
-    "1083": "known",
-    "1084": "dontknow",
-    "1085": "known",
-    "1086": "known",
-    "1087": "known",
-    "1088": "known",
-    "1089": "known",
-    "1090": "known",
-    "1091": "known",
-    "1092": "dontknow",
-    "1093": "dontknow",
-    "1094": "dontknow",
-    "1095": "dontknow",
-    "1096": "known",
-    "1097": "known",
-    "1098": "known",
-    "1099": "known",
-    "1100": "known",
-    "1101": "dontknow",
-    "1102": "dontknow",
-    "1103": "known",
-    "1104": "known",
-    "1105": "known",
-    "1106": "known",
-    "1107": "dontknow",
-    "1108": "known",
-    "1109": "dontknow",
-    "1110": "dontknow",
-    "1111": "known",
-    "1112": "dontknow",
-    "1113": "dontknow",
-    "1114": "known",
-    "1115": "known",
-    "1116": "known",
-    "1117": "known",
-    "1118": "known",
-    "1119": "dontknow",
-    "1120": "known",
-    "1121": "dontknow",
-    "1122": "dontknow",
-    "1123": "dontknow",
-    "1124": "known",
-    "1125": "known",
-    "1126": "dontknow",
-    "1127": "known",
-    "1128": "known",
-    "1129": "dontknow",
-    "1130": "known",
-    "1131": "dontknow",
-    "1132": "known",
-    "1133": "dontknow",
-    "1135": "dontknow",
-    "1136": "dontknow",
-    "1137": "dontknow",
-    "1138": "dontknow",
-    "1139": "known",
-    "1140": "dontknow",
-    "1141": "dontknow",
-    "1142": "dontknow",
-    "1143": "dontknow",
-    "1144": "known",
-    "1145": "dontknow",
-    "1146": "known",
-    "1147": "known",
-    "1148": "dontknow",
-    "1149": "dontknow",
-    "1150": "dontknow",
-    "1151": "dontknow",
-    "1152": "dontknow",
-    "1153": "known",
-    "1154": "known",
-    "1155": "dontknow",
-    "1156": "known",
-    "1157": "known",
-    "1158": "dontknow",
-    "1159": "dontknow",
-    "1160": "dontknow",
-    "1161": "known",
-    "1162": "dontknow",
-    "1163": "dontknow",
-    "1164": "known",
-    "1165": "dontknow",
-    "1166": "dontknow",
-    "1167": "known",
-    "1168": "dontknow",
-    "1169": "known",
-    "1170": "known",
-    "1171": "known",
-    "1172": "dontknow",
-    "1173": "dontknow",
-    "1174": "dontknow",
-    "1175": "dontknow",
-    "1176": "dontknow",
-    "1177": "dontknow",
-    "1178": "dontknow",
-    "1179": "dontknow",
-    "1180": "dontknow",
-    "1181": "dontknow",
-    "1183": "dontknow",
-    "1184": "dontknow",
-    "1185": "known",
-    "1186": "dontknow",
-    "1187": "dontknow",
-    "1188": "dontknow",
-    "1189": "dontknow",
-    "1190": "known",
-    "1191": "known",
-    "1192": "dontknow",
-    "1193": "dontknow",
-    "1194": "known",
-    "1195": "dontknow",
-    "1196": "known",
-    "1197": "dontknow",
-    "1198": "dontknow",
-    "1199": "dontknow",
-    "1200": "known",
-    "1201": "dontknow",
-    "1202": "dontknow",
-    "1203": "dontknow",
-    "1204": "known",
-    "1205": "dontknow",
-    "1206": "dontknow",
-    "1207": "known",
-    "1208": "known",
-    "1209": "dontknow",
-    "1210": "dontknow",
-    "1211": "known",
-    "1212": "dontknow",
-    "1213": "dontknow",
-    "1214": "known",
-    "1215": "dontknow",
-    "1216": "dontknow",
-    "1217": "dontknow",
-    "1218": "known",
-    "1219": "known",
-    "1220": "dontknow",
-    "1221": "known",
-    "1222": "known",
-    "1223": "dontknow",
-    "1224": "dontknow",
-    "1225": "dontknow",
-    "1226": "dontknow",
-    "1227": "known",
-    "1228": "known",
-    "1229": "dontknow",
-    "1230": "dontknow",
-    "1231": "dontknow",
-    "1232": "known",
-    "1233": "known",
-    "1234": "dontknow",
-    "1235": "known",
-    "1236": "dontknow",
-    "1237": "known",
-    "1238": "dontknow",
-    "1239": "known",
-    "1240": "known",
-    "1241": "known",
-    "1242": "dontknow",
-    "1243": "known",
-    "1244": "known",
-    "1245": "known"
+    "1000": "dontknow",
+    "1001": "dontknow"
   }
 }
