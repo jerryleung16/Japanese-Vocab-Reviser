@@ -1105,3 +1105,42 @@ header h1 i {
         width: 95%;
     }
 }
+
+/* iOS and iPadOS do not reliably scroll descendants of rotated 3D layers. */
+@media (max-width: 1024px) {
+    .card {
+        transform-style: flat;
+        -webkit-transform-style: flat;
+        transition: none;
+        -webkit-transition: none;
+    }
+
+    .card.flipped {
+        transform: none;
+        -webkit-transform: none;
+    }
+
+    .card-front,
+    .card-back {
+        transform: none;
+        -webkit-transform: none;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+    }
+
+    .card-front {
+        display: flex;
+    }
+
+    .card-back {
+        display: none;
+    }
+
+    .card.flipped .card-front {
+        display: none;
+    }
+
+    .card.flipped .card-back {
+        display: block;
+    }
+}
