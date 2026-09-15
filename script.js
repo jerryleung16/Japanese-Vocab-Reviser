@@ -81,10 +81,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 公開更新函數供管理面板使用
     window.updateCard = updateCard;
+
+    async function tryAutoLoadSharedData() {
+        const allVocab = window.getAllVocabData ? window.getAllVocabData() : window.vocabStorage.getAllVocab();
+        if (allVocab.length > 0 || !window.vocabStorage || typeof window.vocabStorage.importSyncPayload !== 'function') {
+            return;
+        }
+
+        try {
+            const response = await fetch('./shared/japanese-vocab-sync.json', { cache: 'no-store' });
+            if (!response.ok) return;
+
+            const payload = await response.json();
+            const result = window.importSyncPayload
+                ? window.importSyncPayload(payload, { overwrite: true })
+                : window.vocabStorage.importSyncPayload(payload, { overwrite: true });
+
+            if (result && result.success) {
+                updateVocabList();
+            }
+        } catch (error) {
+            console.warn('自動載入同步詞彙失敗:', error);
+        }
+    }
     
     // 初始化
     function init() {
         updateVocabList();
+        tryAutoLoadSharedData();
         
         // 設定事件監聽器
         vocabCard.addEventListener('click', flipCard);
