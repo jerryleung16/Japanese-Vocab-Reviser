@@ -320,6 +320,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 處理鍵盤按鍵
     function handleKeyPress(event) {
+        // 如果正在輸入框中，不觸發大部分快捷鍵（但保留 Escape）
+        const isEditing = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName);
+
+        if (event.key === 'Escape') {
+            const managementPanel = document.getElementById('managementPanel');
+            if (managementPanel) {
+                managementPanel.classList.remove('active');
+            }
+            const editForm = document.getElementById('editForm');
+            if (editForm) {
+                editForm.classList.remove('active');
+            }
+            return;
+        }
+
+        if (isEditing) return;
+
         switch(event.key) {
             case 'ArrowLeft':
                 showPrevious();
@@ -342,13 +359,30 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'R':
                 shuffleVocab();
                 break;
-            case 'Escape':
-                // 關閉管理面板
-                const managementPanel = document.getElementById('managementPanel');
-                if (managementPanel) {
-                    managementPanel.classList.remove('active');
-                }
+            case 'e':
+            case 'E': {
+                const sideQuickEditBtn = document.getElementById('sideQuickEditBtn');
+                if (sideQuickEditBtn) sideQuickEditBtn.click();
                 break;
+            }
+            case 's':
+            case 'S': {
+                const sideCloudUploadBtn = document.getElementById('sideCloudUploadBtn');
+                if (sideCloudUploadBtn) sideCloudUploadBtn.click();
+                break;
+            }
+            case 'a':
+            case 'A': {
+                const sideQuickAddBtn = document.getElementById('sideQuickAddBtn');
+                if (sideQuickAddBtn) sideQuickAddBtn.click();
+                break;
+            }
+            case 'm':
+            case 'M': {
+                const sideManageBtn = document.getElementById('sideManageBtn');
+                if (sideManageBtn) sideManageBtn.click();
+                break;
+            }
         }
     }
     
@@ -383,6 +417,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 公開函數供管理面板使用
     window.showNotification = showNotification;
+    window.getCurrentVocabItem = () => (currentVocabList && currentVocabList[currentIndex]) ? currentVocabList[currentIndex] : null;
     
     // 開始應用
     init();

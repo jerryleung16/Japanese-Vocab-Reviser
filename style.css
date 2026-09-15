@@ -291,6 +291,99 @@ header h1 i {
     color: white;
 }
 
+/* Card side-rail wrapper */
+.card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.card-wrapper .card-container {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.card-side-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 10;
+}
+
+.side-tool-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: #ffffff;
+    color: #4a5568;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.side-tool-btn:hover {
+    transform: translateY(-2px) scale(1.08);
+    background: #3498db;
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(52, 152, 219, 0.35);
+}
+
+.side-tool-btn.side-btn-sync:hover {
+    background: #27ae60;
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(39, 174, 96, 0.35);
+}
+
+.side-tool-btn.side-btn-edit:hover {
+    background: #f39c12;
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(243, 156, 18, 0.35);
+}
+
+.side-tool-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Side button tooltips */
+.side-tool-btn .btn-tooltip {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2d3748;
+    color: #ffffff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.card-side-left .btn-tooltip {
+    right: calc(100% + 10px);
+}
+
+.card-side-right .btn-tooltip {
+    left: calc(100% + 10px);
+}
+
+.side-tool-btn:hover .btn-tooltip {
+    opacity: 1;
+}
+
 .card-container {
     perspective: 1000px;
     height: 400px;
@@ -883,6 +976,27 @@ header h1 i {
         padding: 20px;
     }
     
+    .card-wrapper {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .card-side-bar {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .card-side-left .btn-tooltip,
+    .card-side-right .btn-tooltip {
+        top: auto;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+    }
+
     header h1 {
         font-size: 1.8rem;
         flex-direction: column;

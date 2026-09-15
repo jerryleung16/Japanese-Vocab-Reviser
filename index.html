@@ -449,17 +449,80 @@
             color: #7f8c8d;
         }
         
-        /* 編輯表單樣式 */
+        /* 編輯表單樣式（固定居中 Modal） */
         .edit-form {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
             display: none;
         }
         
         .edit-form.active {
-            display: block;
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            z-index: 1200;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .edit-form-dialog {
+            background: #ffffff;
+            border-radius: 16px;
+            max-width: 540px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            animation: modalPop 0.25s ease-out;
+        }
+
+        .edit-form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .edit-form-header h3 {
+            margin: 0;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: #f0f0f0;
+            color: #e74c3c;
+        }
+
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
         
         /* 篩選器樣式 */
@@ -601,48 +664,78 @@
             </div>
         </div>
 
-        <div class="card-container">
-            <div class="card" id="vocabCard">
-                <div class="card-front">
-                    <div class="card-content">
-                        <div class="card-header">
-                            <span class="card-label" id="frontLabel">平假名</span>
-                            <span class="hint">點擊卡片查看答案</span>
+        <div class="card-wrapper">
+            <!-- Left Side Actions: Manage & Add -->
+            <div class="card-side-bar card-side-left">
+                <button id="sideManageBtn" class="side-tool-btn" title="打開管理面板 (M)" type="button">
+                    <i class="fas fa-sliders-h"></i>
+                    <span class="btn-tooltip">管理面板</span>
+                </button>
+                <button id="sideQuickAddBtn" class="side-tool-btn" title="快速新增單字 (A)" type="button">
+                    <i class="fas fa-plus"></i>
+                    <span class="btn-tooltip">新增單字</span>
+                </button>
+            </div>
+
+            <div class="card-container">
+                <div class="card" id="vocabCard">
+                    <div class="card-front">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <span class="card-label" id="frontLabel">平假名</span>
+                                <span class="hint">點擊卡片查看答案</span>
+                            </div>
+                            <div class="word-display">
+                                <h2 id="frontText">載入中...</h2>
+                            </div>
+                            <div class="card-footer">
+                                <i class="fas fa-hand-point-up"></i> 點擊卡片翻面
+                            </div>
                         </div>
-                        <div class="word-display">
-                            <h2 id="frontText">載入中...</h2>
-                        </div>
-                        <div class="card-footer">
-                            <i class="fas fa-hand-point-up"></i> 點擊卡片翻面
+                    </div>
+                    <div class="card-back">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <span class="card-label" id="backLabel">答案</span>
+                            </div>
+                            <div class="answer-content">
+                                <div class="kanji-section">
+                                    <h3 id="backKanji">漢字</h3>
+                                    <div class="reading" id="backReading">読み方</div>
+                                </div>
+                                <div class="definition-section">
+                                    <h4><i class="fas fa-book-open"></i> 解釋</h4>
+                                    <p id="backDefinition">解釋內容</p>
+                                </div>
+                                <div class="example-section">
+                                    <h4><i class="fas fa-comment"></i> 例句</h4>
+                                    <p id="backExample">例句內容</p>
+                                    <p class="translation" id="backTranslation">例句翻譯</p>
+                                </div>
+                            </div>
+                            <div class="review-status" id="reviewStatus">尚未標記</div>
+                            <div class="card-footer">
+                                <i class="fas fa-redo"></i> 點擊卡片返回
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-back">
-                    <div class="card-content">
-                        <div class="card-header">
-                            <span class="card-label" id="backLabel">答案</span>
-                        </div>
-                        <div class="answer-content">
-                            <div class="kanji-section">
-                                <h3 id="backKanji">漢字</h3>
-                                <div class="reading" id="backReading">読み方</div>
-                            </div>
-                            <div class="definition-section">
-                                <h4><i class="fas fa-book-open"></i> 解釋</h4>
-                                <p id="backDefinition">解釋內容</p>
-                            </div>
-                            <div class="example-section">
-                                <h4><i class="fas fa-comment"></i> 例句</h4>
-                                <p id="backExample">例句內容</p>
-                                <p class="translation" id="backTranslation">例句翻譯</p>
-                            </div>
-                        </div>
-                        <div class="review-status" id="reviewStatus">尚未標記</div>
-                        <div class="card-footer">
-                            <i class="fas fa-redo"></i> 點擊卡片返回
-                        </div>
-                    </div>
-                </div>
+            </div>
+
+            <!-- Right Side Actions: Quick Edit & Cloud Sync -->
+            <div class="card-side-bar card-side-right">
+                <button id="sideQuickEditBtn" class="side-tool-btn side-btn-edit" title="編輯當前單字 (E)" type="button">
+                    <i class="fas fa-pen"></i>
+                    <span class="btn-tooltip">編輯此卡</span>
+                </button>
+                <button id="sideCloudUploadBtn" class="side-tool-btn side-btn-sync" title="一鍵同步至 GitHub (S)" type="button">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span class="btn-tooltip">儲存至雲端</span>
+                </button>
+                <button id="sideCloudDownloadBtn" class="side-tool-btn" title="從 GitHub 下載進度" type="button">
+                    <i class="fas fa-cloud-download-alt"></i>
+                    <span class="btn-tooltip">下載雲端進度</span>
+                </button>
             </div>
         </div>
 
@@ -863,34 +956,41 @@
 
         <!-- 編輯詞彙表單（隱藏，用於編輯時彈出） -->
         <div class="edit-form" id="editForm">
-            <h3><i class="fas fa-edit"></i> 編輯詞彙</h3>
-            <div class="form-group">
-                <label for="editHiragana">平假名（必填）</label>
-                <input type="text" id="editHiragana" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="editKanji">漢字（可選）</label>
-                <input type="text" id="editKanji" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="editDefinition">解釋（必填）</label>
-                <input type="text" id="editDefinition" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="editExample">例句（可選）</label>
-                <textarea id="editExample" class="form-control" rows="2"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="editTranslation">例句翻譯（可選）</label>
-                <textarea id="editTranslation" class="form-control" rows="2"></textarea>
-            </div>
-            <div class="btn-group">
-                <button id="saveEditBtn" class="btn-primary">
-                    <i class="fas fa-save"></i> 保存修改
-                </button>
-                <button id="cancelEditBtn" class="btn-secondary">
-                    <i class="fas fa-times"></i> 取消編輯
-                </button>
+            <div class="edit-form-dialog">
+                <div class="edit-form-header">
+                    <h3><i class="fas fa-edit"></i> 編輯詞彙</h3>
+                    <button type="button" class="modal-close-btn" id="closeEditModalBtn" title="關閉 (Esc)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="form-group">
+                    <label for="editHiragana">平假名（必填）</label>
+                    <input type="text" id="editHiragana" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="editKanji">漢字（可選）</label>
+                    <input type="text" id="editKanji" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="editDefinition">解釋（必填）</label>
+                    <input type="text" id="editDefinition" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="editExample">例句（可選）</label>
+                    <textarea id="editExample" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editTranslation">例句翻譯（可選）</label>
+                    <textarea id="editTranslation" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="btn-group">
+                    <button id="saveEditBtn" class="btn-primary" type="button">
+                        <i class="fas fa-save"></i> 保存修改
+                    </button>
+                    <button id="cancelEditBtn" class="btn-secondary" type="button">
+                        <i class="fas fa-times"></i> 取消編輯
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -1464,20 +1564,19 @@
             
             // 打開編輯表單
             function openEditForm(vocab) {
+                if (!vocab) return;
                 currentEditingId = vocab.id;
                 
                 // 填充表單數據
-                editHiragana.value = vocab.hiragana;
-                editKanji.value = vocab.kanji;
-                editDefinition.value = vocab.definition;
+                editHiragana.value = vocab.hiragana || '';
+                editKanji.value = vocab.kanji || '';
+                editDefinition.value = vocab.definition || '';
                 editExample.value = vocab.example || '';
                 editTranslation.value = vocab.translation || '';
                 
-                // 顯示編輯表單
+                // 顯示編輯表單 Modal（不造成頁面滾動）
                 editForm.classList.add('active');
-                
-                // 滾動到編輯表單
-                editForm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                setTimeout(() => editHiragana.focus(), 50);
             }
             
             // 顯示刪除確認
@@ -1918,6 +2017,74 @@
 
             downloadCloudBtn.addEventListener('click', function() {
                 downloadCloudSync();
+            });
+
+            // 卡片兩側快捷按鈕
+            const sideManageBtn = document.getElementById('sideManageBtn');
+            const sideQuickAddBtn = document.getElementById('sideQuickAddBtn');
+            const sideQuickEditBtn = document.getElementById('sideQuickEditBtn');
+            const sideCloudUploadBtn = document.getElementById('sideCloudUploadBtn');
+            const sideCloudDownloadBtn = document.getElementById('sideCloudDownloadBtn');
+            const closeEditModalBtn = document.getElementById('closeEditModalBtn');
+
+            // 1. 快速編輯當前卡片
+            if (sideQuickEditBtn) {
+                sideQuickEditBtn.addEventListener('click', function() {
+                    const currentVocab = window.getCurrentVocabItem ? window.getCurrentVocabItem() : null;
+                    if (!currentVocab) {
+                        showNotification('目前無可編輯的詞彙', 'warning');
+                        return;
+                    }
+                    openEditForm(currentVocab);
+                });
+            }
+
+            // 2. 一鍵儲存同步至 GitHub
+            if (sideCloudUploadBtn) {
+                sideCloudUploadBtn.addEventListener('click', function() {
+                    uploadCloudSync();
+                });
+            }
+
+            // 3. 一鍵從 GitHub 下載最新進度
+            if (sideCloudDownloadBtn) {
+                sideCloudDownloadBtn.addEventListener('click', function() {
+                    downloadCloudSync();
+                });
+            }
+
+            // 4. 快速新增單字
+            if (sideQuickAddBtn) {
+                sideQuickAddBtn.addEventListener('click', function() {
+                    managementPanel.classList.add('active');
+                    const singleTabBtn = document.querySelector('.tab-btn[data-tab="single"]');
+                    if (singleTabBtn) singleTabBtn.click();
+                    managementPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => hiraganaInput.focus(), 150);
+                });
+            }
+
+            // 5. 快速管理按鈕
+            if (sideManageBtn) {
+                sideManageBtn.addEventListener('click', function() {
+                    manageBtn.click();
+                });
+            }
+
+            // 6. 關閉編輯 Modal
+            if (closeEditModalBtn) {
+                closeEditModalBtn.addEventListener('click', function() {
+                    editForm.classList.remove('active');
+                    currentEditingId = null;
+                });
+            }
+
+            // 點擊 Modal 背景自動關閉
+            editForm.addEventListener('click', function(e) {
+                if (e.target === editForm) {
+                    editForm.classList.remove('active');
+                    currentEditingId = null;
+                }
             });
             
             // 為刪除單個詞彙添加確認處理
