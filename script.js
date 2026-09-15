@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let isFlipped = false;
     let currentDeckFilter = 'pending'; // pending | dontknow | known
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let suppressNextCardClick = false;
 
     function getDeckFilterLabel(filter = currentDeckFilter) {
         if (filter === 'known') return '我會了';
@@ -112,6 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // 設定事件監聽器
         vocabCard.addEventListener('click', flipCard);
+        vocabCard.addEventListener('touchstart', handleCardTouchStart, { passive: true });
+        vocabCard.addEventListener('touchmove', handleCardTouchMove, { passive: true });
         mode1Btn.addEventListener('click', () => switchMode(1));
         mode2Btn.addEventListener('click', () => switchMode(2));
         prevBtn.addEventListener('click', showPrevious);
@@ -212,6 +217,24 @@ document.addEventListener('DOMContentLoaded', function() {
         updateReviewSummary();
     }
 
+    function handleCardTouchStart(event) {
+        if (event.touches.length !== 1) return;
+
+        touchStartX = event.touches[0].clientX;
+        touchStartY = event.touches[0].clientY;
+        suppressNextCardClick = false;
+    }
+
+    function handleCardTouchMove(event) {
+        if (event.touches.length !== 1) return;
+
+        const deltaX = Math.abs(event.touches[0].clientX - touchStartX);
+        const deltaY = Math.abs(event.touches[0].clientY - touchStartY);
+        if (deltaX > 8 || deltaY > 8) {
+            suppressNextCardClick = true;
+        }
+    }
+
     function forceCardFront() {
         vocabCard.classList.remove('flipped');
         isFlipped = false;
@@ -229,6 +252,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 翻轉卡片
     function flipCard() {
+        if (suppressNextCardClick) {
+            suppressNextCardClick = false;
+            return;
+        }
+
         if (currentVocabList.length === 0) return;
         isFlipped = !isFlipped;
         vocabCard.classList.toggle('flipped');
