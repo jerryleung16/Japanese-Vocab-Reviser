@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-16T08:00:40.511Z",
+  "exportedAt": "2026-09-16T14:32:02.599Z",
   "customVocab": [
     {
       "id": 1000,
@@ -1974,7 +1974,7 @@
       "id": 1246,
       "hiragana": "つうがく",
       "kanji": "通学",
-      "definition": "通學；往返學校",
+      "definition": "通學；往返學校（聯想：通勤）",
       "example": "毎日電車で通学している。",
       "translation": "每天搭電車上學。"
     },
@@ -1982,7 +1982,7 @@
       "id": 1247,
       "hiragana": "ごがく",
       "kanji": "語学",
-      "definition": "語學；外語學習或語言相關學問",
+      "definition": "語言學：研究語言結構、歷史或規律的學問。；外語學習 / 外語課程：指學習外國語言、外語能力或相關學科（例如：語学力指語言能力、語学学校指語言學校）",
       "example": "語学の勉強には継続が必要だ。",
       "translation": "學習語言需要持續努力。"
     },
@@ -4221,6 +4221,14 @@
     "1238": "dontknow",
     "1239": "dontknow",
     "1240": "dontknow",
-    "1241": "known"
+    "1241": "known",
+    "1242": "known",
+    "1243": "dontknow",
+    "1244": "known",
+    "1245": "known",
+    "1246": "dontknow",
+    "1247": "known",
+    "1248": "known",
+    "1249": "dontknow"
   }
 }
