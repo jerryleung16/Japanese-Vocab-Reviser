@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-16T07:42:06.477Z",
+  "exportedAt": "2026-09-16T08:00:40.511Z",
   "customVocab": [
     {
       "id": 1000,
@@ -1918,7 +1918,7 @@
       "id": 1239,
       "hiragana": "いっつうのてがみ",
       "kanji": "一通の手紙",
-      "definition": "一封信；計算信件的量詞",
+      "definition": "一封信；計算信件的量詞（1,6,8,10要促音）",
       "example": "昨日、友達から一通の手紙が届いた。",
       "translation": "昨天收到朋友寄來的一封信。"
     },
@@ -4216,6 +4216,11 @@
     "1233": "known",
     "1234": "dontknow",
     "1235": "dontknow",
-    "1236": "dontknow"
+    "1236": "dontknow",
+    "1237": "dontknow",
+    "1238": "dontknow",
+    "1239": "dontknow",
+    "1240": "dontknow",
+    "1241": "known"
   }
 }
