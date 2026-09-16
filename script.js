@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 公開更新函數供管理面板使用
     window.updateCard = updateCard;
+    window.updateVocabList = updateVocabList;
 
     async function tryAutoLoadSharedData() {
         const allVocab = window.getAllVocabData ? window.getAllVocabData() : window.vocabStorage.getAllVocab();

@@ -1405,7 +1405,9 @@
                     currentEditingId = null;
                     
                     // 更新卡片顯示
-                    if (window.updateCard) {
+                    if (window.updateVocabList) {
+                        window.updateVocabList();
+                    } else if (window.updateCard) {
                         window.updateCard();
                     }
                     
@@ -1836,6 +1838,10 @@
                     return;
                 }
 
+                if (!window.confirm('確定要上傳目前裝置的詞彙與複習標記到 GitHub 嗎？這會覆蓋雲端同步檔案。')) {
+                    return;
+                }
+
                 setCloudSyncStatus('正在上傳到雲端...');
 
                 try {
@@ -1892,6 +1898,10 @@
                     return;
                 }
 
+                if (!window.confirm('確定要從 GitHub 下載詞彙與複習標記嗎？這會覆蓋目前裝置的本地資料。')) {
+                    return;
+                }
+
                 setCloudSyncStatus('正在從雲端下載...');
 
                 try {
@@ -1928,7 +1938,9 @@
                     const now = new Date().toISOString();
                     saveCloudSyncConfig(now);
 
-                    if (window.updateCard) {
+                    if (window.updateVocabList) {
+                        window.updateVocabList();
+                    } else if (window.updateCard) {
                         window.updateCard();
                     }
                     updateStats();
@@ -2095,7 +2107,9 @@
                         showNotification('詞彙刪除成功！');
                         
                         // 更新卡片顯示
-                        if (window.updateCard) {
+                        if (window.updateVocabList) {
+                            window.updateVocabList();
+                        } else if (window.updateCard) {
                             window.updateCard();
                         }
                         
