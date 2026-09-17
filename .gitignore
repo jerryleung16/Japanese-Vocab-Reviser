@@ -1,0 +1,16 @@
+node_modules/
+.env
+.env.*
+!.env.example
+npm-debug.log*
+*.log
+coverage/
+dist/
+build/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Personal vocabulary and review progress. Keep this file local.
+shared/japanese-vocab-sync.json

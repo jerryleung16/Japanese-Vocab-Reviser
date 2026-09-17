@@ -728,6 +728,10 @@
                     <i class="fas fa-pen"></i>
                     <span class="btn-tooltip">編輯此卡</span>
                 </button>
+                <button id="sideAgentBtn" class="side-tool-btn side-btn-agent" title="詢問 Copilot" type="button" aria-label="詢問 Copilot">
+                    <i class="fas fa-sparkles"></i>
+                    <span class="btn-tooltip">詢問 Copilot</span>
+                </button>
                 <button id="sideCloudUploadBtn" class="side-tool-btn side-btn-sync" title="一鍵同步至 GitHub (S)" type="button">
                     <i class="fas fa-cloud-upload-alt"></i>
                     <span class="btn-tooltip">儲存至雲端</span>
@@ -994,6 +998,69 @@
             </div>
         </div>
 
+        <!-- Copilot tutor panel -->
+        <div class="agent-overlay" id="agentOverlay" aria-hidden="true">
+            <section class="agent-panel" role="dialog" aria-modal="true" aria-labelledby="agentTitle">
+                <div class="agent-header">
+                    <div>
+                        <span class="agent-eyebrow"><i class="fas fa-sparkles"></i> Japanese tutor</span>
+                        <h3 id="agentTitle">詢問 Copilot</h3>
+                    </div>
+                    <button type="button" class="modal-close-btn" id="closeAgentBtn" title="關閉 (Esc)" aria-label="關閉 Copilot">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="agent-session-bar">
+                    <label class="sr-only" for="agentSessionSelect">選擇 Copilot 對話</label>
+                    <select id="agentSessionSelect" aria-label="選擇 Copilot 對話"></select>
+                    <button type="button" class="agent-icon-btn" id="agentNewSessionBtn" title="新增對話" aria-label="新增對話">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button type="button" class="agent-icon-btn" id="agentDeleteSessionBtn" title="刪除目前對話" aria-label="刪除目前對話">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button type="button" class="agent-icon-btn" id="agentRetrySessionBtn" title="重試載入對話" aria-label="重試載入對話" hidden>
+                        <i class="fas fa-rotate-right"></i>
+                    </button>
+                    <button type="button" class="agent-icon-btn agent-cancel-btn" id="agentCancelBtn" title="停止回答" aria-label="停止回答" disabled>
+                        <i class="fas fa-stop"></i>
+                    </button>
+                </div>
+                <div class="agent-name-dialog" id="agentNameDialog" role="dialog" aria-modal="true" aria-labelledby="agentNameTitle" hidden>
+                    <form id="agentNameForm">
+                        <h4 id="agentNameTitle">命名 Copilot 對話</h4>
+                        <label for="agentNameInput">對話名稱</label>
+                        <input id="agentNameInput" type="text" maxlength="80" autocomplete="off" required>
+                        <p class="agent-name-error" id="agentNameError" role="alert"></p>
+                        <div class="agent-name-actions">
+                            <button type="button" class="btn-secondary" id="agentNameCancelBtn">取消</button>
+                            <button type="submit" class="btn-primary">建立對話</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="agent-current-card" id="agentCurrentCard">目前單字：載入中...</div>
+                <div class="agent-usage" id="agentUsage" aria-live="polite">
+                    <span>AI credits used: <strong id="agentCreditsUsed">未提供</strong></span>
+                    <span>Premium requests: <strong id="agentPremiumRequests">未提供</strong></span>
+                    <span>Context tokens: <strong id="agentContextTokens">未提供</strong></span>
+                    <span>Quota: <strong id="agentQuota">未提供</strong></span>
+                </div>
+                <div class="agent-messages" id="agentMessages" aria-live="polite">
+                    <p class="agent-empty-state">可以問我目前這張卡的意思、語感、例句或文法。</p>
+                </div>
+                <form class="agent-form" id="agentForm">
+                    <label class="sr-only" for="agentInput">詢問 Copilot</label>
+                    <textarea id="agentInput" rows="2" maxlength="1000" placeholder="例如：請用初學者容易理解的方式解釋這個單字"></textarea>
+                    <div class="agent-form-footer">
+                        <span class="agent-status" id="agentStatus">回答會使用目前單字的有限資料。</span>
+                        <button class="btn-primary agent-send-btn" id="agentSendBtn" type="submit" disabled>
+                            <i class="fas fa-paper-plane"></i> 詢問
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
         <div class="instructions">
             <h3><i class="fas fa-info-circle"></i> 使用說明</h3>
             <ul>
@@ -1025,6 +1092,9 @@
 
     <script src="vocab-data.js"></script>
     <script src="script.js"></script>
+    <script src="agent-context.js"></script>
+    <script src="agent-api.js"></script>
+    <script src="agent-ui.js"></script>
     <script>
         // 新增的管理功能JavaScript
         document.addEventListener('DOMContentLoaded', function() {

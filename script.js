@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             backTranslation.textContent = "";
             if (reviewStatus) reviewStatus.textContent = `目前分類：${getDeckFilterLabel()}`;
             updateProgress();
+            document.dispatchEvent(new CustomEvent('vocab-card-updated'));
             return;
         }
         
@@ -216,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         updateProgress();
         updateReviewSummary();
+        document.dispatchEvent(new CustomEvent('vocab-card-updated'));
     }
 
     function handleCardTouchStart(event) {

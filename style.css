@@ -353,6 +353,12 @@ header h1 i {
     box-shadow: 0 6px 18px rgba(243, 156, 18, 0.35);
 }
 
+.side-tool-btn.side-btn-agent:hover {
+    background: #8e44ad;
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(142, 68, 173, 0.35);
+}
+
 .side-tool-btn:active {
     transform: translateY(0) scale(0.98);
 }
@@ -967,6 +973,382 @@ header h1 i {
     justify-content: flex-end;
 }
 
+/* Compact Copilot tutor overlay */
+.agent-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.22);
+    z-index: 1100;
+}
+
+.agent-overlay.active {
+    display: flex;
+}
+
+.agent-panel {
+    display: flex;
+    flex-direction: column;
+    width: min(420px, 100%);
+    max-height: min(680px, calc(100vh - 48px));
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(52, 152, 219, 0.18);
+    border-radius: 14px;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.24);
+}
+
+.agent-name-dialog {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.agent-name-dialog[hidden] {
+    display: none;
+}
+
+.agent-name-dialog form {
+    width: min(100%, 320px);
+    padding: 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
+
+.agent-name-dialog h4 {
+    margin-bottom: 12px;
+    color: #2d3748;
+}
+
+.agent-name-dialog label {
+    display: block;
+    margin-bottom: 6px;
+    color: #4a5568;
+    font-size: 0.82rem;
+}
+
+.agent-name-dialog input {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    color: #2d3748;
+    background: #ffffff;
+    font: inherit;
+}
+
+.agent-name-error {
+    min-height: 1.2em;
+    margin-top: 6px;
+    color: #c0392b;
+    font-size: 0.76rem;
+}
+
+.agent-name-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.agent-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px 12px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.agent-header h3 {
+    margin: 4px 0 0;
+    color: #2c3e50;
+}
+
+.agent-session-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px 0;
+}
+
+.agent-session-bar select {
+    min-width: 0;
+    flex: 1 1 auto;
+    padding: 7px 9px;
+    border: 1px solid #d8e0e8;
+    border-radius: 6px;
+    color: #2d3748;
+    background: #fff;
+    font: inherit;
+    font-size: 0.82rem;
+}
+
+.agent-icon-btn {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid #d8e0e8;
+    border-radius: 6px;
+    color: #4a5568;
+    background: #fff;
+    cursor: pointer;
+}
+
+.agent-icon-btn:hover:not(:disabled) {
+    color: #2f5ea5;
+    border-color: #2f5ea5;
+}
+
+.agent-icon-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.agent-cancel-btn {
+    color: #c0392b;
+}
+
+.agent-eyebrow {
+    color: #8e44ad;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.agent-current-card {
+    margin: 14px 20px 0;
+    padding: 10px 12px;
+    overflow: hidden;
+    color: #4a5568;
+    background: #f8f5fb;
+    border-left: 3px solid #8e44ad;
+    border-radius: 6px;
+    font-size: 0.86rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.agent-usage {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+    padding: 8px 20px 0;
+    color: #718096;
+    font-size: 0.7rem;
+    line-height: 1.35;
+}
+
+.agent-usage span {
+    white-space: nowrap;
+}
+
+.agent-usage strong {
+    color: #4a5568;
+    font-weight: 700;
+}
+
+.agent-messages {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 96px;
+    max-height: 360px;
+    overflow-y: auto;
+    padding: 16px 20px;
+}
+
+.agent-message {
+    max-width: 92%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.agent-turn {
+    display: flex;
+    align-self: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    max-width: 92%;
+}
+
+.agent-message-user {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    max-width: 100%;
+    color: #ffffff;
+    background: #3498db;
+}
+
+.agent-message-content {
+    min-width: 0;
+}
+
+.agent-message-actions {
+    display: inline-flex;
+    flex: 0 0 auto;
+    gap: 4px;
+}
+
+.agent-message-action {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 5px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+}
+
+.agent-message-action:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.agent-message-action:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.agent-message-assistant {
+    align-self: flex-start;
+    color: #2d3748;
+    background: #f1f5f9;
+}
+
+.agent-message-error {
+    align-self: flex-start;
+    color: #9b2c2c;
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+}
+
+.agent-empty-state {
+    margin: auto 0;
+    color: #718096;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.agent-form {
+    padding: 12px 20px 18px;
+    border-top: 1px solid #edf2f7;
+}
+
+.agent-form textarea {
+    display: block;
+    width: 100%;
+    min-height: 58px;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    color: #2d3748;
+    background: #ffffff;
+    font: inherit;
+    line-height: 1.45;
+    resize: vertical;
+}
+
+.agent-form textarea:focus,
+.agent-session-bar select:focus,
+.agent-icon-btn:focus-visible,
+.agent-message-action:focus-visible,
+.agent-send-btn:focus-visible {
+    outline: 3px solid rgba(52, 152, 219, 0.25);
+    outline-offset: 2px;
+}
+
+.agent-form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.agent-status {
+    color: #718096;
+    font-size: 0.76rem;
+    line-height: 1.35;
+}
+
+.agent-send-btn {
+    flex: 0 0 auto;
+    padding: 9px 14px;
+}
+
+.agent-send-btn:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+@media (max-width: 520px) {
+    .agent-overlay {
+        align-items: flex-end;
+        padding: 0;
+    }
+
+    .agent-panel {
+        width: 100%;
+        height: min(620px, calc(100dvh - 12px));
+        max-height: calc(100dvh - 12px);
+        border-radius: 14px 14px 0 0;
+    }
+
+    .agent-messages {
+        min-height: 72px;
+        max-height: none;
+    }
+
+    .agent-session-bar,
+    .agent-current-card,
+    .agent-usage,
+    .agent-messages,
+    .agent-form {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .agent-usage {
+        gap: 3px 8px;
+    }
+}
+
+@media (min-width: 521px) and (max-width: 768px), (max-height: 680px) {
+    .agent-overlay {
+        align-items: flex-end;
+        padding: 10px;
+    }
+
+    .agent-panel {
+        width: min(520px, 100%);
+        height: min(620px, calc(100dvh - 20px));
+        max-height: calc(100dvh - 20px);
+    }
+
+    .agent-messages {
+        max-height: none;
+    }
+}
+
 .instructions {
     background: #f8f9fa;
     border-radius: 15px;
@@ -1008,26 +1390,58 @@ header h1 i {
 @media (max-width: 768px) {
     .container {
         padding: 20px;
-    }
-    
-    .card-wrapper {
+        display: flex;
         flex-direction: column;
-        gap: 12px;
+    }
+
+    header {
+        order: 1;
+    }
+
+    .card-wrapper {
+        order: 3;
+    }
+
+    .controls {
+        order: 2;
+    }
+
+    .review-panel {
+        order: 4;
+    }
+
+    .management-panel,
+    .instructions {
+        order: 5;
+    }
+
+    .card-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
         width: 100%;
         min-width: 0;
     }
 
     .card-wrapper .card-container {
-        flex: 1 1 100%;
+        flex: 0 0 100%;
+        order: 0;
         width: 100%;
         min-width: 0;
     }
 
     .card-side-bar {
-        flex-direction: row;
-        justify-content: center;
-        width: 100%;
-        gap: 12px;
+        display: contents;
+    }
+
+    .card-side-bar .side-tool-btn {
+        order: 1;
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
     }
 
     .card-side-left .btn-tooltip,
@@ -1058,7 +1472,7 @@ header h1 i {
     }
     
     .card-container {
-        height: 450px;
+        height: clamp(320px, 58vh, 430px);
         width: 100%;
         min-width: 0;
     }
@@ -1085,6 +1499,71 @@ header h1 i {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        padding: 12px;
+        border-radius: 14px;
+    }
+
+    header {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+    }
+
+    header h1 {
+        gap: 6px;
+        margin-bottom: 6px;
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .controls {
+        padding: 12px;
+        margin-bottom: 14px;
+    }
+
+    .mode-selector {
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .mode-btn {
+        min-width: 0;
+        flex: 1 1 0;
+        padding: 10px 6px;
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+
+    .progress {
+        margin-bottom: 12px;
+    }
+
+    .progress-bar {
+        height: 8px;
+    }
+
+    .buttons,
+    .action-buttons {
+        gap: 8px;
+        margin-top: 0;
+    }
+
+    .nav-btn,
+    .action-btn {
+        min-width: 0;
+        flex: 1 1 calc(50% - 8px);
+        padding: 9px 6px;
+        font-size: 0.82rem;
+        gap: 4px;
+    }
+
     #frontText {
         font-size: 2rem;
     }
@@ -1095,9 +1574,13 @@ header h1 i {
     }
     
     .card-container {
-        height: 500px;
+        height: clamp(300px, 56vh, 390px);
         width: 100%;
         min-width: 0;
+    }
+
+    .card-content {
+        padding: 14px;
     }
     
     .modal {
