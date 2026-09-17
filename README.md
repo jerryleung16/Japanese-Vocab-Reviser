@@ -42,7 +42,7 @@ GitHub Pages can host the vocabulary frontend, but it cannot run the Node.js Cop
 5. In **Settings > Pages**, choose **GitHub Actions** as the source. Push to `main` or manually run **Deploy Pages**. The workflow fails if `COPILOT_API_URL` is missing rather than deploying a broken Copilot link.
 6. Open the Pages site, open Copilot, and choose `使用 GitHub 登入`. Only the configured GitHub account can use the backend.
 
-The hosted backend uses HttpOnly signed sessions, a CSRF token for state-changing requests, exact-origin CORS, per-user sessions, rate limits, request limits, and the existing Copilot turn limits. Conversations are held in memory, so a service restart clears them and requires a new login. Do not expose the backend without OAuth or put `COPILOT_GITHUB_TOKEN` in browser code.
+The hosted backend uses HttpOnly signed sessions, a one-time OAuth ticket exchange for browsers that block cross-site cookies, a CSRF token for state-changing requests, exact-origin CORS, per-user sessions, rate limits, request limits, and the existing Copilot turn limits. Conversations are held in memory, so a service restart clears them and requires a new login. Do not expose the backend without OAuth or put `COPILOT_GITHUB_TOKEN` in browser code.
 
 ## Local data and GitHub sync
 

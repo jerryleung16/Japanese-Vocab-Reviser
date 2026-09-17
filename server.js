@@ -26,6 +26,7 @@ const rateLimitWindowMs = readPositiveInteger('RATE_LIMIT_WINDOW_MS', 60000);
 const rateLimitLimit = readPositiveInteger('RATE_LIMIT_LIMIT', 30);
 const sessionIdleTimeoutMs = readPositiveInteger('SESSION_IDLE_TIMEOUT_MS', 30 * 60 * 1000);
 const turnTimeoutMs = readPositiveInteger('TURN_TIMEOUT_MS', 45000);
+const authTicketTtlMs = 5 * 60 * 1000;
 const agentProfiles = {
     Tutor: {
         label: '日語助教',
@@ -88,6 +89,7 @@ const sessions = new Map();
 const rateLimits = new Map();
 const authSessions = new Map();
 const oauthStates = new Map();
+const authTickets = new Map();
 let copilotClientPromise;
 let activeTurnCount = 0;
 let shuttingDown = false;
@@ -127,6 +129,14 @@ function cookieValue(request, name) {
     const cookies = request.headers.cookie?.split(';').map((part) => part.trim()) || [];
     const match = cookies.find((part) => part.startsWith(`${name}=`));
     return match ? decodeURIComponent(match.slice(name.length + 1)) : null;
+}
+
+function requestSessionId(request) {
+    const authorization = request.headers.authorization;
+    if (typeof authorization === 'string' && authorization.startsWith('Bearer ')) {
+        return verifySignedValue(authorization.slice('Bearer '.length).trim());
+    }
+    return verifySignedValue(cookieValue(request, 'agent_session'));
 }
 
 function signedValue(value) {
@@ -172,7 +182,7 @@ function requestOrigin(request) {
 
 function authUser(request) {
     if (!authRequired) return { id: 'local-development', login: 'local' };
-    const sessionId = verifySignedValue(cookieValue(request, 'agent_session'));
+    const sessionId = requestSessionId(request);
     const session = sessionId ? authSessions.get(sessionId) : null;
     if (!session || session.expiresAt <= Date.now()) {
         if (sessionId) authSessions.delete(sessionId);
@@ -184,7 +194,7 @@ function authUser(request) {
 
 function authSession(request) {
     if (!authRequired) return null;
-    const sessionId = verifySignedValue(cookieValue(request, 'agent_session'));
+    const sessionId = requestSessionId(request);
     const session = sessionId ? authSessions.get(sessionId) : null;
     if (!session || session.expiresAt <= Date.now()) return null;
     session.lastUsedAt = Date.now();
@@ -205,7 +215,7 @@ function requireCsrf(request, response) {
     const session = authSession(request);
     const headerToken = request.headers['x-csrf-token'];
     const cookieToken = cookieValue(request, 'agent_csrf');
-    if (!session || !headerToken || !cookieToken || headerToken !== cookieToken || cookieToken !== session.csrfToken) {
+    if (!session || !headerToken || headerToken !== session.csrfToken || (cookieToken && cookieToken !== session.csrfToken)) {
         sendJson(response, 403, { error: '安全驗證失敗，請重新登入。', code: 'csrf_failed' });
         return false;
     }
@@ -281,7 +291,9 @@ async function handleGithubCallback(request, requestUrl, response) {
         setCookie(response, 'agent_session', signedValue(sessionId), { maxAge: Math.floor(authSessionTtlMs / 1000), httpOnly: true, secure, sameSite: secure ? 'None' : 'Lax' });
         setCookie(response, 'agent_csrf', csrfToken, { maxAge: Math.floor(authSessionTtlMs / 1000), secure, sameSite: secure ? 'None' : 'Lax' });
         clearCookie(response, 'oauth_state', secure);
-        response.writeHead(302, { Location: `${frontendUrl}/?copilot=connected` });
+        const ticket = randomBytes(32).toString('base64url');
+        authTickets.set(ticket, { sessionId, expiresAt: Date.now() + authTicketTtlMs });
+        response.writeHead(302, { Location: `${frontendUrl}/?copilot=connected&ticket=${encodeURIComponent(ticket)}` });
         response.end();
     } catch (error) {
         console.error(`[oauth-error] ${error?.message || 'unknown'}`);
@@ -289,9 +301,35 @@ async function handleGithubCallback(request, requestUrl, response) {
     }
 }
 
+async function handleAuthExchange(request, response) {
+    try {
+        const payload = await readJsonBody(request);
+        const ticket = typeof payload.ticket === 'string' ? payload.ticket.trim() : '';
+        const ticketData = ticket ? authTickets.get(ticket) : null;
+        authTickets.delete(ticket);
+        if (!ticketData || ticketData.expiresAt <= Date.now()) {
+            sendJson(response, 401, { error: '登入票證已失效，請重新登入。', code: 'invalid_auth_ticket' });
+            return;
+        }
+        const session = authSessions.get(ticketData.sessionId);
+        if (!session || session.expiresAt <= Date.now()) {
+            sendJson(response, 401, { error: '登入工作階段已失效，請重新登入。', code: 'authentication_required' });
+            return;
+        }
+        session.lastUsedAt = Date.now();
+        sendJson(response, 200, {
+            token: signedValue(ticketData.sessionId),
+            csrfToken: session.csrfToken,
+            expiresAt: session.expiresAt,
+        });
+    } catch (error) {
+        sendJson(response, error.message === 'request_too_large' ? 413 : 400, { error: '登入票證格式無效。', code: 'invalid_auth_ticket' });
+    }
+}
+
 function handleLogout(request, response) {
     const secure = isSecureRequest(request);
-    const sessionId = verifySignedValue(cookieValue(request, 'agent_session'));
+    const sessionId = requestSessionId(request);
     if (sessionId) authSessions.delete(sessionId);
     clearCookie(response, 'agent_session', secure);
     clearCookie(response, 'agent_csrf', secure);
@@ -918,6 +956,9 @@ async function handleQuota(response) {
 
 async function cleanupIdleSessions() {
     const cutoff = Date.now() - sessionIdleTimeoutMs;
+    for (const [ticket, ticketData] of authTickets) {
+        if (ticketData.expiresAt <= Date.now()) authTickets.delete(ticket);
+    }
     await Promise.all([...sessions.entries()].map(async ([id, entry]) => {
         if (!entry.busy && entry.lastUsedAt < cutoff) {
             await closeAgentSession(id, entry);
@@ -961,6 +1002,10 @@ const server = createServer(async (request, response) => {
     }
     if (requestUrl.pathname === '/auth/github/callback' && request.method === 'GET') {
         await handleGithubCallback(request, requestUrl, response);
+        return;
+    }
+    if (requestUrl.pathname === '/auth/exchange' && request.method === 'POST') {
+        await handleAuthExchange(request, response);
         return;
     }
     if (requestUrl.pathname === '/auth/session' && request.method === 'GET') {

@@ -4,10 +4,18 @@
     const configuredApiBase = typeof window.agentConfig?.apiBaseUrl === 'string'
         ? window.agentConfig.apiBaseUrl.trim().replace(/\/+$/, '')
         : '';
+    const authTokenStorageKey = 'japanese-vocab-agent-token';
     let csrfToken = null;
+    let authToken = localStorage.getItem(authTokenStorageKey) || '';
 
     function apiUrl(path) {
         return configuredApiBase ? `${configuredApiBase}${path}` : path;
+    }
+
+    function authHeaders(headers = {}) {
+        if (authToken) headers.Authorization = `Bearer ${authToken}`;
+        if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
+        return headers;
     }
 
     async function parseResponse(response) {
@@ -27,8 +35,7 @@
     }
 
     async function postAgent(payload, signal) {
-        const headers = { 'Content-Type': 'application/json' };
-        if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
+        const headers = authHeaders({ 'Content-Type': 'application/json' });
         const response = await fetch(apiUrl('/api/copilot'), {
             method: 'POST',
             headers,
@@ -40,11 +47,32 @@
     }
 
     async function getAgent(path, signal) {
-        const response = await fetch(apiUrl(path), { credentials: 'include', signal });
+        const response = await fetch(apiUrl(path), { credentials: 'include', headers: authHeaders(), signal });
         return parseResponse(response);
     }
 
+    async function consumeAuthTicket() {
+        const url = new URL(window.location.href);
+        const ticket = url.searchParams.get('ticket');
+        if (!ticket) return;
+        const response = await fetch(apiUrl('/auth/exchange'), {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ticket }),
+            credentials: 'include'
+        });
+        const payload = await parseResponse(response);
+        authToken = payload.token || '';
+        csrfToken = payload.csrfToken || null;
+        if (authToken) localStorage.setItem(authTokenStorageKey, authToken);
+        url.searchParams.delete('ticket');
+        window.history.replaceState({}, document.title, `${url.pathname}${url.search}${url.hash}`);
+    }
+
+    const authTicketPromise = consumeAuthTicket();
+
     async function getAuthState(signal) {
+        await authTicketPromise;
         const payload = await getAgent('/auth/session', signal);
         csrfToken = payload.csrfToken || null;
         return payload;
@@ -55,8 +83,7 @@
     }
 
     async function logoutAgent(signal) {
-        const headers = {};
-        if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
+        const headers = authHeaders();
         const response = await fetch(apiUrl('/auth/logout'), {
             method: 'POST',
             headers,
@@ -65,6 +92,8 @@
         });
         const payload = await parseResponse(response);
         csrfToken = null;
+        authToken = '';
+        localStorage.removeItem(authTokenStorageKey);
         return payload;
     }
 
