@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const deckKnownBtn = document.getElementById('deckKnownBtn');
     
     // 當前狀態
-    let currentMode = 1; // 1: 平假名→漢字, 2: 漢字→平假名
+    let currentMode = 2; // 1: 平假名→漢字, 2: 漢字→平假名
     let currentIndex = 0;
     let isFlipped = false;
     let currentDeckFilter = 'pending'; // pending | dontknow | known
