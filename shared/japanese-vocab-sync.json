@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-17T16:01:17.496Z",
+  "exportedAt": "2026-09-17T16:13:57.251Z",
   "customVocab": [
     {
       "id": 1000,
@@ -2278,7 +2278,7 @@
       "id": 1284,
       "hiragana": "いっせきのふね",
       "kanji": "一隻の船",
-      "definition": "一艘船；船的量詞",
+      "definition": "一艘船；船的量詞（1、6、8、10變促音）",
       "example": "港に一隻の船が入ってきた。",
       "translation": "一艘船駛入了港口。"
     },
@@ -2382,7 +2382,7 @@
       "id": 1297,
       "hiragana": "ふっこう",
       "kanji": "復興",
-      "definition": "復興、重建；災害或戰爭後重新發展",
+      "definition": "復興、重建；災害或戰爭後重新發展（興＝こう➡️聯想：興奮（こいふん））",
       "example": "町の復興には多くの時間が必要だ。",
       "translation": "城鎮復興需要很多時間。"
     },
@@ -4262,6 +4262,22 @@
     "1279": "dontknow",
     "1280": "dontknow",
     "1281": "known",
-    "1282": "dontknow"
+    "1282": "dontknow",
+    "1283": "dontknow",
+    "1284": "dontknow",
+    "1285": "known",
+    "1286": "dontknow",
+    "1287": "known",
+    "1288": "known",
+    "1289": "known",
+    "1290": "known",
+    "1291": "known",
+    "1292": "dontknow",
+    "1293": "known",
+    "1294": "dontknow",
+    "1295": "dontknow",
+    "1296": "known",
+    "1297": "dontknow",
+    "1298": "known"
   }
 }
