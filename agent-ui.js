@@ -425,6 +425,8 @@
         async function launchAgentTask(button) {
             const purpose = button.dataset.agentTask || 'Tutor';
             const formTarget = button.dataset.agentForm || null;
+            overlay.classList.add('active');
+            overlay.setAttribute('aria-hidden', 'false');
             const context = window.getAgentDraftContext ? window.getAgentDraftContext(formTarget) : null;
             if (!context) {
                 status.textContent = '請先在表單輸入至少一個單字或讀音。';
@@ -433,8 +435,6 @@
             selectedPurpose = purpose;
             pendingRequestContext = context;
             pendingFormTarget = formTarget;
-            overlay.classList.add('active');
-            overlay.setAttribute('aria-hidden', 'false');
             try {
                 await ensureSessions();
                 await ensureProfileSession(purpose);

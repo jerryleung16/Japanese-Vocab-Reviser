@@ -37,6 +37,7 @@ jobs:
           fi
           mkdir site
           cp index.html script.js style.css vocab-data.js agent-context.js agent-api.js agent-ui.js site/
+          sed -i "s/__ASSET_VERSION__/${GITHUB_SHA}/g" site/index.html
           node -e "const fs = require('fs'); const url = process.env.COPILOT_API_URL.replace(/\\/+$/, ''); fs.writeFileSync('site/agent-config.js', '// Generated for GitHub Pages.\nwindow.agentConfig = { apiBaseUrl: ' + JSON.stringify(url) + ' };\n');"
 
       - name: Upload Pages artifact
