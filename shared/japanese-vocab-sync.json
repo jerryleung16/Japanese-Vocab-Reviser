@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-17T06:40:41.459Z",
+  "exportedAt": "2026-09-17T16:01:17.496Z",
   "customVocab": [
     {
       "id": 1000,
@@ -2222,7 +2222,7 @@
       "id": 1277,
       "hiragana": "せいりつ",
       "kanji": "成立",
-      "definition": "成立、達成；組成或交易成功",
+      "definition": "成立、達成；組成或交易成功（注意：自動詞！）",
       "example": "新しい契約が成立した。",
       "translation": "新合約成立了。"
     },
@@ -2230,7 +2230,7 @@
       "id": 1278,
       "hiragana": "なっとく",
       "kanji": "納得",
-      "definition": "理解並接受；對理由感到信服",
+      "definition": "理解並接受；對理由感到信服（「納（收進心裡）」＋「得（明白理解）」）",
       "example": "説明を聞いて、ようやく納得した。",
       "translation": "聽完說明後終於理解並接受了。"
     },
@@ -4255,6 +4255,13 @@
     "1272": "dontknow",
     "1273": "known",
     "1274": "known",
-    "1275": "known"
+    "1275": "known",
+    "1276": "dontknow",
+    "1277": "known",
+    "1278": "dontknow",
+    "1279": "dontknow",
+    "1280": "dontknow",
+    "1281": "known",
+    "1282": "dontknow"
   }
 }
