@@ -6,7 +6,26 @@
         : '';
     const authTokenStorageKey = 'japanese-vocab-agent-token';
     let csrfToken = null;
-    let authToken = localStorage.getItem(authTokenStorageKey) || '';
+    let authToken = '';
+
+    function readAuthToken() {
+        try {
+            return window.localStorage.getItem(authTokenStorageKey) || '';
+        } catch {
+            return '';
+        }
+    }
+
+    function writeAuthToken(token) {
+        try {
+            if (token) window.localStorage.setItem(authTokenStorageKey, token);
+            else window.localStorage.removeItem(authTokenStorageKey);
+        } catch {
+            // Authentication still works for the current page when storage is blocked.
+        }
+    }
+
+    authToken = readAuthToken();
 
     function apiUrl(path) {
         return configuredApiBase ? `${configuredApiBase}${path}` : path;
@@ -64,7 +83,7 @@
         const payload = await parseResponse(response);
         authToken = payload.token || '';
         csrfToken = payload.csrfToken || null;
-        if (authToken) localStorage.setItem(authTokenStorageKey, authToken);
+        writeAuthToken(authToken);
         url.searchParams.delete('ticket');
         window.history.replaceState({}, document.title, `${url.pathname}${url.search}${url.hash}`);
     }
@@ -93,7 +112,7 @@
         const payload = await parseResponse(response);
         csrfToken = null;
         authToken = '';
-        localStorage.removeItem(authTokenStorageKey);
+        writeAuthToken('');
         return payload;
     }
 

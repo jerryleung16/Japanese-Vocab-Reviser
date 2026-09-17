@@ -119,7 +119,7 @@ function applyCors(request, response) {
     if (origin === frontendOrigin) {
         response.setHeader('Access-Control-Allow-Origin', origin);
         response.setHeader('Access-Control-Allow-Credentials', 'true');
-        response.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token');
+        response.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token, Authorization');
         response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
         response.setHeader('Vary', 'Origin');
     }
