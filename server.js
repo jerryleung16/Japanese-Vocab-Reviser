@@ -10,6 +10,7 @@ const port = Number(process.env.PORT || 3000);
 const authRequired = process.env.AUTH_MODE === 'github';
 const listenHost = process.env.HOST || (authRequired ? '0.0.0.0' : '127.0.0.1');
 const frontendOrigin = (process.env.FRONTEND_ORIGIN || `http://127.0.0.1:${port}`).replace(/\/$/, '');
+const frontendUrl = (process.env.FRONTEND_URL || frontendOrigin).replace(/\/$/, '');
 const sessionSecret = process.env.SESSION_SECRET || 'local-development-session-secret';
 const githubClientId = process.env.GITHUB_CLIENT_ID || '';
 const githubClientSecret = process.env.GITHUB_CLIENT_SECRET || '';
@@ -280,7 +281,7 @@ async function handleGithubCallback(request, requestUrl, response) {
         setCookie(response, 'agent_session', signedValue(sessionId), { maxAge: Math.floor(authSessionTtlMs / 1000), httpOnly: true, secure, sameSite: secure ? 'None' : 'Lax' });
         setCookie(response, 'agent_csrf', csrfToken, { maxAge: Math.floor(authSessionTtlMs / 1000), secure, sameSite: secure ? 'None' : 'Lax' });
         clearCookie(response, 'oauth_state', secure);
-        response.writeHead(302, { Location: `${frontendOrigin}/?copilot=connected` });
+        response.writeHead(302, { Location: `${frontendUrl}/?copilot=connected` });
         response.end();
     } catch (error) {
         console.error(`[oauth-error] ${error?.message || 'unknown'}`);
