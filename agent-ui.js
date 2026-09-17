@@ -25,12 +25,17 @@
         const nameInput = document.getElementById('agentNameInput');
         const nameError = document.getElementById('agentNameError');
         const nameCancelButton = document.getElementById('agentNameCancelBtn');
+        const authBar = document.getElementById('agentAuthBar');
+        const authStatus = document.getElementById('agentAuthStatus');
+        const loginButton = document.getElementById('agentLoginBtn');
+        const logoutButton = document.getElementById('agentLogoutBtn');
         const sessions = new Map();
         let selectedSessionId = null;
         let sessionsReady = false;
         let sessionLoadError = null;
         let editingTurnId = null;
         let nameRequestResolver = null;
+        let authState = null;
 
         if (!overlay || !openButton || !form) return;
 
@@ -230,6 +235,20 @@
             if (sessionLoadError) status.textContent = sessionLoadError;
         }
 
+        function renderAuthState() {
+            if (!authBar) return;
+            const hosted = Boolean(authState?.authRequired);
+            authBar.hidden = !hosted;
+            loginButton.hidden = !hosted || Boolean(authState?.authenticated);
+            logoutButton.hidden = !hosted || !authState?.authenticated;
+            authStatus.textContent = !hosted
+                ? ''
+                : authState?.authenticated
+                    ? `已登入 GitHub：${authState.user?.login || ''}`
+                    : '需要使用 GitHub 登入';
+            loginButton.href = window.agentApi.getLoginUrl();
+        }
+
         async function refreshUsage(session) {
             if (!session) return;
             try {
@@ -270,6 +289,13 @@
             status.textContent = '正在載入 Copilot 對話...';
             renderSessionState();
             try {
+                authState = await window.agentApi.getAuthState();
+                renderAuthState();
+                if (authState.authRequired && !authState.authenticated) {
+                    const error = new Error('請先使用 GitHub 登入。');
+                    error.code = 'authentication_required';
+                    throw error;
+                }
                 const payload = await window.agentApi.listAgentSessions();
                 payload.sessions.forEach((summary) => sessions.set(summary.id, hydrateSession(summary)));
                 if (sessions.size === 0) {
@@ -285,7 +311,9 @@
                 await refreshUsage(selectedSession());
             } catch (error) {
                 sessionsReady = false;
-                sessionLoadError = error.message === 'name_cancelled'
+                sessionLoadError = error.code === 'authentication_required'
+                    ? '請先使用 GitHub 登入後，再使用 Copilot。'
+                    : error.message === 'name_cancelled'
                     ? '請命名對話後再開始使用 Copilot。'
                     : 'Copilot 對話尚未準備好，請重試。';
                 renderSessionState();
@@ -360,6 +388,16 @@
         });
         nameCancelButton.addEventListener('click', function () {
             resolveSessionName(null);
+        });
+        logoutButton.addEventListener('click', async function () {
+            logoutButton.disabled = true;
+            try {
+                await window.agentApi.logoutAgent();
+                window.location.reload();
+            } catch (error) {
+                status.textContent = error.message || '無法登出。';
+                logoutButton.disabled = false;
+            }
         });
         sessionSelect.addEventListener('change', function () {
             selectedSessionId = sessionSelect.value;

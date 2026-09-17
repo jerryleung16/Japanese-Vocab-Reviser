@@ -1093,6 +1093,23 @@ header h1 i {
     font-size: 0.82rem;
 }
 
+.agent-auth-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 20px 0;
+    color: #718096;
+    font-size: 0.76rem;
+}
+
+.agent-auth-link {
+    min-height: 28px;
+    padding: 4px 9px;
+    font-size: 0.76rem;
+    text-decoration: none;
+}
+
 .agent-icon-btn {
     flex: 0 0 30px;
     width: 30px;
@@ -1319,6 +1336,7 @@ header h1 i {
     }
 
     .agent-session-bar,
+    .agent-auth-bar,
     .agent-current-card,
     .agent-usage,
     .agent-messages,

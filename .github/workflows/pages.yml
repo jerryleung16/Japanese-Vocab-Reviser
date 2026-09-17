@@ -1,0 +1,49 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build static site
+        env:
+          COPILOT_API_URL: ${{ vars.COPILOT_API_URL }}
+        run: |
+          if [ -z "$COPILOT_API_URL" ]; then
+            echo "Repository variable COPILOT_API_URL is required."
+            exit 1
+          fi
+          mkdir site
+          cp index.html script.js style.css vocab-data.js agent-context.js agent-api.js agent-ui.js site/
+          node -e "const fs = require('fs'); const url = process.env.COPILOT_API_URL.replace(/\\/+$/, ''); fs.writeFileSync('site/agent-config.js', '// Generated for GitHub Pages.\nwindow.agentConfig = { apiBaseUrl: ' + JSON.stringify(url) + ' };\n');"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { randomUUID } from 'node:crypto';
+import { createHmac, randomBytes, randomUUID, timingSafeEqual } from 'node:crypto';
 import { extname, join, normalize, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
@@ -7,6 +7,15 @@ import { CopilotClient } from '@github/copilot-sdk';
 
 const rootDirectory = fileURLToPath(new URL('.', import.meta.url)).replace(/[\\/]$/, '');
 const port = Number(process.env.PORT || 3000);
+const authRequired = process.env.AUTH_MODE === 'github';
+const listenHost = process.env.HOST || (authRequired ? '0.0.0.0' : '127.0.0.1');
+const frontendOrigin = (process.env.FRONTEND_ORIGIN || `http://127.0.0.1:${port}`).replace(/\/$/, '');
+const sessionSecret = process.env.SESSION_SECRET || 'local-development-session-secret';
+const githubClientId = process.env.GITHUB_CLIENT_ID || '';
+const githubClientSecret = process.env.GITHUB_CLIENT_SECRET || '';
+const allowedGithubLogin = (process.env.ALLOWED_GITHUB_LOGIN || '').trim().toLowerCase();
+const publicBaseUrl = (process.env.PUBLIC_BASE_URL || '').replace(/\/$/, '');
+const authSessionTtlMs = readPositiveInteger('AUTH_SESSION_TTL_MS', 7 * 24 * 60 * 60 * 1000);
 const maxBodyLength = readPositiveInteger('MAX_BODY_LENGTH', 16000);
 const maxMessageLength = readPositiveInteger('MAX_MESSAGE_LENGTH', 1000);
 const maxSessionNameLength = readPositiveInteger('MAX_SESSION_NAME_LENGTH', 80);
@@ -19,6 +28,8 @@ const turnTimeoutMs = readPositiveInteger('TURN_TIMEOUT_MS', 45000);
 const allowedPurposes = ['Tutor', 'Examples', 'Grammar', 'Review coach'];
 const sessions = new Map();
 const rateLimits = new Map();
+const authSessions = new Map();
+const oauthStates = new Map();
 let copilotClientPromise;
 let activeTurnCount = 0;
 let shuttingDown = false;
@@ -43,10 +54,196 @@ function sendJson(response, statusCode, payload) {
     response.end(JSON.stringify(payload));
 }
 
-function checkRateLimit(request) {
+function applyCors(request, response) {
+    const origin = request.headers.origin;
+    if (origin === frontendOrigin) {
+        response.setHeader('Access-Control-Allow-Origin', origin);
+        response.setHeader('Access-Control-Allow-Credentials', 'true');
+        response.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-CSRF-Token');
+        response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        response.setHeader('Vary', 'Origin');
+    }
+}
+
+function cookieValue(request, name) {
+    const cookies = request.headers.cookie?.split(';').map((part) => part.trim()) || [];
+    const match = cookies.find((part) => part.startsWith(`${name}=`));
+    return match ? decodeURIComponent(match.slice(name.length + 1)) : null;
+}
+
+function signedValue(value) {
+    const signature = createHmac('sha256', sessionSecret).update(value).digest('base64url');
+    return `${value}.${signature}`;
+}
+
+function verifySignedValue(value) {
+    if (!value) return null;
+    const separator = value.lastIndexOf('.');
+    if (separator < 1) return null;
+    const rawValue = value.slice(0, separator);
+    const received = Buffer.from(value.slice(separator + 1));
+    const expected = Buffer.from(createHmac('sha256', sessionSecret).update(rawValue).digest('base64url'));
+    if (received.length !== expected.length || !timingSafeEqual(received, expected)) return null;
+    return rawValue;
+}
+
+function setCookie(response, name, value, options = {}) {
+    const parts = [`${name}=${encodeURIComponent(value)}`, 'Path=/'];
+    if (options.maxAge !== undefined) parts.push(`Max-Age=${options.maxAge}`);
+    if (options.httpOnly) parts.push('HttpOnly');
+    if (options.secure) parts.push('Secure');
+    if (options.sameSite) parts.push(`SameSite=${options.sameSite}`);
+    const existing = response.getHeader('Set-Cookie');
+    const cookies = existing ? (Array.isArray(existing) ? existing : [existing]) : [];
+    response.setHeader('Set-Cookie', [...cookies, parts.join('; ')]);
+}
+
+function clearCookie(response, name, secure) {
+    setCookie(response, name, '', { maxAge: 0, httpOnly: name === 'agent_session', secure, sameSite: secure ? 'None' : 'Lax' });
+}
+
+function isSecureRequest(request) {
+    return request.headers['x-forwarded-proto'] === 'https' || publicBaseUrl.startsWith('https://');
+}
+
+function requestOrigin(request) {
+    if (publicBaseUrl) return publicBaseUrl;
+    const protocol = request.headers['x-forwarded-proto'] || 'http';
+    return `${protocol}://${request.headers.host}`;
+}
+
+function authUser(request) {
+    if (!authRequired) return { id: 'local-development', login: 'local' };
+    const sessionId = verifySignedValue(cookieValue(request, 'agent_session'));
+    const session = sessionId ? authSessions.get(sessionId) : null;
+    if (!session || session.expiresAt <= Date.now()) {
+        if (sessionId) authSessions.delete(sessionId);
+        return null;
+    }
+    session.lastUsedAt = Date.now();
+    return session.user;
+}
+
+function authSession(request) {
+    if (!authRequired) return null;
+    const sessionId = verifySignedValue(cookieValue(request, 'agent_session'));
+    const session = sessionId ? authSessions.get(sessionId) : null;
+    if (!session || session.expiresAt <= Date.now()) return null;
+    session.lastUsedAt = Date.now();
+    return session;
+}
+
+function requireAuth(request, response) {
+    const user = authUser(request);
+    if (!user) {
+        sendJson(response, 401, { error: '請先使用 GitHub 登入。', code: 'authentication_required' });
+        return null;
+    }
+    return user;
+}
+
+function requireCsrf(request, response) {
+    if (!authRequired) return true;
+    const session = authSession(request);
+    const headerToken = request.headers['x-csrf-token'];
+    const cookieToken = cookieValue(request, 'agent_csrf');
+    if (!session || !headerToken || !cookieToken || headerToken !== cookieToken || cookieToken !== session.csrfToken) {
+        sendJson(response, 403, { error: '安全驗證失敗，請重新登入。', code: 'csrf_failed' });
+        return false;
+    }
+    return true;
+}
+
+function authConfigurationError() {
+    return authRequired && (!githubClientId || !githubClientSecret || !allowedGithubLogin || sessionSecret === 'local-development-session-secret');
+}
+
+function authSessionPayload(request) {
+    const user = authUser(request);
+    const session = authSession(request);
+    const csrfToken = user && session ? session.csrfToken : null;
+    return {
+        authenticated: Boolean(user),
+        user: user ? { login: user.login, name: user.name, avatarUrl: user.avatarUrl } : null,
+        csrfToken,
+        authRequired,
+    };
+}
+
+async function handleGithubLogin(request, response) {
+    if (!authRequired || authConfigurationError()) {
+        sendJson(response, 503, { error: 'GitHub 登入尚未完成設定。', code: 'auth_not_configured' });
+        return;
+    }
+    const state = randomBytes(24).toString('base64url');
+    oauthStates.set(state, Date.now() + 10 * 60 * 1000);
+    const callbackUrl = `${requestOrigin(request)}/auth/github/callback`;
+    const params = new URLSearchParams({ client_id: githubClientId, redirect_uri: callbackUrl, state, scope: 'read:user' });
+    const secure = isSecureRequest(request);
+    setCookie(response, 'oauth_state', state, { maxAge: 600, httpOnly: true, secure, sameSite: 'Lax' });
+    response.writeHead(302, { Location: `https://github.com/login/oauth/authorize?${params}` });
+    response.end();
+}
+
+async function handleGithubCallback(request, requestUrl, response) {
+    const stateExpiry = oauthStates.get(requestUrl.searchParams.get('state'));
+    const code = requestUrl.searchParams.get('code');
+    const state = requestUrl.searchParams.get('state');
+    oauthStates.delete(state);
+    if (!stateExpiry || stateExpiry < Date.now() || !code || cookieValue(request, 'oauth_state') !== state) {
+        sendJson(response, 400, { error: 'GitHub 登入驗證已失效，請重新開始。', code: 'invalid_oauth_state' });
+        return;
+    }
+    try {
+        const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
+            method: 'POST',
+            headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+            body: JSON.stringify({ client_id: githubClientId, client_secret: githubClientSecret, code, redirect_uri: `${requestOrigin(request)}/auth/github/callback` }),
+        });
+        const tokenPayload = await tokenResponse.json();
+        if (!tokenResponse.ok || !tokenPayload.access_token) throw new Error('oauth_token_failed');
+        const userResponse = await fetch('https://api.github.com/user', {
+            headers: { Accept: 'application/vnd.github+json', Authorization: `Bearer ${tokenPayload.access_token}`, 'User-Agent': 'Japanese-Vocab-Reviser' },
+        });
+        const githubUser = await userResponse.json();
+        if (!userResponse.ok || typeof githubUser.login !== 'string') throw new Error('github_user_failed');
+        if (githubUser.login.toLowerCase() !== allowedGithubLogin) {
+            sendJson(response, 403, { error: '這個 GitHub 帳號沒有使用 Copilot 助教的權限。', code: 'github_user_not_allowed' });
+            return;
+        }
+        const sessionId = randomBytes(32).toString('base64url');
+        const csrfToken = randomBytes(32).toString('base64url');
+        authSessions.set(sessionId, {
+            user: { id: `github:${githubUser.id}`, login: githubUser.login, name: githubUser.name || githubUser.login, avatarUrl: githubUser.avatar_url || null },
+            csrfToken,
+            expiresAt: Date.now() + authSessionTtlMs,
+            lastUsedAt: Date.now(),
+        });
+        const secure = isSecureRequest(request);
+        setCookie(response, 'agent_session', signedValue(sessionId), { maxAge: Math.floor(authSessionTtlMs / 1000), httpOnly: true, secure, sameSite: secure ? 'None' : 'Lax' });
+        setCookie(response, 'agent_csrf', csrfToken, { maxAge: Math.floor(authSessionTtlMs / 1000), secure, sameSite: secure ? 'None' : 'Lax' });
+        clearCookie(response, 'oauth_state', secure);
+        response.writeHead(302, { Location: `${frontendOrigin}/?copilot=connected` });
+        response.end();
+    } catch (error) {
+        console.error(`[oauth-error] ${error?.message || 'unknown'}`);
+        sendJson(response, 502, { error: '無法完成 GitHub 登入，請稍後重試。', code: 'oauth_failed' });
+    }
+}
+
+function handleLogout(request, response) {
+    const secure = isSecureRequest(request);
+    const sessionId = verifySignedValue(cookieValue(request, 'agent_session'));
+    if (sessionId) authSessions.delete(sessionId);
+    clearCookie(response, 'agent_session', secure);
+    clearCookie(response, 'agent_csrf', secure);
+    sendJson(response, 200, { loggedOut: true });
+}
+
+function checkRateLimit(request, user) {
     const now = Date.now();
-    const key = request.socket.remoteAddress || 'local';
-    const current = rateLimits.get(key);
+    const key = user?.id || request.socket.remoteAddress || 'local';
+        const current = rateLimits.get(user?.id || key);
     if (!current || now - current.startedAt >= rateLimitWindowMs) {
         rateLimits.set(key, { startedAt: now, count: 1 });
         return true;
@@ -199,9 +396,9 @@ function normalizeQuota(result) {
     };
 }
 
-function getSession(sessionId) {
+function getSession(sessionId, user) {
     const entry = sessions.get(sessionId);
-    if (!entry) {
+    if (!entry || entry.ownerId !== user.id) {
         const error = new Error('session_not_found');
         error.statusCode = 404;
         throw error;
@@ -246,14 +443,14 @@ function normalizeSessionName(name) {
     return name.trim();
 }
 
-async function createAgentSession(name, purpose = 'Tutor') {
+async function createAgentSession(name, purpose = 'Tutor', user) {
     const normalizedName = normalizeSessionName(name);
     if (!allowedPurposes.includes(purpose)) {
         const error = new Error('invalid_purpose');
         error.statusCode = 400;
         throw error;
     }
-    if ([...sessions.values()].some((entry) => entry.name.localeCompare(normalizedName, undefined, { sensitivity: 'base' }) === 0)) {
+    if ([...sessions.values()].some((entry) => entry.ownerId === user.id && entry.name.localeCompare(normalizedName, undefined, { sensitivity: 'base' }) === 0)) {
         const error = new Error('duplicate_name');
         error.statusCode = 409;
         throw error;
@@ -264,6 +461,7 @@ async function createAgentSession(name, purpose = 'Tutor') {
     const now = Date.now();
     const entry = {
         sdkSession,
+        ownerId: user.id,
         name: normalizedName,
         purpose,
         createdAt: now,
@@ -420,7 +618,7 @@ async function closeAgentSession(sessionId, entry) {
     sessions.delete(sessionId);
 }
 
-async function handleCopilot(request, response) {
+async function handleCopilot(request, response, user) {
     let payload;
     try {
         payload = validatePayload(await readJsonBody(request));
@@ -433,7 +631,7 @@ async function handleCopilot(request, response) {
     try {
         if (operation === 'create') {
             const name = payload.name !== undefined ? payload.name : payload.purpose || '我的對話';
-            sendJson(response, 201, { session: await createAgentSession(name, payload.purpose || 'Tutor') });
+            sendJson(response, 201, { session: await createAgentSession(name, payload.purpose || 'Tutor', user) });
             return;
         }
         if (operation === 'send') {
@@ -441,7 +639,7 @@ async function handleCopilot(request, response) {
                 sendJson(response, 400, { error: '問題、詞彙內容和工作階段都是必需的', code: 'missing_send_fields' });
                 return;
             }
-            const entry = getSession(payload.sessionId);
+            const entry = getSession(payload.sessionId, user);
             const result = await sendAgentMessage(entry, payload.message, payload.context, payload.turnId);
             sendJson(response, 200, { content: result.content, turn: serializeTurn(result.turn), session: sessionSummary(payload.sessionId, entry) });
             return;
@@ -451,7 +649,7 @@ async function handleCopilot(request, response) {
                 sendJson(response, 400, { error: '缺少對話回合', code: 'missing_turn_fields' });
                 return;
             }
-            const entry = getSession(payload.sessionId);
+            const entry = getSession(payload.sessionId, user);
             const turn = entry.turns.find((candidate) => candidate.id === payload.turnId);
             if (!turn) {
                 sendJson(response, 404, { error: '找不到這個問題回合', code: 'turn_not_found' });
@@ -468,7 +666,7 @@ async function handleCopilot(request, response) {
             return;
         }
         if (operation === 'cancel') {
-            const entry = getSession(payload.sessionId);
+            const entry = getSession(payload.sessionId, user);
             if (entry.busy) {
                 await entry.sdkSession.abort();
             }
@@ -476,7 +674,7 @@ async function handleCopilot(request, response) {
             return;
         }
         if (operation === 'delete') {
-            const entry = getSession(payload.sessionId);
+            const entry = getSession(payload.sessionId, user);
             await closeAgentSession(payload.sessionId, entry);
             sendJson(response, 200, { deleted: true });
             return;
@@ -525,21 +723,23 @@ async function serveStatic(pathname, response) {
     }
 }
 
-async function handleSessionList(response) {
+async function handleSessionList(response, user) {
     sendJson(response, 200, {
-        sessions: [...sessions.entries()].map(([id, entry]) => sessionSummary(id, entry)),
+        sessions: [...sessions.entries()]
+            .filter(([, entry]) => entry.ownerId === user.id)
+            .map(([id, entry]) => sessionSummary(id, entry)),
         purposes: allowedPurposes,
     });
 }
 
-async function handleUsage(requestUrl, response) {
+async function handleUsage(requestUrl, response, user) {
     const sessionId = requestUrl.searchParams.get('sessionId');
     if (!sessionId) {
         sendJson(response, 400, { error: '缺少工作階段', code: 'missing_session' });
         return;
     }
     try {
-        const entry = getSession(sessionId);
+        const entry = getSession(sessionId, user);
         await refreshUsage(entry);
         sendJson(response, 200, { usage: entry.usage });
     } catch (error) {
@@ -581,32 +781,74 @@ async function shutdown() {
 }
 
 const server = createServer(async (request, response) => {
+    applyCors(request, response);
     if (shuttingDown) {
         sendJson(response, 503, { error: '服務正在關閉' });
         return;
     }
     const requestUrl = new URL(request.url || '/', `http://${request.headers.host || 'localhost'}`);
+    if (request.method === 'OPTIONS') {
+        if (request.headers.origin === frontendOrigin) {
+            response.writeHead(204);
+            response.end();
+        } else {
+            sendJson(response, 403, { error: '不允許的來源', code: 'origin_not_allowed' });
+        }
+        return;
+    }
+    if (requestUrl.pathname === '/auth/github' && request.method === 'GET') {
+        await handleGithubLogin(request, response);
+        return;
+    }
+    if (requestUrl.pathname === '/auth/github/callback' && request.method === 'GET') {
+        await handleGithubCallback(request, requestUrl, response);
+        return;
+    }
+    if (requestUrl.pathname === '/auth/session' && request.method === 'GET') {
+        sendJson(response, 200, authSessionPayload(request));
+        return;
+    }
+    if (requestUrl.pathname === '/auth/logout' && request.method === 'POST') {
+        if (authRequired && !requireCsrf(request, response)) return;
+        handleLogout(request, response);
+        return;
+    }
     if (requestUrl.pathname === '/api/health' && request.method === 'GET') {
-        sendJson(response, 200, { ok: true, copilot: 'lazy', sessions: sessions.size, activeTurns: activeTurnCount });
+        sendJson(response, 200, {
+            ok: true,
+            authRequired,
+            authConfigured: !authConfigurationError(),
+            copilot: process.env.COPILOT_GITHUB_TOKEN || !authRequired ? 'configured' : 'environment-token-required',
+            sessions: sessions.size,
+            activeTurns: activeTurnCount,
+        });
         return;
     }
     if (requestUrl.pathname === '/api/copilot' && request.method === 'POST') {
-        if (!checkRateLimit(request)) {
+        const user = requireAuth(request, response);
+        if (!user || !requireCsrf(request, response)) return;
+        if (!checkRateLimit(request, user)) {
             sendJson(response, 429, { error: '請求太頻繁，請稍後再試。', code: 'rate_limited' });
             return;
         }
-        await handleCopilot(request, response);
+        await handleCopilot(request, response, user);
         return;
     }
     if (requestUrl.pathname === '/api/copilot/sessions' && request.method === 'GET') {
-        await handleSessionList(response);
+        const user = requireAuth(request, response);
+        if (!user) return;
+        await handleSessionList(response, user);
         return;
     }
     if (requestUrl.pathname === '/api/copilot/usage' && request.method === 'GET') {
-        await handleUsage(requestUrl, response);
+        const user = requireAuth(request, response);
+        if (!user) return;
+        await handleUsage(requestUrl, response, user);
         return;
     }
     if (requestUrl.pathname === '/api/copilot/quota' && request.method === 'GET') {
+        const user = requireAuth(request, response);
+        if (!user) return;
         await handleQuota(response);
         return;
     }
@@ -622,6 +864,6 @@ cleanupTimer.unref();
 process.once('SIGINT', shutdown);
 process.once('SIGTERM', shutdown);
 
-server.listen(port, '127.0.0.1', () => {
-    console.log(`Japanese Vocab Reviser running at http://127.0.0.1:${port}`);
+server.listen(port, listenHost, () => {
+    console.log(`Japanese Vocab Reviser running at http://${listenHost}:${port}`);
 });

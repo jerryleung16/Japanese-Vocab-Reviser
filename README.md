@@ -6,7 +6,7 @@
 - A GitHub Copilot CLI installation authenticated for the local user account
 - Git, if you are cloning or contributing to the repository
 
-The Copilot tutor uses the local CLI login. The repository does not contain a Copilot token, GitHub token, or hosted AI credential.
+Local development uses the local Copilot CLI login. The repository does not contain a Copilot token, GitHub token, OAuth secret, or hosted AI credential.
 
 ## Clean clone setup
 
@@ -30,6 +30,19 @@ You can copy `.env.example` to `.env` to customize limits or the port. The serve
 The tutor supports separate user-named conversations. Conversations can be switched independently, cancelled, deleted, retried, and edited. Editing a previous prompt regenerates the conversation from that point and removes later turns. The panel reports session AI credits derived from SDK nano-AIU metrics, premium request cost/count, context tokens, and account premium-interaction quota when the SDK provides it. Unavailable metrics are shown as unavailable rather than estimated.
 
 The server limits request size, message/context length, request rate, concurrent model turns, session-name length, and idle sessions. Operational values can be adjusted in `.env` using `.env.example` as a guide.
+
+## Public Copilot deployment
+
+GitHub Pages can host the vocabulary frontend, but it cannot run the Node.js Copilot backend. The repository includes `render.yaml` for deploying the backend as a separate Render web service.
+
+1. Create a GitHub OAuth App. Set its callback URL to `https://YOUR-RENDER-SERVICE.onrender.com/auth/github/callback`.
+2. Create a fine-grained GitHub token for your personal account with the `Copilot Requests` account permission. Keep this token only in Render as `COPILOT_GITHUB_TOKEN`.
+3. Create the Render service from `render.yaml` and set `PUBLIC_BASE_URL`, `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `SESSION_SECRET`, and `COPILOT_GITHUB_TOKEN` in the Render dashboard. Keep `AUTH_MODE=github`, `HOST=0.0.0.0`, `FRONTEND_ORIGIN=https://jerryleung16.github.io`, and `ALLOWED_GITHUB_LOGIN` set to the permitted GitHub username.
+4. After Render gives the service its URL, add a repository variable named `COPILOT_API_URL` with that HTTPS URL under **Settings > Secrets and variables > Actions > Variables**. The Pages workflow injects it into the public build; do not put a secret in this variable.
+5. In **Settings > Pages**, choose **GitHub Actions** as the source. Push to `main` or manually run **Deploy Pages**. The workflow fails if `COPILOT_API_URL` is missing rather than deploying a broken Copilot link.
+6. Open the Pages site, open Copilot, and choose `使用 GitHub 登入`. Only the configured GitHub account can use the backend.
+
+The hosted backend uses HttpOnly signed sessions, a CSRF token for state-changing requests, exact-origin CORS, per-user sessions, rate limits, request limits, and the existing Copilot turn limits. Conversations are held in memory, so a service restart clears them and requires a new login. Do not expose the backend without OAuth or put `COPILOT_GITHUB_TOKEN` in browser code.
 
 ## Local data and GitHub sync
 
@@ -56,4 +69,4 @@ The check command validates all JavaScript modules and runs `npm audit --omit=de
 
 ## Deployment boundary
 
-This backend is private and local-only. Do not bind it to a LAN address or deploy it publicly: the ambient Copilot CLI login belongs to the owner of this machine. Phone or iPad access requires a separately authenticated, HTTPS-hosted backend and is outside this project scope. GitHub Pages is not supported for the full app because it cannot run the local Copilot backend.
+There are two supported modes: local mode uses `127.0.0.1` and the local Copilot login; hosted mode uses an HTTPS Render backend, GitHub OAuth, and a server-side Copilot token. GitHub Pages alone is not enough because it cannot run `server.js`. Never bind the local mode to a LAN address or deploy it publicly without the hosted authentication configuration.

@@ -1,6 +1,15 @@
 (function () {
     'use strict';
 
+    const configuredApiBase = typeof window.agentConfig?.apiBaseUrl === 'string'
+        ? window.agentConfig.apiBaseUrl.trim().replace(/\/+$/, '')
+        : '';
+    let csrfToken = null;
+
+    function apiUrl(path) {
+        return configuredApiBase ? `${configuredApiBase}${path}` : path;
+    }
+
     async function parseResponse(response) {
         let payload;
         try {
@@ -18,18 +27,45 @@
     }
 
     async function postAgent(payload, signal) {
-        const response = await fetch('/api/copilot', {
+        const headers = { 'Content-Type': 'application/json' };
+        if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
+        const response = await fetch(apiUrl('/api/copilot'), {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers,
             body: JSON.stringify(payload),
+            credentials: 'include',
             signal
         });
         return parseResponse(response);
     }
 
     async function getAgent(path, signal) {
-        const response = await fetch(path, { signal });
+        const response = await fetch(apiUrl(path), { credentials: 'include', signal });
         return parseResponse(response);
+    }
+
+    async function getAuthState(signal) {
+        const payload = await getAgent('/auth/session', signal);
+        csrfToken = payload.csrfToken || null;
+        return payload;
+    }
+
+    function getLoginUrl() {
+        return apiUrl('/auth/github');
+    }
+
+    async function logoutAgent(signal) {
+        const headers = {};
+        if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
+        const response = await fetch(apiUrl('/auth/logout'), {
+            method: 'POST',
+            headers,
+            credentials: 'include',
+            signal
+        });
+        const payload = await parseResponse(response);
+        csrfToken = null;
+        return payload;
     }
 
     async function listAgentSessions(signal) {
@@ -74,6 +110,9 @@
 
     window.askCopilot = askCopilot;
     window.agentApi = {
+        getAuthState,
+        getLoginUrl,
+        logoutAgent,
         listAgentSessions,
         createAgentSession,
         askCopilot,

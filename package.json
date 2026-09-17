@@ -9,7 +9,7 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "check": "npm run check:syntax && npm run audit",
-    "check:syntax": "node --check script.js && node --check agent-api.js && node --check agent-context.js && node --check agent-ui.js && node --check server.js && node --check vocab-data.js",
+    "check:syntax": "node --check script.js && node --check agent-api.js && node --check agent-context.js && node --check agent-ui.js && node --check agent-config.js && node --check server.js && node --check vocab-data.js",
     "audit": "npm audit --omit=dev"
   },
   "dependencies": {
