@@ -72,8 +72,8 @@
         return getAgent('/api/copilot/sessions', signal);
     }
 
-    async function createAgentSession(name, signal) {
-        return postAgent({ operation: 'create', name }, signal);
+    async function createAgentSession(name, purpose, signal) {
+        return postAgent({ operation: 'create', name, purpose }, signal);
     }
 
     async function askCopilot(sessionId, message, context, signal, turnId) {

@@ -12,6 +12,7 @@
         const currentCard = document.getElementById('agentCurrentCard');
         const status = document.getElementById('agentStatus');
         const sessionSelect = document.getElementById('agentSessionSelect');
+        const profileSelect = document.getElementById('agentProfileSelect');
         const newSessionButton = document.getElementById('agentNewSessionBtn');
         const deleteSessionButton = document.getElementById('agentDeleteSessionBtn');
         const retrySessionButton = document.getElementById('agentRetrySessionBtn');
@@ -36,6 +37,10 @@
         let editingTurnId = null;
         let nameRequestResolver = null;
         let authState = null;
+        let profiles = new Map();
+        let selectedPurpose = 'Tutor';
+        let pendingRequestContext = null;
+        let pendingFormTarget = null;
 
         if (!overlay || !openButton || !form) return;
 
@@ -95,6 +100,8 @@
                     prompt: turn.prompt || '',
                     context: turn.context || null,
                     response: turn.response || null,
+                    suggestion: turn.suggestion || null,
+                    formTarget: turn.formTarget || null,
                     status: turn.status || (turn.response ? 'success' : 'error'),
                     error: turn.error || null,
                     createdAt: turn.createdAt,
@@ -112,7 +119,11 @@
             const currentTurns = new Map((session.turns || []).map((turn) => [turn.id, turn]));
             Object.assign(session, summary);
             session.turns = Array.isArray(summary.turns)
-                ? summary.turns.map((turn) => ({ ...turn, context: turn.context || currentTurns.get(turn.id)?.context || null }))
+                ? summary.turns.map((turn) => ({
+                    ...turn,
+                    context: turn.context || currentTurns.get(turn.id)?.context || null,
+                    formTarget: currentTurns.get(turn.id)?.formTarget || null,
+                }))
                 : session.turns || [];
             session.busy = false;
             saveHistory(session);
@@ -155,6 +166,7 @@
                 response.className = 'agent-message agent-message-assistant';
                 response.textContent = turn.response;
                 group.appendChild(response);
+                if (turn.suggestion) group.appendChild(renderSuggestion(turn));
             } else if (turn.error || turn.status === 'pending') {
                 const error = document.createElement('div');
                 error.className = 'agent-message agent-message-error';
@@ -162,6 +174,58 @@
                 group.appendChild(error);
             }
             return group;
+        }
+
+        function createSuggestionLine(label, value) {
+            const line = document.createElement('p');
+            line.textContent = `${label}：${value || '未提供'}`;
+            return line;
+        }
+
+        function renderSuggestion(turn) {
+            const suggestion = document.createElement('div');
+            suggestion.className = 'agent-suggestion';
+            const heading = document.createElement('strong');
+            heading.textContent = 'AI 建議（請檢查後再套用）';
+            suggestion.appendChild(heading);
+            if (turn.suggestion.type === 'card') {
+                suggestion.appendChild(createSuggestionLine('讀音', turn.suggestion.hiragana));
+                suggestion.appendChild(createSuggestionLine('漢字', turn.suggestion.kanji));
+                suggestion.appendChild(createSuggestionLine('解釋', turn.suggestion.definition));
+                suggestion.appendChild(createSuggestionLine('例句', turn.suggestion.example));
+                suggestion.appendChild(createSuggestionLine('翻譯', turn.suggestion.translation));
+            } else if (turn.suggestion.type === 'explanation') {
+                suggestion.appendChild(createSuggestionLine('詳細解釋', turn.suggestion.definition));
+                suggestion.appendChild(createSuggestionLine('使用說明', turn.suggestion.usageNotes));
+                suggestion.appendChild(createSuggestionLine('語域', turn.suggestion.register));
+                suggestion.appendChild(createSuggestionLine('語感', turn.suggestion.nuance));
+                suggestion.appendChild(createSuggestionLine('常見誤用', turn.suggestion.commonMistakes));
+            } else if (turn.suggestion.type === 'examples') {
+                const list = document.createElement('ol');
+                turn.suggestion.examples.forEach((example) => {
+                    const item = document.createElement('li');
+                    item.textContent = `${example.japanese}｜${example.translation}`;
+                    list.appendChild(item);
+                });
+                suggestion.appendChild(list);
+                const choice = document.createElement('select');
+                choice.className = 'agent-example-choice';
+                choice.setAttribute('aria-label', '選擇要套用的例句');
+                turn.suggestion.examples.forEach((example, index) => {
+                    const option = document.createElement('option');
+                    option.value = String(index);
+                    option.textContent = `套用例句 ${index + 1}：${example.japanese}`;
+                    choice.appendChild(option);
+                });
+                suggestion.appendChild(choice);
+            }
+            const applyButton = document.createElement('button');
+            applyButton.type = 'button';
+            applyButton.className = 'btn-secondary agent-apply-suggestion';
+            applyButton.dataset.agentApplyTurnId = turn.id;
+            applyButton.textContent = turn.formTarget ? '套用到表單' : '套用到目前自訂詞彙';
+            suggestion.appendChild(applyButton);
+            return suggestion;
         }
 
         function renderMessages() {
@@ -186,10 +250,22 @@
             sessions.forEach((session) => {
                 const option = document.createElement('option');
                 option.value = session.id;
-                option.textContent = `${session.name || session.purpose || '未命名對話'} (${session.requestCount || 0})`;
+                option.textContent = `${session.name || session.purpose || '未命名對話'} · ${session.profile?.label || session.purpose || '日語助教'} (${session.requestCount || 0})`;
                 sessionSelect.appendChild(option);
             });
             sessionSelect.value = selectedSessionId || '';
+        }
+
+        function renderProfileOptions() {
+            profileSelect.replaceChildren();
+            profiles.forEach((profile) => {
+                const option = document.createElement('option');
+                option.value = profile.id;
+                option.textContent = profile.label;
+                option.title = profile.description;
+                profileSelect.appendChild(option);
+            });
+            profileSelect.value = selectedPurpose;
         }
 
         function formatNumber(value) {
@@ -220,6 +296,7 @@
             const busy = Boolean(session?.busy);
             const canSend = sessionsReady && !sessionLoadError && Boolean(session) && !busy;
             sessionSelect.disabled = !sessionsReady || Boolean(sessionLoadError);
+            profileSelect.disabled = !sessionsReady || Boolean(sessionLoadError) || Boolean(session?.busy);
             input.disabled = !canSend;
             sendButton.disabled = !canSend;
             newSessionButton.disabled = !sessionsReady || Boolean(sessionLoadError) || busy;
@@ -297,14 +374,19 @@
                     throw error;
                 }
                 const payload = await window.agentApi.listAgentSessions();
+                profiles = new Map((payload.profiles || []).map((profile) => [profile.id, profile]));
+                if (!profiles.has(selectedPurpose)) selectedPurpose = profiles.keys().next().value || 'Tutor';
+                renderProfileOptions();
                 payload.sessions.forEach((summary) => sessions.set(summary.id, hydrateSession(summary)));
                 if (sessions.size === 0) {
                     const name = await askForSessionName();
                     if (!name) throw new Error('name_cancelled');
-                    const created = await window.agentApi.createAgentSession(name);
+                    const created = await window.agentApi.createAgentSession(name, selectedPurpose);
                     sessions.set(created.session.id, hydrateSession(created.session));
                 }
                 selectedSessionId = sessions.keys().next().value;
+                selectedPurpose = selectedSession()?.purpose || selectedPurpose;
+                renderProfileOptions();
                 sessionsReady = true;
                 status.textContent = '回答會使用目前單字的有限資料。';
                 renderSessionState();
@@ -321,6 +403,54 @@
             }
         }
 
+        async function ensureProfileSession(purpose) {
+            const existing = [...sessions.values()].find((session) => session.purpose === purpose);
+            if (existing) {
+                selectedSessionId = existing.id;
+                renderSessionState();
+                await refreshUsage(existing);
+                return existing;
+            }
+            const profile = profiles.get(purpose);
+            const name = `${profile?.label || purpose} ${new Date().toLocaleTimeString('zh-HK', { hour: '2-digit', minute: '2-digit' })}`;
+            const created = await window.agentApi.createAgentSession(name, purpose);
+            const session = hydrateSession(created.session);
+            sessions.set(session.id, session);
+            selectedSessionId = session.id;
+            renderSessionState();
+            await refreshUsage(session);
+            return session;
+        }
+
+        async function launchAgentTask(button) {
+            const purpose = button.dataset.agentTask || 'Tutor';
+            const formTarget = button.dataset.agentForm || null;
+            const context = window.getAgentDraftContext ? window.getAgentDraftContext(formTarget) : null;
+            if (!context) {
+                status.textContent = '請先在表單輸入至少一個單字或讀音。';
+                return;
+            }
+            selectedPurpose = purpose;
+            pendingRequestContext = context;
+            pendingFormTarget = formTarget;
+            overlay.classList.add('active');
+            overlay.setAttribute('aria-hidden', 'false');
+            try {
+                await ensureSessions();
+                await ensureProfileSession(purpose);
+                profileSelect.value = purpose;
+                input.value = purpose === 'Card Generator'
+                    ? '請根據這份草稿補齊單字卡資料。'
+                    : purpose === 'Explanation Editor'
+                        ? '請把這份單字卡的解釋改寫得更詳細。'
+                        : '請為這個單字產生三個自然例句。';
+                status.textContent = 'AI 建議完成後，請檢查內容再套用。';
+                input.focus();
+            } catch (error) {
+                status.textContent = error.message || '無法載入指定的 Copilot 助手。';
+            }
+        }
+
         async function openPanel() {
             updateCurrentCard();
             overlay.classList.add('active');
@@ -333,6 +463,10 @@
                 status.textContent = error.message || '無法載入 Copilot 對話。';
             }
         }
+
+        document.querySelectorAll('[data-agent-task]').forEach((button) => {
+            button.addEventListener('click', () => launchAgentTask(button));
+        });
 
         function closePanel() {
             if (nameRequestResolver) resolveSessionName(null);
@@ -411,7 +545,7 @@
             if (!name) return;
             newSessionButton.disabled = true;
             try {
-                const created = await window.agentApi.createAgentSession(name);
+                const created = await window.agentApi.createAgentSession(name, selectedPurpose);
                 sessions.set(created.session.id, hydrateSession(created.session));
                 selectedSessionId = created.session.id;
                 editingTurnId = null;
@@ -423,6 +557,9 @@
                 newSessionButton.disabled = false;
             }
         });
+        profileSelect.addEventListener('change', function () {
+            selectedPurpose = profileSelect.value || 'Tutor';
+        });
         deleteSessionButton.addEventListener('click', async function () {
             const session = selectedSession();
             if (!session) return;
@@ -433,7 +570,7 @@
                 if (sessions.size === 0) {
                     const name = await askForSessionName();
                     if (!name) throw new Error('請命名新的對話。');
-                    const created = await window.agentApi.createAgentSession(name);
+                    const created = await window.agentApi.createAgentSession(name, selectedPurpose);
                     sessions.set(created.session.id, hydrateSession(created.session));
                 }
                 selectedSessionId = sessions.keys().next().value;
@@ -459,6 +596,11 @@
             session.abortController?.abort();
         });
         messages.addEventListener('click', function (event) {
+            const applyButton = event.target.closest('[data-agent-apply-turn-id]');
+            if (applyButton) {
+                applySuggestion(applyButton.dataset.agentApplyTurnId, applyButton);
+                return;
+            }
             const action = event.target.closest('[data-agent-action]');
             if (!action) return;
             const session = selectedSession();
@@ -479,6 +621,61 @@
             turn.error = null;
             executeTurn(session, turn, 'retry', originalTurns);
         });
+
+        function applySuggestion(turnId, applyButton) {
+            const session = selectedSession();
+            const turn = session?.turns.find((candidate) => candidate.id === turnId);
+            const suggestion = turn?.suggestion;
+            const exampleChoice = applyButton?.parentElement?.querySelector('.agent-example-choice');
+            const exampleIndex = Number(exampleChoice?.value || 0);
+            if (turn?.formTarget) {
+                applySuggestionToForm(suggestion, turn.formTarget, exampleIndex);
+                return;
+            }
+            const current = window.getCurrentVocabItem ? window.getCurrentVocabItem() : null;
+            if (!suggestion || !current || current.id < 1000 || typeof window.updateCustomVocab !== 'function') {
+                status.textContent = '目前只可以套用到自訂詞彙，請先建立或選擇自訂詞彙。';
+                return;
+            }
+            const next = { ...current };
+            if (suggestion.type === 'card') Object.assign(next, suggestion);
+            if (suggestion.type === 'explanation') next.definition = suggestion.definition;
+            if (suggestion.type === 'examples' && suggestion.examples[exampleIndex]) {
+                next.example = suggestion.examples[exampleIndex].japanese;
+                next.translation = suggestion.examples[exampleIndex].translation;
+            }
+            const result = window.updateCustomVocab(current.id, next);
+            if (!result?.success) {
+                status.textContent = result?.message || '無法套用 AI 建議。';
+                return;
+            }
+            window.updateVocabList?.();
+            document.dispatchEvent(new CustomEvent('vocab-card-updated'));
+            status.textContent = 'AI 建議已套用到目前詞彙。';
+        }
+
+        function applySuggestionToForm(suggestion, formTarget, exampleIndex = 0) {
+            if (!suggestion) return;
+            const ids = formTarget === 'edit'
+                ? { hiragana: 'editHiragana', kanji: 'editKanji', definition: 'editDefinition', example: 'editExample', translation: 'editTranslation' }
+                : { hiragana: 'hiraganaInput', kanji: 'kanjiInput', definition: 'definitionInput', example: 'exampleInput', translation: 'translationInput' };
+            const setValue = (field, value) => {
+                if (value && document.getElementById(ids[field])) document.getElementById(ids[field]).value = value;
+            };
+            if (suggestion.type === 'card') {
+                setValue('hiragana', suggestion.hiragana);
+                setValue('kanji', suggestion.kanji);
+                setValue('definition', suggestion.definition);
+                setValue('example', suggestion.example);
+                setValue('translation', suggestion.translation);
+            } else if (suggestion.type === 'explanation') {
+                setValue('definition', suggestion.definition);
+            } else if (suggestion.type === 'examples' && suggestion.examples[exampleIndex]) {
+                setValue('example', suggestion.examples[exampleIndex].japanese);
+                setValue('translation', suggestion.examples[exampleIndex].translation);
+            }
+            status.textContent = 'AI 建議已套用到表單，請檢查後保存。';
+        }
         overlay.addEventListener('click', function (event) {
             if (event.target === overlay) closePanel();
         });
@@ -490,7 +687,8 @@
             event.preventDefault();
             const session = selectedSession();
             const message = input.value.trim();
-            const context = window.getAgentVocabContext ? window.getAgentVocabContext() : null;
+            const context = pendingRequestContext || (window.getAgentVocabContext ? window.getAgentVocabContext() : null);
+            const formTarget = pendingFormTarget;
             if (!session) {
                 status.textContent = 'Copilot 對話尚未準備好，請重試。';
                 return;
@@ -524,8 +722,10 @@
                 return;
             }
 
-            const turn = { id: createTurnId(), prompt: message, context, response: null, status: 'pending', error: null };
+            const turn = { id: createTurnId(), prompt: message, context, response: null, suggestion: null, formTarget, status: 'pending', error: null };
             session.turns.push(turn);
+            pendingRequestContext = null;
+            pendingFormTarget = null;
             input.value = '';
             await executeTurn(session, turn, 'send', originalTurns);
         });

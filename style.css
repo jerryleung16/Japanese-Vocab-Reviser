@@ -1645,3 +1645,50 @@ header h1 i {
         display: block;
     }
 }
+
+.agent-session-bar select {
+    min-width: 0;
+}
+
+#agentProfileSelect {
+    flex: 0 1 10rem;
+}
+
+.agent-suggestion {
+    margin: 0.7rem 0 0.9rem;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color, #d9dee8);
+    border-radius: 0.5rem;
+    background: var(--surface-muted, #f7f8fa);
+}
+
+.agent-suggestion p,
+.agent-suggestion ol {
+    margin: 0.45rem 0;
+}
+
+.agent-example-choice {
+    width: 100%;
+    margin-top: 0.4rem;
+    padding: 0.45rem;
+    border: 1px solid #d8e0e8;
+    border-radius: 6px;
+    background: #fff;
+    color: #2d3748;
+    font: inherit;
+}
+
+.agent-apply-suggestion {
+    margin-top: 0.55rem;
+}
+
+.agent-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0 14px;
+}
+
+.agent-form-actions button {
+    margin: 0;
+}
