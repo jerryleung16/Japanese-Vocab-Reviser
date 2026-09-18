@@ -1027,6 +1027,7 @@ const server = createServer(async (request, response) => {
             ok: true,
             authRequired,
             authConfigured: !authConfigurationError(),
+            oauthCallbackUrl: authRequired ? requestGithubCallbackUrl(request) : null,
             copilot: process.env.COPILOT_GITHUB_TOKEN || !authRequired ? 'configured' : 'environment-token-required',
             sessions: sessions.size,
             activeTurns: activeTurnCount,
