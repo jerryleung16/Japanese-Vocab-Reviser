@@ -4,6 +4,15 @@ import { extname, join, normalize, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
 import { CopilotClient } from '@github/copilot-sdk';
+import {
+    closePersistence,
+    conversationNameExists,
+    deleteConversation,
+    initializePersistence,
+    loadConversations,
+    persistenceEnabled,
+    saveConversation,
+} from './persistence.js';
 
 const rootDirectory = fileURLToPath(new URL('.', import.meta.url)).replace(/[\\/]$/, '');
 const port = Number(process.env.PORT || 3000);
@@ -94,6 +103,10 @@ const authTickets = new Map();
 let copilotClientPromise;
 let activeTurnCount = 0;
 let shuttingDown = false;
+const persistenceReady = initializePersistence().catch((error) => {
+    console.error(`[persistence-error] ${error?.message || 'database initialization failed'}`);
+    return error;
+});
 
 const contentTypes = {
     '.css': 'text/css; charset=utf-8',
@@ -508,6 +521,19 @@ function getSession(sessionId, user) {
     return entry;
 }
 
+async function restoreUserSessions(user) {
+    const storedSessions = await loadConversations(user.id);
+    for (const stored of storedSessions) {
+        if (sessions.has(stored.id)) continue;
+        sessions.set(stored.id, {
+            ...stored,
+            sdkSession: null,
+            busy: false,
+            abortController: null,
+        });
+    }
+}
+
 function serializeTurn(turn) {
     return {
         id: turn.id,
@@ -559,7 +585,8 @@ async function createAgentSession(name, purpose = 'Tutor', user) {
         error.statusCode = 400;
         throw error;
     }
-    if ([...sessions.values()].some((entry) => entry.ownerId === user.id && entry.name.localeCompare(normalizedName, undefined, { sensitivity: 'base' }) === 0)) {
+    if ([...sessions.values()].some((entry) => entry.ownerId === user.id && entry.name.localeCompare(normalizedName, undefined, { sensitivity: 'base' }) === 0)
+        || await conversationNameExists(user.id, normalizedName)) {
         const error = new Error('duplicate_name');
         error.statusCode = 409;
         throw error;
@@ -569,6 +596,7 @@ async function createAgentSession(name, purpose = 'Tutor', user) {
     const sdkSession = await client.createSession(sessionConfig(`vocab-web-${randomUUID()}`));
     const now = Date.now();
     const entry = {
+        id,
         sdkSession,
         ownerId: user.id,
         name: normalizedName,
@@ -581,6 +609,7 @@ async function createAgentSession(name, purpose = 'Tutor', user) {
         turns: [],
     };
     sessions.set(id, entry);
+    await saveConversation(id, entry);
     return sessionSummary(id, entry);
 }
 
@@ -736,7 +765,11 @@ async function sendAgentMessage(entry, message, context, turnId) {
         updatedAt: Date.now(),
     };
     return withSessionLock(entry, async () => {
+        if (!entry.sdkSession) {
+            entry.sdkSession = await createRebuiltSdkSession(entry.turns, entry.purpose);
+        }
         entry.turns.push(turn);
+        await saveConversation(entry.id, entry);
         try {
             const result = await sendPrompt(entry.sdkSession, turn.prompt, turn.context, entry.purpose);
             turn.response = result.content;
@@ -751,6 +784,7 @@ async function sendAgentMessage(entry, message, context, turnId) {
             throw error;
         } finally {
             turn.updatedAt = Date.now();
+            await saveConversation(entry.id, entry);
         }
     });
 }
@@ -800,7 +834,8 @@ async function rewriteAgentTurn(entry, turnId, message, context) {
             entry.turns = [...previousTurns, replacement];
             entry.requestCount += 1;
             await refreshUsage(entry);
-            await previousSdkSession.disconnect().catch(() => {});
+            await saveConversation(entry.id, entry);
+            await previousSdkSession?.disconnect().catch(() => {});
             return { content: replacement.response, suggestion: replacement.suggestion, turn: replacement };
         } catch (error) {
             entry.sdkSession = previousSdkSession;
@@ -814,7 +849,7 @@ async function closeAgentSession(sessionId, entry) {
     if (entry.busy) {
         await entry.sdkSession.abort().catch(() => {});
     }
-    await entry.sdkSession.disconnect().catch(() => {});
+    await entry.sdkSession?.disconnect().catch(() => {});
     sessions.delete(sessionId);
 }
 
@@ -876,6 +911,7 @@ async function handleCopilot(request, response, user) {
         if (operation === 'delete') {
             const entry = getSession(payload.sessionId, user);
             await closeAgentSession(payload.sessionId, entry);
+            await deleteConversation(payload.sessionId);
             sendJson(response, 200, { deleted: true });
             return;
         }
@@ -926,6 +962,7 @@ async function serveStatic(pathname, response) {
 }
 
 async function handleSessionList(response, user) {
+    await restoreUserSessions(user);
     sendJson(response, 200, {
         sessions: [...sessions.entries()]
             .filter(([, entry]) => entry.ownerId === user.id)
@@ -982,6 +1019,7 @@ async function shutdown() {
         const client = await copilotClientPromise.catch(() => null);
         await client?.stop().catch(() => {});
     }
+    await closePersistence();
     server.close(() => process.exit(0));
 }
 
@@ -989,6 +1027,11 @@ const server = createServer(async (request, response) => {
     applyCors(request, response);
     if (shuttingDown) {
         sendJson(response, 503, { error: '服務正在關閉' });
+        return;
+    }
+    const persistenceError = await persistenceReady;
+    if (persistenceError) {
+        sendJson(response, 503, { error: '資料庫尚未準備好，請稍後再試。', code: 'persistence_unavailable' });
         return;
     }
     const requestUrl = new URL(request.url || '/', `http://${request.headers.host || 'localhost'}`);
@@ -1029,6 +1072,7 @@ const server = createServer(async (request, response) => {
             authConfigured: !authConfigurationError(),
             oauthCallbackUrl: authRequired ? requestGithubCallbackUrl(request) : null,
             copilot: process.env.COPILOT_GITHUB_TOKEN || !authRequired ? 'configured' : 'environment-token-required',
+            persistence: persistenceEnabled ? 'configured' : 'memory-only',
             sessions: sessions.size,
             activeTurns: activeTurnCount,
         });

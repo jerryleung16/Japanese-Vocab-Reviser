@@ -42,7 +42,9 @@ GitHub Pages can host the vocabulary frontend, but it cannot run the Node.js Cop
 5. In **Settings > Pages**, choose **GitHub Actions** as the source. Push to `main` or manually run **Deploy Pages**. The workflow fails if `COPILOT_API_URL` is missing rather than deploying a broken Copilot link.
 6. Open the Pages site, open Copilot, and choose `使用 GitHub 登入`. Only the configured GitHub account can use the backend.
 
-The hosted backend uses HttpOnly signed sessions, a one-time OAuth ticket exchange for browsers that block cross-site cookies, a CSRF token for state-changing requests, exact-origin CORS, per-user sessions, rate limits, request limits, and the existing Copilot turn limits. Conversations are held in memory, so a service restart clears them and requires a new login. Do not expose the backend without OAuth or put `COPILOT_GITHUB_TOKEN` in browser code.
+The hosted backend uses HttpOnly signed sessions, a one-time OAuth ticket exchange for browsers that block cross-site cookies, a CSRF token for state-changing requests, exact-origin CORS, per-user sessions, rate limits, request limits, and the existing Copilot turn limits. Add a Render PostgreSQL database and set its connection string as `DATABASE_URL` to persist named conversations and their turns across service restarts. The server creates its tables on startup and restores the Copilot SDK context from saved successful turns when a conversation is used again. Without `DATABASE_URL`, conversations remain memory-only for local development. Do not expose the backend without OAuth or put `COPILOT_GITHUB_TOKEN` in browser code.
+
+To enable persistence on Render, create a PostgreSQL database in the same region as the web service, copy its internal connection string into the web service's `DATABASE_URL` environment variable, and redeploy. The `/api/health` response reports `persistence: "configured"` when the connection is active.
 
 ## Local data and GitHub sync
 

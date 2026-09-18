@@ -29,5 +29,7 @@ services:
         value: jerryleung16
       - key: SESSION_SECRET
         generateValue: true
+      - key: DATABASE_URL
+        sync: false
       - key: COPILOT_GITHUB_TOKEN
         sync: false
