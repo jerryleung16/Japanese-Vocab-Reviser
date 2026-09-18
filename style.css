@@ -982,7 +982,7 @@ header h1 i {
     justify-content: flex-end;
     padding: 24px;
     background: rgba(15, 23, 42, 0.22);
-    z-index: 1100;
+    z-index: 1300;
 }
 
 .agent-overlay.active {
@@ -992,8 +992,8 @@ header h1 i {
 .agent-panel {
     display: flex;
     flex-direction: column;
-    width: min(420px, 100%);
-    max-height: min(680px, calc(100vh - 48px));
+    width: min(560px, 100%);
+    max-height: min(820px, calc(100vh - 48px));
     overflow: hidden;
     background: #ffffff;
     border: 1px solid rgba(52, 152, 219, 0.18);
@@ -1182,7 +1182,7 @@ header h1 i {
     flex-direction: column;
     gap: 10px;
     min-height: 96px;
-    max-height: 360px;
+    max-height: 500px;
     overflow-y: auto;
     padding: 16px 20px;
 }
@@ -1301,6 +1301,11 @@ header h1 i {
     margin-top: 10px;
 }
 
+.agent-cancel-edit-btn {
+    flex: 0 0 auto;
+    padding: 9px 12px;
+}
+
 .agent-status {
     color: #718096;
     font-size: 0.76rem;
@@ -1317,17 +1322,32 @@ header h1 i {
     opacity: 0.65;
 }
 
+.agent-cancel-edit-btn:focus-visible,
+.agent-cancel-edit-btn:hover:not(:disabled) {
+    outline: 3px solid rgba(52, 152, 219, 0.25);
+    outline-offset: 2px;
+}
+
 @media (max-width: 520px) {
     .agent-overlay {
         align-items: flex-end;
-        padding: 0;
+        padding: env(safe-area-inset-top) 0 0;
     }
 
     .agent-panel {
         width: 100%;
-        height: min(620px, calc(100dvh - 12px));
-        max-height: calc(100dvh - 12px);
+        height: min(820px, calc(100vh - 12px));
+        height: min(820px, calc(100dvh - env(safe-area-inset-top) - 8px));
+        max-height: calc(100dvh - env(safe-area-inset-top) - 8px);
         border-radius: 14px 14px 0 0;
+    }
+
+    .agent-session-bar {
+        flex-wrap: wrap;
+    }
+
+    .agent-session-bar select {
+        flex: 1 1 180px;
     }
 
     .agent-messages {
@@ -1348,6 +1368,18 @@ header h1 i {
     .agent-usage {
         gap: 3px 8px;
     }
+
+    .agent-form {
+        padding-bottom: max(18px, env(safe-area-inset-bottom));
+    }
+
+    .agent-form-footer {
+        flex-wrap: wrap;
+    }
+
+    .agent-status {
+        flex: 1 1 100%;
+    }
 }
 
 @media (min-width: 521px) and (max-width: 768px), (max-height: 680px) {
@@ -1357,8 +1389,8 @@ header h1 i {
     }
 
     .agent-panel {
-        width: min(520px, 100%);
-        height: min(620px, calc(100dvh - 20px));
+        width: min(560px, 100%);
+        height: min(760px, calc(100dvh - 20px));
         max-height: calc(100dvh - 20px);
     }
 

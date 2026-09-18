@@ -11,6 +11,7 @@
         const messages = document.getElementById('agentMessages');
         const currentCard = document.getElementById('agentCurrentCard');
         const status = document.getElementById('agentStatus');
+        const cancelEditButton = document.getElementById('agentCancelEditBtn');
         const sessionSelect = document.getElementById('agentSessionSelect');
         const profileSelect = document.getElementById('agentProfileSelect');
         const newSessionButton = document.getElementById('agentNewSessionBtn');
@@ -304,12 +305,22 @@
             deleteSessionButton.disabled = !session || busy || Boolean(sessionLoadError);
             retrySessionButton.hidden = !sessionLoadError;
             retrySessionButton.disabled = !sessionLoadError || busy;
+            cancelEditButton.hidden = !editingTurnId;
+            cancelEditButton.disabled = !editingTurnId || busy;
             sendButton.innerHTML = busy
                 ? '<i class="fas fa-spinner fa-spin"></i> 回答中'
                 : editingTurnId
                     ? '<i class="fas fa-save"></i> 送出修改'
                     : '<i class="fas fa-paper-plane"></i> 詢問';
             if (sessionLoadError) status.textContent = sessionLoadError;
+        }
+
+        function clearEditingPrompt(message = '已取消修改，對話內容沒有變更。', focusInput = true) {
+            editingTurnId = null;
+            input.value = '';
+            status.textContent = message;
+            renderSessionState();
+            if (focusInput) input.focus();
         }
 
         function renderAuthState() {
@@ -470,6 +481,9 @@
 
         function closePanel() {
             if (nameRequestResolver) resolveSessionName(null);
+            if (editingTurnId) clearEditingPrompt('回答會使用目前單字的有限資料。', false);
+            pendingRequestContext = null;
+            pendingFormTarget = null;
             overlay.classList.remove('active');
             overlay.setAttribute('aria-hidden', 'true');
         }
@@ -536,6 +550,7 @@
         sessionSelect.addEventListener('change', function () {
             selectedSessionId = sessionSelect.value;
             editingTurnId = null;
+            input.value = '';
             updateCurrentCard();
             renderSessionState();
             refreshUsage(selectedSession());
@@ -549,6 +564,7 @@
                 sessions.set(created.session.id, hydrateSession(created.session));
                 selectedSessionId = created.session.id;
                 editingTurnId = null;
+                input.value = '';
                 renderSessionState();
                 await refreshUsage(selectedSession());
             } catch (error) {
@@ -575,6 +591,7 @@
                 }
                 selectedSessionId = sessions.keys().next().value;
                 editingTurnId = null;
+                input.value = '';
                 renderSessionState();
             } catch (error) {
                 status.textContent = error.message || '無法刪除這個對話。';
@@ -594,6 +611,10 @@
             cancelButton.disabled = true;
             await window.agentApi.cancelAgentSession(session.id).catch(() => {});
             session.abortController?.abort();
+        });
+        cancelEditButton.addEventListener('click', function () {
+            if (!editingTurnId || selectedSession()?.busy) return;
+            clearEditingPrompt();
         });
         messages.addEventListener('click', function (event) {
             const applyButton = event.target.closest('[data-agent-apply-turn-id]');
@@ -680,8 +701,15 @@
             if (event.target === overlay) closePanel();
         });
         document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape' && overlay.classList.contains('active')) closePanel();
-        });
+            if (event.key !== 'Escape' || !overlay.classList.contains('active')) return;
+            event.preventDefault();
+            event.stopPropagation();
+            if (editingTurnId && !selectedSession()?.busy) {
+                clearEditingPrompt();
+                return;
+            }
+            closePanel();
+        }, true);
 
         form.addEventListener('submit', async function (event) {
             event.preventDefault();
