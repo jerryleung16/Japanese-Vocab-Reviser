@@ -177,33 +177,113 @@
             return group;
         }
 
-        function createSuggestionLine(label, value) {
-            const line = document.createElement('p');
-            line.textContent = `${label}：${value || '未提供'}`;
-            return line;
+        function getSuggestionTargetValues(turn) {
+            const values = { hiragana: '', kanji: '', definition: '', example: '', translation: '' };
+            const ids = turn.formTarget === 'edit'
+                ? { hiragana: 'editHiragana', kanji: 'editKanji', definition: 'editDefinition', example: 'editExample', translation: 'editTranslation' }
+                : turn.formTarget
+                    ? { hiragana: 'hiraganaInput', kanji: 'kanjiInput', definition: 'definitionInput', example: 'exampleInput', translation: 'translationInput' }
+                    : null;
+            if (ids) {
+                Object.entries(ids).forEach(([field, id]) => {
+                    const element = document.getElementById(id);
+                    if (element) values[field] = element.value.trim();
+                });
+                return values;
+            }
+            const current = window.getCurrentVocabItem ? window.getCurrentVocabItem() : null;
+            if (!current) return values;
+            return {
+                hiragana: current.hiragana || '',
+                kanji: current.kanji || '',
+                definition: current.definition || '',
+                example: current.example || '',
+                translation: current.translation || ''
+            };
+        }
+
+        function getSuggestionFields(turn, exampleIndex = 0) {
+            const suggestion = turn.suggestion || {};
+            const current = getSuggestionTargetValues(turn);
+            const suggested = {};
+            if (suggestion.type === 'card') {
+                Object.assign(suggested, {
+                    hiragana: suggestion.hiragana,
+                    kanji: suggestion.kanji,
+                    definition: suggestion.definition,
+                    example: suggestion.example,
+                    translation: suggestion.translation
+                });
+            } else if (suggestion.type === 'explanation') {
+                Object.assign(suggested, {
+                    definition: suggestion.definition,
+                    usageNotes: suggestion.usageNotes,
+                    register: suggestion.register,
+                    nuance: suggestion.nuance,
+                    commonMistakes: suggestion.commonMistakes
+                });
+            } else if (suggestion.type === 'examples') {
+                const example = suggestion.examples?.[exampleIndex];
+                suggested.example = example?.japanese;
+                suggested.translation = example?.translation;
+            }
+            const labels = {
+                hiragana: '讀音',
+                kanji: '漢字',
+                definition: '解釋',
+                example: '例句',
+                translation: '翻譯',
+                usageNotes: '使用說明',
+                register: '語域',
+                nuance: '語感',
+                commonMistakes: '常見誤用'
+            };
+            return Object.keys(suggested).map((field) => ({
+                field,
+                label: labels[field],
+                current: current[field] || (suggestion.type === 'explanation' && field !== 'definition' ? '不會直接寫入卡片' : ''),
+                suggested: suggested[field] || ''
+            }));
+        }
+
+        function renderSuggestionDiff(turn, exampleIndex = 0) {
+            const diff = document.createElement('div');
+            diff.className = 'agent-suggestion-diff';
+            getSuggestionFields(turn, exampleIndex).forEach((field) => {
+                const row = document.createElement('div');
+                row.className = 'agent-diff-row';
+                if (field.current !== field.suggested) row.classList.add('agent-diff-changed');
+
+                const label = document.createElement('strong');
+                label.className = 'agent-diff-label';
+                label.textContent = field.label;
+                row.appendChild(label);
+
+                const current = document.createElement('span');
+                current.className = 'agent-diff-current';
+                current.textContent = `目前：${field.current || '未提供'}`;
+                row.appendChild(current);
+
+                const suggested = document.createElement('span');
+                suggested.className = 'agent-diff-suggested';
+                suggested.textContent = `AI 建議：${field.suggested || '未提供'}`;
+                row.appendChild(suggested);
+                diff.appendChild(row);
+            });
+            return diff;
         }
 
         function renderSuggestion(turn) {
             const suggestion = document.createElement('div');
             suggestion.className = 'agent-suggestion';
             const heading = document.createElement('strong');
-            heading.textContent = 'AI 建議（請檢查後再套用）';
+            heading.textContent = 'AI 建議預覽（目前 / AI 建議）';
             suggestion.appendChild(heading);
-            if (turn.suggestion.type === 'card') {
-                suggestion.appendChild(createSuggestionLine('讀音', turn.suggestion.hiragana));
-                suggestion.appendChild(createSuggestionLine('漢字', turn.suggestion.kanji));
-                suggestion.appendChild(createSuggestionLine('解釋', turn.suggestion.definition));
-                suggestion.appendChild(createSuggestionLine('例句', turn.suggestion.example));
-                suggestion.appendChild(createSuggestionLine('翻譯', turn.suggestion.translation));
-            } else if (turn.suggestion.type === 'explanation') {
-                suggestion.appendChild(createSuggestionLine('詳細解釋', turn.suggestion.definition));
-                suggestion.appendChild(createSuggestionLine('使用說明', turn.suggestion.usageNotes));
-                suggestion.appendChild(createSuggestionLine('語域', turn.suggestion.register));
-                suggestion.appendChild(createSuggestionLine('語感', turn.suggestion.nuance));
-                suggestion.appendChild(createSuggestionLine('常見誤用', turn.suggestion.commonMistakes));
-            } else if (turn.suggestion.type === 'examples') {
+            let diff = renderSuggestionDiff(turn);
+            suggestion.appendChild(diff);
+            if (turn.suggestion.type === 'examples') {
                 const list = document.createElement('ol');
-                turn.suggestion.examples.forEach((example) => {
+                (turn.suggestion.examples || []).forEach((example) => {
                     const item = document.createElement('li');
                     item.textContent = `${example.japanese}｜${example.translation}`;
                     list.appendChild(item);
@@ -212,11 +292,15 @@
                 const choice = document.createElement('select');
                 choice.className = 'agent-example-choice';
                 choice.setAttribute('aria-label', '選擇要套用的例句');
-                turn.suggestion.examples.forEach((example, index) => {
+                (turn.suggestion.examples || []).forEach((example, index) => {
                     const option = document.createElement('option');
                     option.value = String(index);
                     option.textContent = `套用例句 ${index + 1}：${example.japanese}`;
                     choice.appendChild(option);
+                });
+                choice.addEventListener('change', () => {
+                    diff.replaceWith(renderSuggestionDiff(turn, Number(choice.value || 0)));
+                    diff = suggestion.querySelector('.agent-suggestion-diff');
                 });
                 suggestion.appendChild(choice);
             }

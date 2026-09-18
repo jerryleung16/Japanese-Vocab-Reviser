@@ -1699,6 +1699,45 @@ header h1 i {
     margin: 0.45rem 0;
 }
 
+.agent-suggestion-diff {
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 0.65rem;
+}
+
+.agent-diff-row {
+    display: grid;
+    grid-template-columns: minmax(3.5rem, 0.3fr) minmax(0, 1fr);
+    gap: 0.2rem 0.55rem;
+    padding: 0.45rem 0.55rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.4rem;
+    background: #ffffff;
+}
+
+.agent-diff-row.agent-diff-changed {
+    border-color: rgba(52, 152, 219, 0.45);
+}
+
+.agent-diff-label {
+    grid-row: span 2;
+    color: #4a5568;
+    font-size: 0.78rem;
+}
+
+.agent-diff-current,
+.agent-diff-suggested {
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: #718096;
+    font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.agent-diff-suggested {
+    color: #2f5ea5;
+}
+
 .agent-example-choice {
     width: 100%;
     margin-top: 0.4rem;

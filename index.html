@@ -1120,6 +1120,7 @@
     <!-- 通知訊息 -->
     <div class="notification" id="notification">
         <span id="notificationMessage">操作成功！</span>
+        <button type="button" id="notificationUndoBtn" hidden>撤銷</button>
     </div>
 
     <script src="vocab-data.js?v=__ASSET_VERSION__"></script>
@@ -1202,6 +1203,7 @@
             // 通知元素
             const notification = document.getElementById('notification');
             const notificationMessage = document.getElementById('notificationMessage');
+            const notificationUndoBtn = document.getElementById('notificationUndoBtn');
             
             // 當前狀態
             let currentAction = '';
@@ -1210,7 +1212,57 @@
             let currentPage = 1;
             let itemsPerPage = 10;
             let currentEditingId = null;
+            let editSnapshot = null;
+            let lastEditUndo = null;
+            let notificationTimer = null;
             const cloudSyncConfigKey = 'japanese_vocab_cloud_sync_config';
+
+            function readEditValues() {
+                return {
+                    hiragana: editHiragana.value.trim(),
+                    kanji: editKanji.value.trim(),
+                    definition: editDefinition.value.trim(),
+                    example: editExample.value.trim(),
+                    translation: editTranslation.value.trim()
+                };
+            }
+
+            function editIsDirty() {
+                if (!editSnapshot || !currentEditingId) return false;
+                return JSON.stringify(readEditValues()) !== JSON.stringify(editSnapshot);
+            }
+
+            function closeEditForm(force = false) {
+                if (!force && editIsDirty() && !window.confirm('這張詞彙卡有尚未保存的修改，要放棄嗎？')) return false;
+                editForm.classList.remove('active');
+                currentEditingId = null;
+                editSnapshot = null;
+                return true;
+            }
+
+            function refreshVocabularyViews() {
+                if (window.updateVocabList) {
+                    window.updateVocabList();
+                } else if (window.updateCard) {
+                    window.updateCard();
+                }
+                loadVocabList();
+                updateStats();
+            }
+
+            function undoLastEdit() {
+                if (!lastEditUndo) return;
+                const undo = lastEditUndo;
+                const result = window.updateCustomVocab(undo.id, undo.previous);
+                if (!result.success) {
+                    showNotification(result.message || '無法撤銷上次修改。', 'error');
+                    return;
+                }
+                lastEditUndo = null;
+                notificationUndoBtn.hidden = true;
+                refreshVocabularyViews();
+                showNotification('已撤銷上次詞彙修改。');
+            }
             
             // 切換管理面板顯示
             manageBtn.addEventListener('click', function() {
@@ -1227,6 +1279,8 @@
             tabButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const tabId = this.getAttribute('data-tab');
+
+                    if (editForm.classList.contains('active') && !closeEditForm()) return;
                     
                     // 更新標籤按鈕狀態
                     tabButtons.forEach(btn => btn.classList.remove('active'));
@@ -1249,9 +1303,6 @@
                         updateStats();
                     }
                     
-                    // 隱藏編輯表單
-                    editForm.classList.remove('active');
-                    currentEditingId = null;
                 });
             });
             
@@ -1470,17 +1521,13 @@
             
             // 取消編輯
             cancelEditBtn.addEventListener('click', function() {
-                editForm.classList.remove('active');
-                currentEditingId = null;
+                closeEditForm();
             });
             
             // 保存編輯
             saveEditBtn.addEventListener('click', function() {
-                const hiragana = editHiragana.value.trim();
-                const kanji = editKanji.value.trim();
-                const definition = editDefinition.value.trim();
-                const example = editExample.value.trim();
-                const translation = editTranslation.value.trim();
+                const values = readEditValues();
+                const { hiragana, kanji, definition, example, translation } = values;
                 
                 // 驗證輸入
                 if (!hiragana || !definition) {
@@ -1503,25 +1550,17 @@
                 });
                 
                 if (result.success) {
+                    lastEditUndo = {
+                        id: currentEditingId,
+                        previous: { ...editSnapshot }
+                    };
                     // 關閉編輯表單
-                    editForm.classList.remove('active');
-                    currentEditingId = null;
+                    closeEditForm(true);
                     
                     // 更新卡片顯示
-                    if (window.updateVocabList) {
-                        window.updateVocabList();
-                    } else if (window.updateCard) {
-                        window.updateCard();
-                    }
-                    
                     // 顯示成功訊息
-                    showNotification('詞彙修改成功！');
-                    
-                    // 重新載入詞彙列表
-                    loadVocabList();
-                    
-                    // 更新統計數據
-                    updateStats();
+                    showNotification('詞彙修改成功！', 'success', undoLastEdit);
+                    refreshVocabularyViews();
                 } else {
                     showNotification(result.message, 'error');
                 }
@@ -1670,6 +1709,7 @@
             // 打開編輯表單
             function openEditForm(vocab) {
                 if (!vocab) return;
+                if (editForm.classList.contains('active') && !closeEditForm()) return;
                 currentEditingId = vocab.id;
                 
                 // 填充表單數據
@@ -1678,6 +1718,7 @@
                 editDefinition.value = vocab.definition || '';
                 editExample.value = vocab.example || '';
                 editTranslation.value = vocab.translation || '';
+                editSnapshot = readEditValues();
                 
                 // 顯示編輯表單 Modal（不造成頁面滾動）
                 editForm.classList.add('active');
@@ -2061,8 +2102,10 @@
             }
             
             // 顯示通知訊息
-            function showNotification(message, type = 'success') {
+            function showNotification(message, type = 'success', undoAction = null) {
                 notificationMessage.textContent = message;
+                notificationUndoBtn.hidden = typeof undoAction !== 'function';
+                notificationUndoBtn.onclick = undoAction;
                 notification.className = 'notification';
                 
                 if (type === 'error') {
@@ -2076,8 +2119,10 @@
                 notification.classList.add('active');
                 
                 // 3秒後自動隱藏
-                setTimeout(() => {
+                clearTimeout(notificationTimer);
+                notificationTimer = setTimeout(() => {
                     notification.classList.remove('active');
+                    notificationUndoBtn.hidden = true;
                 }, 3000);
             }
             
@@ -2189,16 +2234,14 @@
             // 6. 關閉編輯 Modal
             if (closeEditModalBtn) {
                 closeEditModalBtn.addEventListener('click', function() {
-                    editForm.classList.remove('active');
-                    currentEditingId = null;
+                    closeEditForm();
                 });
             }
 
             // 點擊 Modal 背景自動關閉
             editForm.addEventListener('click', function(e) {
                 if (e.target === editForm) {
-                    editForm.classList.remove('active');
-                    currentEditingId = null;
+                    closeEditForm();
                 }
             });
             

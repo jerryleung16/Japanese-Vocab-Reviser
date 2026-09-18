@@ -448,6 +448,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (notification && notificationMessage) {
             notificationMessage.textContent = message;
+            const notificationUndoBtn = document.getElementById('notificationUndoBtn');
+            if (notificationUndoBtn) notificationUndoBtn.hidden = true;
             notification.className = 'notification';
             
             if (type === 'error') {
