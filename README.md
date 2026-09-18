@@ -46,6 +46,39 @@ The hosted backend uses HttpOnly signed sessions, a one-time OAuth ticket exchan
 
 To enable persistence on Render, create a PostgreSQL database in the same region as the web service, copy its internal connection string into the web service's `DATABASE_URL` environment variable, and redeploy. The `/api/health` response reports `persistence: "configured"` when the connection is active.
 
+### Neon Free migration
+
+Neon Free can be used instead of Render Free Postgres to avoid Render's 30-day database expiration. The application uses standard PostgreSQL through `pg`, so no application code change is required. Use a Neon root branch for production and keep its connection strings only in local environment variables and the Render dashboard.
+
+Before changing Render, install PostgreSQL client tools and verify that `pg_dump`, `pg_restore`, and `psql` are available. Keep dumps outside the repository; dump files are ignored by Git, but they still contain private conversation data.
+
+For a rehearsal or final migration, set the connection strings only in the current PowerShell session:
+
+```powershell
+$env:SOURCE_DATABASE_URL = 'Render external PostgreSQL URL'
+$env:TARGET_DATABASE_URL = 'Neon unpooled PostgreSQL URL'
+
+pg_dump -Fc -v --no-owner --no-privileges `
+	-f "$env:USERPROFILE\Downloads\japanese-vocab-render.dump" `
+	"$env:SOURCE_DATABASE_URL"
+
+pg_restore -v --exit-on-error --single-transaction --no-owner --no-privileges `
+	-d "$env:TARGET_DATABASE_URL" `
+	"$env:USERPROFILE\Downloads\japanese-vocab-render.dump"
+```
+
+If the PostgreSQL command-line tools are not installed, the repository also includes a guarded Node-based transfer for the application's two persistence tables:
+
+```powershell
+$env:SOURCE_DATABASE_URL = 'Render external PostgreSQL URL'
+$env:TARGET_DATABASE_URL = 'Neon unpooled PostgreSQL URL'
+npm run db:migrate
+```
+
+The command creates the application schema in Neon, refuses to overwrite a non-empty target by default, and copies conversations and ordered turns in one transaction. To intentionally replace a disposable, non-production target, set `$env:ALLOW_TARGET_REPLACE = 'YES'` before running it. Run `npm run db:compare` afterward with the same source and target variables.
+
+Run `npm run db:compare` with both `SOURCE_DATABASE_URL` and `TARGET_DATABASE_URL` set to compare conversation counts, turn counts, owners, statuses, and orphaned turns. During the final migration, freeze new Copilot requests, wait for `/api/health` to report `activeTurns: 0`, take a final dump, restore it to Neon, then replace only Render's `DATABASE_URL` and redeploy. Verify `/api/health` reports `persistence: "configured"` and confirm an existing conversation survives a browser reload and backend restart.
+
 ## Local data and GitHub sync
 
 Custom vocabulary and review marks are stored in the browser. The optional GitHub sync panel can read and write the configured sync file using a GitHub Personal Access Token kept in the current browser's local storage. Never commit that token.

@@ -8,8 +8,11 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
+    "db:inspect": "node scripts/inspect-database.js",
+    "db:compare": "node scripts/compare-databases.js",
+    "db:migrate": "node scripts/migrate-database.js",
     "check": "npm run check:syntax && npm run audit",
-    "check:syntax": "node --check script.js && node --check agent-api.js && node --check agent-context.js && node --check agent-ui.js && node --check agent-config.js && node --check server.js && node --check persistence.js && node --check vocab-data.js",
+    "check:syntax": "node --check script.js && node --check agent-api.js && node --check agent-context.js && node --check agent-ui.js && node --check agent-config.js && node --check server.js && node --check persistence.js && node --check vocab-data.js && node --check scripts/inspect-database.js && node --check scripts/compare-databases.js && node --check scripts/migrate-database.js",
     "audit": "npm audit --omit=dev"
   },
   "dependencies": {

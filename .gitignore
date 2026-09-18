@@ -14,3 +14,6 @@ Thumbs.db
 
 # Personal vocabulary and review progress. Keep this file local.
 shared/japanese-vocab-sync.json
+*.dump
+*.backup
+.db-migration/
