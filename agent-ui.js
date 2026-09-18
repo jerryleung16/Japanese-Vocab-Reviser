@@ -421,6 +421,14 @@
             loginButton.href = window.agentApi.getLoginUrl();
         }
 
+        function handleAuthExpired() {
+            authState = { authRequired: true, authenticated: false, user: null };
+            sessionsReady = false;
+            sessionLoadError = '登入已失效，請重新使用 GitHub 登入。';
+            renderAuthState();
+            renderSessionState();
+        }
+
         async function refreshUsage(session) {
             if (!session) return;
             try {
@@ -607,6 +615,7 @@
 
         openButton.addEventListener('click', openPanel);
         closeButton.addEventListener('click', closePanel);
+        window.addEventListener('agent-auth-expired', handleAuthExpired);
         document.addEventListener('vocab-card-updated', updateCurrentCard);
         nameForm.addEventListener('submit', function (event) {
             event.preventDefault();

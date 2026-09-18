@@ -67,16 +67,22 @@ document.addEventListener('DOMContentLoaded', function() {
         currentDeckFilter = filter;
         currentIndex = 0;
         updateDeckFilterButtons();
-        updateVocabList();
+        updateVocabList(false);
         showNotification(`目前顯示：${getDeckFilterLabel(filter)}`);
     }
     
     // 更新詞彙列表函數
-    function updateVocabList() {
+    function updateVocabList(preserveCurrent = true) {
         const allVocab = window.getAllVocabData ? window.getAllVocabData() : window.vocabStorage.getAllVocab();
+        const currentId = preserveCurrent ? currentVocabList?.[currentIndex]?.id : null;
         currentVocabList = filterVocabByDeck(allVocab, currentDeckFilter);
         currentVocabList = Array.isArray(currentVocabList) ? currentVocabList : [];
-        currentIndex = Math.min(currentIndex, Math.max(currentVocabList.length - 1, 0));
+        const matchingIndex = currentId === null
+            ? -1
+            : currentVocabList.findIndex((item) => item.id === currentId);
+        currentIndex = matchingIndex >= 0
+            ? matchingIndex
+            : Math.min(currentIndex, Math.max(currentVocabList.length - 1, 0));
         if (currentIndex < 0) currentIndex = 0;
         updateCard();
         updateReviewSummary();
@@ -129,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (deckPendingBtn) deckPendingBtn.addEventListener('click', () => switchDeckFilter('pending'));
         if (deckDontKnowBtn) deckDontKnowBtn.addEventListener('click', () => switchDeckFilter('dontknow'));
         if (deckKnownBtn) deckKnownBtn.addEventListener('click', () => switchDeckFilter('known'));
+        document.addEventListener('vocab-data-updated', () => updateVocabList());
         
         // 鍵盤快捷鍵
         document.addEventListener('keydown', handleKeyPress);

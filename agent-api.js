@@ -45,8 +45,14 @@
             throw new Error('後端回覆格式無法讀取');
         }
         if (!response.ok || !payload) {
+            if (response.status === 401) {
+                csrfToken = null;
+                authToken = '';
+                writeAuthToken('');
+                window.dispatchEvent(new CustomEvent('agent-auth-expired'));
+            }
             const error = new Error(payload?.error || 'Copilot 暫時無法回答');
-            error.code = payload?.code;
+            error.code = response.status === 401 ? 'authentication_required' : payload?.code;
             error.status = response.status;
             throw error;
         }

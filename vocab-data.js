@@ -359,6 +359,10 @@ const vocabStorage = new VocabStorage();
 // 初始化當前詞彙列表
 let currentVocabList = vocabStorage.getAllVocab();
 
+function notifyVocabDataUpdated() {
+    document.dispatchEvent(new CustomEvent('vocab-data-updated'));
+}
+
 // 公開函數供其他腳本使用
 window.vocabStorage = vocabStorage;
 window.getAllVocabData = () => vocabStorage.getAllVocab();
@@ -367,30 +371,36 @@ window.getCustomVocabCount = () => vocabStorage.getCustomCount();
 window.getVocabById = (id) => vocabStorage.getVocabById(id);
 
 // 添加詞彙
-window.addCustomVocab = (vocab) => vocabStorage.addVocab(vocab);
+window.addCustomVocab = (vocab) => {
+    const result = vocabStorage.addVocab(vocab);
+    if (result.success) notifyVocabDataUpdated();
+    return result;
+};
 
 // 更新詞彙
-window.updateCustomVocab = (id, vocab) => vocabStorage.updateVocab(id, vocab);
+window.updateCustomVocab = (id, vocab) => {
+    const result = vocabStorage.updateVocab(id, vocab);
+    if (result.success) notifyVocabDataUpdated();
+    return result;
+};
 
 // 刪除詞彙
 window.deleteCustomVocab = (id) => {
     const result = vocabStorage.deleteVocab(id);
-    if (result.success) {
-        currentVocabList = vocabStorage.getAllVocab();
-    }
+    if (result.success) notifyVocabDataUpdated();
     return result;
 };
 
 // 重置功能
 window.resetCustomVocab = () => {
     vocabStorage.clearCustomVocab();
-    currentVocabList = vocabStorage.getAllVocab();
+    notifyVocabDataUpdated();
     return true;
 };
 
 window.resetAllVocab = () => {
     vocabStorage.resetToOriginal();
-    currentVocabList = vocabStorage.getAllVocab();
+    notifyVocabDataUpdated();
     return true;
 };
 
@@ -403,8 +413,6 @@ window.getReviewStatusCounts = () => vocabStorage.getReviewStatusCounts();
 window.exportSyncPayload = () => vocabStorage.exportSyncPayload();
 window.importSyncPayload = (payload, options) => {
     const result = vocabStorage.importSyncPayload(payload, options);
-    if (result.success) {
-        currentVocabList = vocabStorage.getAllVocab();
-    }
+    if (result.success) notifyVocabDataUpdated();
     return result;
 };
