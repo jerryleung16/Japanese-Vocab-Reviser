@@ -16,6 +16,7 @@ const githubClientId = process.env.GITHUB_CLIENT_ID || '';
 const githubClientSecret = process.env.GITHUB_CLIENT_SECRET || '';
 const allowedGithubLogin = (process.env.ALLOWED_GITHUB_LOGIN || '').trim().toLowerCase();
 const publicBaseUrl = (process.env.PUBLIC_BASE_URL || '').replace(/\/$/, '');
+const githubCallbackUrl = (process.env.GITHUB_CALLBACK_URL || '').replace(/\/$/, '');
 const authSessionTtlMs = readPositiveInteger('AUTH_SESSION_TTL_MS', 7 * 24 * 60 * 60 * 1000);
 const maxBodyLength = readPositiveInteger('MAX_BODY_LENGTH', 16000);
 const maxMessageLength = readPositiveInteger('MAX_MESSAGE_LENGTH', 1000);
@@ -180,6 +181,10 @@ function requestOrigin(request) {
     return `${protocol}://${request.headers.host}`;
 }
 
+function requestGithubCallbackUrl(request) {
+    return githubCallbackUrl || `${requestOrigin(request)}/auth/github/callback`;
+}
+
 function authUser(request) {
     if (!authRequired) return { id: 'local-development', login: 'local' };
     const sessionId = requestSessionId(request);
@@ -245,7 +250,7 @@ async function handleGithubLogin(request, response) {
     }
     const state = randomBytes(24).toString('base64url');
     oauthStates.set(state, Date.now() + 10 * 60 * 1000);
-    const callbackUrl = `${requestOrigin(request)}/auth/github/callback`;
+    const callbackUrl = requestGithubCallbackUrl(request);
     const params = new URLSearchParams({ client_id: githubClientId, redirect_uri: callbackUrl, state, scope: 'read:user' });
     const secure = isSecureRequest(request);
     setCookie(response, 'oauth_state', state, { maxAge: 600, httpOnly: true, secure, sameSite: 'Lax' });
@@ -266,7 +271,7 @@ async function handleGithubCallback(request, requestUrl, response) {
         const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
             method: 'POST',
             headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-            body: JSON.stringify({ client_id: githubClientId, client_secret: githubClientSecret, code, redirect_uri: `${requestOrigin(request)}/auth/github/callback` }),
+            body: JSON.stringify({ client_id: githubClientId, client_secret: githubClientSecret, code, redirect_uri: requestGithubCallbackUrl(request) }),
         });
         const tokenPayload = await tokenResponse.json();
         if (!tokenResponse.ok || !tokenPayload.access_token) throw new Error('oauth_token_failed');

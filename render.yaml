@@ -19,6 +19,8 @@ services:
         value: https://jerryleung16.github.io/Japanese-Vocab-Reviser
       - key: PUBLIC_BASE_URL
         sync: false
+      - key: GITHUB_CALLBACK_URL
+        value: https://japanese-vocab-copilot.onrender.com/auth/github/callback
       - key: GITHUB_CLIENT_ID
         sync: false
       - key: GITHUB_CLIENT_SECRET
