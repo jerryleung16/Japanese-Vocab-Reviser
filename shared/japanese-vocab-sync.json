@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-09-22T12:27:09.131Z",
+  "exportedAt": "2026-09-22T15:18:28.047Z",
   "customVocab": [
     {
       "id": 1000,
@@ -2617,6 +2617,286 @@
       "definition": "查詢、詢問",
       "example": "詳細については事務局に問い合わせてください。",
       "translation": "詳細資訊請向事務局查詢。"
+    },
+    {
+      "id": 1329,
+      "hiragana": "はなしこむ",
+      "kanji": "話し込む",
+      "definition": "只顧著說話、暢談",
+      "example": "カフェで友達と何時間も話し込んだ。",
+      "translation": "在咖啡廳和朋友聊了好幾個小時。"
+    },
+    {
+      "id": 1330,
+      "hiragana": "ちょうだい",
+      "kanji": "ちょうだい",
+      "definition": "請給我（口語形式）",
+      "example": "そのお菓子、一つちょうだい。",
+      "translation": "那個點心，給我一個吧。"
+    },
+    {
+      "id": 1331,
+      "hiragana": "ちょうだい",
+      "kanji": "頂戴（する）",
+      "definition": "領受、獲得",
+      "example": "結構な品を頂戴し、ありがとうございます。",
+      "translation": "領受到這麼好的物品，非常感謝。"
+    },
+    {
+      "id": 1332,
+      "hiragana": "やかましい",
+      "kanji": "やかましい",
+      "definition": "吵鬧的、喧嘩的",
+      "example": "工事の音がやかましくて集中できない。",
+      "translation": "施工的聲音很吵，無法集中精神。"
+    },
+    {
+      "id": 1333,
+      "hiragana": "なんだか",
+      "kanji": "何だか",
+      "definition": "總覺得",
+      "example": "今日は何だか疲れている。",
+      "translation": "今天總覺得有點累。"
+    },
+    {
+      "id": 1334,
+      "hiragana": "ねぼうする",
+      "kanji": "寝坊する",
+      "definition": "睡過頭",
+      "example": "目覚まし時計が鳴らなくて、寝坊してしまった。",
+      "translation": "鬧鐘沒響，結果睡過頭了。"
+    },
+    {
+      "id": 1335,
+      "hiragana": "くちをはさむ",
+      "kanji": "口をはさむ",
+      "definition": "插嘴",
+      "example": "他人の話に口をはさまないでください。",
+      "translation": "請不要插嘴別人的談話。"
+    },
+    {
+      "id": 1336,
+      "hiragana": "きづかう",
+      "kanji": "気遣う",
+      "definition": "掛念、操心",
+      "example": "彼女はいつも周囲の人を気遣っている。",
+      "translation": "她總是關心著周圍的人。"
+    },
+    {
+      "id": 1337,
+      "hiragana": "さま",
+      "kanji": "様",
+      "definition": "樣子、狀態",
+      "example": "彼の堂々とした様はリーダーにふさわしい。",
+      "translation": "他堂堂正正的樣子很適合当領導者。"
+    },
+    {
+      "id": 1338,
+      "hiragana": "けいようする",
+      "kanji": "形容する",
+      "definition": "形容",
+      "example": "その美しさは言葉では形容できない。",
+      "translation": "那種美是無法用言語來形容的。"
+    },
+    {
+      "id": 1339,
+      "hiragana": "とけこむ",
+      "kanji": "溶け込む",
+      "definition": "融入、融洽",
+      "example": "彼はすぐに新しいクラスに溶け込んだ。",
+      "translation": "他很快就融入了新班級。"
+    },
+    {
+      "id": 1340,
+      "hiragana": "ふざけあう",
+      "kanji": "ふざけ合う",
+      "definition": "互相開玩笑、打鬧",
+      "example": "子供たちが公園で楽しそうにふざけ合っている。",
+      "translation": "孩子們在公園裡開心地互相打鬧。"
+    },
+    {
+      "id": 1341,
+      "hiragana": "みぶり",
+      "kanji": "身振り",
+      "definition": "動作、姿勢",
+      "example": "身振りを交えて熱心に説明した。",
+      "translation": "加上肢體動作熱情地進行了說明。"
+    },
+    {
+      "id": 1342,
+      "hiragana": "てぶり",
+      "kanji": "手振り",
+      "definition": "手勢",
+      "example": "手振りだけで相手に意思を伝えた。",
+      "translation": "僅用手勢向對方傳達了意思。"
+    },
+    {
+      "id": 1343,
+      "hiragana": "そうい",
+      "kanji": "相違",
+      "definition": "不同",
+      "example": "二人の意見には大きな相違がある。",
+      "translation": "兩人的意見有很大的分歧。"
+    },
+    {
+      "id": 1344,
+      "hiragana": "せっきょくてきに",
+      "kanji": "積極的に",
+      "definition": "積極地",
+      "example": "授業では積極的に発言するようにしている。",
+      "translation": "在課堂上我盡量積極發言。"
+    },
+    {
+      "id": 1345,
+      "hiragana": "たずねる",
+      "kanji": "尋ねる",
+      "definition": "打聽、詢問",
+      "example": "警察に道を尋ねた。",
+      "translation": "向警察問了路。"
+    },
+    {
+      "id": 1346,
+      "hiragana": "しまい",
+      "kanji": "しまい",
+      "definition": "最終、最後",
+      "example": "映画のしまいには皆泣いていた。",
+      "translation": "電影的最後大家都哭了。"
+    },
+    {
+      "id": 1347,
+      "hiragana": "せんてをうつ",
+      "kanji": "先手を打つ",
+      "definition": "先發制人、先下手",
+      "example": "相手が行動する前に先手を打って対策を考えた。",
+      "translation": "在對方行動前先發制人，想好了對策。"
+    },
+    {
+      "id": 1348,
+      "hiragana": "けん",
+      "kanji": "圏",
+      "definition": "圈、範圍",
+      "example": "彼の家は私の通勤圏内にある。",
+      "translation": "他的家在我的通勤範圍內。"
+    },
+    {
+      "id": 1349,
+      "hiragana": "みをもって",
+      "kanji": "身をもって",
+      "definition": "以身、親身",
+      "example": "失敗の痛さを身をもって経験した。",
+      "translation": "親身體驗到了失敗的痛苦。"
+    },
+    {
+      "id": 1350,
+      "hiragana": "めにあまる",
+      "kanji": "目に余る",
+      "definition": "看不下去、過分",
+      "example": "彼の無礼な態度は目に余る。",
+      "translation": "他無禮的態度令人看不下去。"
+    },
+    {
+      "id": 1351,
+      "hiragana": "きにかかる",
+      "kanji": "気にかかる",
+      "definition": "放心不下、掛念",
+      "example": "昨日のテストの結果が気にかかる。",
+      "translation": "昨天考試的結果讓我掛念。"
+    },
+    {
+      "id": 1352,
+      "hiragana": "じょげん",
+      "kanji": "助言",
+      "definition": "建議、忠告",
+      "example": "先生の助言に従って計画を修正した。",
+      "translation": "聽從老師的建議修改了計畫。"
+    },
+    {
+      "id": 1353,
+      "hiragana": "なんどとなく",
+      "kanji": "何度となく",
+      "definition": "好幾次",
+      "example": "その映画は好きで、何度となく見ている。",
+      "translation": "我很喜歡那部電影，已經看過好幾次了。"
+    },
+    {
+      "id": 1354,
+      "hiragana": "くちやかましい",
+      "kanji": "口喧しい",
+      "definition": "囉嗦的、吹毛求疵的",
+      "example": "祖母は礼儀について口喧しい。",
+      "translation": "祖母對礼儀很囉嗦。"
+    },
+    {
+      "id": 1355,
+      "hiragana": "かげで",
+      "kanji": "陰で",
+      "definition": "背地裡",
+      "example": "彼は陰で努力している。",
+      "translation": "他在背地裡默默努力。"
+    },
+    {
+      "id": 1356,
+      "hiragana": "こそこそと",
+      "kanji": "こそこそと",
+      "definition": "偷偷摸摸地、鬼鬼祟祟地",
+      "example": "教室の後ろでこそこそと話をしている。",
+      "translation": "在教室後面偷偷摸摸地說話。"
+    },
+    {
+      "id": 1357,
+      "hiragana": "わるぐちをいう",
+      "kanji": "悪口を言う",
+      "definition": "說壞話",
+      "example": "他人の悪口を言うのは良くないことだ。",
+      "translation": "說別人的壞話是不好的。"
+    },
+    {
+      "id": 1358,
+      "hiragana": "あまくする",
+      "kanji": "甘くする",
+      "definition": "放任、縱容",
+      "example": "子供を甘くすると、将来苦労する。",
+      "translation": "縱容孩子，將來會吃苦。"
+    },
+    {
+      "id": 1359,
+      "hiragana": "うすらぐ",
+      "kanji": "薄らぐ",
+      "definition": "變薄弱、減少",
+      "example": "時間が経つにつれて、悲しみが薄らいできた。",
+      "translation": "隨著時間流逝，悲傷漸漸淡去了。"
+    },
+    {
+      "id": 1360,
+      "hiragana": "しんの",
+      "kanji": "真の",
+      "definition": "真的、真正的",
+      "example": "困難な時に助けてくれるのが真の友だちだ。",
+      "translation": "在困難時伸出援手的人才是真正的朋友。"
+    },
+    {
+      "id": 1361,
+      "hiragana": "さまたげ",
+      "kanji": "妨げ",
+      "definition": "妨礙、阻礙",
+      "example": "騒音が勉強の妨げになる。",
+      "translation": "噪音會妨礙學習。"
+    },
+    {
+      "id": 1362,
+      "hiragana": "こうりゃく",
+      "kanji": "後略",
+      "definition": "省略後面的部分",
+      "example": "記事の続きは後略とさせていただきます。",
+      "translation": "報導的後續部分在此省略。"
+    },
+    {
+      "id": 1363,
+      "hiragana": "へいせいがんねん",
+      "kanji": "平成元年",
+      "definition": "平成元年（1989年）",
+      "example": "彼は平成元年に生まれた。",
+      "translation": "他出生於平成元年。"
     }
   ],
   "reviewStates": {
