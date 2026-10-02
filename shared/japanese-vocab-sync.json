@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-10-02T03:38:21.442Z",
+  "exportedAt": "2026-10-02T10:28:02.807Z",
   "customVocab": [
     {
       "id": 1000,
@@ -3127,8 +3127,8 @@
       "hiragana": "しょく",
       "kanji": "色",
       "definition": "色彩、景色、外觀；表示色調或風格",
-      "example": "部屋を明るい色で飾った。",
-      "translation": "用明亮的顏色裝飾房間。"
+      "example": "特色（とくしょく)",
+      "translation": ""
     },
     {
       "id": 1391,
@@ -4345,6 +4345,34 @@
     "1362": "known",
     "1363": "dontknow",
     "1364": "dontknow",
-    "1365": "known"
+    "1365": "known",
+    "1366": "dontknow",
+    "1367": "dontknow",
+    "1368": "dontknow",
+    "1369": "dontknow",
+    "1370": "known",
+    "1371": "known",
+    "1372": "known",
+    "1373": "known",
+    "1374": "known",
+    "1375": "known",
+    "1376": "known",
+    "1377": "known",
+    "1378": "known",
+    "1379": "dontknow",
+    "1380": "known",
+    "1381": "known",
+    "1382": "dontknow",
+    "1383": "known",
+    "1384": "known",
+    "1385": "dontknow",
+    "1386": "known",
+    "1387": "known",
+    "1388": "known",
+    "1389": "known",
+    "1390": "dontknow",
+    "1391": "known",
+    "1392": "known",
+    "1393": "known"
   }
 }
