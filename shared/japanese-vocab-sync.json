@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-10-02T16:39:16.595Z",
+  "exportedAt": "2026-10-03T09:44:57.315Z",
   "customVocab": [
     {
       "id": 1000,
@@ -4408,6 +4408,10 @@
     "1472": "known",
     "1476": "known",
     "1478": "known",
-    "1479": "known"
+    "1479": "known",
+    "1484": "known",
+    "1492": "known",
+    "1493": "known",
+    "1495": "known"
   }
 }
