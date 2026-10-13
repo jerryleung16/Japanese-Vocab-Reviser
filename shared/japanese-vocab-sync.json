@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-10-13T15:33:51.492Z",
+  "exportedAt": "2026-10-13T15:41:52.069Z",
   "customVocab": [
     {
       "id": 1000,
@@ -2910,7 +2910,7 @@
       "id": 1365,
       "hiragana": "さいわい",
       "kanji": "幸い",
-      "definition": "好彩、好在",
+      "definition": "不幸中之大幸、好彩、好在",
       "example": "幸い、事故の怪我人は一人もいなかった。",
       "translation": "好彩意外入面一啲受傷嘅人都冇。"
     },
@@ -3270,7 +3270,7 @@
       "id": 1410,
       "hiragana": "ちじん",
       "kanji": "知人",
-      "definition": "認識或者見過嘅人，但未必係好親密嘅朋友。",
+      "definition": "認識或者見過嘅人，但未必係好親密嘅朋友。（偏向書面語、正式場合）",
       "example": "警察は、容疑者の知人から話を聞いた。",
       "translation": "警方詢問了嫌疑人的熟人。"
     },
@@ -3758,6 +3758,10 @@
     "1361": "dontknow",
     "1362": "known",
     "1363": "dontknow",
+    "1364": "dontknow",
+    "1365": "dontknow",
+    "1410": "dontknow",
+    "1411": "dontknow",
     "1412": "known",
     "1413": "dontknow",
     "1414": "dontknow",
