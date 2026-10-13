@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-10-13T15:56:10.969Z",
+  "exportedAt": "2026-10-13T16:11:32.397Z",
   "customVocab": [
     {
       "id": 1000,
@@ -2974,7 +2974,7 @@
       "id": 1373,
       "hiragana": "きりそこねる",
       "kanji": "切り損ねる",
-      "definition": "扭軚（轉向）失敗",
+      "definition": "扭軚（轉向）失敗（「～損ねる（そこねる）」的核心文法意義（N2/N1 必備後綴）：  接喺動詞 ⁠ます形⁠ 後面，表示「想做 A 卻錯失咗時機／失手做唔成 A」。）",
       "example": "カーブでハンドルを切りそこねて、壁にぶつかった。",
       "translation": "喺轉彎位扭軚失敗，撞咗上牆度。"
     },
@@ -3766,6 +3766,16 @@
     "1369": "dontknow",
     "1370": "dontknow",
     "1371": "dontknow",
+    "1372": "dontknow",
+    "1373": "dontknow",
+    "1374": "dontknow",
+    "1375": "known",
+    "1376": "dontknow",
+    "1377": "dontknow",
+    "1378": "dontknow",
+    "1379": "dontknow",
+    "1380": "dontknow",
+    "1381": "dontknow",
     "1410": "dontknow",
     "1411": "dontknow",
     "1412": "known",
