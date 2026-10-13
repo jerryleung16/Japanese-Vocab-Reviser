@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exportedAt": "2026-10-13T15:43:14.315Z",
+  "exportedAt": "2026-10-13T15:56:10.969Z",
   "customVocab": [
     {
       "id": 1000,
@@ -2942,7 +2942,7 @@
       "id": 1369,
       "hiragana": "てんとう［する］",
       "kanji": "転倒［する］",
-      "definition": "跌倒、反車",
+      "definition": "表示跌倒、摔倒，或者指事態、立場等倒轉、顛倒。（偏向客觀、正式）",
       "example": "自転車で走っているときにバランスを崩して転倒した。",
       "translation": "踩單車嗰陣冇咗平衡，結果跌倒。"
     },
@@ -2958,7 +2958,7 @@
       "id": 1371,
       "hiragana": "はげます",
       "kanji": "励ます",
-      "definition": "鼓勵",
+      "definition": "鼓勵（ます形：励まします）",
       "example": "先生は試験に落ちて落ち込んでいる生徒を励ました。",
       "translation": "老師鼓勵緊因為考試唔合格而好沮喪嘅學生。"
     },
@@ -3760,6 +3760,12 @@
     "1363": "dontknow",
     "1364": "dontknow",
     "1365": "dontknow",
+    "1366": "dontknow",
+    "1367": "dontknow",
+    "1368": "dontknow",
+    "1369": "dontknow",
+    "1370": "dontknow",
+    "1371": "dontknow",
     "1410": "dontknow",
     "1411": "dontknow",
     "1412": "known",
